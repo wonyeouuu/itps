@@ -1,9 +1,11 @@
 @extends('frontend.layout.app')
 @section('scripts.footer')
-    <script src="{{ elixir('js/frontend/home.js') }}"></script>
+    {{--<script src="{{ elixir('js/frontend/home.js') }}"></script>--}}
+    <script src="{{ url('js/frontend/home.js') }}"></script>
 @endsection
 @section('styles.header')
-    <link rel="stylesheet" href="{{ elixir('css/frontend/home.css') }}">
+    {{--<link rel="stylesheet" href="{{ elixir('css/frontend/home.css') }}">--}}
+    <link rel="stylesheet" href="{{ url('css/frontend/home.css') }}">
 @endsection
 
 @section('content')
