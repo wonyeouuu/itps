@@ -5757,7 +5757,7 @@ button.close {
 .home-grid {
   width: 100px;
   height: 150px;
-  background: url("../../../imgs/itp_grid.png") no-repeat;
+  background: url("/imgs/itp_grid.png") no-repeat;
   background-size: contain;
   background-position-x: center;
   background-position-y: center;
@@ -5769,7 +5769,7 @@ button.close {
   .home-grid:hover {
     width: 100px;
     height: 150px;
-    background: url("../../../imgs/itp_grid_hover.png") no-repeat;
+    background: url("/imgs/itp_grid_hover.png") no-repeat;
     background-size: contain;
     background-position-x: center;
     background-position-y: center;
@@ -5792,7 +5792,7 @@ button.close {
 .home-tooth {
   width: 100px;
   height: 130px;
-  background: url("../../../imgs/itp_tooth.png") no-repeat;
+  background: url("/imgs/itp_tooth.png") no-repeat;
   background-size: contain;
   background-position-x: center;
   background-position-y: center;
@@ -5804,7 +5804,7 @@ button.close {
   .home-tooth:hover {
     width: 100px;
     height: 130px;
-    background: url("../../../imgs/itp_tooth_hover.png") no-repeat;
+    background: url("/imgs/itp_tooth_hover.png") no-repeat;
     background-size: contain;
     background-position-x: center;
     background-position-y: center;

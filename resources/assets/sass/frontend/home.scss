@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-$imgPath: "../../../imgs/";
+$imgPath: "/imgs/";
 
 @mixin homeGrid($path) {
   width: 100px;
