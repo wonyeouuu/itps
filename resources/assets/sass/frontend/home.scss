@@ -1,0 +1,122 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$imgPath: "../../../imgs/";
+
+@mixin homeGrid($path) {
+  width: 100px;
+  height: 150px;
+  background: url($imgPath + $path) no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+}
+@mixin homeTooth($path) {
+  width: 100px;
+  height: 130px;
+  background: url($imgPath + $path) no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  margin-right: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.home-container {
+  width: 980px;
+}
+
+.container-700 {
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.home-logo {
+  width: 250px;
+  margin: 0px 0px 0px 100px;
+}
+
+.home-text-container {
+  margin-top: 20px;
+  h1 {
+    margin: 10px 0;
+    font-size: 45px;
+  }
+}
+.home-bottom-container {
+  margin-top: 100px;
+}
+
+.home-grid {
+  @include homeGrid('itp_grid.png');
+  &:hover {
+    @include homeGrid('itp_grid_hover.png');
+    div {
+      h1 {
+        display: block;
+      }
+    }
+  }
+  div {
+    align-self: center;
+    h1 {
+      white-space: nowrap;
+      margin: 18px 0;
+      font-size: 20px;
+      display: none;
+    }
+  }
+}
+
+.home-tooth {
+  @include homeTooth('itp_tooth.png');
+  &:hover {
+    @include homeTooth('itp_tooth_hover.png');
+    div {
+      h1 {
+        display: block;
+      }
+    }
+  }
+  div {
+    align-self: center;
+    h1 {
+      white-space: nowrap;
+      margin: 18px 0;
+      font-size: 20px;
+      display: none;
+    }
+  }
+}
+
+.btn-circle {
+  width: 80px;
+  height: 80px;
+  margin: 20px 0px;
+  border-radius: 40px;
+  border: 1px black solid;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+.btn-group {
+  list-style-type: none;
+  margin-top: 20px;
+  float: left;
+  position: fixed;
+  li {
+    span {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}
