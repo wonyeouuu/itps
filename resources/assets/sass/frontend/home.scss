@@ -2,121 +2,154 @@
 
 $imgPath: "/imgs/";
 
-@mixin homeGrid($path) {
-  width: 100px;
-  height: 150px;
-  background: url($imgPath + $path) no-repeat;
+@mixin home-bottom-img($path) {
+  height: 60%;
+  background: url($imgPath + $path) no-repeat center;
   background-size: contain;
   background-position-x: center;
   background-position-y: center;
-  margin-left: 100px;
-  display: flex;
-  justify-content: center;
-}
-@mixin homeTooth($path) {
-  width: 100px;
-  height: 130px;
-  background: url($imgPath + $path) no-repeat;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: center;
-  margin-right: 100px;
   display: flex;
   justify-content: center;
 }
 
-.home-container {
-  width: 980px;
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.container-700 {
-  width: 700px;
+h1 {
+  font-weight: 200;
+}
+
+.container-fluid {
+  height: 100%;
+}
+
+
+.main-container {
+  width: 70%;
   margin: 0 auto;
-  padding-top: 100px;
 }
 
-.home-logo {
-  width: 250px;
-  margin: 0px 0px 0px 100px;
-}
-
-.home-text-container {
-  margin-top: 20px;
-  h1 {
-    margin: 10px 0;
-    font-size: 45px;
+.home-top-row {
+  height: 40%;
+  margin-top: 15%;
+  .home-logo-container {
+    height: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .home-logo {
+      height: 120%;
+      width: 64%;
+    }
   }
-}
-.home-bottom-container {
-  margin-top: 100px;
-}
-
-.home-grid {
-  @include homeGrid('itp_grid.png');
-  &:hover {
-    @include homeGrid('itp_grid_hover.png');
-    div {
+  .home-text-container {
+    height: 100%;
+    padding: 0;
+    margin: -2% 0 0 0;
+    .home-text-wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       h1 {
-        display: block;
+        margin: 0;
+        font-size: 4vw;
       }
     }
   }
-  div {
-    align-self: center;
-    h1 {
-      white-space: nowrap;
-      margin: 18px 0;
-      font-size: 20px;
-      display: none;
-    }
-  }
 }
 
-.home-tooth {
-  @include homeTooth('itp_tooth.png');
-  &:hover {
-    @include homeTooth('itp_tooth_hover.png');
+
+
+.home-bottom-row {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  .home-grid {
+    @include home-bottom-img('itp_grid.png');
     div {
+      align-self: center;
       h1 {
-        display: block;
+        white-space: nowrap;
+        font-size: 1.5vw;
+        margin: 1.4vw 0;
+        display: none;
+      }
+    }
+    &:hover {
+      @include home-bottom-img('itp_grid_hover.png');
+      div {
+        h1 {
+          display: block;
+        }
       }
     }
   }
-  div {
-    align-self: center;
-    h1 {
-      white-space: nowrap;
-      margin: 18px 0;
-      font-size: 20px;
-      display: none;
+  .home-tooth {
+    @include home-bottom-img('itp_tooth.png');
+    div {
+      align-self: center;
+      h1 {
+        white-space: nowrap;
+        font-size: 1.5vw;
+        margin: 1.4vw 0;
+        display: none;
+      }
+    }
+    &:hover {
+      @include home-bottom-img('itp_tooth_hover.png');
+      div {
+        h1 {
+          display: block;
+        }
+      }
     }
   }
 }
 
-.btn-circle {
-  width: 80px;
-  height: 80px;
-  margin: 20px 0px;
-  border-radius: 40px;
-  border: 1px black solid;
-  background-color: black;
-  color: white;
-  font-size: 40px;
-  &:hover {
-    background-color: white;
-    color: black;
-  }
-}
 
-.btn-group {
-  list-style-type: none;
-  margin-top: 20px;
-  float: left;
+
+
+
+.btn-group-container {
   position: fixed;
-  li {
-    span {
-      margin-left: 10px;
-      font-weight: bold;
+  left: 15%;
+  top: 0;
+  .btn-group {
+    list-style-type: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    li {
+      position: relative;
+      margin: 2.5vw 0;
+      .btn-circle {
+        width: 6vw;
+        height: 6vw;
+        font-size: 3vw;
+        font-weight: 200;
+        border-radius: 50%;
+        border: 1px black solid;
+        background-color: black;
+        color: white;
+        &:hover {
+          background-color: white;
+          color: black;
+        }
+      }
+      span {
+        position: absolute;
+        white-space: nowrap;
+        font-size: 1vw;
+        left: 115%;
+        bottom: 35%;
+        font-weight: 200;
+      }
     }
   }
 }
