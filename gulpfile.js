@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-vueify');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -13,12 +14,16 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix
-        //.sass('/frontend/app.scss', 'public/css/frontend/app.css')
+        .sass('/frontend/bootstrap.scss', 'public/css/frontend/bootstrap.css')
         .sass('/frontend/home.scss', 'public/css/frontend/home.css')
+        .sass('/frontend/textUi.scss', 'public/css/frontend/textUI.css')
         .browserify('/frontend/home.js', 'public/js/frontend/home.js')
+        .browserify('/frontend/textUI.js', 'public/js/frontend/textUI.js')
         .version([
+            'css/frontend/bootstrap.css',
             'css/frontend/home.css',
-            'js/frontend/home.js'
+            'css/frontend/textUI.css',
+            'js/frontend/home.js',
+            'js/frontend/textUI.js'
         ]);
-
 });

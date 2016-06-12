@@ -1,0 +1,1 @@
+{"version":3,"sources":["textUi.scss"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,UAAU;EACV,WAAW,EACZ;;AAED;EACE,uBAAuB;EACvB,aAAa,EACd","file":"textUI.css","sourcesContent":["body, html {\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n.container {\n  background-color: grey;\n  height: 100%;\n}"],"sourceRoot":"/source/"}

@@ -5,5 +5,3 @@ new Vue({
     el: 'body',
     components: { IHA }
 });
-
-

@@ -1,43 +1,12 @@
 @extends('frontend.layout.app')
 @section('scripts.footer')
-    {{--<script src="{{ elixir('js/frontend/home.js') }}"></script>--}}
-    <script src="{{ url('js/frontend/home.js') }}"></script>
+    <script src="{{ elixir('js/frontend/home.js') }}"></script>
 @endsection
 @section('styles.header')
-    {{--<link rel="stylesheet" href="{{ elixir('css/frontend/home.css') }}">--}}
-    <link rel="stylesheet" href="{{ url('css/frontend/home.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/frontend/home.css') }}">
 @endsection
 
 @section('content')
-    <div class="btn-group-container">
-        <ul class="btn-group">
-            <li>
-                <button
-                    class="btn-circle btn"
-                    v-on:mouseenter="hover('I', true)"
-                    v-on:mouseleave="hover('I', false)"
-                >I</button>
-                <span v-cloak v-show="showI">TPS</span>
-            </li>
-            <li>
-                <button
-                    class="btn-circle btn"
-                    v-on:mouseenter="hover('H', true)"
-                    v-on:mouseleave="hover('H', false)"
-                >H</button>
-                <span v-cloak v-show="showH">OW TO USE?</span>
-            </li>
-            <li>
-                <button
-                    class="btn-circle btn"
-                    v-on:mouseenter="hover('A', true)"
-                    v-on:mouseleave="hover('A', false)"
-                >A</button>
-                <span v-cloak v-show="showA">BOUT US</span>
-            </li>
-        </ul>
-
-    </div>
     <div class="main-container container-fluid">
         <div class="row home-top-row">
             <div class="col-xs-6 home-logo-container">
@@ -54,14 +23,18 @@
         </div>
         <div class="row home-bottom-row">
             <div class="col-xs-6 home-grid">
-                <div>
+                <div
+                    onclick="window.location='{{ url('/UI/text-based') }}'"
+                >
                     <h1>Text-Based</h1>
                     <h1>User</h1>
                     <h1>Interface</h1>
                 </div>
             </div>
             <div class="col-xs-6 home-tooth">
-                <div>
+                <div
+                    onclick="window.location='{{ url('/UI/graph-based') }}'"
+                >
                     <h1>Graphical</h1>
                     <h1>User</h1>
                     <h1>Interface</h1>

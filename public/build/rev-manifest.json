@@ -1,4 +1,7 @@
 {
-  "css/frontend/home.css": "css/frontend/home-4baafb6279.css",
-  "js/frontend/home.js": "js/frontend/home-783cef3f96.js"
+  "css/frontend/bootstrap.css": "css/frontend/bootstrap-8937ab29fc.css",
+  "css/frontend/home.css": "css/frontend/home-4c4cc8b1cf.css",
+  "css/frontend/textUI.css": "css/frontend/textUI-8f6262d1f8.css",
+  "js/frontend/home.js": "js/frontend/home-28bc84a824.js",
+  "js/frontend/textUI.js": "js/frontend/textUI-9c23295dc4.js"
 }

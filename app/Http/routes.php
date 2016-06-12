@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', 'FrontendController@index');
+Route::get('/itps', 'FrontendController@I');
+Route::get('/how-to-use', 'FrontendController@H');
+Route::get('/about-us', 'FrontendController@A');
+Route::get('/UI/text-based', 'FrontendController@text');
+Route::get('/UI/graph-based', 'FrontendController@graph');
