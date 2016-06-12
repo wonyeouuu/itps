@@ -19969,21 +19969,27 @@ new _Vue2.default({
     },
 
     methods: {
-        hoverI: function hoverI() {
+        hover: function hover(target, status) {
             "use strict";
 
-            this.showI = !this.showI;
-        },
-        hoverH: function hoverH() {
-            "use strict";
-
-            this.showH = !this.showH;
-        },
-        hoverA: function hoverA() {
-            "use strict";
-
-            this.showA = !this.showA;
+            switch (target) {
+                case "I":
+                    this.showI = status;
+                    break;
+                case "H":
+                    this.showH = status;
+                    break;
+                case "A":
+                    this.showA = status;
+                    break;
+            }
         }
+        //hoverI: function() {
+        //
+        //    "use strict";
+        //    this.showI = !this.showI;
+        //}
+
     }
 });
 

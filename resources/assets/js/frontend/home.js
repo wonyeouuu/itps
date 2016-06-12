@@ -12,17 +12,19 @@ new Vue({
         }
     },
     methods: {
-        hoverI: function() {
+        hover(target, status) {
             "use strict";
-            this.showI = !this.showI;
-        },
-        hoverH: function() {
-            "use strict";
-            this.showH = !this.showH;
-        },
-        hoverA: function() {
-            "use strict";
-            this.showA = !this.showA;
+            switch(target) {
+                case "I":
+                    this.showI = status;
+                    break;
+                case "H":
+                    this.showH = status;
+                    break;
+                case "A":
+                    this.showA = status;
+                    break;
+            }
         }
     }
 });

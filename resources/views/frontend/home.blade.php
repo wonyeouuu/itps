@@ -14,24 +14,24 @@
             <li>
                 <button
                     class="btn-circle btn"
-                    v-on:mouseenter="hoverI()"
-                    v-on:mouseleave="hoverI()"
+                    v-on:mouseenter="hover('I', true)"
+                    v-on:mouseleave="hover('I', false)"
                 >I</button>
                 <span v-cloak v-show="showI">TPS</span>
             </li>
             <li>
                 <button
                     class="btn-circle btn"
-                    v-on:mouseenter="hoverH()"
-                    v-on:mouseleave="hoverH()"
+                    v-on:mouseenter="hover('H', true)"
+                    v-on:mouseleave="hover('H', false)"
                 >H</button>
                 <span v-cloak v-show="showH">OW TO USE?</span>
             </li>
             <li>
                 <button
                     class="btn-circle btn"
-                    v-on:mouseenter="hoverA()"
-                    v-on:mouseleave="hoverA()"
+                    v-on:mouseenter="hover('A', true)"
+                    v-on:mouseleave="hover('A', false)"
                 >A</button>
                 <span v-cloak v-show="showA">BOUT US</span>
             </li>
