@@ -10508,6 +10508,82 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _question = require("./question.vue");
+
+var _question2 = _interopRequireDefault(_question);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    el: '.question-list-container',
+    components: { Question: _question2.default }
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-list-container\" _v-53305aa3=\"\">\n    <question number=\"1\" title=\"Implan\" _v-53305aa3=\"\"></question>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-53305aa3", module.exports)
+  } else {
+    hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"./question.vue":8,"vue":4,"vue-hot-reload-api":3}],8:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("/* line 3, stdin */\n.question-container[_v-5e56c176] {\n  margin: 100px 0 0 20px; }\n  /* line 5, stdin */\n  .question-container h1[_v-5e56c176] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 12, stdin */\n.table-trigger[_v-5e56c176] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 20, stdin */\n  .table-trigger[_v-5e56c176]:hover {\n    background-color: black; }\n\n/* line 25, stdin */\n.table-normal[_v-5e56c176] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: lightgoldenrodyellow;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 32, stdin */\n  .table-normal .teeth-row[_v-5e56c176] {\n    height: 50%; }\n    /* line 34, stdin */\n    .table-normal .teeth-row .rtl[_v-5e56c176] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 40, stdin */\n    .table-normal .teeth-row .ltr[_v-5e56c176] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 45, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5e56c176] {\n      height: 100%; }\n      /* line 47, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px solid black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 56, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176]:hover {\n          background-color: red; }\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    el: '.question-container',
+    props: ['number', 'title'],
+    data: function data() {
+        return {
+            tableShow: false,
+            teeth: {
+                tl: [11, 12, 13, 14, 15, 16, 17, 18],
+                tr: [21, 22, 23, 24, 25, 26, 27, 28],
+                bl: [41, 42, 43, 44, 45, 46, 47, 48],
+                br: [31, 32, 33, 34, 35, 36, 37, 38]
+            }
+        };
+    },
+
+    methods: {
+        tableShowToggle: function tableShowToggle() {
+            this.tableShow = !this.tableShow;
+        }
+    }
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-5e56c176=\"\">\n    <h1 _v-5e56c176=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" @click=\"tableShowToggle()\" _v-5e56c176=\"\"></span>\n    </h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-5e56c176=\"\">\n        <div class=\"row-top teeth-row\" _v-5e56c176=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.tl\" class=\"circle\" _v-5e56c176=\"\">{{ tooth }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.tr\" class=\"circle\" _v-5e56c176=\"\">{{ tooth }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-5e56c176=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.bl\" class=\"circle\" _v-5e56c176=\"\">{{ tooth }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.br\" class=\"circle\" _v-5e56c176=\"\">{{ tooth }}</div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["/* line 3, stdin */\n.question-container[_v-5e56c176] {\n  margin: 100px 0 0 20px; }\n  /* line 5, stdin */\n  .question-container h1[_v-5e56c176] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 12, stdin */\n.table-trigger[_v-5e56c176] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 20, stdin */\n  .table-trigger[_v-5e56c176]:hover {\n    background-color: black; }\n\n/* line 25, stdin */\n.table-normal[_v-5e56c176] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: lightgoldenrodyellow;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 32, stdin */\n  .table-normal .teeth-row[_v-5e56c176] {\n    height: 50%; }\n    /* line 34, stdin */\n    .table-normal .teeth-row .rtl[_v-5e56c176] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 40, stdin */\n    .table-normal .teeth-row .ltr[_v-5e56c176] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 45, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5e56c176] {\n      height: 100%; }\n      /* line 47, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px solid black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 56, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176]:hover {\n          background-color: red; }\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-5e56c176", module.exports)
+  } else {
+    hotAPI.update("_v-5e56c176", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],9:[function(require,module,exports){
 'use strict';
 
 var _Vue = require('Vue');
@@ -10518,13 +10594,17 @@ var _IHA = require('./components/IHA.vue');
 
 var _IHA2 = _interopRequireDefault(_IHA);
 
+var _QuestionList = require('./components/questionList/QuestionList.vue');
+
+var _QuestionList2 = _interopRequireDefault(_QuestionList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 new _Vue2.default({
     el: 'body',
-    components: { IHA: _IHA2.default }
+    components: { IHA: _IHA2.default, QuestionList: _QuestionList2.default }
 });
 
-},{"./components/IHA.vue":6,"Vue":1}]},{},[7]);
+},{"./components/IHA.vue":6,"./components/questionList/QuestionList.vue":7,"Vue":1}]},{},[9]);
 
 //# sourceMappingURL=textUI.js.map

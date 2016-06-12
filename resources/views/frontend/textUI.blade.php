@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ elixir('css/frontend/textUI.css') }}">
 @endsection
 @section('content')
-    <div class="container">
-
+    <div class="container-fluid">
+        <question-list></question-list>
     </div>
 @endsection
