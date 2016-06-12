@@ -17,7 +17,7 @@
                     v-on:mouseenter="hoverI()"
                     v-on:mouseleave="hoverI()"
                 >I</button>
-                <span v-show="showI">TPS</span>
+                <span v-cloak v-show="showI">TPS</span>
             </li>
             <li>
                 <button
@@ -25,7 +25,7 @@
                     v-on:mouseenter="hoverH()"
                     v-on:mouseleave="hoverH()"
                 >H</button>
-                <span v-show="showH">OW TO USE?</span>
+                <span v-cloak v-show="showH">OW TO USE?</span>
             </li>
             <li>
                 <button
@@ -33,7 +33,7 @@
                     v-on:mouseenter="hoverA()"
                     v-on:mouseleave="hoverA()"
                 >A</button>
-                <span v-show="showA">BOUT US</span>
+                <span v-cloak v-show="showA">BOUT US</span>
             </li>
         </ul>
 

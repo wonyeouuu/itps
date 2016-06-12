@@ -1,4 +1,7 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+[v-cloak] {
+  display: none;
+}
 
 $imgPath: "/imgs/";
 
