@@ -5798,13 +5798,17 @@ h1 {
     -ms-flex-pack: center;
     justify-content: center; }
     .home-bottom-row .home-grid div {
-      -ms-flex-item-align: center;
-      align-self: center; }
+      visibility: hidden;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-pack: distribute;
+      justify-content: space-around; }
       .home-bottom-row .home-grid div h1 {
         white-space: nowrap;
         font-size: 1.5vw;
-        margin: 1.4vw 0;
-        display: none; }
+        margin: 0; }
     .home-bottom-row .home-grid:hover {
       height: 60%;
       background: url("/imgs/itp_grid_hover.png") no-repeat center;
@@ -5815,8 +5819,8 @@ h1 {
       display: flex;
       -ms-flex-pack: center;
       justify-content: center; }
-      .home-bottom-row .home-grid:hover div h1 {
-        display: block; }
+      .home-bottom-row .home-grid:hover div {
+        visibility: visible; }
   .home-bottom-row .home-tooth {
     height: 60%;
     background: url("/imgs/itp_tooth.png") no-repeat center;
@@ -5828,13 +5832,17 @@ h1 {
     -ms-flex-pack: center;
     justify-content: center; }
     .home-bottom-row .home-tooth div {
-      -ms-flex-item-align: center;
-      align-self: center; }
+      visibility: hidden;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-pack: distribute;
+      justify-content: space-around; }
       .home-bottom-row .home-tooth div h1 {
         white-space: nowrap;
         font-size: 1.5vw;
-        margin: 1.4vw 0;
-        display: none; }
+        margin: 0; }
     .home-bottom-row .home-tooth:hover {
       height: 60%;
       background: url("/imgs/itp_tooth_hover.png") no-repeat center;
@@ -5845,8 +5853,8 @@ h1 {
       display: flex;
       -ms-flex-pack: center;
       justify-content: center; }
-      .home-bottom-row .home-tooth:hover div h1 {
-        display: block; }
+      .home-bottom-row .home-tooth:hover div {
+        visibility: visible; }
 
 .btn-group-container {
   position: fixed;

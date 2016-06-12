@@ -73,40 +73,40 @@ h1 {
   .home-grid {
     @include home-bottom-img('itp_grid.png');
     div {
-      align-self: center;
+      visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       h1 {
         white-space: nowrap;
         font-size: 1.5vw;
-        margin: 1.4vw 0;
-        display: none;
+        margin: 0;
       }
     }
     &:hover {
       @include home-bottom-img('itp_grid_hover.png');
       div {
-        h1 {
-          display: block;
-        }
+        visibility: visible;
       }
     }
   }
   .home-tooth {
     @include home-bottom-img('itp_tooth.png');
     div {
-      align-self: center;
+      visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       h1 {
         white-space: nowrap;
         font-size: 1.5vw;
-        margin: 1.4vw 0;
-        display: none;
+        margin: 0;
       }
     }
     &:hover {
       @include home-bottom-img('itp_tooth_hover.png');
       div {
-        h1 {
-          display: block;
-        }
+        visibility: visible;
       }
     }
   }

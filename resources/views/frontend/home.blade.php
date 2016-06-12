@@ -13,27 +13,27 @@
         <ul class="btn-group">
             <li>
                 <button
-                        class="btn-circle btn"
-                        v-on:mouseenter="hoverI()"
-                        v-on:mouseleave="hoverI()"
+                    class="btn-circle btn"
+                    v-on:mouseenter="hoverI()"
+                    v-on:mouseleave="hoverI()"
                 >I</button>
-                <span v-show="showI">拎北喜I</span>
+                <span v-show="showI">TPS</span>
             </li>
             <li>
                 <button
-                        class="btn-circle btn"
-                        v-on:mouseenter="hoverH()"
-                        v-on:mouseleave="hoverH()"
+                    class="btn-circle btn"
+                    v-on:mouseenter="hoverH()"
+                    v-on:mouseleave="hoverH()"
                 >H</button>
-                <span v-show="showH">OW ABOUT US?</span>
+                <span v-show="showH">OW TO USE?</span>
             </li>
             <li>
                 <button
-                        class="btn-circle btn"
-                        v-on:mouseenter="hoverA()"
-                        v-on:mouseleave="hoverA()"
+                    class="btn-circle btn"
+                    v-on:mouseenter="hoverA()"
+                    v-on:mouseleave="hoverA()"
                 >A</button>
-                <span v-show="showA">拎北喜A</span>
+                <span v-show="showA">BOUT US</span>
             </li>
         </ul>
 
