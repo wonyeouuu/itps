@@ -1,7 +1,8 @@
 <style lang="scss" scoped>
     $teethSelected: red;
+    $tableBackground: lighten(lightgray, 50%);
     .question-container {
-        margin: 100px 0 0 20px;
+        margin: 0 0 30px 20px;
         h1 {
             margin: 0;
             font-size: 2vw;
@@ -18,15 +19,18 @@
         position: relative;
         top: 0.5vw;
         &:hover {
-            background-color: black;
+            background-color: lighten(black, 20%);
         }
+    }
+    .table-trigger--selected {
+        background-color: black;
     }
 
     .table-normal {
         width: 64vw;
         height: 10vw;
         margin: 20px 0 0 2vw;
-        background-color: lightgoldenrodyellow;
+        background-color: $tableBackground;
         border-radius: 1.5vw;
         border: 3px black solid;
         .teeth-row {
@@ -48,14 +52,18 @@
                     width: 3vw;
                     height: 3vw;
                     border-radius: 1.5vw;
-                    border: 2px solid black;
+                    border: 2px dotted black;
                     text-align: center;
                     line-height: 2.8vw;
                     font-size: 1.5vw;
                     font-weight: 700;
                     &:hover {
-                        background-color: $teethSelected;
+                        background-color: lighten($teethSelected, 20%);
                     }
+                }
+                .circle--selected {
+                    background-color: $teethSelected;
+                    border: 2px solid black;
                 }
             }
         }
@@ -68,24 +76,45 @@
             {{ number }}. {{ title }}
             <span
                 class="table-trigger"
+                :class="{ 'table-trigger--selected': tableShow }"
                 @click="tableShowToggle()"
             ></span>
         </h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
                 <div class="row-top-left col-xs-6 rtl">
-                    <div v-for="tooth in teeth.tl" class="circle">{{ tooth }}</div>
+                    <div
+                        v-for="tooth in teeth.slice(0,8)"
+                        class="circle"
+                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        @click="circleToggle(tooth.id)"
+                    >{{ tooth.id }}</div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
-                    <div v-for="tooth in teeth.tr" class="circle">{{ tooth }}</div>
+                    <div
+                        v-for="tooth in teeth.slice(8,16)"
+                        class="circle"
+                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        @click="circleToggle(tooth.id)"
+                    >{{ tooth.id }}</div>
                 </div>
             </div>
             <div class="row-bottom teeth-row">
                 <div class="row-bottom-left col-xs-6 rtl">
-                    <div v-for="tooth in teeth.bl" class="circle">{{ tooth }}</div>
+                    <div
+                        v-for="tooth in teeth.slice(16,24)"
+                        class="circle"
+                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        @click="circleToggle(tooth.id)"
+                    >{{ tooth.id }}</div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
-                    <div v-for="tooth in teeth.br" class="circle">{{ tooth }}</div>
+                    <div
+                        v-for="tooth in teeth.slice(24,32)"
+                        class="circle"
+                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        @click="circleToggle(tooth.id)"
+                    >{{ tooth.id }}</div>
                 </div>
             </div>
         </div>
@@ -102,18 +131,37 @@
         data() {
             return {
                 tableShow: false,
-                teeth: {
-                    tl: [11, 12, 13, 14, 15, 16, 17, 18],
-                    tr: [21, 22, 23, 24, 25, 26, 27, 28],
-                    bl: [41, 42, 43, 44, 45, 46, 47, 48],
-                    br: [31, 32, 33, 34, 35, 36, 37, 38]
-                }
+                teeth: []
             }
         },
+        ready() {
+            this.initTeeth();
+        },
         methods: {
+            initTeeth() {
+                ['1', '2', '4', '3'].forEach(function(digit10) {
+                    ['1', '2', '3', '4', '5', '6', '7', '8'].forEach(function(digit1) {
+                        this.teeth.push({
+                            id: `${digit10}${digit1}`,
+                            selected: false
+                        });
+                    }.bind(this))
+                }.bind(this))
+            },
+
             tableShowToggle() {
                 this.tableShow = !this.tableShow;
+            },
+
+            circleToggle(id) {
+                this.teeth.forEach(function(tooth) {
+                    console.log(tooth);
+                    if (tooth.id == id) {
+                        tooth.selected = !tooth.selected;
+                    }
+                });
             }
+
         }
 
     };
