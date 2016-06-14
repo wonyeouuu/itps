@@ -1,5 +1,5 @@
-<style lang="scss" scoped>
-    $teethSelected: red;
+<style rel="stylesheet/scss" lang="sass" scoped>
+    $teethSelected: #C4E1D4;
     $tableBackground: lighten(lightgray, 50%);
     .question-container {
         margin: 0 0 30px 20px;
@@ -58,7 +58,7 @@
                     font-size: 1.5vw;
                     font-weight: 700;
                     &:hover {
-                        background-color: lighten($teethSelected, 20%);
+                        background-color: lighten($teethSelected, 10%);
                     }
                 }
                 .circle--selected {
@@ -77,7 +77,7 @@
             <span
                 class="table-trigger"
                 :class="{ 'table-trigger--selected': tableShow }"
-                @click="tableShowToggle()"
+                @click="tableShowToggle(number)"
             ></span>
         </h1>
         <div class="table-normal" v-show="tableShow">
@@ -87,7 +87,7 @@
                         v-for="tooth in teeth.slice(0,8)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="circleToggle(tooth.id)"
+                        @click="teethToggle(number, tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
@@ -95,7 +95,7 @@
                         v-for="tooth in teeth.slice(8,16)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="circleToggle(tooth.id)"
+                        @click="teethToggle(number, tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                         v-for="tooth in teeth.slice(16,24)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="circleToggle(tooth.id)"
+                        @click="teethToggle(number, tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
@@ -113,7 +113,7 @@
                         v-for="tooth in teeth.slice(24,32)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="circleToggle(tooth.id)"
+                        @click="teethToggle(number, tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -121,47 +121,23 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
+    import { getTeethWithQuestion } from '../../vuex/getters'
+    import { tableShowToggle } from '../../vuex/actions'
+    import { teethToggle } from '../../vuex/actions'
     export default {
         el: '.question-container',
         props: [
             'number',
-            'title'
+            'title',
+            'teeth',
+            'tableShow'
         ],
-        data() {
-            return {
-                tableShow: false,
-                teeth: []
+        vuex: {
+            actions: {
+                tableShowToggle,
+                teethToggle
             }
-        },
-        ready() {
-            this.initTeeth();
-        },
-        methods: {
-            initTeeth() {
-                ['1', '2', '4', '3'].forEach(function(digit10) {
-                    ['1', '2', '3', '4', '5', '6', '7', '8'].forEach(function(digit1) {
-                        this.teeth.push({
-                            id: `${digit10}${digit1}`,
-                            selected: false
-                        });
-                    }.bind(this))
-                }.bind(this))
-            },
-
-            tableShowToggle() {
-                this.tableShow = !this.tableShow;
-            },
-
-            circleToggle(id) {
-                this.teeth.forEach(function(tooth) {
-                    console.log(tooth);
-                    if (tooth.id == id) {
-                        tooth.selected = !tooth.selected;
-                    }
-                });
-            }
-
         }
 
     };

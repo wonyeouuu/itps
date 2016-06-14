@@ -1,471 +1,73 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import _ from 'underscore'
 
 Vue.use(Vuex);
 
-
 const state = {
-    questions: {
-        q1: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q2: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q3: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q4: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q5: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q6: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q7: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q8: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q9: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        },
-        q10: {
-            show: false,
-            selected: {
-                tl: {
-                    11: false,
-                    12: false,
-                    13: false,
-                    14: false,
-                    15: false,
-                    16: false,
-                    17: false,
-                    18: false
-                },
-                tr: {
-                    21: false,
-                    22: false,
-                    23: false,
-                    24: false,
-                    25: false,
-                    26: false,
-                    27: false,
-                    28: false
-                },
-                br: {
-                    31: false,
-                    32: false,
-                    33: false,
-                    34: false,
-                    35: false,
-                    36: false,
-                    37: false,
-                    38: false
-                },
-                bl: {
-                    41: false,
-                    42: false,
-                    43: false,
-                    44: false,
-                    45: false,
-                    46: false,
-                    47: false,
-                    48: false
-                }
-            }
-        }
+    questions: []
+};
+
+const mutations = {
+    INIT (state) {
+        "use strict";
+        let questions = [
+            'Implant',
+            'Missing Teeth',
+            'Residual Roots',
+            'Fixed Partial Denture',
+            'Post',
+            'Veneer',
+            'RPD(Upper, Lower)',
+            'CD(Upper, Lower)',
+            'Caries',
+            'Apical Lesion',
+            'Periodontal Chart'
+        ]
+        // _.range(1, 12).forEach((question) => {
+        questions.forEach((question, number) => {
+            state.questions.push({ 
+                teeth: teethArr(),
+                tableShow: false,
+                number: number + 1,
+                title: question
+            })
+        })
+    },
+
+    TABLESHOW_TOGGLE (state, number) {
+        "use strict";
+        state.questions[_.findKey(state.questions, {number})].tableShow = !state.questions[_.findKey(state.questions, {number})].tableShow 
+    },
+    
+    TEETH_TOGGLE (state, number, teeth, newStatus) {
+        "use strict";
+        console.log(number, teeth, newStatus)
+        let questionIndex = _.findKey(state.questions, {number})
+        let teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
+        console.log(questionIndex)
+        console.log(teethIndex)
+        console.log(JSON.parse(JSON.stringify(state.questions[questionIndex].teeth[teethIndex])))
+        state.questions[questionIndex].teeth[teethIndex].selected = newStatus
     }
 
 };
 
-const mutations = {
+function teethArr() {
+    "use strict";
+    let teeth = [];
+    _.range(1, 5).forEach((digit10) => {
+        _.range(1, 9).forEach((digit1) => {
+            teeth.push({
+                id: `${digit10}${digit1}`,
+                selected: false
+            })
+        })
+    })
+    return teeth
+}
 
-};
-
-
-export default Vuex.Store({
+export default new Vuex.Store({
     state,
     mutations
 })
