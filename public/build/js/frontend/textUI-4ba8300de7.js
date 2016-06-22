@@ -1,15 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = { "default": require("core-js/library/fn/json/stringify"), __esModule: true };
-},{"core-js/library/fn/json/stringify":2}],2:[function(require,module,exports){
-var core  = require('../../modules/_core')
-  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
-module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
-  return $JSON.stringify.apply($JSON, arguments);
-};
-},{"../../modules/_core":3}],3:[function(require,module,exports){
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],4:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -105,7 +94,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],5:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -1655,7 +1644,7 @@ process.umask = function() { return 0; };
   }
 }.call(this));
 
-},{}],6:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var Vue // late bind
 var map = Object.create(null)
 var shimmed = false
@@ -1955,7 +1944,7 @@ function format (id) {
   return id.match(/[^\/]+\.vue$/)[0]
 }
 
-},{}],7:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v1.0.24
@@ -11988,7 +11977,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":4}],8:[function(require,module,exports){
+},{"_process":1}],5:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -12008,7 +11997,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],9:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /*!
  * Vuex v0.6.3
  * (c) 2016 Evan You
@@ -12643,7 +12632,7 @@ exports.insert = function (css) {
   return index;
 
 }));
-},{}],10:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 6, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 11, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 14, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 23, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 28, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -12701,58 +12690,9 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":7,"vue-hot-reload-api":6,"vueify/lib/insert-css":8}],11:[function(require,module,exports){
+},{"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n")
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _actions = require("../../vuex/actions");
-
-var _getters = require("../../vuex/getters");
-
-var _question = require("./question.vue");
-
-var _question2 = _interopRequireDefault(_question);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: { Question: _question2.default },
-    vuex: {
-        getters: {
-            questions: _getters.getQuestions
-        },
-        actions: {
-            init: _actions.init
-        }
-    },
-    ready: function ready() {
-        this.init();
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-list-container\" _v-53305aa3=\"\">\n    <question v-for=\"question in questions\" :teeth=\"question.teeth\" :number=\"question.number\" :table-show=\"question.tableShow\" :title=\"question.title\" _v-53305aa3=\"\"></question>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-53305aa3", module.exports)
-  } else {
-    hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../../vuex/actions":14,"../../vuex/getters":15,"./question.vue":12,"vue":7,"vue-hot-reload-api":6,"vueify/lib/insert-css":8}],12:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-5e56c176] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-5e56c176] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-5e56c176] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-5e56c176]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-5e56c176] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-5e56c176] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-5e56c176] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-5e56c176] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-5e56c176] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5e56c176] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-5e56c176] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
+var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12775,22 +12715,115 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-5e56c176=\"\">\n    <h1 _v-5e56c176=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-5e56c176=\"\"></span>\n    </h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-5e56c176=\"\">\n        <div class=\"row-top teeth-row\" _v-5e56c176=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-5e56c176=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-5e56c176=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-5e56c176=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-5e56c176=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-5e56c176=\"\">\n                <div v-for=\"tooth in teeth.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-5e56c176=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-4ac01936=\"\">\n    <h1 _v-4ac01936=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-4ac01936=\"\"></span>\n    </h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-4ac01936=\"\">\n        <div class=\"row-top teeth-row\" _v-4ac01936=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-4ac01936=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-5e56c176] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-5e56c176] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-5e56c176] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-5e56c176]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-5e56c176] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-5e56c176] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-5e56c176] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-5e56c176] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-5e56c176] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5e56c176] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-5e56c176]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-5e56c176] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n"] = false
+    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-5e56c176", module.exports)
+    hotAPI.createRecord("_v-4ac01936", module.exports)
   } else {
-    hotAPI.update("_v-5e56c176", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":14,"../../vuex/getters":15,"vue":7,"vue-hot-reload-api":6,"vueify/lib/insert-css":8}],13:[function(require,module,exports){
+},{"../../vuex/actions":12,"../../vuex/getters":13,"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],9:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n    /* line 11, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 1vw;\n      margin-top: 1vh; }\n\n/* line 18, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 26, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 30, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 34, stdin */\n.table-normal[_v-249c332b] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 41, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 43, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 54, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n      /* line 56, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 65, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n    /* line 74, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 0.75vw;\n      font-weight: 700; }\n    /* line 82, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 0.75vw;\n      font-weight: 700;\n      width: 88%;\n      margin: 0 auto; }\n      /* line 91, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 1.5vw;\n        height: 1.5vw;\n        border-radius: 0.75vw;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 1.4vw;\n        font-size: 0.75vw;\n        font-weight: 700; }\n        /* line 100, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 104, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getters = require('../../vuex/getters');
+
+var _actions = require('../../vuex/actions');
+
+exports.default = {
+    el: '.question-container',
+    props: ['number', 'title', 'data', 'tableShow'],
+    vuex: {
+        actions: {
+            tableShowToggle: _actions.tableShowToggle,
+            teethToggle: _actions.teethToggle
+        }
+    }
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-249c332b=\"\">\n    <h1 _v-249c332b=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-249c332b=\"\"></span>\n    </h1>\n    <!--table a-->\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-249c332b=\"\">a. Crown</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-249c332b=\"\">\n        <div class=\"row-top teeth-row\" _v-249c332b=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-249c332b=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n    <!--table b-->\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-249c332b=\"\">b. Connector</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-249c332b=\"\">\n        <div class=\"row-top teeth-row\" _v-249c332b=\"\">\n            <div class=\"col-xs-12\" _v-249c332b=\"\">\n                <div v-for=\"teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']\" _v-249c332b=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-249c332b=\"\">\n                <div class=\"circle--small\" v-for=\"connector in data.b.slice(0,15)\" _v-249c332b=\"\">\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-249c332b=\"\">\n            <div class=\"col-xs-12\" _v-249c332b=\"\">\n                <div v-for=\"teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']\" _v-249c332b=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-249c332b=\"\">\n                <div class=\"circle--small\" v-for=\"connector in data.b.slice(15,30)\" _v-249c332b=\"\">\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n    /* line 11, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 1vw;\n      margin-top: 1vh; }\n\n/* line 18, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 26, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 30, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 34, stdin */\n.table-normal[_v-249c332b] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 41, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 43, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 54, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n      /* line 56, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 65, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n    /* line 74, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 0.75vw;\n      font-weight: 700; }\n    /* line 82, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 0.75vw;\n      font-weight: 700;\n      width: 88%;\n      margin: 0 auto; }\n      /* line 91, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 1.5vw;\n        height: 1.5vw;\n        border-radius: 0.75vw;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 1.4vw;\n        font-size: 0.75vw;\n        font-weight: 700; }\n        /* line 100, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 104, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-249c332b", module.exports)
+  } else {
+    hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../../vuex/actions":12,"../../vuex/getters":13,"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],10:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _actions = require("../../vuex/actions");
+
+var _getters = require("../../vuex/getters");
+
+var _Question = require("./Question.vue");
+
+var _Question2 = _interopRequireDefault(_Question);
+
+var _QuestionFour = require("./QuestionFour.vue");
+
+var _QuestionFour2 = _interopRequireDefault(_QuestionFour);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: { Question: _Question2.default, QuestionFour: _QuestionFour2.default },
+    vuex: {
+        getters: {
+            questions: _getters.getQuestions
+        },
+        actions: {
+            init: _actions.init
+        }
+    },
+    ready: function ready() {
+        this.init();
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"questions-list-container\" _v-53305aa3=\"\">\n    <question :teeth=\"questions[0].teeth\" :number=\"questions[0].number\" :table-show=\"questions[0].tableShow\" :title=\"questions[0].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[1].teeth\" :number=\"questions[1].number\" :table-show=\"questions[1].tableShow\" :title=\"questions[1].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[2].teeth\" :number=\"questions[2].number\" :table-show=\"questions[2].tableShow\" :title=\"questions[2].title\" _v-53305aa3=\"\"></question>\n    <question-four :data=\"questions[3].teeth\" :number=\"questions[3].number\" :table-show=\"questions[3].tableShow\" :title=\"questions[3].title\" _v-53305aa3=\"\">\n    </question-four>\n    <question :teeth=\"questions[4].teeth\" :number=\"questions[4].number\" :table-show=\"questions[4].tableShow\" :title=\"questions[4].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[5].teeth\" :number=\"questions[5].number\" :table-show=\"questions[5].tableShow\" :title=\"questions[5].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[6].teeth\" :number=\"questions[6].number\" :table-show=\"questions[6].tableShow\" :title=\"questions[6].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[7].teeth\" :number=\"questions[7].number\" :table-show=\"questions[7].tableShow\" :title=\"questions[7].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[8].teeth\" :number=\"questions[8].number\" :table-show=\"questions[8].tableShow\" :title=\"questions[8].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[9].teeth\" :number=\"questions[9].number\" :table-show=\"questions[9].tableShow\" :title=\"questions[9].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[10].teeth\" :number=\"questions[10].number\" :table-show=\"questions[10].tableShow\" :title=\"questions[10].title\" _v-53305aa3=\"\"></question>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-53305aa3", module.exports)
+  } else {
+    hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../../vuex/actions":12,"../../vuex/getters":13,"./Question.vue":8,"./QuestionFour.vue":9,"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],11:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -12817,7 +12850,7 @@ new _vue2.default({
     store: _store2.default
 });
 
-},{"./components/IHA.vue":10,"./components/questionList/QuestionList.vue":11,"./vuex/store":16,"vue":7}],14:[function(require,module,exports){
+},{"./components/IHA.vue":7,"./components/questionList/QuestionList.vue":10,"./vuex/store":14,"vue":4}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12836,7 +12869,7 @@ var teethToggle = exports.teethToggle = function teethToggle(_ref3, number, teet
   return dispatch('TEETH_TOGGLE', number, teeth, newStatus);
 };
 
-},{}],15:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12850,16 +12883,12 @@ var getQuestions = exports.getQuestions = function getQuestions(state) {
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],16:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
 
 var _vue = require('vue');
 
@@ -12886,14 +12915,22 @@ var mutations = {
         "use strict";
 
         var questions = ['Implant', 'Missing Teeth', 'Residual Roots', 'Fixed Partial Denture', 'Post', 'Veneer', 'RPD(Upper, Lower)', 'CD(Upper, Lower)', 'Caries', 'Apical Lesion', 'Periodontal Chart'];
-        // _.range(1, 12).forEach((question) => {
         questions.forEach(function (question, number) {
-            state.questions.push({
-                teeth: teethArr(),
-                tableShow: false,
-                number: number + 1,
-                title: question
-            });
+            if (number == 3) {
+                state.questions.push({
+                    teeth: teethArr4(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                });
+            } else {
+                state.questions.push({
+                    teeth: teethArr(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                });
+            }
         });
     },
     TABLESHOW_TOGGLE: function TABLESHOW_TOGGLE(state, number) {
@@ -12904,13 +12941,9 @@ var mutations = {
     TEETH_TOGGLE: function TEETH_TOGGLE(state, number, teeth, newStatus) {
         "use strict";
 
-        console.log(number, teeth, newStatus);
         var questionIndex = _underscore2.default.findKey(state.questions, { number: number });
         var teethIndex = _underscore2.default.findKey(state.questions[questionIndex].teeth, { id: teeth });
-        console.log(questionIndex);
-        console.log(teethIndex);
-        console.log(JSON.parse((0, _stringify2.default)(state.questions[questionIndex].teeth[teethIndex])));
-        state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
+        state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false;
     }
 };
 
@@ -12922,8 +12955,37 @@ function teethArr() {
         _underscore2.default.range(1, 9).forEach(function (digit1) {
             teeth.push({
                 id: '' + digit10 + digit1,
-                selected: false
+                selected: false,
+                selectable: true
             });
+        });
+    });
+    return teeth;
+}
+
+function teethArr4() {
+    "use strict";
+
+    var teeth = {
+        a: [],
+        b: []
+    };
+    _underscore2.default.range(1, 5).forEach(function (digit10) {
+        _underscore2.default.range(1, 9).forEach(function (digit1) {
+            teeth.a.push({
+                id: '' + digit10 + digit1,
+                selected: false, //can be true, p, m
+                selectable: true
+            });
+        });
+    });
+
+    var a = [35, 33, 31, 29, 27, 25, 23, 32, 43, 45, 47, 49, 51, 53, 55, 95, 93, 91, 89, 87, 85, 83, 72, 63, 65, 67, 69, 71, 73, 75];
+    a.forEach(function (number) {
+        teeth.b.push({
+            id: number,
+            selected: false,
+            selectable: true
         });
     });
     return teeth;
@@ -12934,6 +12996,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"babel-runtime/core-js/json/stringify":1,"underscore":5,"vue":7,"vuex":9}]},{},[13]);
+},{"underscore":2,"vue":4,"vuex":6}]},{},[11]);
 
 //# sourceMappingURL=textUI.js.map
