@@ -76,7 +76,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
-                font-size: 0.75vw;
+                font-size: 1.5vw;
                 font-weight: 700;
             }
             .connector-row {
@@ -86,7 +86,7 @@
                 justify-content: space-around;
                 font-size: 0.75vw;
                 font-weight: 700;
-                width: 88%;
+                width: 89%;
                 margin: 0 auto;
                 .circle--small {
                     width: 1.5vw;
