@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d84fb1f3-66a2-4fc8-a300-33720b67468c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/frontend/textUI-4ba8300de7.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/frontend/textUI-4cfce8ba5f.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/frontend/textUI.js.map" afterPath="$PROJECT_DIR$/public/build/js/frontend/textUI.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/frontend/textUI.js" afterPath="$PROJECT_DIR$/public/js/frontend/textUI.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/frontend/textUI.js.map" afterPath="$PROJECT_DIR$/public/js/frontend/textUI.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
     </list>
     <ignored path="itps.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +35,12 @@
       <file leaf-file-name="QuestionFour.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+            <state relative-caret-position="267">
+              <caret line="177" column="47" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
               <folding>
-                <marker date="1466617937000" expanded="true" signature="1005:1370" ph="..." />
-                <marker date="1466617937000" expanded="true" signature="1030:1370" ph="..." />
+                <element signature="e#7265#7322#0" expanded="true" />
+                <marker date="1466618943000" expanded="true" signature="1005:1370" ph="..." />
+                <marker date="1466618943000" expanded="true" signature="1030:1370" ph="..." />
               </folding>
             </state>
           </provider>
@@ -79,10 +82,10 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/frontend/textUI.scss" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/textUI.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/getters.js" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/Question.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionList.vue" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" />
       </list>
     </option>
@@ -627,12 +630,12 @@
       <option name="presentableId" value="Default" />
       <updated>1464180654007</updated>
       <workItem from="1465908521528" duration="12686000" />
-      <workItem from="1465990777849" duration="8523000" />
+      <workItem from="1465990777849" duration="9452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21209000" />
+    <option name="totallyTimeSpent" value="22138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -934,47 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="119" selection-start-line="2" selection-start-column="119" selection-end-line="2" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-322">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1466610885000" expanded="true" signature="7:72" ph="..." />
-            <marker date="1466610885000" expanded="true" signature="104:125" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="146:1689" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="165:1089" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="213:533" ph="[...]" />
-            <marker date="1466610885000" expanded="true" signature="582:1082" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="613:840" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="652:825" ph="{&quot;tableShow&quot;: false...}" />
-            <marker date="1466610885000" expanded="true" signature="846:1072" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="885:1057" ph="{&quot;tableShow&quot;: false...}" />
-            <marker date="1466610885000" expanded="true" signature="1129:1298" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="1356:1686" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="1712:2022" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="1791:2002" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="1835:1995" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="1860:1984" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
-            <marker date="1466610885000" expanded="true" signature="2045:2700" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="2081:2117" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="2157:2389" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="2201:2382" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="2228:2371" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
-            <marker date="1466610885000" expanded="true" signature="2557:2680" ph="{...}" />
-            <marker date="1466610885000" expanded="true" signature="2580:2673" ph="{&quot;selected&quot;: false...}" />
-            <marker date="1466610885000" expanded="true" signature="2732:2760" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/textUI.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -1030,13 +992,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="66" column="83" selection-start-line="66" selection-start-column="83" selection-end-line="66" selection-end-column="83" />
+          <folding>
+            <marker date="1466618864000" expanded="true" signature="7:72" ph="..." />
+            <marker date="1466618864000" expanded="true" signature="104:125" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="146:2273" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="165:1089" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="213:533" ph="[...]" />
+            <marker date="1466618864000" expanded="true" signature="582:1082" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="613:840" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="652:825" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466618864000" expanded="true" signature="846:1072" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="885:1057" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466618864000" expanded="true" signature="1129:1298" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="1356:1686" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="1737:1972" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2026:2265" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2296:2606" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2375:2586" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2419:2579" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2444:2568" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466618864000" expanded="true" signature="2629:3284" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2665:2701" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2741:2973" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2785:2966" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="2812:2955" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466618864000" expanded="true" signature="3141:3264" ph="{...}" />
+            <marker date="1466618864000" expanded="true" signature="3164:3257" ph="{&quot;selected&quot;: false...}" />
+            <marker date="1466618864000" expanded="true" signature="3316:3344" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+        <state relative-caret-position="267">
+          <caret line="177" column="47" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
           <folding>
-            <marker date="1466617937000" expanded="true" signature="1005:1370" ph="..." />
-            <marker date="1466617937000" expanded="true" signature="1030:1370" ph="..." />
+            <element signature="e#7265#7322#0" expanded="true" />
+            <marker date="1466618943000" expanded="true" signature="1005:1370" ph="..." />
+            <marker date="1466618943000" expanded="true" signature="1030:1370" ph="..." />
           </folding>
         </state>
       </provider>

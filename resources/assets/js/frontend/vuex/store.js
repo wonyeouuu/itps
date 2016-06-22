@@ -53,7 +53,20 @@ const mutations = {
         let questionIndex = _.findKey(state.questions, {number})
         let teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
         state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
+    },
+    
+    TEETH_TOGGLE4 (state, teeth, newStatus) {
+        "use strict";
+        let teethIndex = _.findKey(state.questions[3].teeth.a, { id: teeth })
+        state.questions[3].teeth.a[teethIndex].selected = state.questions[3].teeth.a[teethIndex].selectable ? newStatus : false
+    },
+
+    CONNECTOR_TOGGLE (state, connector, newStatus) {
+        "use strict";
+        let teethIndex = _.findKey(state.questions[3].teeth.b, { id: connector })
+        state.questions[3].teeth.b[teethIndex].selected = state.questions[3].teeth.b[teethIndex].selectable ? newStatus : false
     }
+    
 
 };
 

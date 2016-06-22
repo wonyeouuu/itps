@@ -103,7 +103,7 @@
                 }
                 .circle--selected {
                     background-color: $teethSelected;
-                    border: 2px solid black;
+                    border: 1px solid black;
                 }
             }
         }
@@ -130,7 +130,7 @@
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle(number, tooth.id, !tooth.selected)"
+                        @click="teethToggle4(tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
@@ -138,7 +138,7 @@
                         v-for="tooth in data.a.slice(8,16)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle(number, tooth.id, !tooth.selected)"
+                        @click="teethToggle4(tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                         v-for="tooth in data.a.slice(16,24)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle(number, tooth.id, !tooth.selected)"
+                        @click="teethToggle4(tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
@@ -156,7 +156,7 @@
                         v-for="tooth in data.a.slice(24,32)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle(number, tooth.id, !tooth.selected)"
+                        @click="teethToggle4(tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -175,7 +175,9 @@
                 <div class="connector-row">
                     <div
                         class="circle--small"
+                        v-bind:class="{ 'circle--selected': connector.selected }"
                         v-for="connector in data.b.slice(0,15)"
+                        @click="connectorToggle(connector.id, !connector.selected)"
                     >
                     </div>
                 </div>
@@ -191,7 +193,9 @@
                 <div class="connector-row">
                     <div
                         class="circle--small"
+                        v-bind:class="{ 'circle--selected': connector.selected }"
                         v-for="connector in data.b.slice(15,30)"
+                        @click="connectorToggle(connector.id, !connector.selected)"
                     >
                     </div>
                 </div>
@@ -203,7 +207,7 @@
 <script type="text/babel">
     import { getTeethWithQuestion } from '../../vuex/getters'
     import { tableShowToggle } from '../../vuex/actions'
-    import { teethToggle } from '../../vuex/actions'
+    import { teethToggle4, connectorToggle } from '../../vuex/actions'
     export default {
         el: '.question-container',
         props: [
@@ -215,7 +219,8 @@
         vuex: {
             actions: {
                 tableShowToggle,
-                teethToggle
+                teethToggle4,
+                connectorToggle
             }
         }
 
