@@ -4,20 +4,20 @@
     .question-container {
         margin: 0 0 30px 20px;
         h1 {
+            font-size: 20px;
             margin: 0;
-            font-size: 2vw;
             font-weight: 200;
         }
     }
 
     .table-trigger {
         display: inline-block;
-        width: 2vw;
-        height: 2vw;
-        border-radius: 0.5vw;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
         background-color: lightgrey;
         position: relative;
-        top: 0.5vw;
+        top: 3px;
         &:hover {
             background-color: lighten(black, 20%);
         }
@@ -27,11 +27,11 @@
     }
 
     .table-normal {
-        width: 64vw;
-        height: 10vw;
-        margin: 20px 0 0 2vw;
+        width: 800px;
+        height: 120px;
+        margin: 20px 0 0 30px;
         background-color: $tableBackground;
-        border-radius: 1.5vw;
+        border-radius: 18px;
         border: 3px black solid;
         .teeth-row {
             height: 50%;
@@ -49,13 +49,13 @@
             .col-xs-6 {
                 height: 100%;
                 .circle {
-                    width: 3vw;
-                    height: 3vw;
-                    border-radius: 1.5vw;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 20px;
                     border: 2px dotted black;
                     text-align: center;
-                    line-height: 2.8vw;
-                    font-size: 1.5vw;
+                    line-height: 36px;
+                    font-size: 20px;
                     font-weight: 700;
                     &:hover {
                         background-color: lighten($teethSelected, 10%);
@@ -138,8 +138,6 @@
                 tableShowToggle,
                 teethToggle
             }
-        }
-
+        },
     };
 </script>
-

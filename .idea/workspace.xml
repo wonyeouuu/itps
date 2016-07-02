@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d84fb1f3-66a2-4fc8-a300-33720b67468c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/js/frontend/textUI-4cfce8ba5f.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/js/frontend/textUI.js.map" afterPath="$PROJECT_DIR$/public/build/js/frontend/textUI.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/frontend/textUI.js" afterPath="$PROJECT_DIR$/public/js/frontend/textUI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/frontend/textUI.js.map" afterPath="$PROJECT_DIR$/public/js/frontend/textUI.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" afterPath="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
     </list>
     <ignored path="itps.iws" />
@@ -32,16 +26,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="QuestionFour.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue">
+      <file leaf-file-name="test.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/test.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="177" column="47" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
-              <folding>
-                <element signature="e#7265#7322#0" expanded="true" />
-                <marker date="1466618943000" expanded="true" signature="1005:1370" ph="..." />
-                <marker date="1466618943000" expanded="true" signature="1030:1370" ph="..." />
-              </folding>
+            <state relative-caret-position="-2654">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,8 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="SCSS File" />
         <option value="JavaScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -76,7 +66,6 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/frontend/app.scss" />
         <option value="$PROJECT_DIR$/resources/views/frontend/layout/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/home.blade.php" />
-        <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/QuestionList.vue" />
         <option value="$PROJECT_DIR$/resources/views/frontend/textUI.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/frontend/textUI.scss" />
@@ -85,8 +74,10 @@
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/Question.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionList.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/actions.js" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/test.scss" />
+        <option value="$PROJECT_DIR$/gulpfile.js" />
       </list>
     </option>
   </component>
@@ -216,8 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -233,7 +222,7 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -243,15 +232,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -261,85 +246,19 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -349,23 +268,23 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="sass" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -375,27 +294,15 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vuex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -405,75 +312,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="questionList" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -483,77 +326,21 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imgs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -630,26 +417,29 @@
       <option name="presentableId" value="Default" />
       <updated>1464180654007</updated>
       <workItem from="1465908521528" duration="12686000" />
-      <workItem from="1465990777849" duration="9452000" />
+      <workItem from="1465990777849" duration="9810000" />
+      <workItem from="1466785410910" duration="3841000" />
+      <workItem from="1466910658718" duration="60000" />
+      <workItem from="1467114519251" duration="397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22138000" />
+    <option name="totallyTimeSpent" value="26794000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28036177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1498708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -678,16 +468,91 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <marker date="1466826662000" expanded="true" signature="7:72" ph="..." />
+            <marker date="1466826662000" expanded="true" signature="104:125" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="146:2700" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="165:1516" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="213:771" ph="[...]" />
+            <marker date="1466826662000" expanded="true" signature="729:761" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="780:960" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="1009:1509" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1040:1267" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1079:1252" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1273:1499" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1312:1484" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1556:1725" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1783:2113" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2164:2399" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2453:2692" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2723:3033" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2802:3013" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2846:3006" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2871:2995" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3056:3711" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3092:3128" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3168:3400" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3212:3393" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3239:3382" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3568:3691" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3591:3684" ph="{&quot;selected&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="3743:3771" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <marker date="1466826662000" expanded="true" signature="7:72" ph="..." />
+            <marker date="1466826662000" expanded="true" signature="104:125" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="146:2700" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="165:1516" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="213:771" ph="[...]" />
+            <marker date="1466826662000" expanded="true" signature="729:761" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="780:960" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="1009:1509" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1040:1267" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1079:1252" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1273:1499" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1312:1484" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1556:1725" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1783:2113" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2164:2399" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2453:2692" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2723:3033" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2802:3013" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2846:3006" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2871:2995" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3056:3711" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3092:3128" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3168:3400" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3212:3393" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3239:3382" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3568:3691" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3591:3684" ph="{&quot;selected&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="3743:3771" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4071">
+          <caret line="177" column="47" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/frontend/textUI.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <marker date="1465747374000" expanded="true" signature="58:125" ph="..." />
-            <marker date="1465747374000" expanded="true" signature="162:238" ph="..." />
-            <marker date="1465747374000" expanded="true" signature="269:355" ph="..." />
-            <marker date="1465747374000" expanded="true" signature="302:353" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -930,112 +795,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/textUI.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <marker date="1465915073000" expanded="true" signature="7:163" ph="..." />
-            <marker date="1465915073000" expanded="true" signature="173:241" ph="{&quot;el&quot;: 'body'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/Question.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1466606275000" expanded="true" signature="47:1965" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="149:291" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="193:285" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="312:585" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="517:579" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="615:655" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="675:1957" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="876:1951" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="920:1095" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1113:1243" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1266:1941" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1322:1774" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1661:1756" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1809:1927" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="1977:4109" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2014:4097" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2027:2271" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2084:2257" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2325:4086" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2369:3192" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2425:2770" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2451:2747" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2827:3173" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="2853:3150" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="3239:4071" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="3298:3645" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="3324:3622" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="3705:4052" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="3731:4029" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="4137:4623" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="4150:4310" ph="..." />
-            <marker date="1466606275000" expanded="true" signature="4330:4613" ph="{&quot;el&quot;: '.question-container'...}" />
-            <marker date="1466606275000" expanded="true" signature="4382:4481" ph="[...]" />
-            <marker date="1466606275000" expanded="true" signature="4497:4606" ph="{...}" />
-            <marker date="1466606275000" expanded="true" signature="4520:4596" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="66" column="83" selection-start-line="66" selection-start-column="83" selection-end-line="66" selection-end-column="83" />
-          <folding>
-            <marker date="1466618864000" expanded="true" signature="7:72" ph="..." />
-            <marker date="1466618864000" expanded="true" signature="104:125" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="146:2273" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="165:1089" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="213:533" ph="[...]" />
-            <marker date="1466618864000" expanded="true" signature="582:1082" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="613:840" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="652:825" ph="{&quot;tableShow&quot;: false...}" />
-            <marker date="1466618864000" expanded="true" signature="846:1072" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="885:1057" ph="{&quot;tableShow&quot;: false...}" />
-            <marker date="1466618864000" expanded="true" signature="1129:1298" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="1356:1686" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="1737:1972" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2026:2265" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2296:2606" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2375:2586" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2419:2579" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2444:2568" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
-            <marker date="1466618864000" expanded="true" signature="2629:3284" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2665:2701" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2741:2973" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2785:2966" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="2812:2955" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
-            <marker date="1466618864000" expanded="true" signature="3141:3264" ph="{...}" />
-            <marker date="1466618864000" expanded="true" signature="3164:3257" ph="{&quot;selected&quot;: false...}" />
-            <marker date="1466618864000" expanded="true" signature="3316:3344" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionFour.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
+        <state relative-caret-position="750">
           <caret line="177" column="47" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/QuestionList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/questionList/Question.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2420">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/vuex/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
           <folding>
-            <element signature="e#7265#7322#0" expanded="true" />
-            <marker date="1466618943000" expanded="true" signature="1005:1370" ph="..." />
-            <marker date="1466618943000" expanded="true" signature="1030:1370" ph="..." />
+            <marker date="1466826662000" expanded="true" signature="7:72" ph="..." />
+            <marker date="1466826662000" expanded="true" signature="104:125" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="146:2700" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="165:1516" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="213:771" ph="[...]" />
+            <marker date="1466826662000" expanded="true" signature="729:761" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="780:960" ph="//..." />
+            <marker date="1466826662000" expanded="true" signature="1009:1509" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1040:1267" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1079:1252" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1273:1499" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1312:1484" ph="{&quot;tableShow&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="1556:1725" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="1783:2113" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2164:2399" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2453:2692" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2723:3033" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2802:3013" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2846:3006" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="2871:2995" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3056:3711" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3092:3128" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3168:3400" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3212:3393" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3239:3382" ph="{&quot;id&quot;: `${digit10}${digit1}`...}" />
+            <marker date="1466826662000" expanded="true" signature="3568:3691" ph="{...}" />
+            <marker date="1466826662000" expanded="true" signature="3591:3684" ph="{&quot;selected&quot;: false...}" />
+            <marker date="1466826662000" expanded="true" signature="3743:3771" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/test.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <marker date="1467114694000" expanded="true" signature="25:719" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="40:717" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="49:555" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="60:116" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="143:201" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="228:288" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="315:375" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="402:462" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="489:549" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="569:713" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="598:707" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <marker date="1467114694000" expanded="true" signature="75:482" ph="/*...*/" />
+            <marker date="1467114694000" expanded="true" signature="505:1189" ph="{...}" />
+            <marker date="1467114694000" expanded="true" signature="565:1187" ph="..." />
+            <marker date="1467114694000" expanded="true" signature="573:1187" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/test.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2654">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

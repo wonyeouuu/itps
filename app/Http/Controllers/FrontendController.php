@@ -12,9 +12,12 @@ class FrontendController extends Controller
     {
         return view('frontend.home');
     }
+    public function test()
+    {
+        return view('frontend.textUI');
+    }
     public function I()
     {
-
 
     }
     public function H()
@@ -22,14 +25,6 @@ class FrontendController extends Controller
 
     }
     public function A()
-    {
-
-    }
-    public function text()
-    {
-        return view('frontend.textUI');
-    }
-    public function graph()
     {
 
     }

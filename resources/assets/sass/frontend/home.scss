@@ -112,3 +112,17 @@ h1 {
   }
 }
 
+.questionListContainer {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 150px;
+}
+
+div.button {
+    align-self: center;
+    img {
+        width: 200px;
+    }
+}

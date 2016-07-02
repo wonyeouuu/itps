@@ -6,13 +6,33 @@
 
 <template>
     <div class="questions-list-container">
-        <question
+        <div
+            v-for='number in questionNumbers'
+        >
+            <question
+                v-if="number != 4"
+                :teeth="questions[number].teeth"
+                :number="questions[number].number"
+                :table-show="questions[number].tableShow"
+                :title='questions[number].title'
+            >
+            </question>
+            <question-four
+                v-if="number == 4"
+                :data="questions[number].teeth"
+                :number="questions[number].number"
+                :table-show="questions[number].tableShow"
+                :title='questions[number].title'
+            >
+            </question-four>
+        </div>
+        <!-- <question
             :teeth="questions[0].teeth"
             :number="questions[0].number"
             :table-show="questions[0].tableShow"
             :title="questions[0].title"
-        ></question>
-        <question
+        ></question> -->
+        <!-- <question
                 :teeth="questions[1].teeth"
                 :number="questions[1].number"
                 :table-show="questions[1].tableShow"
@@ -72,7 +92,7 @@
                 :number="questions[10].number"
                 :table-show="questions[10].tableShow"
                 :title="questions[10].title"
-        ></question>
+        ></question> -->
     </div>
 </template>
 
@@ -83,6 +103,11 @@
     import Question from "./Question.vue"
     import QuestionFour from "./QuestionFour.vue"
     export default {
+        props: {
+            'question-numbers': {
+                type: Array
+            }
+        },
         components: { Question, QuestionFour },
         vuex: {
             getters: {
@@ -97,4 +122,3 @@
         }
     };
 </script>
-

@@ -12692,7 +12692,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
+var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12712,7 +12712,6 @@ exports.default = {
             teethToggle: _actions.teethToggle
         }
     }
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-4ac01936=\"\">\n    <h1 _v-4ac01936=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-4ac01936=\"\"></span>\n    </h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-4ac01936=\"\">\n        <div class=\"row-top teeth-row\" _v-4ac01936=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-4ac01936=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-4ac01936=\"\">\n                <div v-for=\"tooth in teeth.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle(number, tooth.id, !tooth.selected)\" _v-4ac01936=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n</div>\n"
@@ -12721,7 +12720,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    margin: 0;\n    font-size: 2vw;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 2vw;\n  height: 2vw;\n  border-radius: 0.5vw;\n  background-color: lightgrey;\n  position: relative;\n  top: 0.5vw; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 64vw;\n  height: 10vw;\n  margin: 20px 0 0 2vw;\n  background-color: white;\n  border-radius: 1.5vw;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 3vw;\n        height: 3vw;\n        border-radius: 1.5vw;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 2.8vw;\n        font-size: 1.5vw;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n"] = false
+    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700; }\n        /* line 60, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 64, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12753,7 +12752,6 @@ exports.default = {
             connectorToggle: _actions.connectorToggle
         }
     }
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-249c332b=\"\">\n    <h1 _v-249c332b=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-249c332b=\"\"></span>\n    </h1>\n    <!--table a-->\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-249c332b=\"\">a. Crown</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-249c332b=\"\">\n        <div class=\"row-top teeth-row\" _v-249c332b=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle4(tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle4(tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-249c332b=\"\">\n            <div class=\"row-bottom-left col-xs-6 rtl\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle4(tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-right col-xs-6 ltr\" _v-249c332b=\"\">\n                <div v-for=\"tooth in data.a.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected }\" @click=\"teethToggle4(tooth.id, !tooth.selected)\" _v-249c332b=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n    <!--table b-->\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-249c332b=\"\">b. Connector</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-249c332b=\"\">\n        <div class=\"row-top teeth-row\" _v-249c332b=\"\">\n            <div class=\"col-xs-12\" _v-249c332b=\"\">\n                <div v-for=\"teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']\" _v-249c332b=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-249c332b=\"\">\n                <div class=\"circle--small\" v-bind:class=\"{ 'circle--selected': connector.selected }\" v-for=\"connector in data.b.slice(0,15)\" @click=\"connectorToggle(connector.id, !connector.selected)\" _v-249c332b=\"\">\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-249c332b=\"\">\n            <div class=\"col-xs-12\" _v-249c332b=\"\">\n                <div v-for=\"teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']\" _v-249c332b=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-249c332b=\"\">\n                <div class=\"circle--small\" v-bind:class=\"{ 'circle--selected': connector.selected }\" v-for=\"connector in data.b.slice(15,30)\" @click=\"connectorToggle(connector.id, !connector.selected)\" _v-249c332b=\"\">\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
@@ -12795,6 +12793,11 @@ var _QuestionFour2 = _interopRequireDefault(_QuestionFour);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+    props: {
+        'question-numbers': {
+            type: Array
+        }
+    },
     components: { Question: _Question2.default, QuestionFour: _QuestionFour2.default },
     vuex: {
         getters: {
@@ -12809,7 +12812,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"questions-list-container\" _v-53305aa3=\"\">\n    <question :teeth=\"questions[0].teeth\" :number=\"questions[0].number\" :table-show=\"questions[0].tableShow\" :title=\"questions[0].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[1].teeth\" :number=\"questions[1].number\" :table-show=\"questions[1].tableShow\" :title=\"questions[1].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[2].teeth\" :number=\"questions[2].number\" :table-show=\"questions[2].tableShow\" :title=\"questions[2].title\" _v-53305aa3=\"\"></question>\n    <question-four :data=\"questions[3].teeth\" :number=\"questions[3].number\" :table-show=\"questions[3].tableShow\" :title=\"questions[3].title\" _v-53305aa3=\"\">\n    </question-four>\n    <question :teeth=\"questions[4].teeth\" :number=\"questions[4].number\" :table-show=\"questions[4].tableShow\" :title=\"questions[4].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[5].teeth\" :number=\"questions[5].number\" :table-show=\"questions[5].tableShow\" :title=\"questions[5].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[6].teeth\" :number=\"questions[6].number\" :table-show=\"questions[6].tableShow\" :title=\"questions[6].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[7].teeth\" :number=\"questions[7].number\" :table-show=\"questions[7].tableShow\" :title=\"questions[7].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[8].teeth\" :number=\"questions[8].number\" :table-show=\"questions[8].tableShow\" :title=\"questions[8].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[9].teeth\" :number=\"questions[9].number\" :table-show=\"questions[9].tableShow\" :title=\"questions[9].title\" _v-53305aa3=\"\"></question>\n    <question :teeth=\"questions[10].teeth\" :number=\"questions[10].number\" :table-show=\"questions[10].tableShow\" :title=\"questions[10].title\" _v-53305aa3=\"\"></question>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"questions-list-container\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <!-- <question\n        :teeth=\"questions[0].teeth\"\n        :number=\"questions[0].number\"\n        :table-show=\"questions[0].tableShow\"\n        :title=\"questions[0].title\"\n    ></question> -->\n    <!-- <question\n            :teeth=\"questions[1].teeth\"\n            :number=\"questions[1].number\"\n            :table-show=\"questions[1].tableShow\"\n            :title=\"questions[1].title\"\n    ></question>\n    <question\n            :teeth=\"questions[2].teeth\"\n            :number=\"questions[2].number\"\n            :table-show=\"questions[2].tableShow\"\n            :title=\"questions[2].title\"\n    ></question>\n    <question-four\n            :data=\"questions[3].teeth\"\n            :number=\"questions[3].number\"\n            :table-show=\"questions[3].tableShow\"\n            :title=\"questions[3].title\"\n    >\n    </question-four>\n    <question\n            :teeth=\"questions[4].teeth\"\n            :number=\"questions[4].number\"\n            :table-show=\"questions[4].tableShow\"\n            :title=\"questions[4].title\"\n    ></question>\n    <question\n            :teeth=\"questions[5].teeth\"\n            :number=\"questions[5].number\"\n            :table-show=\"questions[5].tableShow\"\n            :title=\"questions[5].title\"\n    ></question>\n    <question\n            :teeth=\"questions[6].teeth\"\n            :number=\"questions[6].number\"\n            :table-show=\"questions[6].tableShow\"\n            :title=\"questions[6].title\"\n    ></question>\n    <question\n            :teeth=\"questions[7].teeth\"\n            :number=\"questions[7].number\"\n            :table-show=\"questions[7].tableShow\"\n            :title=\"questions[7].title\"\n    ></question>\n    <question\n            :teeth=\"questions[8].teeth\"\n            :number=\"questions[8].number\"\n            :table-show=\"questions[8].tableShow\"\n            :title=\"questions[8].title\"\n    ></question>\n    <question\n            :teeth=\"questions[9].teeth\"\n            :number=\"questions[9].number\"\n            :table-show=\"questions[9].tableShow\"\n            :title=\"questions[9].title\"\n    ></question>\n    <question\n            :teeth=\"questions[10].teeth\"\n            :number=\"questions[10].number\"\n            :table-show=\"questions[10].tableShow\"\n            :title=\"questions[10].title\"\n    ></question> -->\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -12865,17 +12868,17 @@ var tableShowToggle = exports.tableShowToggle = function tableShowToggle(_ref2, 
   var dispatch = _ref2.dispatch;
   return dispatch('TABLESHOW_TOGGLE', number);
 };
-var teethToggle = exports.teethToggle = function teethToggle(_ref3, number, teeth, newStatus) {
+var connectorToggle = exports.connectorToggle = function connectorToggle(_ref3, connector, newStatus) {
   var dispatch = _ref3.dispatch;
+  return dispatch('CONNECTOR_TOGGLE', connector, newStatus);
+};
+var teethToggle = exports.teethToggle = function teethToggle(_ref4, number, teeth, newStatus) {
+  var dispatch = _ref4.dispatch;
   return dispatch('TEETH_TOGGLE', number, teeth, newStatus);
 };
-var teethToggle4 = exports.teethToggle4 = function teethToggle4(_ref4, teeth, newStatus) {
-  var dispatch = _ref4.dispatch;
-  return dispatch('TEETH_TOGGLE4', teeth, newStatus);
-};
-var connectorToggle = exports.connectorToggle = function connectorToggle(_ref5, connector, newStatus) {
+var teethToggle4 = exports.teethToggle4 = function teethToggle4(_ref5, teeth, newStatus) {
   var dispatch = _ref5.dispatch;
-  return dispatch('CONNECTOR_TOGGLE', connector, newStatus);
+  return dispatch('TEETH_TOGGLE4', teeth, newStatus);
 };
 
 },{}],13:[function(require,module,exports){
@@ -12923,9 +12926,25 @@ var mutations = {
     INIT: function INIT(state) {
         "use strict";
 
-        var questions = ['Implant', 'Missing Teeth', 'Residual Roots', 'Fixed Partial Denture', 'Post', 'Veneer', 'RPD(Upper, Lower)', 'CD(Upper, Lower)', 'Caries', 'Apical Lesion', 'Periodontal Chart'];
+        state.questions = [];
+        var questions = ['CD(Upper, Lower) 全口假牙 要上或下全部沒有才可以',
+
+        //if cd, just IR
+        'Implant 植體', 'Missing Teeth 缺牙', //1, 2, 3合併 if not cd
+        'Residual Roots 殘根 牙冠爛掉 剩牙根', 'Fixed Partial Denture 固定假牙', //P M, crown first, then connector
+        'Veneer 陶瓷貼片', 'Post 差一根到牙根裡', 'RPD(Upper, Lower) 活動假牙', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方
+
+        'Caries 有真的牙齒冠才會有 蛀牙', 'Apical Lesion 牙根蛀出球 要有牙根才可以選', 'Periodontal Chart 牙周表格' //圖像才有
+        //四階段 階段間有皮卡丘
+        ];
+        //mobility 牙齒移動程度 搖晃程度 三級 123
+        //furcation 洞洞露出多寡 三級 123
+        //BOP 插了進去流血多少 三個點
+        //plague 牙菌斑 三個點
+        //GM 牙齦高度 看外觀 1~15 >5 red
+        //PD 插進去多深 1~15 >5 red
         questions.forEach(function (question, number) {
-            if (number == 3) {
+            if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
                     tableShow: false,
@@ -12941,6 +12960,7 @@ var mutations = {
                 });
             }
         });
+        console.log(state.questions.length);
     },
     TABLESHOW_TOGGLE: function TABLESHOW_TOGGLE(state, number) {
         "use strict";
@@ -12957,14 +12977,14 @@ var mutations = {
     TEETH_TOGGLE4: function TEETH_TOGGLE4(state, teeth, newStatus) {
         "use strict";
 
-        var teethIndex = _underscore2.default.findKey(state.questions[3].teeth.a, { id: teeth });
-        state.questions[3].teeth.a[teethIndex].selected = state.questions[3].teeth.a[teethIndex].selectable ? newStatus : false;
+        var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
+        state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false;
     },
     CONNECTOR_TOGGLE: function CONNECTOR_TOGGLE(state, connector, newStatus) {
         "use strict";
 
-        var teethIndex = _underscore2.default.findKey(state.questions[3].teeth.b, { id: connector });
-        state.questions[3].teeth.b[teethIndex].selected = state.questions[3].teeth.b[teethIndex].selectable ? newStatus : false;
+        var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.b, { id: connector });
+        state.questions[4].teeth.b[teethIndex].selected = state.questions[4].teeth.b[teethIndex].selectable ? newStatus : false;
     }
 };
 

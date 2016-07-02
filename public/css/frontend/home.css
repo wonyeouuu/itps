@@ -123,4 +123,20 @@ h1 {
       .home-bottom-row .home-tooth:hover div {
         visibility: visible; }
 
+.questionListContainer {
+  min-height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 150px; }
+
+div.button {
+  -ms-flex-item-align: center;
+  align-self: center; }
+  div.button img {
+    width: 200px; }
+
 /*# sourceMappingURL=home.css.map */

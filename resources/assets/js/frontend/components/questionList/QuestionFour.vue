@@ -223,7 +223,5 @@
                 connectorToggle
             }
         }
-
     };
 </script>
-
