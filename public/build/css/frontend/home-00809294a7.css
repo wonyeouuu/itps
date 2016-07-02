@@ -129,14 +129,23 @@ h1 {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
   padding-left: 150px; }
 
 div.button {
   -ms-flex-item-align: center;
-  align-self: center; }
+  align-self: center;
+  cursor: pointer; }
+  div.button.button-down {
+    bottom: 5%; }
+  div.button.button-up {
+    top: 5%; }
   div.button img {
     width: 200px; }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden; }
 
 /*# sourceMappingURL=home.css.map */

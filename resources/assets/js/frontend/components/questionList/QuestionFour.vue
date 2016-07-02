@@ -5,24 +5,23 @@
         margin: 0 0 30px 20px;
         h1 {
             margin: 0;
-            font-size: 2vw;
+            font-size: 20px;
             font-weight: 200;
-            //added
             &.sub-title {
-                margin-left: 1vw;
-                margin-top: 1vh;
+                margin-left: 10px;
+                margin-top: 5px;
             }
         }
     }
 
     .table-trigger {
         display: inline-block;
-        width: 2vw;
-        height: 2vw;
-        border-radius: 0.5vw;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
         background-color: lightgrey;
         position: relative;
-        top: 0.5vw;
+        top: 3px;
         &:hover {
             background-color: lighten(black, 20%);
         }
@@ -32,11 +31,11 @@
     }
 
     .table-normal {
-        width: 64vw;
-        height: 10vw;
-        margin: 20px 0 0 2vw;
+        width: 800px;
+        height: 120px;
+        margin: 20px 0 0 30px;
         background-color: $tableBackground;
-        border-radius: 1.5vw;
+        border-radius: 18px;
         border: 3px black solid;
         .teeth-row {
             height: 50%;
@@ -54,14 +53,15 @@
             .col-xs-6 {
                 height: 100%;
                 .circle {
-                    width: 3vw;
-                    height: 3vw;
-                    border-radius: 1.5vw;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 20px;
                     border: 2px dotted black;
                     text-align: center;
-                    line-height: 2.8vw;
-                    font-size: 1.5vw;
+                    line-height: 36px;
+                    font-size: 20px;
                     font-weight: 700;
+                    cursor: pointer;
                     &:hover {
                         background-color: lighten($teethSelected, 10%);
                     }
@@ -76,7 +76,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
-                font-size: 1.5vw;
+                font-size: 12px;
                 font-weight: 700;
             }
             .connector-row {
@@ -84,18 +84,18 @@
                 display: flex;
                 align-items: flex-start;
                 justify-content: space-around;
-                font-size: 0.75vw;
+                font-size: 6px;
                 font-weight: 700;
                 width: 89%;
                 margin: 0 auto;
                 .circle--small {
-                    width: 1.5vw;
-                    height: 1.5vw;
-                    border-radius: 0.75vw;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 10px;
                     border: 1px solid black;
                     text-align: center;
-                    line-height: 1.4vw;
-                    font-size: 0.75vw;
+                    line-height: 18px;
+                    font-size: 18px;
                     font-weight: 700;
                     &:hover {
                         background-color: lighten($teethSelected, 10%);

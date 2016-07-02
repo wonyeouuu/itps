@@ -20,3 +20,16 @@ new Vue({
         }
     }
 })
+
+$(document).ready(() => {
+    var lastScrollTop = 0
+    $(window).scroll(() => {
+        var scrollTop = $(this).scrollTop()
+        if (scrollTop > lastScrollTop) {
+            console.log('scroll donw')
+        } else {
+            console.log('scroll up')
+        }
+        lastScrollTop = scrollTop
+    })
+})

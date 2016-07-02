@@ -57,6 +57,7 @@
                     line-height: 36px;
                     font-size: 20px;
                     font-weight: 700;
+                    cursor: pointer;
                     &:hover {
                         background-color: lighten($teethSelected, 10%);
                     }
