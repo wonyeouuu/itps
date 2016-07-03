@@ -44,6 +44,12 @@ const mutations = {
                     number: number + 1,
                     title: question
                 })
+            } else if (number == 10) {
+                state.questions.push({
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                })
             } else {
                 state.questions.push({
                     teeth: teethArr(),

@@ -79,9 +79,13 @@
             <img src="{{ url('/imgs/pikachu_up.png') }}" alt="" @click='jumpTo("questionList3")'/>
         </div>
         <question-list
-            :question-numbers="[8, 9, 10]"
+            :question-numbers="[8, 9]"
         >
         </question-list>
+        <period-chart
+            title='Peroidontal Chart'
+            number='11'
+        ></period-chart>
         <div></div>
     </div>
 @endsection

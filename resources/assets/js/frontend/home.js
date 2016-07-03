@@ -2,6 +2,7 @@ import Vue from 'vue'
 import store from './vuex/store'
 import IHA from './components/IHA.vue'
 import QuestionList from './components/questionList/QuestionList.vue'
+import PeriodChart from './components/questionList/PeriodChart.vue'
 
 import $ from 'jquery'
 
@@ -10,7 +11,7 @@ import $ from 'jquery'
 
 new Vue({
     el: 'body',
-    components: { IHA, QuestionList },
+    components: { IHA, QuestionList, PeriodChart },
     store,
     methods: {
         jumpTo(h) {

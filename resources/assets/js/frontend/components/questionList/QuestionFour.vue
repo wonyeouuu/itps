@@ -65,6 +65,20 @@
                     &:hover {
                         background-color: lighten($teethSelected, 10%);
                     }
+                    &.circle-p {
+                        background-color: blue;
+                        color: white;
+                        position: relative;
+                        top: -60px;
+                        left: -2px;
+                    }
+                    &.circle-m {
+                        background-color: blue;
+                        color: white;
+                        position: relative;
+                        top: -56px;
+                        left: -2px;
+                    }
                 }
                 .circle--selected {
                     background-color: $teethSelected;
@@ -109,6 +123,37 @@
         }
     }
 
+    .bounce-transition {
+      display: inline-block;
+    }
+    .bounce-enter {
+      animation: bounce-in .5s;
+    }
+    .bounce-leave {
+      animation: bounce-out .5s;
+    }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes bounce-out {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(0);
+      }
+    }
 </style>
 
 <template>
@@ -130,8 +175,19 @@
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle4(tooth.id, !tooth.selected)"
-                    >{{ tooth.id }}</div>
+                        v-show='tooth.selectable'
+                        @click='selectShow = !selectShow'
+                    >
+                    {{ tooth.id }}
+                        <div class="circle circle-p"
+                            v-show='selectShow'
+                            transition='bounce'
+                        >P</div>
+                        <div class="circle circle-m"
+                            v-show='selectShow'
+                            transition='bounce'
+                        >M</div>
+                    </div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
                     <div
@@ -139,6 +195,7 @@
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
                         @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -149,6 +206,7 @@
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
                         @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
@@ -157,6 +215,7 @@
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected }"
                         @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -185,7 +244,7 @@
             <div class="row-bottom teeth-row">
                 <div class="col-xs-12">
                     <div
-                            v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']"
+                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']"
                     >
                         {{ teeth }}
                     </div>
@@ -216,6 +275,18 @@
             'data',
             'tableShow'
         ],
+        data() {
+            return {
+                selectShow: false
+            }
+        },
+        ready() {
+        },
+        methods: {
+            selectShow() {
+                this.selectShow = !this.selectShow
+            }
+        },
         vuex: {
             actions: {
                 tableShowToggle,
