@@ -22717,23 +22717,34 @@ new _vue2.default({
     store: _store2.default,
     methods: {
         jumpTo: function jumpTo(h) {
-            (0, _jquery2.default)('html, body').animate({
-                scrollTop: (0, _jquery2.default)('#' + h).offset().top
-            }, 1000);
+            (0, _jquery2.default)('.main-container').animate({ height: 'toggle' }, 1000);
+            (0, _jquery2.default)('#questionList1').animate({ height: 'toggle' }, 1000);
         }
     }
 });
 
 (0, _jquery2.default)(document).ready(function () {
-    var lastScrollTop = 0;
-    (0, _jquery2.default)(window).scroll(function () {
-        var scrollTop = (0, _jquery2.default)(undefined).scrollTop();
-        if (scrollTop > lastScrollTop) {
-            console.log('scroll donw');
-        } else {
-            console.log('scroll up');
-        }
-        lastScrollTop = scrollTop;
+    (0, _jquery2.default)('.text-base').on('click', function () {
+        (0, _jquery2.default)('.main-container').animate({ height: 0 }, 1000, function () {
+            (0, _jquery2.default)(this).hide();
+            (0, _jquery2.default)('.questionListContainer').not('#questionList1').hide();
+        });
+    });
+    (0, _jquery2.default)('.button-down').on('click', function () {
+        var _this = this;
+
+        (0, _jquery2.default)('.questionListContainer').not((0, _jquery2.default)(this).closest('.questionListContainer')).hide();
+        (0, _jquery2.default)(this).closest('.questionListContainer').fadeOut(null, function () {
+            (0, _jquery2.default)(_this).closest('.questionListContainer').next().fadeIn();
+        });
+    });
+    (0, _jquery2.default)('.button-up').on('click', function () {
+        var _this2 = this;
+
+        (0, _jquery2.default)('.questionListContainer').not((0, _jquery2.default)(this).closest('.questionListContainer')).hide();
+        (0, _jquery2.default)(this).closest('.questionListContainer').fadeOut(null, function () {
+            (0, _jquery2.default)(_this2).closest('.questionListContainer').prev().fadeIn();
+        });
     });
 });
 

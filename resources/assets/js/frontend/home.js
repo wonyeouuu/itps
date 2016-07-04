@@ -15,22 +15,29 @@ new Vue({
     store,
     methods: {
         jumpTo(h) {
-            $('html, body').animate({
-                scrollTop: $(`#${h}`).offset().top
-            }, 1000);
+            $('.main-container').animate({height: 'toggle'}, 1000)
+            $('#questionList1').animate({height: 'toggle'}, 1000)
         }
     }
 })
 
 $(document).ready(() => {
-    var lastScrollTop = 0
-    $(window).scroll(() => {
-        var scrollTop = $(this).scrollTop()
-        if (scrollTop > lastScrollTop) {
-            console.log('scroll donw')
-        } else {
-            console.log('scroll up')
-        }
-        lastScrollTop = scrollTop
+    $('.text-base').on('click', function() {
+        $('.main-container').animate({height: 0}, 1000, function() {
+            $(this).hide()
+            $('.questionListContainer').not('#questionList1').hide()
+        })
+    })
+    $('.button-down').on('click', function() {
+        $('.questionListContainer').not($(this).closest('.questionListContainer')).hide()
+        $(this).closest('.questionListContainer').fadeOut(null, () => {
+            $(this).closest('.questionListContainer').next().fadeIn()
+        })
+    })
+    $('.button-up').on('click', function() {
+        $('.questionListContainer').not($(this).closest('.questionListContainer')).hide()
+        $(this).closest('.questionListContainer').fadeOut(null, () => {
+            $(this).closest('.questionListContainer').prev().fadeIn()
+        })
     })
 })

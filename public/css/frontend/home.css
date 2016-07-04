@@ -134,6 +134,7 @@ h1 {
   padding-left: 150px; }
 
 div.button {
+  z-index: 100;
   -ms-flex-item-align: center;
   align-self: center;
   cursor: pointer; }
