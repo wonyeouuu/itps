@@ -61,10 +61,10 @@
             </li>
             <li>
                 <button
+                    id='btn-about'
                     class="btn-circle btn"
                     v-on:mouseenter="hover('A', true)"
                     v-on:mouseleave="hover('A', false)"
-                    @click="route(this.urls.A)"
                 >A</button>
                 <span v-cloak v-show="showA">BOUT US</span>
             </li>
@@ -106,4 +106,3 @@
         }
     };
 </script>
-

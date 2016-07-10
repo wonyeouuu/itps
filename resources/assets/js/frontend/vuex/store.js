@@ -84,6 +84,11 @@ const mutations = {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.b, { id: connector })
         state.questions[4].teeth.b[teethIndex].selected = state.questions[4].teeth.b[teethIndex].selectable ? newStatus : false
+    },
+
+    SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
+        let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth} )
+        state.questions[4].teeth.a[teethIndex].selectShow = newStatus
     }
 
 
@@ -115,7 +120,8 @@ function teethArr4() {
             teeth.a.push({
                 id: `${digit10}${digit1}`,
                 selected: false,//can be true, p, m
-                selectable: true
+                selectable: true,
+                selectShow: false
             })
         })
     })

@@ -88,4 +88,6 @@
         ></period-chart>
         <div></div>
     </div>
+
+    <about-page></about-page>
 @endsection

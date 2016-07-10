@@ -69,15 +69,34 @@
                         background-color: blue;
                         color: white;
                         position: relative;
-                        top: -60px;
+                        top: -80px;
                         left: -2px;
+                        z-index: 100;
+                    }
+                    &.circle-p-selected {
+                        background-color: blue;
+                        color: white;
                     }
                     &.circle-m {
                         background-color: blue;
                         color: white;
                         position: relative;
-                        top: -56px;
-                        left: -2px;
+                        top: -49px;
+                        left: -33px;
+                        z-index: 100;
+                    }
+                    &.circle-m-selected {
+                        background-color: blue;
+                        color: white;
+                    }
+                    &.circle-x {
+                        background-color: white;
+                        color: black;
+                        border: solid;
+                        position: relative;
+                        top: -89px;
+                        left: 29px;
+                        z-index: 100;
                     }
                 }
                 .circle--selected {
@@ -174,29 +193,53 @@
                     <div
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
                         v-show='tooth.selectable'
-                        @click='selectShow = !selectShow'
+                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
                     >
-                    {{ tooth.id }}
+                    {{ tooth.selected ? tooth.selected : tooth.id }}
                         <div class="circle circle-p"
-                            v-show='selectShow'
+                            v-show="tooth.selectShow"
                             transition='bounce'
+                            @click="teethToggle4(tooth.id, 'P')"
                         >P</div>
                         <div class="circle circle-m"
-                            v-show='selectShow'
+                            v-show="tooth.selectShow"
                             transition='bounce'
+                            @click="teethToggle4(tooth.id, 'M')"
                         >M</div>
+                        <div class="circle circle-x"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, '')"
+                        >X</div>
                     </div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
                     <div
                         v-for="tooth in data.a.slice(8,16)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
                         v-show='tooth.selectable'
-                    >{{ tooth.id }}</div>
+                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                    >
+                    {{ tooth.selected ? tooth.selected : tooth.id }}
+                        <div class="circle circle-p"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'P')"
+                        >P</div>
+                        <div class="circle circle-m"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'M')"
+                        >M</div>
+                        <div class="circle circle-x"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, '')"
+                        >X</div>
+                    </div>
                 </div>
             </div>
             <div class="row-bottom teeth-row">
@@ -204,19 +247,53 @@
                     <div
                         v-for="tooth in data.a.slice(16,24)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
                         v-show='tooth.selectable'
-                    >{{ tooth.id }}</div>
+                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                    >
+                    {{ tooth.selected ? tooth.selected : tooth.id }}
+                        <div class="circle circle-p"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'P')"
+                        >P</div>
+                        <div class="circle circle-m"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'M')"
+                        >M</div>
+                        <div class="circle circle-x"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, '')"
+                        >X</div>
+                    </div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
                     <div
                         v-for="tooth in data.a.slice(24,32)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
-                        @click="teethToggle4(tooth.id, !tooth.selected)"
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
                         v-show='tooth.selectable'
-                    >{{ tooth.id }}</div>
+                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                    >
+                    {{ tooth.selected ? tooth.selected : tooth.id }}
+                        <div class="circle circle-p"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'P')"
+                        >P</div>
+                        <div class="circle circle-m"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, 'M')"
+                        >M</div>
+                        <div class="circle circle-x"
+                            v-show="tooth.selectShow"
+                            transition='bounce'
+                            @click="teethToggle4(tooth.id, '')"
+                        >X</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,7 +343,8 @@
 <script type="text/babel">
     import { getTeethWithQuestion } from '../../vuex/getters'
     import { tableShowToggle } from '../../vuex/actions'
-    import { teethToggle4, connectorToggle } from '../../vuex/actions'
+    import { selectShowToggle4, connectorToggle, teethToggle4 } from '../../vuex/actions'
+    import _ from 'underscore'
     export default {
         el: '.question-container',
         props: [
@@ -276,22 +354,15 @@
             'tableShow'
         ],
         data() {
-            return {
-                selectShow: false
-            }
         },
         ready() {
-        },
-        methods: {
-            selectShow() {
-                this.selectShow = !this.selectShow
-            }
         },
         vuex: {
             actions: {
                 tableShowToggle,
-                teethToggle4,
-                connectorToggle
+                connectorToggle,
+                selectShowToggle4,
+                teethToggle4
             }
         }
     };
