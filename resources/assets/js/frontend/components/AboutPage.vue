@@ -1,11 +1,12 @@
 <style lang="stylus" scoped>
+@import './transitions/flip.styl'
 div#about-container
-    display none
     position fixed
     top 0
     left 0
     height 100%
     width 100%
+    z-index 20000
     background rgba(100, 100, 100, 0.5)
     div#about-content-container
         border-radius 10px 0 0 0
@@ -15,6 +16,17 @@ div#about-container
         height 80%
         background white
         overflow-y scroll
+        div#aboutShow
+            width 20px
+            height 20px
+            position relative
+            left -20px
+            background url('/imgs/about_close.png')
+            background-size cover
+            cursor pointer
+            &:hover
+                background url('/imgs/about_close_activated.png')
+                background-size cover
         img
             width 100%
         p#about-intro
@@ -50,8 +62,9 @@ div#about-container
 </style>
 
 <template lang='jade'>
-div#about-container
+div#about-container(v-show='aboutShow', transition='flip')
     div#about-content-container
+        div#aboutShow(@click='aboutShowToggle()')
         img(src='/imgs/about_us_top.png')
         p#about-intro.pull-right
             |If you would like to<br>
@@ -75,5 +88,16 @@ div#about-container
 </template>
 
 <script>
-
+import { getAboutShow } from '../vuex/getters'
+import { aboutShowToggle } from '../vuex/actions'
+export default {
+    vuex: {
+        getters: {
+            aboutShow: getAboutShow
+        },
+        actions: {
+            aboutShowToggle
+        }
+    }
+}
 </script>

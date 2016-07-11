@@ -4,3 +4,6 @@ export const connectorToggle = ({ dispatch }, connector, newStatus) => dispatch(
 export const teethToggle = ({ dispatch }, number, teeth, newStatus) => dispatch('TEETH_TOGGLE', number, teeth, newStatus)
 export const teethToggle4 = ({ dispatch }, number, teeth, newStatus) => dispatch('TEETH_TOGGLE4', number, teeth, newStatus)
 export const selectShowToggle4 = ({ dispatch }, teeth, newStatus) => dispatch('SELECT_SHOW_TOGGLE4', teeth, newStatus)
+
+
+export const aboutShowToggle = ({ dispatch }) => dispatch('ABOUT_SHOW')

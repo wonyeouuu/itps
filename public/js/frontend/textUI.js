@@ -12640,9 +12640,17 @@ var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _actions = require('../vuex/actions');
+
 exports.default = {
     el: '.btn-group',
     props: ['urls'],
+    vuex: {
+        actions: {
+            aboutShowToggle: _actions.aboutShowToggle
+        }
+    },
     data: function data() {
         "use strict";
 
@@ -12675,7 +12683,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route(this.urls.I)\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route(this.urls.I)\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" @click=\"aboutShowToggle()\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -12690,7 +12698,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
+},{"../vuex/actions":12,"vue":4,"vue-hot-reload-api":3,"vueify/lib/insert-css":5}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 61, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 65, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n")
 'use strict';
@@ -12895,6 +12903,11 @@ var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_
   return dispatch('SELECT_SHOW_TOGGLE4', teeth, newStatus);
 };
 
+var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) {
+  var dispatch = _ref7.dispatch;
+  return dispatch('ABOUT_SHOW');
+};
+
 },{}],13:[function(require,module,exports){
 "use strict";
 
@@ -12906,6 +12919,10 @@ var getTeethWithQuestion = exports.getTeethWithQuestion = function getTeethWithQ
 };
 var getQuestions = exports.getQuestions = function getQuestions(state) {
   return state.questions;
+};
+
+var getAboutShow = exports.getAboutShow = function getAboutShow(state) {
+  return state.aboutShow;
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
@@ -12933,7 +12950,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue2.default.use(_vuex2.default);
 
 var state = {
-    questions: []
+    questions: [],
+    aboutShow: false
 };
 
 var mutations = {
@@ -13009,6 +13027,9 @@ var mutations = {
     SELECT_SHOW_TOGGLE4: function SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
         state.questions[4].teeth.a[teethIndex].selectShow = newStatus;
+    },
+    ABOUT_SHOW: function ABOUT_SHOW(state, bool) {
+        state.aboutShow = !state.aboutShow;
     }
 };
 

@@ -5,7 +5,8 @@ import _ from 'underscore'
 Vue.use(Vuex);
 
 const state = {
-    questions: []
+    questions: [],
+    aboutShow: false
 };
 
 const mutations = {
@@ -89,9 +90,11 @@ const mutations = {
     SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth} )
         state.questions[4].teeth.a[teethIndex].selectShow = newStatus
+    },
+
+    ABOUT_SHOW(state, bool) {
+        state.aboutShow = !state.aboutShow
     }
-
-
 };
 
 function teethArr() {

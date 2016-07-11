@@ -47,7 +47,7 @@ $(document).ready(() => {
 
 
 
-    $('#btn-about').on('click', function() {
-        $('#about-container').show()
-    })
+    // $('#btn-about').on('click', function() {
+    //     $('#about-container').show()
+    // })
 })

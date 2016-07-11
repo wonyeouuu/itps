@@ -65,6 +65,7 @@
                     class="btn-circle btn"
                     v-on:mouseenter="hover('A', true)"
                     v-on:mouseleave="hover('A', false)"
+                    @click='aboutShowToggle()'
                 >A</button>
                 <span v-cloak v-show="showA">BOUT US</span>
             </li>
@@ -74,9 +75,15 @@
 
 
 <script>
+import { aboutShowToggle } from '../vuex/actions'
     export default {
         el: '.btn-group',
         props: ['urls'],
+        vuex: {
+            actions: {
+                aboutShowToggle
+            }
+        },
         data() {
             "use strict";
             return {

@@ -22450,16 +22450,35 @@ exports.insert = function (css) {
 }));
 },{}],8:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("div#about-container[_v-0aeac120] {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\n")
-"use strict";
+var __vueify_style__ = __vueify_insert__.insert(".flip-transition[_v-0aeac120] {\n  display: block;\n}\n.flip-enter[_v-0aeac120] {\n  -webkit-animation: flip-in 1s;\n          animation: flip-in 1s;\n}\n.flip-leave[_v-0aeac120] {\n  -webkit-animation: flip-in 1s reverse;\n          animation: flip-in 1s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) scale(1) translateX(0);\n            transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) scale(1) translateX(0);\n            transform: rotateY(0) scale(1) translateX(0);\n  }\n}\ndiv#about-container[_v-0aeac120] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120] {\n  width: 20px;\n  height: 20px;\n  position: relative;\n  left: -20px;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getters = require('../vuex/getters');
+
+var _actions = require('../vuex/actions');
+
+exports.default = {
+    vuex: {
+        getters: {
+            aboutShow: _getters.getAboutShow
+        },
+        actions: {
+            aboutShowToggle: _actions.aboutShowToggle
+        }
+    }
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div id=\"about-container\" _v-0aeac120=\"\"><div id=\"about-content-container\" _v-0aeac120=\"\"><img src=\"/imgs/about_us_top.png\" _v-0aeac120=\"\"><p id=\"about-intro\" class=\"pull-right\" _v-0aeac120=\"\">If you would like to<br _v-0aeac120=\"\">\noffer your advices<br _v-0aeac120=\"\">\ndiscuss a possible<br _v-0aeac120=\"\">\nproject<br _v-0aeac120=\"\">\nor know more about<br _v-0aeac120=\"\">\nus please feel free to<br _v-0aeac120=\"\">\ndrop in.<br _v-0aeac120=\"\"><br _v-0aeac120=\"\">\nTeam IPTS</p><div id=\"mail-container\" _v-0aeac120=\"\"><div id=\"mail-image\" _v-0aeac120=\"\"></div><div id=\"mail-intro\" _v-0aeac120=\"\">dentITPS<br _v-0aeac120=\"\">\n<span class=\"mail-intro-big\" _v-0aeac120=\"\">@</span><br _v-0aeac120=\"\">\n<span class=\"mail-intro-small\" _v-0aeac120=\"\">gmail.com</span></div></div><hr _v-0aeac120=\"\"></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div id=\"about-container\" v-show=\"aboutShow\" transition=\"flip\" _v-0aeac120=\"\"><div id=\"about-content-container\" _v-0aeac120=\"\"><div id=\"aboutShow\" @click=\"aboutShowToggle()\" _v-0aeac120=\"\"></div><img src=\"/imgs/about_us_top.png\" _v-0aeac120=\"\"><p id=\"about-intro\" class=\"pull-right\" _v-0aeac120=\"\">If you would like to<br _v-0aeac120=\"\">\noffer your advices<br _v-0aeac120=\"\">\ndiscuss a possible<br _v-0aeac120=\"\">\nproject<br _v-0aeac120=\"\">\nor know more about<br _v-0aeac120=\"\">\nus please feel free to<br _v-0aeac120=\"\">\ndrop in.<br _v-0aeac120=\"\"><br _v-0aeac120=\"\">\nTeam IPTS</p><div id=\"mail-container\" _v-0aeac120=\"\"><div id=\"mail-image\" _v-0aeac120=\"\"></div><div id=\"mail-intro\" _v-0aeac120=\"\">dentITPS<br _v-0aeac120=\"\">\n<span class=\"mail-intro-big\" _v-0aeac120=\"\">@</span><br _v-0aeac120=\"\">\n<span class=\"mail-intro-small\" _v-0aeac120=\"\">gmail.com</span></div></div><hr _v-0aeac120=\"\"></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["div#about-container[_v-0aeac120] {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\n"] = false
+    __vueify_insert__.cache[".flip-transition[_v-0aeac120] {\n  display: block;\n}\n.flip-enter[_v-0aeac120] {\n  -webkit-animation: flip-in 1s;\n          animation: flip-in 1s;\n}\n.flip-leave[_v-0aeac120] {\n  -webkit-animation: flip-in 1s reverse;\n          animation: flip-in 1s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) scale(1) translateX(0);\n            transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) scale(1) translateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) scale(1) translateX(0);\n            transform: rotateY(0) scale(1) translateX(0);\n  }\n}\ndiv#about-container[_v-0aeac120] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120] {\n  width: 20px;\n  height: 20px;\n  position: relative;\n  left: -20px;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -22468,7 +22487,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+},{"../vuex/actions":15,"../vuex/getters":16,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 6, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 11, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 14, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 23, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 28, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -22476,9 +22495,17 @@ var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _actions = require('../vuex/actions');
+
 exports.default = {
     el: '.btn-group',
     props: ['urls'],
+    vuex: {
+        actions: {
+            aboutShowToggle: _actions.aboutShowToggle
+        }
+    },
     data: function data() {
         "use strict";
 
@@ -22511,7 +22538,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route(this.urls.I)\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route(this.urls.I)\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" @click=\"aboutShowToggle()\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -22526,7 +22553,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
+},{"../vuex/actions":15,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 5, stdin */\n.chart-container[_v-44cf8d24] {\n  margin-left: 20px; }\n\n/* line 9, stdin */\n.period-chart[_v-44cf8d24] {\n  width: 1000px;\n  table-layout: fixed;\n  border: none; }\n  /* line 13, stdin */\n  .period-chart td[_v-44cf8d24], .period-chart th[_v-44cf8d24] {\n    border: 2px solid black;\n    font-size: 10px;\n    text-align: center; }\n  /* line 19, stdin */\n  .period-chart tr td[_v-44cf8d24] {\n    height: 18px; }\n    /* line 21, stdin */\n    .period-chart tr td.vertical[_v-44cf8d24] {\n      font-style: italic;\n      -moz-transform: rotate(-90deg);\n      -o-transform: rotate(-90deg);\n      -webkit-transform: rotate(-90deg);\n      transform: rotate(-90deg); }\n    /* line 28, stdin */\n    .period-chart tr td.width185[_v-44cf8d24] {\n      width: 185px; }\n    /* line 31, stdin */\n    .period-chart tr td.align-center[_v-44cf8d24] {\n      text-align: center;\n      white-space: nowrap; }\n  /* line 37, stdin */\n  .period-chart tr.teeth td[_v-44cf8d24] {\n    background-color: #ffffda; }\n  /* line 42, stdin */\n  .period-chart tr.BOP-up td[_v-44cf8d24]:not(:first-child) {\n    background-color: #ffdddd; }\n  /* line 47, stdin */\n  .period-chart tr.BOP td[_v-44cf8d24] {\n    background-color: #ffdddd; }\n  /* line 52, stdin */\n  .period-chart tr.plaque td[_v-44cf8d24] {\n    background-color: #eeeeff; }\n\n/* line 59, stdin */\n.border-none[_v-44cf8d24] {\n  border: none !important; }\n\n/* line 63, stdin */\nh1[_v-44cf8d24] {\n  font-size: 20px;\n  margin: 0 0 20px 0;\n  font-weight: 200; }\n")
 'use strict';
@@ -22770,9 +22797,9 @@ new _vue2.default({
         });
     });
 
-    (0, _jquery2.default)('#btn-about').on('click', function () {
-        (0, _jquery2.default)('#about-container').show();
-    });
+    // $('#btn-about').on('click', function() {
+    //     $('#about-container').show()
+    // })
 });
 
 },{"./components/AboutPage.vue":8,"./components/IHA.vue":9,"./components/questionList/PeriodChart.vue":10,"./components/questionList/QuestionList.vue":13,"./vuex/store":17,"jquery":1,"vue":5}],15:[function(require,module,exports){
@@ -22806,6 +22833,11 @@ var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_
   return dispatch('SELECT_SHOW_TOGGLE4', teeth, newStatus);
 };
 
+var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) {
+  var dispatch = _ref7.dispatch;
+  return dispatch('ABOUT_SHOW');
+};
+
 },{}],16:[function(require,module,exports){
 "use strict";
 
@@ -22817,6 +22849,10 @@ var getTeethWithQuestion = exports.getTeethWithQuestion = function getTeethWithQ
 };
 var getQuestions = exports.getQuestions = function getQuestions(state) {
   return state.questions;
+};
+
+var getAboutShow = exports.getAboutShow = function getAboutShow(state) {
+  return state.aboutShow;
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
@@ -22844,7 +22880,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue2.default.use(_vuex2.default);
 
 var state = {
-    questions: []
+    questions: [],
+    aboutShow: false
 };
 
 var mutations = {
@@ -22920,6 +22957,9 @@ var mutations = {
     SELECT_SHOW_TOGGLE4: function SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
         state.questions[4].teeth.a[teethIndex].selectShow = newStatus;
+    },
+    ABOUT_SHOW: function ABOUT_SHOW(state, bool) {
+        state.aboutShow = !state.aboutShow;
     }
 };
 
