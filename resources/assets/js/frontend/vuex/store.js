@@ -70,8 +70,26 @@ const mutations = {
 
     TEETH_TOGGLE (state, number, teeth, newStatus) {
         "use strict";
-        let questionIndex = _.findKey(state.questions, {number})
-        let teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
+        const questionIndex = _.findKey(state.questions, {number})
+        const teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
+        // NOTE: first attempt, or second method is to update selectable eachtime teeht are selected.
+        if (number == 1) {
+            if (teethIndex <= 15) {
+                _.range(0, 16).forEach((teethIndex) => {
+                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus
+                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
+                })
+            } else {
+                _.range(16, 32).forEach((teethIndex) => {
+                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus
+                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
+                })
+            }
+        } else if (number == 2) {
+            if (state.questions[0].teeth[teethIndex].selected) {
+            }
+        }
+
         state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
     },
 

@@ -14,11 +14,11 @@ require('laravel-elixir-vueify');
 
 elixir(function(mix) {
     mix
-        .sass('/frontend/bootstrap.scss', 'public/css/frontend/bootstrap.css')
-        .sass('/frontend/home.scss', 'public/css/frontend/home.css')
-        .sass('/frontend/textUI.scss', 'public/css/frontend/textUI.css')
+        // .sass('/frontend/bootstrap.scss', 'public/css/frontend/bootstrap.css')
+        // .sass('/frontend/home.scss', 'public/css/frontend/home.css')
+        // .sass('/frontend/textUI.scss', 'public/css/frontend/textUI.css')
         .browserify('/frontend/home.js', 'public/js/frontend/home.js')
-        .browserify('/frontend/textUI.js', 'public/js/frontend/textUI.js')
+        // .browserify('/frontend/textUI.js', 'public/js/frontend/textUI.js')
         .version([
             'css/frontend/bootstrap.css',
             'css/frontend/home.css',

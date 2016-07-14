@@ -13008,6 +13008,9 @@ var mutations = {
     TEETH_TOGGLE: function TEETH_TOGGLE(state, number, teeth, newStatus) {
         "use strict";
 
+        if (number == 1) {
+            console.log(0);
+        }
         var questionIndex = _underscore2.default.findKey(state.questions, { number: number });
         var teethIndex = _underscore2.default.findKey(state.questions[questionIndex].teeth, { id: teeth });
         state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false;
