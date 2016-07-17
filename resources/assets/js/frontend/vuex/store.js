@@ -27,8 +27,7 @@ const mutations = {
             'RPD(Upper, Lower) 活動假牙',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方
 
             'Caries 有真的牙齒冠才會有 蛀牙',
-            'Apical Lesion 牙根蛀出球 要有牙根才可以選',
-            'Periodontal Chart 牙周表格'//圖像才有
+            'Vitality 牙根蛀出球 要有牙根才可以選',
             //四階段 階段間有皮卡丘
         ]
         //mobility 牙齒移動程度 搖晃程度 三級 123
@@ -45,8 +44,9 @@ const mutations = {
                     number: number + 1,
                     title: question
                 })
-            } else if (number == 10) {
+            } else if (number == 7) {
                 state.questions.push({
+                    teeth: teethArrUnselectable(),
                     tableShow: false,
                     number: number + 1,
                     title: question
@@ -60,7 +60,6 @@ const mutations = {
                 })
             }
         })
-        console.log(state.questions.length)
     },
 
     TABLESHOW_TOGGLE (state, number) {
@@ -78,16 +77,38 @@ const mutations = {
                 _.range(0, 16).forEach((teethIndex) => {
                     state.questions[questionIndex].teeth[teethIndex].selected = newStatus
                     state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
+                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
+                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
                 })
             } else {
                 _.range(16, 32).forEach((teethIndex) => {
                     state.questions[questionIndex].teeth[teethIndex].selected = newStatus
                     state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
+                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
+                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
                 })
             }
         } else if (number == 2) {
-            if (state.questions[0].teeth[teethIndex].selected) {
-            }
+            state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
+            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus
+        } else if (number == 3) {
+            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
+            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus
+        } else if (number == 4) {
+            state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
+            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
         }
 
         state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
@@ -97,6 +118,14 @@ const mutations = {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth })
         state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false
+        state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
+        connectorsSplit().forEach(splitArr => {
+            let connectorIndex = splitArr.reduce((carry, item) => carry + item)
+            let selectable = splitArr.reduce((carry, item) => {
+                return carry && state.questions[4].teeth.a[_.findKey(state.questions[4].teeth.a, { id: item.toString() })].selected != ""
+            }, true)
+            state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
+        })
     },
 
     CONNECTOR_TOGGLE (state, connector, newStatus) {
@@ -130,6 +159,21 @@ function teethArr() {
     return teeth
 }
 
+function teethArrUnselectable() {
+    "use strict";
+    let teeth = [];
+    _.range(1, 5).forEach((digit10) => {
+        _.range(1, 9).forEach((digit1) => {
+            teeth.push({
+                id: `${digit10}${digit1}`,
+                selected: false,
+                selectable: false
+            })
+        })
+    })
+    return teeth
+}
+
 function teethArr4() {
     "use strict";
     let teeth = {
@@ -147,16 +191,56 @@ function teethArr4() {
         })
     })
 
-    let a = [35, 33, 31, 29, 27, 25, 23, 32, 43, 45, 47, 49, 51, 53, 55, 95, 93, 91, 89, 87, 85, 83, 72, 63, 65, 67, 69, 71, 73, 75];
-    a.forEach(function(number) {
+    connectors().forEach(function(connector) {
         teeth.b.push({
-            id: number,
+            id: connector,
             selected: false,
-            selectable: true
+            selectable: false
         })
     })
     return teeth
 }
+
+function connectors() {
+    let connectors = [35, 33, 31, 29, 27, 25, 23, 32, 43, 45, 47, 49, 51, 53, 55, 95, 93, 91, 89, 87, 85, 83, 72, 63, 65, 67, 69, 71, 73, 75];
+    return connectors
+}
+
+function connectorsSplit() {
+    return [
+        [18, 17],
+        [17, 16],
+        [16, 15],
+        [15, 14],
+        [14, 13],
+        [13, 12],
+        [12, 11],
+        [11, 21],
+        [21, 22],
+        [22, 23],
+        [23, 24],
+        [24, 25],
+        [25, 26],
+        [26, 27],
+        [27, 28],
+        [48, 47],
+        [47, 46],
+        [46, 45],
+        [45, 44],
+        [44, 43],
+        [43, 42],
+        [42, 41],
+        [41, 31],
+        [31, 32],
+        [32, 33],
+        [33, 34],
+        [34, 35],
+        [35, 36],
+        [36, 37],
+        [37, 38]
+    ]
+}
+
 
 export default new Vuex.Store({
     state,

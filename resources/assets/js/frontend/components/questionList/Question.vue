@@ -66,6 +66,9 @@
                     background-color: $teethSelected;
                     border: 2px solid black;
                 }
+                .circle--invisible {
+                    visibility: hidden;
+                }
             }
         }
     }
@@ -87,18 +90,16 @@
                     <div
                         v-for="tooth in teeth.slice(0,8)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"
-                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
                     <div
                         v-for="tooth in teeth.slice(8,16)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"
-                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
             </div>
@@ -107,18 +108,16 @@
                     <div
                         v-for="tooth in teeth.slice(16,24)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"
-                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
                 <div class="row-bottom-right col-xs-6 ltr">
                     <div
                         v-for="tooth in teeth.slice(24,32)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected }"
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"
-                        v-show='tooth.selectable'
                     >{{ tooth.id }}</div>
                 </div>
             </div>

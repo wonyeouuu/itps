@@ -103,6 +103,9 @@
                     background-color: $teethSelected;
                     border: 2px solid black;
                 }
+                .circle--invisible {
+                    visibility: hidden;
+                }
             }
             .col-xs-12 {
                 height: 50%;
@@ -137,6 +140,9 @@
                 .circle--selected {
                     background-color: $teethSelected;
                     border: 1px solid black;
+                }
+                .circle--invisible {
+                    visibility: hidden;
                 }
             }
         }
@@ -193,8 +199,7 @@
                     <div
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
-                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
-                        v-show='tooth.selectable'
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
@@ -219,8 +224,7 @@
                     <div
                         v-for="tooth in data.a.slice(8,16)"
                         class="circle"
-                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
-                        v-show='tooth.selectable'
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
@@ -247,8 +251,7 @@
                     <div
                         v-for="tooth in data.a.slice(16,24)"
                         class="circle"
-                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
-                        v-show='tooth.selectable'
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
@@ -273,8 +276,7 @@
                     <div
                         v-for="tooth in data.a.slice(24,32)"
                         class="circle"
-                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M' }"
-                        v-show='tooth.selectable'
+                        v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
@@ -311,7 +313,7 @@
                 <div class="connector-row">
                     <div
                         class="circle--small"
-                        v-bind:class="{ 'circle--selected': connector.selected }"
+                        v-bind:class="{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }"
                         v-for="connector in data.b.slice(0,15)"
                         @click="connectorToggle(connector.id, !connector.selected)"
                     >
@@ -321,7 +323,7 @@
             <div class="row-bottom teeth-row">
                 <div class="col-xs-12">
                     <div
-                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']"
+                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38'].reverse()"
                     >
                         {{ teeth }}
                     </div>
@@ -329,8 +331,8 @@
                 <div class="connector-row">
                     <div
                         class="circle--small"
-                        v-bind:class="{ 'circle--selected': connector.selected }"
-                        v-for="connector in data.b.slice(15,30)"
+                        v-bind:class="{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }"
+                        v-for="connector in data.b.slice(15,30).reverse()"
                         @click="connectorToggle(connector.id, !connector.selected)"
                     >
                     </div>

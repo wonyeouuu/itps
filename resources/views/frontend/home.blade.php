@@ -82,10 +82,10 @@
             :question-numbers="[8, 9]"
         >
         </question-list>
-        <period-chart
+        {{-- <period-chart
             title='Peroidontal Chart'
             number='11'
-        ></period-chart>
+        ></period-chart> --}}
         <div></div>
     </div>
 
