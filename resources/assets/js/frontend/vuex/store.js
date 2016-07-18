@@ -37,24 +37,18 @@ const mutations = {
         //GM 牙齦高度 看外觀 1~15 >5 red
         //PD 插進去多深 1~15 >5 red
         questions.forEach((question, number) => {
+            //NOTE: remember to modify tableShow back to false next part 2
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
-                    tableShow: false,
-                    number: number + 1,
-                    title: question
-                })
-            } else if (number == 7) {
-                state.questions.push({
-                    teeth: teethArrUnselectable(),
-                    tableShow: false,
+                    tableShow: true,
                     number: number + 1,
                     title: question
                 })
             } else {
                 state.questions.push({
                     teeth: teethArr(),
-                    tableShow: false,
+                    tableShow: true,
                     number: number + 1,
                     title: question
                 })
@@ -71,54 +65,31 @@ const mutations = {
         "use strict";
         const questionIndex = _.findKey(state.questions, {number})
         const teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
-        // NOTE: first attempt, or second method is to update selectable eachtime teeht are selected.
-        if (number == 1) {
-            if (teethIndex <= 15) {
-                _.range(0, 16).forEach((teethIndex) => {
-                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus
-                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
-                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
-                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
-                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
-                })
+
+        if (state.questions[questionIndex].teeth[teethIndex].selectable) {
+            if (number == 1) {
+                if (teethIndex <= 15) {
+                    _.range(0, 16).forEach((teethIndex) => {
+                        state.questions[questionIndex].teeth[teethIndex].selected = newStatus
+                    })
+                } else {
+                    _.range(16, 32).forEach((teethIndex) => {
+                        state.questions[questionIndex].teeth[teethIndex].selected = newStatus
+                    })
+                }
             } else {
-                _.range(16, 32).forEach((teethIndex) => {
-                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus
-                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
-                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
-                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
-                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
-                })
+                state.questions[questionIndex].teeth[teethIndex].selected = newStatus
             }
-        } else if (number == 2) {
-            state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
-            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus
-        } else if (number == 3) {
-            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
-            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus
-        } else if (number == 4) {
-            state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable
         }
 
-        state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
+        resetPermission(state)
+        // state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
     },
 
     TEETH_TOGGLE4 (state, teeth, newStatus) {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth })
         state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false
-        state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus
         connectorsSplit().forEach(splitArr => {
             let connectorIndex = splitArr.reduce((carry, item) => carry + item)
             let selectable = splitArr.reduce((carry, item) => {
@@ -126,6 +97,7 @@ const mutations = {
             }, true)
             state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
         })
+        resetPermission(state)
     },
 
     CONNECTOR_TOGGLE (state, connector, newStatus) {
@@ -158,6 +130,152 @@ function teethArr() {
     })
     return teeth
 }
+
+function resetPermission(state) {
+    const questionsList1 = state.questions.filter(question => {
+        return [7].indexOf(question.number) != -1
+    })
+    const questionsList2 = state.questions.filter(question => {
+        return [3, 4, 6, 7, 9, 10].indexOf(question.number) != -1
+    })
+    const questionsList3 = state.questions.filter(question => {
+        return [1, 2, 4, 6, 7, 9, 10].indexOf(question.number) != -1
+    })
+    const questionsList4 = [
+        state.questions[2 - 1].teeth,
+        state.questions[3 - 1].teeth,
+        state.questions[5 - 1].teeth.a,
+        state.questions[6 - 1].teeth
+    ]
+    const questionsList5 = state.questions.filter(question => {
+        return [1, 4, 6].indexOf(question.number) != -1
+    })
+    const questionsList6 = [
+        state.questions[1 - 1].teeth,
+        state.questions[2 - 1].teeth,
+        state.questions[3 - 1].teeth,
+        state.questions[4 - 1].teeth,
+        state.questions[5 - 1].teeth.a,
+        state.questions[8 - 1].teeth
+    ]
+    const questionsList7 = state.questions.filter(question => {
+        return [1, 2, 3].indexOf(question.number) != -1
+    })
+    const questionsList8 = [
+        state.questions[1 - 1].teeth,
+        state.questions[5 - 1].teeth.a,
+        state.questions[6 - 1].teeth
+    ]
+    const questionsList9 = state.questions.filter(question => {
+        return [1, 2, 3].indexOf(question.number) != -1
+    })
+    const questionsList10 = state.questions.filter(question => {
+        return [1, 2, 3].indexOf(question.number) != -1
+    })
+    state.questions[2 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList2.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[3 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList3.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[4 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList4.reduce((carry, teeth) => {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[5 - 1].teeth.a.forEach(tooth => {
+        tooth.selectable = !questionsList5.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[6 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList6.reduce((carry, teeth) => {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[7 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList7.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[8 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList8.reduce((carry, teeth) => {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[9 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList9.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    state.questions[10 - 1].teeth.forEach(tooth => {
+        tooth.selectable = !questionsList10.reduce((carry, question) => {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected)
+        }, false)
+    })
+    //special rules
+    state.questions[7 - 1].teeth.forEach(tooth => {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true
+        }
+    })
+    state.questions[9 - 1].teeth.forEach(tooth => {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true
+        }
+    })
+    state.questions[10 - 1].teeth.forEach(tooth => {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true
+        }
+    })
+}
+
+function pivot() {
+    return {
+        '11': 0,
+        '12': 1,
+        '13': 2,
+        '14': 3,
+        '15': 4,
+        '16': 5,
+        '17': 6,
+        '18': 7,
+        '21': 8,
+        '22': 9,
+        '23': 10,
+        '24': 11,
+        '25': 12,
+        '26': 13,
+        '27': 14,
+        '28': 15,
+        '31': 16,
+        '32': 17,
+        '33': 18,
+        '34': 19,
+        '35': 20,
+        '36': 21,
+        '37': 22,
+        '38': 23,
+        '41': 24,
+        '42': 25,
+        '43': 26,
+        '44': 27,
+        '45': 28,
+        '46': 29,
+        '47': 30,
+        '48': 31
+    }
+}
+
+function jsonLog(obj) {
+    console.log(JSON.parse(JSON.stringify(obj)))
+}
+
 
 function teethArrUnselectable() {
     "use strict";

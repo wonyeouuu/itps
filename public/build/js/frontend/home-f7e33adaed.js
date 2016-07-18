@@ -1,4 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/json/stringify"), __esModule: true };
+},{"core-js/library/fn/json/stringify":2}],2:[function(require,module,exports){
+var core  = require('../../modules/_core')
+  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+  return $JSON.stringify.apply($JSON, arguments);
+};
+},{"../../modules/_core":3}],3:[function(require,module,exports){
+var core = module.exports = {version: '2.4.0'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+},{}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -9814,7 +9825,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],2:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -9910,7 +9921,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],3:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -11460,7 +11471,7 @@ process.umask = function() { return 0; };
   }
 }.call(this));
 
-},{}],4:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var Vue // late bind
 var map = Object.create(null)
 var shimmed = false
@@ -11760,7 +11771,7 @@ function format (id) {
   return id.match(/[^\/]+\.vue$/)[0]
 }
 
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v1.0.24
@@ -21793,7 +21804,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":2}],6:[function(require,module,exports){
+},{"_process":5}],9:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -21813,7 +21824,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*!
  * Vuex v0.6.3
  * (c) 2016 Evan You
@@ -22448,7 +22459,7 @@ exports.insert = function (css) {
   return index;
 
 }));
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".flip-transition[_v-0aeac120] {\n  display: block;\n}\n.flip-enter[_v-0aeac120] {\n  -webkit-animation: flip-in 1s;\n          animation: flip-in 1s;\n}\n.flip-leave[_v-0aeac120] {\n  -webkit-animation: flip-in 1s reverse;\n          animation: flip-in 1s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n            transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n            transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\nhr.split[_v-0aeac120] {\n  margin-bottom: 120px;\n}\nhr.member-intro-split[_v-0aeac120] {\n  margin: 50px 0;\n}\ndiv#about-container[_v-0aeac120] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120] {\n  width: 20px;\n  height: 20px;\n  position: relative;\n  left: -20px;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo[_v-0aeac120] {\n  color: #f00;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo h1[_v-0aeac120] {\n  text-align: center;\n  font-size: 100px;\n  font-weight: 700;\n  position: relative;\n  top: -60px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo p[_v-0aeac120] {\n  text-align: center;\n  font-size: 25px;\n  letter-spacing: 160px;\n  position: relative;\n  top: 100px;\n  left: 80px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text[_v-0aeac120] {\n  width: 50%;\n  margin: 0 auto;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text h1[_v-0aeac120] {\n  font-size: 50px;\n  font-weight: 500;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text p[_v-0aeac120] {\n  font-size: 30px;\n  font-weight: 200;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text.align-left[_v-0aeac120] {\n  width: 50%;\n  margin-left: 10%;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo1[_v-0aeac120] {\n  width: 85%;\n  height: 500px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo1.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2[_v-0aeac120] {\n  width: 85%;\n  height: 500px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo2.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2 h1[_v-0aeac120] {\n  font-size: 74px;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2 p[_v-0aeac120] {\n  top: 130px;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo3[_v-0aeac120] {\n  width: 95%;\n  height: 300px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo3.png\");\n  background-size: 100% 100%;\n}\n")
 'use strict';
@@ -22487,7 +22498,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":15,"../vuex/getters":16,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],9:[function(require,module,exports){
+},{"../vuex/actions":18,"../vuex/getters":19,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],12:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 6, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 11, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 14, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 23, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 28, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -22553,7 +22564,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":15,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],10:[function(require,module,exports){
+},{"../vuex/actions":18,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],13:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 5, stdin */\n.chart-container[_v-44cf8d24] {\n  margin-left: 20px; }\n\n/* line 9, stdin */\n.period-chart[_v-44cf8d24] {\n  width: 1000px;\n  table-layout: fixed;\n  border: none; }\n  /* line 13, stdin */\n  .period-chart td[_v-44cf8d24], .period-chart th[_v-44cf8d24] {\n    border: 2px solid black;\n    font-size: 10px;\n    text-align: center; }\n  /* line 19, stdin */\n  .period-chart tr td[_v-44cf8d24] {\n    height: 18px; }\n    /* line 21, stdin */\n    .period-chart tr td.vertical[_v-44cf8d24] {\n      font-style: italic;\n      -moz-transform: rotate(-90deg);\n      -o-transform: rotate(-90deg);\n      -webkit-transform: rotate(-90deg);\n      transform: rotate(-90deg); }\n    /* line 28, stdin */\n    .period-chart tr td.width185[_v-44cf8d24] {\n      width: 185px; }\n    /* line 31, stdin */\n    .period-chart tr td.align-center[_v-44cf8d24] {\n      text-align: center;\n      white-space: nowrap; }\n  /* line 37, stdin */\n  .period-chart tr.teeth td[_v-44cf8d24] {\n    background-color: #ffffda; }\n  /* line 42, stdin */\n  .period-chart tr.BOP-up td[_v-44cf8d24]:not(:first-child) {\n    background-color: #ffdddd; }\n  /* line 47, stdin */\n  .period-chart tr.BOP td[_v-44cf8d24] {\n    background-color: #ffdddd; }\n  /* line 52, stdin */\n  .period-chart tr.plaque td[_v-44cf8d24] {\n    background-color: #eeeeff; }\n\n/* line 59, stdin */\n.border-none[_v-44cf8d24] {\n  border: none !important; }\n\n/* line 63, stdin */\nh1[_v-44cf8d24] {\n  font-size: 20px;\n  margin: 0 0 20px 0;\n  font-weight: 200; }\n")
 'use strict';
@@ -22580,7 +22591,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-44cf8d24", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],11:[function(require,module,exports){
+},{"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 61, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 65, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-4ac01936] {\n        visibility: hidden; }\n")
 'use strict';
@@ -22619,7 +22630,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":15,"../../vuex/getters":16,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],12:[function(require,module,exports){
+},{"../../vuex/actions":18,"../../vuex/getters":19,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],15:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 10px;\n      margin-top: 5px; }\n\n/* line 17, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 25, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 29, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 33, stdin */\n.table-normal[_v-249c332b] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 40, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 42, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 48, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 53, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n      /* line 55, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 65, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n        /* line 68, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          top: -80px;\n          left: -2px;\n          z-index: 100; }\n        /* line 76, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 80, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          top: -49px;\n          left: -33px;\n          z-index: 100; }\n        /* line 88, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 92, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-x[_v-249c332b] {\n          background-color: white;\n          color: black;\n          border: solid;\n          position: relative;\n          top: -89px;\n          left: 29px;\n          z-index: 100; }\n      /* line 102, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 106, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n    /* line 110, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 118, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 127, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 136, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 140, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 144, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n\n/* line 151, stdin */\n.bounce-transition[_v-249c332b] {\n  display: inline-block; }\n\n/* line 154, stdin */\n.bounce-enter[_v-249c332b] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 157, stdin */\n.bounce-leave[_v-249c332b] {\n  -webkit-animation: bounce-out .5s;\n          animation: bounce-out .5s; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -22669,7 +22680,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":15,"../../vuex/getters":16,"underscore":3,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],13:[function(require,module,exports){
+},{"../../vuex/actions":18,"../../vuex/getters":19,"underscore":6,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],16:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n")
 "use strict";
@@ -22727,7 +22738,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":15,"../../vuex/getters":16,"./Question.vue":11,"./QuestionFour.vue":12,"vue":5,"vue-hot-reload-api":4,"vueify/lib/insert-css":6}],14:[function(require,module,exports){
+},{"../../vuex/actions":18,"../../vuex/getters":19,"./Question.vue":14,"./QuestionFour.vue":15,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],17:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -22771,38 +22782,31 @@ new _vue2.default({
         }
     }
 });
+//NOTE: remember to uncomment this part next part 3
+// $(document).ready(() => {
+//     $('.text-base').on('click', function() {
+//         $('.main-container').animate({height: 0}, 1000, function() {
+//             $(this).hide()
+//             // $('.questionListContainer').not('#questionList1').hide()
+//             $('#questionList1').fadeIn().css('display', 'flex')
+//
+//         })
+//     })
+//     $('.button-down').on('click', function() {
+//         $('.questionListContainer').not($(this).closest('.questionListContainer')).hide()
+//         $(this).closest('.questionListContainer').fadeOut(null, () => {
+//             $(this).closest('.questionListContainer').next().fadeIn().css('display', 'flex')
+//         })
+//     })
+//     $('.button-up').on('click', function() {
+//         $('.questionListContainer').not($(this).closest('.questionListContainer')).hide()
+//         $(this).closest('.questionListContainer').fadeOut(null, () => {
+//             $(this).closest('.questionListContainer').prev().fadeIn().css('display', 'flex')
+//         })
+//     })
+// })
 
-(0, _jquery2.default)(document).ready(function () {
-    (0, _jquery2.default)('.text-base').on('click', function () {
-        (0, _jquery2.default)('.main-container').animate({ height: 0 }, 1000, function () {
-            (0, _jquery2.default)(this).hide();
-            // $('.questionListContainer').not('#questionList1').hide()
-            (0, _jquery2.default)('#questionList1').fadeIn().css('display', 'flex');
-        });
-    });
-    (0, _jquery2.default)('.button-down').on('click', function () {
-        var _this = this;
-
-        (0, _jquery2.default)('.questionListContainer').not((0, _jquery2.default)(this).closest('.questionListContainer')).hide();
-        (0, _jquery2.default)(this).closest('.questionListContainer').fadeOut(null, function () {
-            (0, _jquery2.default)(_this).closest('.questionListContainer').next().fadeIn().css('display', 'flex');
-        });
-    });
-    (0, _jquery2.default)('.button-up').on('click', function () {
-        var _this2 = this;
-
-        (0, _jquery2.default)('.questionListContainer').not((0, _jquery2.default)(this).closest('.questionListContainer')).hide();
-        (0, _jquery2.default)(this).closest('.questionListContainer').fadeOut(null, function () {
-            (0, _jquery2.default)(_this2).closest('.questionListContainer').prev().fadeIn().css('display', 'flex');
-        });
-    });
-
-    // $('#btn-about').on('click', function() {
-    //     $('#about-container').show()
-    // })
-});
-
-},{"./components/AboutPage.vue":8,"./components/IHA.vue":9,"./components/questionList/PeriodChart.vue":10,"./components/questionList/QuestionList.vue":13,"./vuex/store":17,"jquery":1,"vue":5}],15:[function(require,module,exports){
+},{"./components/AboutPage.vue":11,"./components/IHA.vue":12,"./components/questionList/PeriodChart.vue":13,"./components/questionList/QuestionList.vue":16,"./vuex/store":20,"jquery":4,"vue":8}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22838,7 +22842,7 @@ var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) 
   return dispatch('ABOUT_SHOW');
 };
 
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22856,12 +22860,16 @@ var getAboutShow = exports.getAboutShow = function getAboutShow(state) {
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],17:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
 
 var _vue = require('vue');
 
@@ -22906,24 +22914,18 @@ var mutations = {
         //GM 牙齦高度 看外觀 1~15 >5 red
         //PD 插進去多深 1~15 >5 red
         questions.forEach(function (question, number) {
+            //NOTE: remember to modify tableShow back to false next part 2
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
-                    tableShow: false,
-                    number: number + 1,
-                    title: question
-                });
-            } else if (number == 7) {
-                state.questions.push({
-                    teeth: teethArrUnselectable(),
-                    tableShow: false,
+                    tableShow: true,
                     number: number + 1,
                     title: question
                 });
             } else {
                 state.questions.push({
                     teeth: teethArr(),
-                    tableShow: false,
+                    tableShow: true,
                     number: number + 1,
                     title: question
                 });
@@ -22940,54 +22942,31 @@ var mutations = {
 
         var questionIndex = _underscore2.default.findKey(state.questions, { number: number });
         var teethIndex = _underscore2.default.findKey(state.questions[questionIndex].teeth, { id: teeth });
-        // NOTE: first attempt, or second method is to update selectable eachtime teeht are selected.
-        if (number == 1) {
-            if (teethIndex <= 15) {
-                _underscore2.default.range(0, 16).forEach(function (teethIndex) {
-                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
-                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus;
-                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus;
-                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
-                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus;
-                });
+
+        if (state.questions[questionIndex].teeth[teethIndex].selectable) {
+            if (number == 1) {
+                if (teethIndex <= 15) {
+                    _underscore2.default.range(0, 16).forEach(function (teethIndex) {
+                        state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
+                    });
+                } else {
+                    _underscore2.default.range(16, 32).forEach(function (teethIndex) {
+                        state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
+                    });
+                }
             } else {
-                _underscore2.default.range(16, 32).forEach(function (teethIndex) {
-                    state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
-                    state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus;
-                    state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus;
-                    state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
-                    state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus;
-                });
+                state.questions[questionIndex].teeth[teethIndex].selected = newStatus;
             }
-        } else if (number == 2) {
-            state.questions[3 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable;
-            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus;
-        } else if (number == 3) {
-            state.questions[4 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[7 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable;
-            state.questions[9 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[10 - 1].teeth[teethIndex].selectable = !newStatus;
-        } else if (number == 4) {
-            state.questions[5 - 1].teeth.a[teethIndex].selectable = !newStatus;
-            state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
-            state.questions[8 - 1].teeth[teethIndex].selectable = newStatus ? true : state.questions[8 - 1].teeth[teethIndex].selectable;
         }
 
-        state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false;
+        resetPermission(state);
+        // state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
     },
     TEETH_TOGGLE4: function TEETH_TOGGLE4(state, teeth, newStatus) {
         "use strict";
 
         var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
         state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false;
-        state.questions[6 - 1].teeth[teethIndex].selectable = !newStatus;
         connectorsSplit().forEach(function (splitArr) {
             var connectorIndex = splitArr.reduce(function (carry, item) {
                 return carry + item;
@@ -22997,6 +22976,7 @@ var mutations = {
             }, true);
             state.questions[4].teeth.b[_underscore2.default.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable;
         });
+        resetPermission(state);
     },
     CONNECTOR_TOGGLE: function CONNECTOR_TOGGLE(state, connector, newStatus) {
         "use strict";
@@ -23027,6 +23007,135 @@ function teethArr() {
         });
     });
     return teeth;
+}
+
+function resetPermission(state) {
+    var questionsList1 = state.questions.filter(function (question) {
+        return [7].indexOf(question.number) != -1;
+    });
+    var questionsList2 = state.questions.filter(function (question) {
+        return [3, 4, 6, 7, 9, 10].indexOf(question.number) != -1;
+    });
+    var questionsList3 = state.questions.filter(function (question) {
+        return [1, 2, 4, 6, 7, 9, 10].indexOf(question.number) != -1;
+    });
+    var questionsList4 = [state.questions[2 - 1].teeth, state.questions[3 - 1].teeth, state.questions[5 - 1].teeth.a, state.questions[6 - 1].teeth];
+    var questionsList5 = state.questions.filter(function (question) {
+        return [1, 4, 6].indexOf(question.number) != -1;
+    });
+    var questionsList6 = [state.questions[1 - 1].teeth, state.questions[2 - 1].teeth, state.questions[3 - 1].teeth, state.questions[4 - 1].teeth, state.questions[5 - 1].teeth.a, state.questions[8 - 1].teeth];
+    var questionsList7 = state.questions.filter(function (question) {
+        return [1, 2, 3].indexOf(question.number) != -1;
+    });
+    var questionsList8 = [state.questions[1 - 1].teeth, state.questions[5 - 1].teeth.a, state.questions[6 - 1].teeth];
+    var questionsList9 = state.questions.filter(function (question) {
+        return [1, 2, 3].indexOf(question.number) != -1;
+    });
+    var questionsList10 = state.questions.filter(function (question) {
+        return [1, 2, 3].indexOf(question.number) != -1;
+    });
+    state.questions[2 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList2.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[3 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList3.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[4 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList4.reduce(function (carry, teeth) {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[5 - 1].teeth.a.forEach(function (tooth) {
+        tooth.selectable = !questionsList5.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[6 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList6.reduce(function (carry, teeth) {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[7 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList7.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[8 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList8.reduce(function (carry, teeth) {
+            return Boolean(carry || teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[9 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList9.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    state.questions[10 - 1].teeth.forEach(function (tooth) {
+        tooth.selectable = !questionsList10.reduce(function (carry, question) {
+            return Boolean(carry || question.teeth[pivot()[tooth.id]].selected);
+        }, false);
+    });
+    //special rules
+    state.questions[7 - 1].teeth.forEach(function (tooth) {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true;
+        }
+    });
+    state.questions[9 - 1].teeth.forEach(function (tooth) {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true;
+        }
+    });
+    state.questions[10 - 1].teeth.forEach(function (tooth) {
+        if (state.questions[1 - 1].teeth[pivot()[tooth.id]].selected && state.questions[4 - 1].teeth[pivot()[tooth.id]].selected) {
+            tooth.selectable = true;
+        }
+    });
+}
+
+function pivot() {
+    return {
+        '11': 0,
+        '12': 1,
+        '13': 2,
+        '14': 3,
+        '15': 4,
+        '16': 5,
+        '17': 6,
+        '18': 7,
+        '21': 8,
+        '22': 9,
+        '23': 10,
+        '24': 11,
+        '25': 12,
+        '26': 13,
+        '27': 14,
+        '28': 15,
+        '31': 16,
+        '32': 17,
+        '33': 18,
+        '34': 19,
+        '35': 20,
+        '36': 21,
+        '37': 22,
+        '38': 23,
+        '41': 24,
+        '42': 25,
+        '43': 26,
+        '44': 27,
+        '45': 28,
+        '46': 29,
+        '47': 30,
+        '48': 31
+    };
+}
+
+function jsonLog(obj) {
+    console.log(JSON.parse((0, _stringify2.default)(obj)));
 }
 
 function teethArrUnselectable() {
@@ -23087,6 +23196,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"underscore":3,"vue":5,"vuex":7}]},{},[14]);
+},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":8,"vuex":10}]},{},[17]);
 
 //# sourceMappingURL=home.js.map
