@@ -108,7 +108,14 @@ const mutations = {
 
     SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth} )
-        state.questions[4].teeth.a[teethIndex].selectShow = newStatus
+        if (state.questions[4].teeth.a[teethIndex].selected == 'P') {
+            state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: false, m: true} : { p: false, m: false})
+        } else if (state.questions[4].teeth.a[teethIndex].selected == 'M') {
+            state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: false} : { p: false, m: false})
+        } else {
+            state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: true} : { p: false, m: false})
+        }
+        // state.questions[4].teeth.a[teethIndex].selectShow = newStatus
     },
 
     ABOUT_SHOW(state, bool) {
@@ -304,7 +311,11 @@ function teethArr4() {
                 id: `${digit10}${digit1}`,
                 selected: false,//can be true, p, m
                 selectable: true,
-                selectShow: false
+                // selectShow: false
+                selectShow: {
+                    p: false,
+                    m: false
+                }
             })
         })
     })

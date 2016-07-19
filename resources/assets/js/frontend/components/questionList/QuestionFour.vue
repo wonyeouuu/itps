@@ -69,8 +69,6 @@
                         background-color: blue;
                         color: white;
                         position: relative;
-                        top: -80px;
-                        left: -2px;
                         z-index: 100;
                     }
                     &.circle-p-selected {
@@ -81,8 +79,6 @@
                         background-color: blue;
                         color: white;
                         position: relative;
-                        top: -49px;
-                        left: -33px;
                         z-index: 100;
                     }
                     &.circle-m-selected {
@@ -94,9 +90,15 @@
                         color: black;
                         border: solid;
                         position: relative;
-                        top: -89px;
-                        left: 29px;
                         z-index: 100;
+                    }
+                    &.circle--top {
+                        top: -69px;
+                        left: -2px;
+                    }
+                    &.circle--bottom {
+                        top: -49px;
+                        left: -2px;
                     }
                 }
                 .circle--selected {
@@ -155,7 +157,8 @@
       animation: bounce-in .5s;
     }
     .bounce-leave {
-      animation: bounce-out .5s;
+        display: none;
+    //   animation: bounce-out .5s;
     }
     @keyframes bounce-in {
       0% {
@@ -200,21 +203,24 @@
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                        @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
                         <div class="circle circle-p"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--top': tooth.selectShow.p }"
+                            v-show="tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'P')"
                         >P</div>
                         <div class="circle circle-m"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m && tooth.selectShow.p, 'circle--top': tooth.selectShow.m && !tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'M')"
                         >M</div>
                         <div class="circle circle-x"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, '')"
                         >X</div>
@@ -225,21 +231,24 @@
                         v-for="tooth in data.a.slice(8,16)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                        @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
                         <div class="circle circle-p"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--top': tooth.selectShow.p }"
+                            v-show="tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'P')"
                         >P</div>
                         <div class="circle circle-m"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m && tooth.selectShow.p, 'circle--top': tooth.selectShow.m && !tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'M')"
                         >M</div>
                         <div class="circle circle-x"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, '')"
                         >X</div>
@@ -252,21 +261,24 @@
                         v-for="tooth in data.a.slice(16,24)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                        @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
                         <div class="circle circle-p"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--top': tooth.selectShow.p }"
+                            v-show="tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'P')"
                         >P</div>
                         <div class="circle circle-m"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m && tooth.selectShow.p, 'circle--top': tooth.selectShow.m && !tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'M')"
                         >M</div>
                         <div class="circle circle-x"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, '')"
                         >X</div>
@@ -277,21 +289,24 @@
                         v-for="tooth in data.a.slice(24,32)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle4(tooth.id, !tooth.selectShow)"
+                        @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
                     >
                     {{ tooth.selected ? tooth.selected : tooth.id }}
                         <div class="circle circle-p"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--top': tooth.selectShow.p }"
+                            v-show="tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'P')"
                         >P</div>
                         <div class="circle circle-m"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m && tooth.selectShow.p, 'circle--top': tooth.selectShow.m && !tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, 'M')"
                         >M</div>
                         <div class="circle circle-x"
-                            v-show="tooth.selectShow"
+                            :class="{ 'circle--bottom': tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p }"
+                            v-show="tooth.selectShow.m ? !tooth.selectShow.p : tooth.selectShow.p"
                             transition='bounce'
                             @click="teethToggle4(tooth.id, '')"
                         >X</div>
