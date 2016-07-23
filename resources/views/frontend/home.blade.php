@@ -86,8 +86,11 @@
             title='Peroidontal Chart'
             number='11'
         ></period-chart> --}}
-        <div></div>
+        <div class='export-button'>
+            <img src="{{ url('/imgs/itp_export_1.png') }}" alt="">
+        </div>
     </div>
-
-    <about-page></about-page>
+    <div class="container questionListContainer" id="exportContainer">
+        <export-graph></export-graph>
+    </div>
 @endsection

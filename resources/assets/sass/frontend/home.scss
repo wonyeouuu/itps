@@ -118,6 +118,14 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     padding-left: 150px;
+    .export-button {
+        align-self: center;
+        img {
+            width: 200px;
+            cursor: pointer;
+        }
+
+    }
 }
 
 div.button {
