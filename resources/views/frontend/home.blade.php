@@ -47,36 +47,42 @@
         >
         </question-list>
         <div class="button button-down">
-            <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/> --}}
         </div>
     </div>
     <div class="container questionListContainer" id='questionList2'>
         <div class="button button-up">
-            <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/> --}}
         </div>
         <question-list
             :question-numbers="[1, 2, 3]"
         >
         </question-list>
         <div class="button button-down">
-            <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/> --}}
         </div>
     </div>
     <div class="container questionListContainer" id='questionList3'>
         <div class="button button-up">
-            <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/> --}}
         </div>
         <question-list
             :question-numbers="[4, 5, 6, 7]"
         >
         </question-list>
         <div class="button button-down">
-            <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_down.png') }}" alt=""/> --}}
         </div>
     </div>
     <div class="container questionListContainer" id='questionList4'>
         <div class="button button-up">
-            <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/>
+            <button-down></button-down>
+            {{-- <img src="{{ url('/imgs/pikachu_up.png') }}" alt=""/> --}}
         </div>
         <question-list
             :question-numbers="[8, 9]"

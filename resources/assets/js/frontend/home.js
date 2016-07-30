@@ -5,6 +5,8 @@ import QuestionList from './components/questionList/QuestionList.vue'
 import PeriodChart from './components/questionList/PeriodChart.vue'
 import AboutPage from './components/AboutPage.vue'
 
+import ButtonDown from './components/ButtonDown.vue'
+
 import ExportGraph from './components/ExportGraph.vue'
 
 import $ from 'jquery'
@@ -14,7 +16,7 @@ import $ from 'jquery'
 
 new Vue({
     el: 'body',
-    components: { IHA, QuestionList, PeriodChart, AboutPage, ExportGraph },
+    components: { IHA, QuestionList, PeriodChart, AboutPage, ExportGraph, ButtonDown },
     store,
     methods: {
         jumpTo(h) {

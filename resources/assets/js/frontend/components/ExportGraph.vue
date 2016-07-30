@@ -2,14 +2,14 @@
 div.export-grpah
     div.row-top.row
         div.row--rtl
-            img(src='/imgs/nature/11.png')
-            img(src='/imgs/nature/12.png')
-            img(src='/imgs/nature/13.png')
-            img(src='/imgs/nature/14.png')
-            img(src='/imgs/nature/15.png')
-            img(src='/imgs/nature/16.png')
-            img(src='/imgs/nature/17.png')
-            img(src='/imgs/nature/18.png')
+            img.t11(src='/imgs/nature/11.png')
+            img.t12(src='/imgs/nature/12.png')
+            img.t13(src='/imgs/nature/13.png')
+            img.t14(src='/imgs/nature/14.png')
+            img.t15(src='/imgs/nature/15.png')
+            img.t16(src='/imgs/nature/16.png')
+            img.t17(src='/imgs/nature/17.png')
+            img.t18(src='/imgs/nature/18.png')
         div.row--ltr
             img(src='/imgs/nature/21.png')
             img(src='/imgs/nature/22.png')
@@ -57,13 +57,32 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+total-width = 2149
+div.export-grpah
+    padding 5%
 img
     width 12.5%
     height auto
+    /*&.t11
+        width percentage(268 / total-width)
+    &.t12
+        width percentage(223 / total-width)
+    &.t13
+        width percentage(229 / total-width)
+    &.t14
+        width percentage(235 / total-width)
+    &.t15
+        width percentage(231 / total-width)
+    &.t16
+        width percentage(351 / total-width)
+    &.t17
+        width percentage(315 / total-width)
+    &.t18
+        width percentage(297 / total-width)*/
 div.row
     display flex
     flex-direction row
-    height 250px
+    max-height 320px
     div.row--rtl
         display flex
         flex-direction row-reverse

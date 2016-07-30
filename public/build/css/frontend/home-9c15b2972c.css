@@ -125,6 +125,8 @@ h1 {
 
 .questionListContainer {
   min-height: 100%;
+  border: 1px dashed black;
+  padding: 10px 0;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -134,10 +136,15 @@ h1 {
   padding-left: 150px; }
   .questionListContainer .export-button {
     -ms-flex-item-align: center;
-    align-self: center; }
+    align-self: center;
+    overflow: hidden;
+    position: relative;
+    top: 10px; }
     .questionListContainer .export-button img {
       width: 200px;
-      cursor: pointer; }
+      cursor: pointer;
+      position: relative;
+      top: 100px; }
 
 div.button {
   z-index: 100;
