@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>ITPS</title>
         <link rel="stylesheet" href="{{ elixir('css/frontend/bootstrap.css') }}">
         @yield('styles.header')
     </head>
