@@ -1,30 +1,14 @@
 import Vue from 'vue'
 import store from './vuex/store'
-import IHA from './components/IHA.vue'
-import QuestionList from './components/questionList/QuestionList.vue'
-import PeriodChart from './components/questionList/PeriodChart.vue'
-import AboutPage from './components/AboutPage.vue'
-
-import PageButtons from './components/PageButtons.vue'
-
-import ExportGraph from './components/ExportGraph.vue'
+import router from './router'
+import { sync } from 'vuex-router-sync'
+import App from './components/App.vue'
 
 import $ from 'jquery'
 
+sync(store, router)
 
-
-
-new Vue({
-    el: 'body',
-    components: { IHA, QuestionList, PeriodChart, AboutPage, ExportGraph, PageButtons },
-    store,
-    methods: {
-        jumpTo(h) {
-            $('.main-container').animate({height: 'toggle'}, 1000)
-            $('#questionList1').animate({height: 'toggle'}, 1000)
-        }
-    }
-})
+router.start(App, '#app')
 //NOTE: remember to uncomment this part next part 3
 // $(document).ready(() => {
 //     $('.text-base').on('click', function() {

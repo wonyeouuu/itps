@@ -7,6 +7,8 @@
 @endsection
 
 @section('content')
+    <div id="app"></div>
+    {{-- <router-view></router-view>
     <div class="main-container container-fluid">
         <div class="row home-top-row">
             <div class="col-xs-6 home-logo-container">
@@ -72,15 +74,11 @@
             :question-numbers="[8, 9]"
         >
         </question-list>
-        {{-- <period-chart
-            title='Peroidontal Chart'
-            number='11'
-        ></period-chart> --}}
         <div class='export-button'>
             <img src="{{ url('/imgs/itp_export_1.png') }}" alt="">
         </div>
     </div>
     <div class="container questionListContainer" id="exportContainer">
         <export-graph></export-graph>
-    </div>
+    </div> --}}
 @endsection

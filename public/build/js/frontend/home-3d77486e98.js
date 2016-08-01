@@ -11772,6 +11772,2716 @@ function format (id) {
 }
 
 },{}],8:[function(require,module,exports){
+/*!
+ * vue-router v0.7.13
+ * (c) 2016 Evan You
+ * Released under the MIT License.
+ */
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  global.VueRouter = factory();
+}(this, function () { 'use strict';
+
+  var babelHelpers = {};
+
+  babelHelpers.classCallCheck = function (instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  };
+  function Target(path, matcher, delegate) {
+    this.path = path;
+    this.matcher = matcher;
+    this.delegate = delegate;
+  }
+
+  Target.prototype = {
+    to: function to(target, callback) {
+      var delegate = this.delegate;
+
+      if (delegate && delegate.willAddRoute) {
+        target = delegate.willAddRoute(this.matcher.target, target);
+      }
+
+      this.matcher.add(this.path, target);
+
+      if (callback) {
+        if (callback.length === 0) {
+          throw new Error("You must have an argument in the function passed to `to`");
+        }
+        this.matcher.addChild(this.path, target, callback, this.delegate);
+      }
+      return this;
+    }
+  };
+
+  function Matcher(target) {
+    this.routes = {};
+    this.children = {};
+    this.target = target;
+  }
+
+  Matcher.prototype = {
+    add: function add(path, handler) {
+      this.routes[path] = handler;
+    },
+
+    addChild: function addChild(path, target, callback, delegate) {
+      var matcher = new Matcher(target);
+      this.children[path] = matcher;
+
+      var match = generateMatch(path, matcher, delegate);
+
+      if (delegate && delegate.contextEntered) {
+        delegate.contextEntered(target, match);
+      }
+
+      callback(match);
+    }
+  };
+
+  function generateMatch(startingPath, matcher, delegate) {
+    return function (path, nestedCallback) {
+      var fullPath = startingPath + path;
+
+      if (nestedCallback) {
+        nestedCallback(generateMatch(fullPath, matcher, delegate));
+      } else {
+        return new Target(startingPath + path, matcher, delegate);
+      }
+    };
+  }
+
+  function addRoute(routeArray, path, handler) {
+    var len = 0;
+    for (var i = 0, l = routeArray.length; i < l; i++) {
+      len += routeArray[i].path.length;
+    }
+
+    path = path.substr(len);
+    var route = { path: path, handler: handler };
+    routeArray.push(route);
+  }
+
+  function eachRoute(baseRoute, matcher, callback, binding) {
+    var routes = matcher.routes;
+
+    for (var path in routes) {
+      if (routes.hasOwnProperty(path)) {
+        var routeArray = baseRoute.slice();
+        addRoute(routeArray, path, routes[path]);
+
+        if (matcher.children[path]) {
+          eachRoute(routeArray, matcher.children[path], callback, binding);
+        } else {
+          callback.call(binding, routeArray);
+        }
+      }
+    }
+  }
+
+  function map (callback, addRouteCallback) {
+    var matcher = new Matcher();
+
+    callback(generateMatch("", matcher, this.delegate));
+
+    eachRoute([], matcher, function (route) {
+      if (addRouteCallback) {
+        addRouteCallback(this, route);
+      } else {
+        this.add(route);
+      }
+    }, this);
+  }
+
+  var specials = ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'];
+
+  var escapeRegex = new RegExp('(\\' + specials.join('|\\') + ')', 'g');
+
+  var noWarning = false;
+  function warn(msg) {
+    if (!noWarning && typeof console !== 'undefined') {
+      console.error('[vue-router] ' + msg);
+    }
+  }
+
+  function tryDecode(uri, asComponent) {
+    try {
+      return asComponent ? decodeURIComponent(uri) : decodeURI(uri);
+    } catch (e) {
+      warn('malformed URI' + (asComponent ? ' component: ' : ': ') + uri);
+    }
+  }
+
+  function isArray(test) {
+    return Object.prototype.toString.call(test) === "[object Array]";
+  }
+
+  // A Segment represents a segment in the original route description.
+  // Each Segment type provides an `eachChar` and `regex` method.
+  //
+  // The `eachChar` method invokes the callback with one or more character
+  // specifications. A character specification consumes one or more input
+  // characters.
+  //
+  // The `regex` method returns a regex fragment for the segment. If the
+  // segment is a dynamic of star segment, the regex fragment also includes
+  // a capture.
+  //
+  // A character specification contains:
+  //
+  // * `validChars`: a String with a list of all valid characters, or
+  // * `invalidChars`: a String with a list of all invalid characters
+  // * `repeat`: true if the character specification can repeat
+
+  function StaticSegment(string) {
+    this.string = string;
+  }
+  StaticSegment.prototype = {
+    eachChar: function eachChar(callback) {
+      var string = this.string,
+          ch;
+
+      for (var i = 0, l = string.length; i < l; i++) {
+        ch = string.charAt(i);
+        callback({ validChars: ch });
+      }
+    },
+
+    regex: function regex() {
+      return this.string.replace(escapeRegex, '\\$1');
+    },
+
+    generate: function generate() {
+      return this.string;
+    }
+  };
+
+  function DynamicSegment(name) {
+    this.name = name;
+  }
+  DynamicSegment.prototype = {
+    eachChar: function eachChar(callback) {
+      callback({ invalidChars: "/", repeat: true });
+    },
+
+    regex: function regex() {
+      return "([^/]+)";
+    },
+
+    generate: function generate(params) {
+      var val = params[this.name];
+      return val == null ? ":" + this.name : val;
+    }
+  };
+
+  function StarSegment(name) {
+    this.name = name;
+  }
+  StarSegment.prototype = {
+    eachChar: function eachChar(callback) {
+      callback({ invalidChars: "", repeat: true });
+    },
+
+    regex: function regex() {
+      return "(.+)";
+    },
+
+    generate: function generate(params) {
+      var val = params[this.name];
+      return val == null ? ":" + this.name : val;
+    }
+  };
+
+  function EpsilonSegment() {}
+  EpsilonSegment.prototype = {
+    eachChar: function eachChar() {},
+    regex: function regex() {
+      return "";
+    },
+    generate: function generate() {
+      return "";
+    }
+  };
+
+  function parse(route, names, specificity) {
+    // normalize route as not starting with a "/". Recognition will
+    // also normalize.
+    if (route.charAt(0) === "/") {
+      route = route.substr(1);
+    }
+
+    var segments = route.split("/"),
+        results = [];
+
+    // A routes has specificity determined by the order that its different segments
+    // appear in. This system mirrors how the magnitude of numbers written as strings
+    // works.
+    // Consider a number written as: "abc". An example would be "200". Any other number written
+    // "xyz" will be smaller than "abc" so long as `a > z`. For instance, "199" is smaller
+    // then "200", even though "y" and "z" (which are both 9) are larger than "0" (the value
+    // of (`b` and `c`). This is because the leading symbol, "2", is larger than the other
+    // leading symbol, "1".
+    // The rule is that symbols to the left carry more weight than symbols to the right
+    // when a number is written out as a string. In the above strings, the leading digit
+    // represents how many 100's are in the number, and it carries more weight than the middle
+    // number which represents how many 10's are in the number.
+    // This system of number magnitude works well for route specificity, too. A route written as
+    // `a/b/c` will be more specific than `x/y/z` as long as `a` is more specific than
+    // `x`, irrespective of the other parts.
+    // Because of this similarity, we assign each type of segment a number value written as a
+    // string. We can find the specificity of compound routes by concatenating these strings
+    // together, from left to right. After we have looped through all of the segments,
+    // we convert the string to a number.
+    specificity.val = '';
+
+    for (var i = 0, l = segments.length; i < l; i++) {
+      var segment = segments[i],
+          match;
+
+      if (match = segment.match(/^:([^\/]+)$/)) {
+        results.push(new DynamicSegment(match[1]));
+        names.push(match[1]);
+        specificity.val += '3';
+      } else if (match = segment.match(/^\*([^\/]+)$/)) {
+        results.push(new StarSegment(match[1]));
+        specificity.val += '2';
+        names.push(match[1]);
+      } else if (segment === "") {
+        results.push(new EpsilonSegment());
+        specificity.val += '1';
+      } else {
+        results.push(new StaticSegment(segment));
+        specificity.val += '4';
+      }
+    }
+
+    specificity.val = +specificity.val;
+
+    return results;
+  }
+
+  // A State has a character specification and (`charSpec`) and a list of possible
+  // subsequent states (`nextStates`).
+  //
+  // If a State is an accepting state, it will also have several additional
+  // properties:
+  //
+  // * `regex`: A regular expression that is used to extract parameters from paths
+  //   that reached this accepting state.
+  // * `handlers`: Information on how to convert the list of captures into calls
+  //   to registered handlers with the specified parameters
+  // * `types`: How many static, dynamic or star segments in this route. Used to
+  //   decide which route to use if multiple registered routes match a path.
+  //
+  // Currently, State is implemented naively by looping over `nextStates` and
+  // comparing a character specification against a character. A more efficient
+  // implementation would use a hash of keys pointing at one or more next states.
+
+  function State(charSpec) {
+    this.charSpec = charSpec;
+    this.nextStates = [];
+  }
+
+  State.prototype = {
+    get: function get(charSpec) {
+      var nextStates = this.nextStates;
+
+      for (var i = 0, l = nextStates.length; i < l; i++) {
+        var child = nextStates[i];
+
+        var isEqual = child.charSpec.validChars === charSpec.validChars;
+        isEqual = isEqual && child.charSpec.invalidChars === charSpec.invalidChars;
+
+        if (isEqual) {
+          return child;
+        }
+      }
+    },
+
+    put: function put(charSpec) {
+      var state;
+
+      // If the character specification already exists in a child of the current
+      // state, just return that state.
+      if (state = this.get(charSpec)) {
+        return state;
+      }
+
+      // Make a new state for the character spec
+      state = new State(charSpec);
+
+      // Insert the new state as a child of the current state
+      this.nextStates.push(state);
+
+      // If this character specification repeats, insert the new state as a child
+      // of itself. Note that this will not trigger an infinite loop because each
+      // transition during recognition consumes a character.
+      if (charSpec.repeat) {
+        state.nextStates.push(state);
+      }
+
+      // Return the new state
+      return state;
+    },
+
+    // Find a list of child states matching the next character
+    match: function match(ch) {
+      // DEBUG "Processing `" + ch + "`:"
+      var nextStates = this.nextStates,
+          child,
+          charSpec,
+          chars;
+
+      // DEBUG "  " + debugState(this)
+      var returned = [];
+
+      for (var i = 0, l = nextStates.length; i < l; i++) {
+        child = nextStates[i];
+
+        charSpec = child.charSpec;
+
+        if (typeof (chars = charSpec.validChars) !== 'undefined') {
+          if (chars.indexOf(ch) !== -1) {
+            returned.push(child);
+          }
+        } else if (typeof (chars = charSpec.invalidChars) !== 'undefined') {
+          if (chars.indexOf(ch) === -1) {
+            returned.push(child);
+          }
+        }
+      }
+
+      return returned;
+    }
+
+    /** IF DEBUG
+    , debug: function() {
+      var charSpec = this.charSpec,
+          debug = "[",
+          chars = charSpec.validChars || charSpec.invalidChars;
+       if (charSpec.invalidChars) { debug += "^"; }
+      debug += chars;
+      debug += "]";
+       if (charSpec.repeat) { debug += "+"; }
+       return debug;
+    }
+    END IF **/
+  };
+
+  /** IF DEBUG
+  function debug(log) {
+    console.log(log);
+  }
+
+  function debugState(state) {
+    return state.nextStates.map(function(n) {
+      if (n.nextStates.length === 0) { return "( " + n.debug() + " [accepting] )"; }
+      return "( " + n.debug() + " <then> " + n.nextStates.map(function(s) { return s.debug() }).join(" or ") + " )";
+    }).join(", ")
+  }
+  END IF **/
+
+  // Sort the routes by specificity
+  function sortSolutions(states) {
+    return states.sort(function (a, b) {
+      return b.specificity.val - a.specificity.val;
+    });
+  }
+
+  function recognizeChar(states, ch) {
+    var nextStates = [];
+
+    for (var i = 0, l = states.length; i < l; i++) {
+      var state = states[i];
+
+      nextStates = nextStates.concat(state.match(ch));
+    }
+
+    return nextStates;
+  }
+
+  var oCreate = Object.create || function (proto) {
+    function F() {}
+    F.prototype = proto;
+    return new F();
+  };
+
+  function RecognizeResults(queryParams) {
+    this.queryParams = queryParams || {};
+  }
+  RecognizeResults.prototype = oCreate({
+    splice: Array.prototype.splice,
+    slice: Array.prototype.slice,
+    push: Array.prototype.push,
+    length: 0,
+    queryParams: null
+  });
+
+  function findHandler(state, path, queryParams) {
+    var handlers = state.handlers,
+        regex = state.regex;
+    var captures = path.match(regex),
+        currentCapture = 1;
+    var result = new RecognizeResults(queryParams);
+
+    for (var i = 0, l = handlers.length; i < l; i++) {
+      var handler = handlers[i],
+          names = handler.names,
+          params = {};
+
+      for (var j = 0, m = names.length; j < m; j++) {
+        params[names[j]] = captures[currentCapture++];
+      }
+
+      result.push({ handler: handler.handler, params: params, isDynamic: !!names.length });
+    }
+
+    return result;
+  }
+
+  function addSegment(currentState, segment) {
+    segment.eachChar(function (ch) {
+      var state;
+
+      currentState = currentState.put(ch);
+    });
+
+    return currentState;
+  }
+
+  function decodeQueryParamPart(part) {
+    // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+    part = part.replace(/\+/gm, '%20');
+    return tryDecode(part, true);
+  }
+
+  // The main interface
+
+  var RouteRecognizer = function RouteRecognizer() {
+    this.rootState = new State();
+    this.names = {};
+  };
+
+  RouteRecognizer.prototype = {
+    add: function add(routes, options) {
+      var currentState = this.rootState,
+          regex = "^",
+          specificity = {},
+          handlers = [],
+          allSegments = [],
+          name;
+
+      var isEmpty = true;
+
+      for (var i = 0, l = routes.length; i < l; i++) {
+        var route = routes[i],
+            names = [];
+
+        var segments = parse(route.path, names, specificity);
+
+        allSegments = allSegments.concat(segments);
+
+        for (var j = 0, m = segments.length; j < m; j++) {
+          var segment = segments[j];
+
+          if (segment instanceof EpsilonSegment) {
+            continue;
+          }
+
+          isEmpty = false;
+
+          // Add a "/" for the new segment
+          currentState = currentState.put({ validChars: "/" });
+          regex += "/";
+
+          // Add a representation of the segment to the NFA and regex
+          currentState = addSegment(currentState, segment);
+          regex += segment.regex();
+        }
+
+        var handler = { handler: route.handler, names: names };
+        handlers.push(handler);
+      }
+
+      if (isEmpty) {
+        currentState = currentState.put({ validChars: "/" });
+        regex += "/";
+      }
+
+      currentState.handlers = handlers;
+      currentState.regex = new RegExp(regex + "$");
+      currentState.specificity = specificity;
+
+      if (name = options && options.as) {
+        this.names[name] = {
+          segments: allSegments,
+          handlers: handlers
+        };
+      }
+    },
+
+    handlersFor: function handlersFor(name) {
+      var route = this.names[name],
+          result = [];
+      if (!route) {
+        throw new Error("There is no route named " + name);
+      }
+
+      for (var i = 0, l = route.handlers.length; i < l; i++) {
+        result.push(route.handlers[i]);
+      }
+
+      return result;
+    },
+
+    hasRoute: function hasRoute(name) {
+      return !!this.names[name];
+    },
+
+    generate: function generate(name, params) {
+      var route = this.names[name],
+          output = "";
+      if (!route) {
+        throw new Error("There is no route named " + name);
+      }
+
+      var segments = route.segments;
+
+      for (var i = 0, l = segments.length; i < l; i++) {
+        var segment = segments[i];
+
+        if (segment instanceof EpsilonSegment) {
+          continue;
+        }
+
+        output += "/";
+        output += segment.generate(params);
+      }
+
+      if (output.charAt(0) !== '/') {
+        output = '/' + output;
+      }
+
+      if (params && params.queryParams) {
+        output += this.generateQueryString(params.queryParams);
+      }
+
+      return output;
+    },
+
+    generateQueryString: function generateQueryString(params) {
+      var pairs = [];
+      var keys = [];
+      for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+          keys.push(key);
+        }
+      }
+      keys.sort();
+      for (var i = 0, len = keys.length; i < len; i++) {
+        key = keys[i];
+        var value = params[key];
+        if (value == null) {
+          continue;
+        }
+        var pair = encodeURIComponent(key);
+        if (isArray(value)) {
+          for (var j = 0, l = value.length; j < l; j++) {
+            var arrayPair = key + '[]' + '=' + encodeURIComponent(value[j]);
+            pairs.push(arrayPair);
+          }
+        } else {
+          pair += "=" + encodeURIComponent(value);
+          pairs.push(pair);
+        }
+      }
+
+      if (pairs.length === 0) {
+        return '';
+      }
+
+      return "?" + pairs.join("&");
+    },
+
+    parseQueryString: function parseQueryString(queryString) {
+      var pairs = queryString.split("&"),
+          queryParams = {};
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('='),
+            key = decodeQueryParamPart(pair[0]),
+            keyLength = key.length,
+            isArray = false,
+            value;
+        if (pair.length === 1) {
+          value = 'true';
+        } else {
+          //Handle arrays
+          if (keyLength > 2 && key.slice(keyLength - 2) === '[]') {
+            isArray = true;
+            key = key.slice(0, keyLength - 2);
+            if (!queryParams[key]) {
+              queryParams[key] = [];
+            }
+          }
+          value = pair[1] ? decodeQueryParamPart(pair[1]) : '';
+        }
+        if (isArray) {
+          queryParams[key].push(value);
+        } else {
+          queryParams[key] = value;
+        }
+      }
+      return queryParams;
+    },
+
+    recognize: function recognize(path, silent) {
+      noWarning = silent;
+      var states = [this.rootState],
+          pathLen,
+          i,
+          l,
+          queryStart,
+          queryParams = {},
+          isSlashDropped = false;
+
+      queryStart = path.indexOf('?');
+      if (queryStart !== -1) {
+        var queryString = path.substr(queryStart + 1, path.length);
+        path = path.substr(0, queryStart);
+        if (queryString) {
+          queryParams = this.parseQueryString(queryString);
+        }
+      }
+
+      path = tryDecode(path);
+      if (!path) return;
+
+      // DEBUG GROUP path
+
+      if (path.charAt(0) !== "/") {
+        path = "/" + path;
+      }
+
+      pathLen = path.length;
+      if (pathLen > 1 && path.charAt(pathLen - 1) === "/") {
+        path = path.substr(0, pathLen - 1);
+        isSlashDropped = true;
+      }
+
+      for (i = 0, l = path.length; i < l; i++) {
+        states = recognizeChar(states, path.charAt(i));
+        if (!states.length) {
+          break;
+        }
+      }
+
+      // END DEBUG GROUP
+
+      var solutions = [];
+      for (i = 0, l = states.length; i < l; i++) {
+        if (states[i].handlers) {
+          solutions.push(states[i]);
+        }
+      }
+
+      states = sortSolutions(solutions);
+
+      var state = solutions[0];
+
+      if (state && state.handlers) {
+        // if a trailing slash was dropped and a star segment is the last segment
+        // specified, put the trailing slash back
+        if (isSlashDropped && state.regex.source.slice(-5) === "(.+)$") {
+          path = path + "/";
+        }
+        return findHandler(state, path, queryParams);
+      }
+    }
+  };
+
+  RouteRecognizer.prototype.map = map;
+
+  var genQuery = RouteRecognizer.prototype.generateQueryString;
+
+  // export default for holding the Vue reference
+  var exports$1 = {};
+  /**
+   * Warn stuff.
+   *
+   * @param {String} msg
+   */
+
+  function warn$1(msg) {
+    /* istanbul ignore next */
+    if (typeof console !== 'undefined') {
+      console.error('[vue-router] ' + msg);
+    }
+  }
+
+  /**
+   * Resolve a relative path.
+   *
+   * @param {String} base
+   * @param {String} relative
+   * @param {Boolean} append
+   * @return {String}
+   */
+
+  function resolvePath(base, relative, append) {
+    var query = base.match(/(\?.*)$/);
+    if (query) {
+      query = query[1];
+      base = base.slice(0, -query.length);
+    }
+    // a query!
+    if (relative.charAt(0) === '?') {
+      return base + relative;
+    }
+    var stack = base.split('/');
+    // remove trailing segment if:
+    // - not appending
+    // - appending to trailing slash (last segment is empty)
+    if (!append || !stack[stack.length - 1]) {
+      stack.pop();
+    }
+    // resolve relative path
+    var segments = relative.replace(/^\//, '').split('/');
+    for (var i = 0; i < segments.length; i++) {
+      var segment = segments[i];
+      if (segment === '.') {
+        continue;
+      } else if (segment === '..') {
+        stack.pop();
+      } else {
+        stack.push(segment);
+      }
+    }
+    // ensure leading slash
+    if (stack[0] !== '') {
+      stack.unshift('');
+    }
+    return stack.join('/');
+  }
+
+  /**
+   * Forgiving check for a promise
+   *
+   * @param {Object} p
+   * @return {Boolean}
+   */
+
+  function isPromise(p) {
+    return p && typeof p.then === 'function';
+  }
+
+  /**
+   * Retrive a route config field from a component instance
+   * OR a component contructor.
+   *
+   * @param {Function|Vue} component
+   * @param {String} name
+   * @return {*}
+   */
+
+  function getRouteConfig(component, name) {
+    var options = component && (component.$options || component.options);
+    return options && options.route && options.route[name];
+  }
+
+  /**
+   * Resolve an async component factory. Have to do a dirty
+   * mock here because of Vue core's internal API depends on
+   * an ID check.
+   *
+   * @param {Object} handler
+   * @param {Function} cb
+   */
+
+  var resolver = undefined;
+
+  function resolveAsyncComponent(handler, cb) {
+    if (!resolver) {
+      resolver = {
+        resolve: exports$1.Vue.prototype._resolveComponent,
+        $options: {
+          components: {
+            _: handler.component
+          }
+        }
+      };
+    } else {
+      resolver.$options.components._ = handler.component;
+    }
+    resolver.resolve('_', function (Component) {
+      handler.component = Component;
+      cb(Component);
+    });
+  }
+
+  /**
+   * Map the dynamic segments in a path to params.
+   *
+   * @param {String} path
+   * @param {Object} params
+   * @param {Object} query
+   */
+
+  function mapParams(path, params, query) {
+    if (params === undefined) params = {};
+
+    path = path.replace(/:([^\/]+)/g, function (_, key) {
+      var val = params[key];
+      /* istanbul ignore if */
+      if (!val) {
+        warn$1('param "' + key + '" not found when generating ' + 'path for "' + path + '" with params ' + JSON.stringify(params));
+      }
+      return val || '';
+    });
+    if (query) {
+      path += genQuery(query);
+    }
+    return path;
+  }
+
+  var hashRE = /#.*$/;
+
+  var HTML5History = (function () {
+    function HTML5History(_ref) {
+      var root = _ref.root;
+      var onChange = _ref.onChange;
+      babelHelpers.classCallCheck(this, HTML5History);
+
+      if (root && root !== '/') {
+        // make sure there's the starting slash
+        if (root.charAt(0) !== '/') {
+          root = '/' + root;
+        }
+        // remove trailing slash
+        this.root = root.replace(/\/$/, '');
+        this.rootRE = new RegExp('^\\' + this.root);
+      } else {
+        this.root = null;
+      }
+      this.onChange = onChange;
+      // check base tag
+      var baseEl = document.querySelector('base');
+      this.base = baseEl && baseEl.getAttribute('href');
+    }
+
+    HTML5History.prototype.start = function start() {
+      var _this = this;
+
+      this.listener = function (e) {
+        var url = location.pathname + location.search;
+        if (_this.root) {
+          url = url.replace(_this.rootRE, '');
+        }
+        _this.onChange(url, e && e.state, location.hash);
+      };
+      window.addEventListener('popstate', this.listener);
+      this.listener();
+    };
+
+    HTML5History.prototype.stop = function stop() {
+      window.removeEventListener('popstate', this.listener);
+    };
+
+    HTML5History.prototype.go = function go(path, replace, append) {
+      var url = this.formatPath(path, append);
+      if (replace) {
+        history.replaceState({}, '', url);
+      } else {
+        // record scroll position by replacing current state
+        history.replaceState({
+          pos: {
+            x: window.pageXOffset,
+            y: window.pageYOffset
+          }
+        }, '', location.href);
+        // then push new state
+        history.pushState({}, '', url);
+      }
+      var hashMatch = path.match(hashRE);
+      var hash = hashMatch && hashMatch[0];
+      path = url
+      // strip hash so it doesn't mess up params
+      .replace(hashRE, '')
+      // remove root before matching
+      .replace(this.rootRE, '');
+      this.onChange(path, null, hash);
+    };
+
+    HTML5History.prototype.formatPath = function formatPath(path, append) {
+      return path.charAt(0) === '/'
+      // absolute path
+      ? this.root ? this.root + '/' + path.replace(/^\//, '') : path : resolvePath(this.base || location.pathname, path, append);
+    };
+
+    return HTML5History;
+  })();
+
+  var HashHistory = (function () {
+    function HashHistory(_ref) {
+      var hashbang = _ref.hashbang;
+      var onChange = _ref.onChange;
+      babelHelpers.classCallCheck(this, HashHistory);
+
+      this.hashbang = hashbang;
+      this.onChange = onChange;
+    }
+
+    HashHistory.prototype.start = function start() {
+      var self = this;
+      this.listener = function () {
+        var path = location.hash;
+        var raw = path.replace(/^#!?/, '');
+        // always
+        if (raw.charAt(0) !== '/') {
+          raw = '/' + raw;
+        }
+        var formattedPath = self.formatPath(raw);
+        if (formattedPath !== path) {
+          location.replace(formattedPath);
+          return;
+        }
+        // determine query
+        // note it's possible to have queries in both the actual URL
+        // and the hash fragment itself.
+        var query = location.search && path.indexOf('?') > -1 ? '&' + location.search.slice(1) : location.search;
+        self.onChange(path.replace(/^#!?/, '') + query);
+      };
+      window.addEventListener('hashchange', this.listener);
+      this.listener();
+    };
+
+    HashHistory.prototype.stop = function stop() {
+      window.removeEventListener('hashchange', this.listener);
+    };
+
+    HashHistory.prototype.go = function go(path, replace, append) {
+      path = this.formatPath(path, append);
+      if (replace) {
+        location.replace(path);
+      } else {
+        location.hash = path;
+      }
+    };
+
+    HashHistory.prototype.formatPath = function formatPath(path, append) {
+      var isAbsoloute = path.charAt(0) === '/';
+      var prefix = '#' + (this.hashbang ? '!' : '');
+      return isAbsoloute ? prefix + path : prefix + resolvePath(location.hash.replace(/^#!?/, ''), path, append);
+    };
+
+    return HashHistory;
+  })();
+
+  var AbstractHistory = (function () {
+    function AbstractHistory(_ref) {
+      var onChange = _ref.onChange;
+      babelHelpers.classCallCheck(this, AbstractHistory);
+
+      this.onChange = onChange;
+      this.currentPath = '/';
+    }
+
+    AbstractHistory.prototype.start = function start() {
+      this.onChange('/');
+    };
+
+    AbstractHistory.prototype.stop = function stop() {
+      // noop
+    };
+
+    AbstractHistory.prototype.go = function go(path, replace, append) {
+      path = this.currentPath = this.formatPath(path, append);
+      this.onChange(path);
+    };
+
+    AbstractHistory.prototype.formatPath = function formatPath(path, append) {
+      return path.charAt(0) === '/' ? path : resolvePath(this.currentPath, path, append);
+    };
+
+    return AbstractHistory;
+  })();
+
+  /**
+   * Determine the reusability of an existing router view.
+   *
+   * @param {Directive} view
+   * @param {Object} handler
+   * @param {Transition} transition
+   */
+
+  function canReuse(view, handler, transition) {
+    var component = view.childVM;
+    if (!component || !handler) {
+      return false;
+    }
+    // important: check view.Component here because it may
+    // have been changed in activate hook
+    if (view.Component !== handler.component) {
+      return false;
+    }
+    var canReuseFn = getRouteConfig(component, 'canReuse');
+    return typeof canReuseFn === 'boolean' ? canReuseFn : canReuseFn ? canReuseFn.call(component, {
+      to: transition.to,
+      from: transition.from
+    }) : true; // defaults to true
+  }
+
+  /**
+   * Check if a component can deactivate.
+   *
+   * @param {Directive} view
+   * @param {Transition} transition
+   * @param {Function} next
+   */
+
+  function canDeactivate(view, transition, next) {
+    var fromComponent = view.childVM;
+    var hook = getRouteConfig(fromComponent, 'canDeactivate');
+    if (!hook) {
+      next();
+    } else {
+      transition.callHook(hook, fromComponent, next, {
+        expectBoolean: true
+      });
+    }
+  }
+
+  /**
+   * Check if a component can activate.
+   *
+   * @param {Object} handler
+   * @param {Transition} transition
+   * @param {Function} next
+   */
+
+  function canActivate(handler, transition, next) {
+    resolveAsyncComponent(handler, function (Component) {
+      // have to check due to async-ness
+      if (transition.aborted) {
+        return;
+      }
+      // determine if this component can be activated
+      var hook = getRouteConfig(Component, 'canActivate');
+      if (!hook) {
+        next();
+      } else {
+        transition.callHook(hook, null, next, {
+          expectBoolean: true
+        });
+      }
+    });
+  }
+
+  /**
+   * Call deactivate hooks for existing router-views.
+   *
+   * @param {Directive} view
+   * @param {Transition} transition
+   * @param {Function} next
+   */
+
+  function deactivate(view, transition, next) {
+    var component = view.childVM;
+    var hook = getRouteConfig(component, 'deactivate');
+    if (!hook) {
+      next();
+    } else {
+      transition.callHooks(hook, component, next);
+    }
+  }
+
+  /**
+   * Activate / switch component for a router-view.
+   *
+   * @param {Directive} view
+   * @param {Transition} transition
+   * @param {Number} depth
+   * @param {Function} [cb]
+   */
+
+  function activate(view, transition, depth, cb, reuse) {
+    var handler = transition.activateQueue[depth];
+    if (!handler) {
+      saveChildView(view);
+      if (view._bound) {
+        view.setComponent(null);
+      }
+      cb && cb();
+      return;
+    }
+
+    var Component = view.Component = handler.component;
+    var activateHook = getRouteConfig(Component, 'activate');
+    var dataHook = getRouteConfig(Component, 'data');
+    var waitForData = getRouteConfig(Component, 'waitForData');
+
+    view.depth = depth;
+    view.activated = false;
+
+    var component = undefined;
+    var loading = !!(dataHook && !waitForData);
+
+    // "reuse" is a flag passed down when the parent view is
+    // either reused via keep-alive or as a child of a kept-alive view.
+    // of course we can only reuse if the current kept-alive instance
+    // is of the correct type.
+    reuse = reuse && view.childVM && view.childVM.constructor === Component;
+
+    if (reuse) {
+      // just reuse
+      component = view.childVM;
+      component.$loadingRouteData = loading;
+    } else {
+      saveChildView(view);
+
+      // unbuild current component. this step also destroys
+      // and removes all nested child views.
+      view.unbuild(true);
+
+      // build the new component. this will also create the
+      // direct child view of the current one. it will register
+      // itself as view.childView.
+      component = view.build({
+        _meta: {
+          $loadingRouteData: loading
+        },
+        created: function created() {
+          this._routerView = view;
+        }
+      });
+
+      // handle keep-alive.
+      // when a kept-alive child vm is restored, we need to
+      // add its cached child views into the router's view list,
+      // and also properly update current view's child view.
+      if (view.keepAlive) {
+        component.$loadingRouteData = loading;
+        var cachedChildView = component._keepAliveRouterView;
+        if (cachedChildView) {
+          view.childView = cachedChildView;
+          component._keepAliveRouterView = null;
+        }
+      }
+    }
+
+    // cleanup the component in case the transition is aborted
+    // before the component is ever inserted.
+    var cleanup = function cleanup() {
+      component.$destroy();
+    };
+
+    // actually insert the component and trigger transition
+    var insert = function insert() {
+      if (reuse) {
+        cb && cb();
+        return;
+      }
+      var router = transition.router;
+      if (router._rendered || router._transitionOnLoad) {
+        view.transition(component);
+      } else {
+        // no transition on first render, manual transition
+        /* istanbul ignore if */
+        if (view.setCurrent) {
+          // 0.12 compat
+          view.setCurrent(component);
+        } else {
+          // 1.0
+          view.childVM = component;
+        }
+        component.$before(view.anchor, null, false);
+      }
+      cb && cb();
+    };
+
+    var afterData = function afterData() {
+      // activate the child view
+      if (view.childView) {
+        activate(view.childView, transition, depth + 1, null, reuse || view.keepAlive);
+      }
+      insert();
+    };
+
+    // called after activation hook is resolved
+    var afterActivate = function afterActivate() {
+      view.activated = true;
+      if (dataHook && waitForData) {
+        // wait until data loaded to insert
+        loadData(component, transition, dataHook, afterData, cleanup);
+      } else {
+        // load data and insert at the same time
+        if (dataHook) {
+          loadData(component, transition, dataHook);
+        }
+        afterData();
+      }
+    };
+
+    if (activateHook) {
+      transition.callHooks(activateHook, component, afterActivate, {
+        cleanup: cleanup,
+        postActivate: true
+      });
+    } else {
+      afterActivate();
+    }
+  }
+
+  /**
+   * Reuse a view, just reload data if necessary.
+   *
+   * @param {Directive} view
+   * @param {Transition} transition
+   */
+
+  function reuse(view, transition) {
+    var component = view.childVM;
+    var dataHook = getRouteConfig(component, 'data');
+    if (dataHook) {
+      loadData(component, transition, dataHook);
+    }
+  }
+
+  /**
+   * Asynchronously load and apply data to component.
+   *
+   * @param {Vue} component
+   * @param {Transition} transition
+   * @param {Function} hook
+   * @param {Function} cb
+   * @param {Function} cleanup
+   */
+
+  function loadData(component, transition, hook, cb, cleanup) {
+    component.$loadingRouteData = true;
+    transition.callHooks(hook, component, function () {
+      component.$loadingRouteData = false;
+      component.$emit('route-data-loaded', component);
+      cb && cb();
+    }, {
+      cleanup: cleanup,
+      postActivate: true,
+      processData: function processData(data) {
+        // handle promise sugar syntax
+        var promises = [];
+        if (isPlainObject(data)) {
+          Object.keys(data).forEach(function (key) {
+            var val = data[key];
+            if (isPromise(val)) {
+              promises.push(val.then(function (resolvedVal) {
+                component.$set(key, resolvedVal);
+              }));
+            } else {
+              component.$set(key, val);
+            }
+          });
+        }
+        if (promises.length) {
+          return promises[0].constructor.all(promises);
+        }
+      }
+    });
+  }
+
+  /**
+   * Save the child view for a kept-alive view so that
+   * we can restore it when it is switched back to.
+   *
+   * @param {Directive} view
+   */
+
+  function saveChildView(view) {
+    if (view.keepAlive && view.childVM && view.childView) {
+      view.childVM._keepAliveRouterView = view.childView;
+    }
+    view.childView = null;
+  }
+
+  /**
+   * Check plain object.
+   *
+   * @param {*} val
+   */
+
+  function isPlainObject(val) {
+    return Object.prototype.toString.call(val) === '[object Object]';
+  }
+
+  /**
+   * A RouteTransition object manages the pipeline of a
+   * router-view switching process. This is also the object
+   * passed into user route hooks.
+   *
+   * @param {Router} router
+   * @param {Route} to
+   * @param {Route} from
+   */
+
+  var RouteTransition = (function () {
+    function RouteTransition(router, to, from) {
+      babelHelpers.classCallCheck(this, RouteTransition);
+
+      this.router = router;
+      this.to = to;
+      this.from = from;
+      this.next = null;
+      this.aborted = false;
+      this.done = false;
+    }
+
+    /**
+     * Abort current transition and return to previous location.
+     */
+
+    RouteTransition.prototype.abort = function abort() {
+      if (!this.aborted) {
+        this.aborted = true;
+        // if the root path throws an error during validation
+        // on initial load, it gets caught in an infinite loop.
+        var abortingOnLoad = !this.from.path && this.to.path === '/';
+        if (!abortingOnLoad) {
+          this.router.replace(this.from.path || '/');
+        }
+      }
+    };
+
+    /**
+     * Abort current transition and redirect to a new location.
+     *
+     * @param {String} path
+     */
+
+    RouteTransition.prototype.redirect = function redirect(path) {
+      if (!this.aborted) {
+        this.aborted = true;
+        if (typeof path === 'string') {
+          path = mapParams(path, this.to.params, this.to.query);
+        } else {
+          path.params = path.params || this.to.params;
+          path.query = path.query || this.to.query;
+        }
+        this.router.replace(path);
+      }
+    };
+
+    /**
+     * A router view transition's pipeline can be described as
+     * follows, assuming we are transitioning from an existing
+     * <router-view> chain [Component A, Component B] to a new
+     * chain [Component A, Component C]:
+     *
+     *  A    A
+     *  | => |
+     *  B    C
+     *
+     * 1. Reusablity phase:
+     *   -> canReuse(A, A)
+     *   -> canReuse(B, C)
+     *   -> determine new queues:
+     *      - deactivation: [B]
+     *      - activation: [C]
+     *
+     * 2. Validation phase:
+     *   -> canDeactivate(B)
+     *   -> canActivate(C)
+     *
+     * 3. Activation phase:
+     *   -> deactivate(B)
+     *   -> activate(C)
+     *
+     * Each of these steps can be asynchronous, and any
+     * step can potentially abort the transition.
+     *
+     * @param {Function} cb
+     */
+
+    RouteTransition.prototype.start = function start(cb) {
+      var transition = this;
+
+      // determine the queue of views to deactivate
+      var deactivateQueue = [];
+      var view = this.router._rootView;
+      while (view) {
+        deactivateQueue.unshift(view);
+        view = view.childView;
+      }
+      var reverseDeactivateQueue = deactivateQueue.slice().reverse();
+
+      // determine the queue of route handlers to activate
+      var activateQueue = this.activateQueue = toArray(this.to.matched).map(function (match) {
+        return match.handler;
+      });
+
+      // 1. Reusability phase
+      var i = undefined,
+          reuseQueue = undefined;
+      for (i = 0; i < reverseDeactivateQueue.length; i++) {
+        if (!canReuse(reverseDeactivateQueue[i], activateQueue[i], transition)) {
+          break;
+        }
+      }
+      if (i > 0) {
+        reuseQueue = reverseDeactivateQueue.slice(0, i);
+        deactivateQueue = reverseDeactivateQueue.slice(i).reverse();
+        activateQueue = activateQueue.slice(i);
+      }
+
+      // 2. Validation phase
+      transition.runQueue(deactivateQueue, canDeactivate, function () {
+        transition.runQueue(activateQueue, canActivate, function () {
+          transition.runQueue(deactivateQueue, deactivate, function () {
+            // 3. Activation phase
+
+            // Update router current route
+            transition.router._onTransitionValidated(transition);
+
+            // trigger reuse for all reused views
+            reuseQueue && reuseQueue.forEach(function (view) {
+              return reuse(view, transition);
+            });
+
+            // the root of the chain that needs to be replaced
+            // is the top-most non-reusable view.
+            if (deactivateQueue.length) {
+              var _view = deactivateQueue[deactivateQueue.length - 1];
+              var depth = reuseQueue ? reuseQueue.length : 0;
+              activate(_view, transition, depth, cb);
+            } else {
+              cb();
+            }
+          });
+        });
+      });
+    };
+
+    /**
+     * Asynchronously and sequentially apply a function to a
+     * queue.
+     *
+     * @param {Array} queue
+     * @param {Function} fn
+     * @param {Function} cb
+     */
+
+    RouteTransition.prototype.runQueue = function runQueue(queue, fn, cb) {
+      var transition = this;
+      step(0);
+      function step(index) {
+        if (index >= queue.length) {
+          cb();
+        } else {
+          fn(queue[index], transition, function () {
+            step(index + 1);
+          });
+        }
+      }
+    };
+
+    /**
+     * Call a user provided route transition hook and handle
+     * the response (e.g. if the user returns a promise).
+     *
+     * If the user neither expects an argument nor returns a
+     * promise, the hook is assumed to be synchronous.
+     *
+     * @param {Function} hook
+     * @param {*} [context]
+     * @param {Function} [cb]
+     * @param {Object} [options]
+     *                 - {Boolean} expectBoolean
+     *                 - {Boolean} postActive
+     *                 - {Function} processData
+     *                 - {Function} cleanup
+     */
+
+    RouteTransition.prototype.callHook = function callHook(hook, context, cb) {
+      var _ref = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+
+      var _ref$expectBoolean = _ref.expectBoolean;
+      var expectBoolean = _ref$expectBoolean === undefined ? false : _ref$expectBoolean;
+      var _ref$postActivate = _ref.postActivate;
+      var postActivate = _ref$postActivate === undefined ? false : _ref$postActivate;
+      var processData = _ref.processData;
+      var cleanup = _ref.cleanup;
+
+      var transition = this;
+      var nextCalled = false;
+
+      // abort the transition
+      var abort = function abort() {
+        cleanup && cleanup();
+        transition.abort();
+      };
+
+      // handle errors
+      var onError = function onError(err) {
+        postActivate ? next() : abort();
+        if (err && !transition.router._suppress) {
+          warn$1('Uncaught error during transition: ');
+          throw err instanceof Error ? err : new Error(err);
+        }
+      };
+
+      // since promise swallows errors, we have to
+      // throw it in the next tick...
+      var onPromiseError = function onPromiseError(err) {
+        try {
+          onError(err);
+        } catch (e) {
+          setTimeout(function () {
+            throw e;
+          }, 0);
+        }
+      };
+
+      // advance the transition to the next step
+      var next = function next() {
+        if (nextCalled) {
+          warn$1('transition.next() should be called only once.');
+          return;
+        }
+        nextCalled = true;
+        if (transition.aborted) {
+          cleanup && cleanup();
+          return;
+        }
+        cb && cb();
+      };
+
+      var nextWithBoolean = function nextWithBoolean(res) {
+        if (typeof res === 'boolean') {
+          res ? next() : abort();
+        } else if (isPromise(res)) {
+          res.then(function (ok) {
+            ok ? next() : abort();
+          }, onPromiseError);
+        } else if (!hook.length) {
+          next();
+        }
+      };
+
+      var nextWithData = function nextWithData(data) {
+        var res = undefined;
+        try {
+          res = processData(data);
+        } catch (err) {
+          return onError(err);
+        }
+        if (isPromise(res)) {
+          res.then(next, onPromiseError);
+        } else {
+          next();
+        }
+      };
+
+      // expose a clone of the transition object, so that each
+      // hook gets a clean copy and prevent the user from
+      // messing with the internals.
+      var exposed = {
+        to: transition.to,
+        from: transition.from,
+        abort: abort,
+        next: processData ? nextWithData : next,
+        redirect: function redirect() {
+          transition.redirect.apply(transition, arguments);
+        }
+      };
+
+      // actually call the hook
+      var res = undefined;
+      try {
+        res = hook.call(context, exposed);
+      } catch (err) {
+        return onError(err);
+      }
+
+      if (expectBoolean) {
+        // boolean hooks
+        nextWithBoolean(res);
+      } else if (isPromise(res)) {
+        // promise
+        if (processData) {
+          res.then(nextWithData, onPromiseError);
+        } else {
+          res.then(next, onPromiseError);
+        }
+      } else if (processData && isPlainOjbect(res)) {
+        // data promise sugar
+        nextWithData(res);
+      } else if (!hook.length) {
+        next();
+      }
+    };
+
+    /**
+     * Call a single hook or an array of async hooks in series.
+     *
+     * @param {Array} hooks
+     * @param {*} context
+     * @param {Function} cb
+     * @param {Object} [options]
+     */
+
+    RouteTransition.prototype.callHooks = function callHooks(hooks, context, cb, options) {
+      var _this = this;
+
+      if (Array.isArray(hooks)) {
+        this.runQueue(hooks, function (hook, _, next) {
+          if (!_this.aborted) {
+            _this.callHook(hook, context, next, options);
+          }
+        }, cb);
+      } else {
+        this.callHook(hooks, context, cb, options);
+      }
+    };
+
+    return RouteTransition;
+  })();
+
+  function isPlainOjbect(val) {
+    return Object.prototype.toString.call(val) === '[object Object]';
+  }
+
+  function toArray(val) {
+    return val ? Array.prototype.slice.call(val) : [];
+  }
+
+  var internalKeysRE = /^(component|subRoutes|fullPath)$/;
+
+  /**
+   * Route Context Object
+   *
+   * @param {String} path
+   * @param {Router} router
+   */
+
+  var Route = function Route(path, router) {
+    var _this = this;
+
+    babelHelpers.classCallCheck(this, Route);
+
+    var matched = router._recognizer.recognize(path);
+    if (matched) {
+      // copy all custom fields from route configs
+      [].forEach.call(matched, function (match) {
+        for (var key in match.handler) {
+          if (!internalKeysRE.test(key)) {
+            _this[key] = match.handler[key];
+          }
+        }
+      });
+      // set query and params
+      this.query = matched.queryParams;
+      this.params = [].reduce.call(matched, function (prev, cur) {
+        if (cur.params) {
+          for (var key in cur.params) {
+            prev[key] = cur.params[key];
+          }
+        }
+        return prev;
+      }, {});
+    }
+    // expose path and router
+    this.path = path;
+    // for internal use
+    this.matched = matched || router._notFoundHandler;
+    // internal reference to router
+    Object.defineProperty(this, 'router', {
+      enumerable: false,
+      value: router
+    });
+    // Important: freeze self to prevent observation
+    Object.freeze(this);
+  };
+
+  function applyOverride (Vue) {
+    var _Vue$util = Vue.util;
+    var extend = _Vue$util.extend;
+    var isArray = _Vue$util.isArray;
+    var defineReactive = _Vue$util.defineReactive;
+
+    // override Vue's init and destroy process to keep track of router instances
+    var init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      options = options || {};
+      var root = options._parent || options.parent || this;
+      var router = root.$router;
+      var route = root.$route;
+      if (router) {
+        // expose router
+        this.$router = router;
+        router._children.push(this);
+        /* istanbul ignore if */
+        if (this._defineMeta) {
+          // 0.12
+          this._defineMeta('$route', route);
+        } else {
+          // 1.0
+          defineReactive(this, '$route', route);
+        }
+      }
+      init.call(this, options);
+    };
+
+    var destroy = Vue.prototype._destroy;
+    Vue.prototype._destroy = function () {
+      if (!this._isBeingDestroyed && this.$router) {
+        this.$router._children.$remove(this);
+      }
+      destroy.apply(this, arguments);
+    };
+
+    // 1.0 only: enable route mixins
+    var strats = Vue.config.optionMergeStrategies;
+    var hooksToMergeRE = /^(data|activate|deactivate)$/;
+
+    if (strats) {
+      strats.route = function (parentVal, childVal) {
+        if (!childVal) return parentVal;
+        if (!parentVal) return childVal;
+        var ret = {};
+        extend(ret, parentVal);
+        for (var key in childVal) {
+          var a = ret[key];
+          var b = childVal[key];
+          // for data, activate and deactivate, we need to merge them into
+          // arrays similar to lifecycle hooks.
+          if (a && hooksToMergeRE.test(key)) {
+            ret[key] = (isArray(a) ? a : [a]).concat(b);
+          } else {
+            ret[key] = b;
+          }
+        }
+        return ret;
+      };
+    }
+  }
+
+  function View (Vue) {
+
+    var _ = Vue.util;
+    var componentDef =
+    // 0.12
+    Vue.directive('_component') ||
+    // 1.0
+    Vue.internalDirectives.component;
+    // <router-view> extends the internal component directive
+    var viewDef = _.extend({}, componentDef);
+
+    // with some overrides
+    _.extend(viewDef, {
+
+      _isRouterView: true,
+
+      bind: function bind() {
+        var route = this.vm.$route;
+        /* istanbul ignore if */
+        if (!route) {
+          warn$1('<router-view> can only be used inside a ' + 'router-enabled app.');
+          return;
+        }
+        // force dynamic directive so v-component doesn't
+        // attempt to build right now
+        this._isDynamicLiteral = true;
+        // finally, init by delegating to v-component
+        componentDef.bind.call(this);
+
+        // locate the parent view
+        var parentView = undefined;
+        var parent = this.vm;
+        while (parent) {
+          if (parent._routerView) {
+            parentView = parent._routerView;
+            break;
+          }
+          parent = parent.$parent;
+        }
+        if (parentView) {
+          // register self as a child of the parent view,
+          // instead of activating now. This is so that the
+          // child's activate hook is called after the
+          // parent's has resolved.
+          this.parentView = parentView;
+          parentView.childView = this;
+        } else {
+          // this is the root view!
+          var router = route.router;
+          router._rootView = this;
+        }
+
+        // handle late-rendered view
+        // two possibilities:
+        // 1. root view rendered after transition has been
+        //    validated;
+        // 2. child view rendered after parent view has been
+        //    activated.
+        var transition = route.router._currentTransition;
+        if (!parentView && transition.done || parentView && parentView.activated) {
+          var depth = parentView ? parentView.depth + 1 : 0;
+          activate(this, transition, depth);
+        }
+      },
+
+      unbind: function unbind() {
+        if (this.parentView) {
+          this.parentView.childView = null;
+        }
+        componentDef.unbind.call(this);
+      }
+    });
+
+    Vue.elementDirective('router-view', viewDef);
+  }
+
+  var trailingSlashRE = /\/$/;
+  var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
+  var queryStringRE = /\?.*$/;
+
+  // install v-link, which provides navigation support for
+  // HTML5 history mode
+  function Link (Vue) {
+    var _Vue$util = Vue.util;
+    var _bind = _Vue$util.bind;
+    var isObject = _Vue$util.isObject;
+    var addClass = _Vue$util.addClass;
+    var removeClass = _Vue$util.removeClass;
+
+    var onPriority = Vue.directive('on').priority;
+    var LINK_UPDATE = '__vue-router-link-update__';
+
+    var activeId = 0;
+
+    Vue.directive('link-active', {
+      priority: 9999,
+      bind: function bind() {
+        var _this = this;
+
+        var id = String(activeId++);
+        // collect v-links contained within this element.
+        // we need do this here before the parent-child relationship
+        // gets messed up by terminal directives (if, for, components)
+        var childLinks = this.el.querySelectorAll('[v-link]');
+        for (var i = 0, l = childLinks.length; i < l; i++) {
+          var link = childLinks[i];
+          var existingId = link.getAttribute(LINK_UPDATE);
+          var value = existingId ? existingId + ',' + id : id;
+          // leave a mark on the link element which can be persisted
+          // through fragment clones.
+          link.setAttribute(LINK_UPDATE, value);
+        }
+        this.vm.$on(LINK_UPDATE, this.cb = function (link, path) {
+          if (link.activeIds.indexOf(id) > -1) {
+            link.updateClasses(path, _this.el);
+          }
+        });
+      },
+      unbind: function unbind() {
+        this.vm.$off(LINK_UPDATE, this.cb);
+      }
+    });
+
+    Vue.directive('link', {
+      priority: onPriority - 2,
+
+      bind: function bind() {
+        var vm = this.vm;
+        /* istanbul ignore if */
+        if (!vm.$route) {
+          warn$1('v-link can only be used inside a router-enabled app.');
+          return;
+        }
+        this.router = vm.$route.router;
+        // update things when the route changes
+        this.unwatch = vm.$watch('$route', _bind(this.onRouteUpdate, this));
+        // check v-link-active ids
+        var activeIds = this.el.getAttribute(LINK_UPDATE);
+        if (activeIds) {
+          this.el.removeAttribute(LINK_UPDATE);
+          this.activeIds = activeIds.split(',');
+        }
+        // no need to handle click if link expects to be opened
+        // in a new window/tab.
+        /* istanbul ignore if */
+        if (this.el.tagName === 'A' && this.el.getAttribute('target') === '_blank') {
+          return;
+        }
+        // handle click
+        this.handler = _bind(this.onClick, this);
+        this.el.addEventListener('click', this.handler);
+      },
+
+      update: function update(target) {
+        this.target = target;
+        if (isObject(target)) {
+          this.append = target.append;
+          this.exact = target.exact;
+          this.prevActiveClass = this.activeClass;
+          this.activeClass = target.activeClass;
+        }
+        this.onRouteUpdate(this.vm.$route);
+      },
+
+      onClick: function onClick(e) {
+        // don't redirect with control keys
+        /* istanbul ignore if */
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        // don't redirect when preventDefault called
+        /* istanbul ignore if */
+        if (e.defaultPrevented) return;
+        // don't redirect on right click
+        /* istanbul ignore if */
+        if (e.button !== 0) return;
+
+        var target = this.target;
+        if (target) {
+          // v-link with expression, just go
+          e.preventDefault();
+          this.router.go(target);
+        } else {
+          // no expression, delegate for an <a> inside
+          var el = e.target;
+          while (el.tagName !== 'A' && el !== this.el) {
+            el = el.parentNode;
+          }
+          if (el.tagName === 'A' && sameOrigin(el)) {
+            e.preventDefault();
+            var path = el.pathname;
+            if (this.router.history.root) {
+              path = path.replace(this.router.history.rootRE, '');
+            }
+            this.router.go({
+              path: path,
+              replace: target && target.replace,
+              append: target && target.append
+            });
+          }
+        }
+      },
+
+      onRouteUpdate: function onRouteUpdate(route) {
+        // router.stringifyPath is dependent on current route
+        // and needs to be called again whenver route changes.
+        var newPath = this.router.stringifyPath(this.target);
+        if (this.path !== newPath) {
+          this.path = newPath;
+          this.updateActiveMatch();
+          this.updateHref();
+        }
+        if (this.activeIds) {
+          this.vm.$emit(LINK_UPDATE, this, route.path);
+        } else {
+          this.updateClasses(route.path, this.el);
+        }
+      },
+
+      updateActiveMatch: function updateActiveMatch() {
+        this.activeRE = this.path && !this.exact ? new RegExp('^' + this.path.replace(/\/$/, '').replace(queryStringRE, '').replace(regexEscapeRE, '\\$&') + '(\\/|$)') : null;
+      },
+
+      updateHref: function updateHref() {
+        if (this.el.tagName !== 'A') {
+          return;
+        }
+        var path = this.path;
+        var router = this.router;
+        var isAbsolute = path.charAt(0) === '/';
+        // do not format non-hash relative paths
+        var href = path && (router.mode === 'hash' || isAbsolute) ? router.history.formatPath(path, this.append) : path;
+        if (href) {
+          this.el.href = href;
+        } else {
+          this.el.removeAttribute('href');
+        }
+      },
+
+      updateClasses: function updateClasses(path, el) {
+        var activeClass = this.activeClass || this.router._linkActiveClass;
+        // clear old class
+        if (this.prevActiveClass && this.prevActiveClass !== activeClass) {
+          toggleClasses(el, this.prevActiveClass, removeClass);
+        }
+        // remove query string before matching
+        var dest = this.path.replace(queryStringRE, '');
+        path = path.replace(queryStringRE, '');
+        // add new class
+        if (this.exact) {
+          if (dest === path ||
+          // also allow additional trailing slash
+          dest.charAt(dest.length - 1) !== '/' && dest === path.replace(trailingSlashRE, '')) {
+            toggleClasses(el, activeClass, addClass);
+          } else {
+            toggleClasses(el, activeClass, removeClass);
+          }
+        } else {
+          if (this.activeRE && this.activeRE.test(path)) {
+            toggleClasses(el, activeClass, addClass);
+          } else {
+            toggleClasses(el, activeClass, removeClass);
+          }
+        }
+      },
+
+      unbind: function unbind() {
+        this.el.removeEventListener('click', this.handler);
+        this.unwatch && this.unwatch();
+      }
+    });
+
+    function sameOrigin(link) {
+      return link.protocol === location.protocol && link.hostname === location.hostname && link.port === location.port;
+    }
+
+    // this function is copied from v-bind:class implementation until
+    // we properly expose it...
+    function toggleClasses(el, key, fn) {
+      key = key.trim();
+      if (key.indexOf(' ') === -1) {
+        fn(el, key);
+        return;
+      }
+      var keys = key.split(/\s+/);
+      for (var i = 0, l = keys.length; i < l; i++) {
+        fn(el, keys[i]);
+      }
+    }
+  }
+
+  var historyBackends = {
+    abstract: AbstractHistory,
+    hash: HashHistory,
+    html5: HTML5History
+  };
+
+  // late bind during install
+  var Vue = undefined;
+
+  /**
+   * Router constructor
+   *
+   * @param {Object} [options]
+   */
+
+  var Router = (function () {
+    function Router() {
+      var _this = this;
+
+      var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+      var _ref$hashbang = _ref.hashbang;
+      var hashbang = _ref$hashbang === undefined ? true : _ref$hashbang;
+      var _ref$abstract = _ref.abstract;
+      var abstract = _ref$abstract === undefined ? false : _ref$abstract;
+      var _ref$history = _ref.history;
+      var history = _ref$history === undefined ? false : _ref$history;
+      var _ref$saveScrollPosition = _ref.saveScrollPosition;
+      var saveScrollPosition = _ref$saveScrollPosition === undefined ? false : _ref$saveScrollPosition;
+      var _ref$transitionOnLoad = _ref.transitionOnLoad;
+      var transitionOnLoad = _ref$transitionOnLoad === undefined ? false : _ref$transitionOnLoad;
+      var _ref$suppressTransitionError = _ref.suppressTransitionError;
+      var suppressTransitionError = _ref$suppressTransitionError === undefined ? false : _ref$suppressTransitionError;
+      var _ref$root = _ref.root;
+      var root = _ref$root === undefined ? null : _ref$root;
+      var _ref$linkActiveClass = _ref.linkActiveClass;
+      var linkActiveClass = _ref$linkActiveClass === undefined ? 'v-link-active' : _ref$linkActiveClass;
+      babelHelpers.classCallCheck(this, Router);
+
+      /* istanbul ignore if */
+      if (!Router.installed) {
+        throw new Error('Please install the Router with Vue.use() before ' + 'creating an instance.');
+      }
+
+      // Vue instances
+      this.app = null;
+      this._children = [];
+
+      // route recognizer
+      this._recognizer = new RouteRecognizer();
+      this._guardRecognizer = new RouteRecognizer();
+
+      // state
+      this._started = false;
+      this._startCb = null;
+      this._currentRoute = {};
+      this._currentTransition = null;
+      this._previousTransition = null;
+      this._notFoundHandler = null;
+      this._notFoundRedirect = null;
+      this._beforeEachHooks = [];
+      this._afterEachHooks = [];
+
+      // trigger transition on initial render?
+      this._rendered = false;
+      this._transitionOnLoad = transitionOnLoad;
+
+      // history mode
+      this._root = root;
+      this._abstract = abstract;
+      this._hashbang = hashbang;
+
+      // check if HTML5 history is available
+      var hasPushState = typeof window !== 'undefined' && window.history && window.history.pushState;
+      this._history = history && hasPushState;
+      this._historyFallback = history && !hasPushState;
+
+      // create history object
+      var inBrowser = Vue.util.inBrowser;
+      this.mode = !inBrowser || this._abstract ? 'abstract' : this._history ? 'html5' : 'hash';
+
+      var History = historyBackends[this.mode];
+      this.history = new History({
+        root: root,
+        hashbang: this._hashbang,
+        onChange: function onChange(path, state, anchor) {
+          _this._match(path, state, anchor);
+        }
+      });
+
+      // other options
+      this._saveScrollPosition = saveScrollPosition;
+      this._linkActiveClass = linkActiveClass;
+      this._suppress = suppressTransitionError;
+    }
+
+    /**
+     * Allow directly passing components to a route
+     * definition.
+     *
+     * @param {String} path
+     * @param {Object} handler
+     */
+
+    // API ===================================================
+
+    /**
+    * Register a map of top-level paths.
+    *
+    * @param {Object} map
+    */
+
+    Router.prototype.map = function map(_map) {
+      for (var route in _map) {
+        this.on(route, _map[route]);
+      }
+      return this;
+    };
+
+    /**
+     * Register a single root-level path
+     *
+     * @param {String} rootPath
+     * @param {Object} handler
+     *                 - {String} component
+     *                 - {Object} [subRoutes]
+     *                 - {Boolean} [forceRefresh]
+     *                 - {Function} [before]
+     *                 - {Function} [after]
+     */
+
+    Router.prototype.on = function on(rootPath, handler) {
+      if (rootPath === '*') {
+        this._notFound(handler);
+      } else {
+        this._addRoute(rootPath, handler, []);
+      }
+      return this;
+    };
+
+    /**
+     * Set redirects.
+     *
+     * @param {Object} map
+     */
+
+    Router.prototype.redirect = function redirect(map) {
+      for (var path in map) {
+        this._addRedirect(path, map[path]);
+      }
+      return this;
+    };
+
+    /**
+     * Set aliases.
+     *
+     * @param {Object} map
+     */
+
+    Router.prototype.alias = function alias(map) {
+      for (var path in map) {
+        this._addAlias(path, map[path]);
+      }
+      return this;
+    };
+
+    /**
+     * Set global before hook.
+     *
+     * @param {Function} fn
+     */
+
+    Router.prototype.beforeEach = function beforeEach(fn) {
+      this._beforeEachHooks.push(fn);
+      return this;
+    };
+
+    /**
+     * Set global after hook.
+     *
+     * @param {Function} fn
+     */
+
+    Router.prototype.afterEach = function afterEach(fn) {
+      this._afterEachHooks.push(fn);
+      return this;
+    };
+
+    /**
+     * Navigate to a given path.
+     * The path can be an object describing a named path in
+     * the format of { name: '...', params: {}, query: {}}
+     * The path is assumed to be already decoded, and will
+     * be resolved against root (if provided)
+     *
+     * @param {String|Object} path
+     * @param {Boolean} [replace]
+     */
+
+    Router.prototype.go = function go(path) {
+      var replace = false;
+      var append = false;
+      if (Vue.util.isObject(path)) {
+        replace = path.replace;
+        append = path.append;
+      }
+      path = this.stringifyPath(path);
+      if (path) {
+        this.history.go(path, replace, append);
+      }
+    };
+
+    /**
+     * Short hand for replacing current path
+     *
+     * @param {String} path
+     */
+
+    Router.prototype.replace = function replace(path) {
+      if (typeof path === 'string') {
+        path = { path: path };
+      }
+      path.replace = true;
+      this.go(path);
+    };
+
+    /**
+     * Start the router.
+     *
+     * @param {VueConstructor} App
+     * @param {String|Element} container
+     * @param {Function} [cb]
+     */
+
+    Router.prototype.start = function start(App, container, cb) {
+      /* istanbul ignore if */
+      if (this._started) {
+        warn$1('already started.');
+        return;
+      }
+      this._started = true;
+      this._startCb = cb;
+      if (!this.app) {
+        /* istanbul ignore if */
+        if (!App || !container) {
+          throw new Error('Must start vue-router with a component and a ' + 'root container.');
+        }
+        /* istanbul ignore if */
+        if (App instanceof Vue) {
+          throw new Error('Must start vue-router with a component, not a ' + 'Vue instance.');
+        }
+        this._appContainer = container;
+        var Ctor = this._appConstructor = typeof App === 'function' ? App : Vue.extend(App);
+        // give it a name for better debugging
+        Ctor.options.name = Ctor.options.name || 'RouterApp';
+      }
+
+      // handle history fallback in browsers that do not
+      // support HTML5 history API
+      if (this._historyFallback) {
+        var _location = window.location;
+        var _history = new HTML5History({ root: this._root });
+        var path = _history.root ? _location.pathname.replace(_history.rootRE, '') : _location.pathname;
+        if (path && path !== '/') {
+          _location.assign((_history.root || '') + '/' + this.history.formatPath(path) + _location.search);
+          return;
+        }
+      }
+
+      this.history.start();
+    };
+
+    /**
+     * Stop listening to route changes.
+     */
+
+    Router.prototype.stop = function stop() {
+      this.history.stop();
+      this._started = false;
+    };
+
+    /**
+     * Normalize named route object / string paths into
+     * a string.
+     *
+     * @param {Object|String|Number} path
+     * @return {String}
+     */
+
+    Router.prototype.stringifyPath = function stringifyPath(path) {
+      var generatedPath = '';
+      if (path && typeof path === 'object') {
+        if (path.name) {
+          var extend = Vue.util.extend;
+          var currentParams = this._currentTransition && this._currentTransition.to.params;
+          var targetParams = path.params || {};
+          var params = currentParams ? extend(extend({}, currentParams), targetParams) : targetParams;
+          generatedPath = encodeURI(this._recognizer.generate(path.name, params));
+        } else if (path.path) {
+          generatedPath = encodeURI(path.path);
+        }
+        if (path.query) {
+          // note: the generated query string is pre-URL-encoded by the recognizer
+          var query = this._recognizer.generateQueryString(path.query);
+          if (generatedPath.indexOf('?') > -1) {
+            generatedPath += '&' + query.slice(1);
+          } else {
+            generatedPath += query;
+          }
+        }
+      } else {
+        generatedPath = encodeURI(path ? path + '' : '');
+      }
+      return generatedPath;
+    };
+
+    // Internal methods ======================================
+
+    /**
+    * Add a route containing a list of segments to the internal
+    * route recognizer. Will be called recursively to add all
+    * possible sub-routes.
+    *
+    * @param {String} path
+    * @param {Object} handler
+    * @param {Array} segments
+    */
+
+    Router.prototype._addRoute = function _addRoute(path, handler, segments) {
+      guardComponent(path, handler);
+      handler.path = path;
+      handler.fullPath = (segments.reduce(function (path, segment) {
+        return path + segment.path;
+      }, '') + path).replace('//', '/');
+      segments.push({
+        path: path,
+        handler: handler
+      });
+      this._recognizer.add(segments, {
+        as: handler.name
+      });
+      // add sub routes
+      if (handler.subRoutes) {
+        for (var subPath in handler.subRoutes) {
+          // recursively walk all sub routes
+          this._addRoute(subPath, handler.subRoutes[subPath],
+          // pass a copy in recursion to avoid mutating
+          // across branches
+          segments.slice());
+        }
+      }
+    };
+
+    /**
+     * Set the notFound route handler.
+     *
+     * @param {Object} handler
+     */
+
+    Router.prototype._notFound = function _notFound(handler) {
+      guardComponent('*', handler);
+      this._notFoundHandler = [{ handler: handler }];
+    };
+
+    /**
+     * Add a redirect record.
+     *
+     * @param {String} path
+     * @param {String} redirectPath
+     */
+
+    Router.prototype._addRedirect = function _addRedirect(path, redirectPath) {
+      if (path === '*') {
+        this._notFoundRedirect = redirectPath;
+      } else {
+        this._addGuard(path, redirectPath, this.replace);
+      }
+    };
+
+    /**
+     * Add an alias record.
+     *
+     * @param {String} path
+     * @param {String} aliasPath
+     */
+
+    Router.prototype._addAlias = function _addAlias(path, aliasPath) {
+      this._addGuard(path, aliasPath, this._match);
+    };
+
+    /**
+     * Add a path guard.
+     *
+     * @param {String} path
+     * @param {String} mappedPath
+     * @param {Function} handler
+     */
+
+    Router.prototype._addGuard = function _addGuard(path, mappedPath, _handler) {
+      var _this2 = this;
+
+      this._guardRecognizer.add([{
+        path: path,
+        handler: function handler(match, query) {
+          var realPath = mapParams(mappedPath, match.params, query);
+          _handler.call(_this2, realPath);
+        }
+      }]);
+    };
+
+    /**
+     * Check if a path matches any redirect records.
+     *
+     * @param {String} path
+     * @return {Boolean} - if true, will skip normal match.
+     */
+
+    Router.prototype._checkGuard = function _checkGuard(path) {
+      var matched = this._guardRecognizer.recognize(path, true);
+      if (matched) {
+        matched[0].handler(matched[0], matched.queryParams);
+        return true;
+      } else if (this._notFoundRedirect) {
+        matched = this._recognizer.recognize(path);
+        if (!matched) {
+          this.replace(this._notFoundRedirect);
+          return true;
+        }
+      }
+    };
+
+    /**
+     * Match a URL path and set the route context on vm,
+     * triggering view updates.
+     *
+     * @param {String} path
+     * @param {Object} [state]
+     * @param {String} [anchor]
+     */
+
+    Router.prototype._match = function _match(path, state, anchor) {
+      var _this3 = this;
+
+      if (this._checkGuard(path)) {
+        return;
+      }
+
+      var currentRoute = this._currentRoute;
+      var currentTransition = this._currentTransition;
+
+      if (currentTransition) {
+        if (currentTransition.to.path === path) {
+          // do nothing if we have an active transition going to the same path
+          return;
+        } else if (currentRoute.path === path) {
+          // We are going to the same path, but we also have an ongoing but
+          // not-yet-validated transition. Abort that transition and reset to
+          // prev transition.
+          currentTransition.aborted = true;
+          this._currentTransition = this._prevTransition;
+          return;
+        } else {
+          // going to a totally different path. abort ongoing transition.
+          currentTransition.aborted = true;
+        }
+      }
+
+      // construct new route and transition context
+      var route = new Route(path, this);
+      var transition = new RouteTransition(this, route, currentRoute);
+
+      // current transition is updated right now.
+      // however, current route will only be updated after the transition has
+      // been validated.
+      this._prevTransition = currentTransition;
+      this._currentTransition = transition;
+
+      if (!this.app) {
+        (function () {
+          // initial render
+          var router = _this3;
+          _this3.app = new _this3._appConstructor({
+            el: _this3._appContainer,
+            created: function created() {
+              this.$router = router;
+            },
+            _meta: {
+              $route: route
+            }
+          });
+        })();
+      }
+
+      // check global before hook
+      var beforeHooks = this._beforeEachHooks;
+      var startTransition = function startTransition() {
+        transition.start(function () {
+          _this3._postTransition(route, state, anchor);
+        });
+      };
+
+      if (beforeHooks.length) {
+        transition.runQueue(beforeHooks, function (hook, _, next) {
+          if (transition === _this3._currentTransition) {
+            transition.callHook(hook, null, next, {
+              expectBoolean: true
+            });
+          }
+        }, startTransition);
+      } else {
+        startTransition();
+      }
+
+      if (!this._rendered && this._startCb) {
+        this._startCb.call(null);
+      }
+
+      // HACK:
+      // set rendered to true after the transition start, so
+      // that components that are acitvated synchronously know
+      // whether it is the initial render.
+      this._rendered = true;
+    };
+
+    /**
+     * Set current to the new transition.
+     * This is called by the transition object when the
+     * validation of a route has succeeded.
+     *
+     * @param {Transition} transition
+     */
+
+    Router.prototype._onTransitionValidated = function _onTransitionValidated(transition) {
+      // set current route
+      var route = this._currentRoute = transition.to;
+      // update route context for all children
+      if (this.app.$route !== route) {
+        this.app.$route = route;
+        this._children.forEach(function (child) {
+          child.$route = route;
+        });
+      }
+      // call global after hook
+      if (this._afterEachHooks.length) {
+        this._afterEachHooks.forEach(function (hook) {
+          return hook.call(null, {
+            to: transition.to,
+            from: transition.from
+          });
+        });
+      }
+      this._currentTransition.done = true;
+    };
+
+    /**
+     * Handle stuff after the transition.
+     *
+     * @param {Route} route
+     * @param {Object} [state]
+     * @param {String} [anchor]
+     */
+
+    Router.prototype._postTransition = function _postTransition(route, state, anchor) {
+      // handle scroll positions
+      // saved scroll positions take priority
+      // then we check if the path has an anchor
+      var pos = state && state.pos;
+      if (pos && this._saveScrollPosition) {
+        Vue.nextTick(function () {
+          window.scrollTo(pos.x, pos.y);
+        });
+      } else if (anchor) {
+        Vue.nextTick(function () {
+          var el = document.getElementById(anchor.slice(1));
+          if (el) {
+            window.scrollTo(window.scrollX, el.offsetTop);
+          }
+        });
+      }
+    };
+
+    return Router;
+  })();
+
+  function guardComponent(path, handler) {
+    var comp = handler.component;
+    if (Vue.util.isPlainObject(comp)) {
+      comp = handler.component = Vue.extend(comp);
+    }
+    /* istanbul ignore if */
+    if (typeof comp !== 'function') {
+      handler.component = null;
+      warn$1('invalid component for route "' + path + '".');
+    }
+  }
+
+  /* Installation */
+
+  Router.installed = false;
+
+  /**
+   * Installation interface.
+   * Install the necessary directives.
+   */
+
+  Router.install = function (externalVue) {
+    /* istanbul ignore if */
+    if (Router.installed) {
+      warn$1('already installed.');
+      return;
+    }
+    Vue = externalVue;
+    applyOverride(Vue);
+    View(Vue);
+    Link(Vue);
+    exports$1.Vue = Vue;
+    Router.installed = true;
+  };
+
+  // auto install
+  /* istanbul ignore if */
+  if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(Router);
+  }
+
+  return Router;
+
+}));
+},{}],9:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v1.0.24
@@ -21804,7 +24514,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":5}],9:[function(require,module,exports){
+},{"_process":5}],10:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -21824,7 +24534,83 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
+exports.sync = function (store, router) {
+  patchStore(store)
+  store.router = router
+
+  var commit = store.commit || store.dispatch
+  var isTimeTraveling = false
+  var currentPath
+
+  // sync router on store change
+  store.watch(
+    function (state) {
+      return state.route
+    },
+    function (route) {
+      if (route.path === currentPath) {
+        return
+      }
+      isTimeTraveling = true
+      currentPath = route.path
+      router.go(route.path)
+    },
+    { deep: true, sync: true }
+  )
+
+  // sync store on router navigation
+  router.afterEach(function (transition) {
+    if (isTimeTraveling) {
+      isTimeTraveling = false
+      return
+    }
+    var to = transition.to
+    currentPath = to.path
+    commit('router/ROUTE_CHANGED', to)
+  })
+}
+
+function applyMutationState(store, state) {
+  // support above 2.0
+  if (store.hasOwnProperty('_committing')) {
+    return store._committing = state
+  }
+  return store._dispatching = state
+}
+
+function patchStore (store) {
+  // add state
+  var set = store._vm.constructor.set
+  applyMutationState(store, true);
+  set(store.state, 'route', {
+    path: '',
+    query: null,
+    params: null
+  })
+  applyMutationState(store, false);
+
+  var routeModule = {
+    mutations: {
+      'router/ROUTE_CHANGED': function (state, to) {
+        store.state.route = to
+      }
+    }
+  }
+
+  // add module
+  if (store.module) {
+    store.module('route', routeModule)
+  } else {
+    store.hotUpdate({
+      modules: {
+        route: routeModule
+      }
+    })
+  }
+}
+
+},{}],12:[function(require,module,exports){
 /*!
  * Vuex v0.6.3
  * (c) 2016 Evan You
@@ -22459,7 +25245,7 @@ exports.insert = function (css) {
   return index;
 
 }));
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".flip-transition[_v-0aeac120] {\n  display: block;\n}\n.flip-enter[_v-0aeac120] {\n  -webkit-animation: flip-in 1s;\n          animation: flip-in 1s;\n}\n.flip-leave[_v-0aeac120] {\n  -webkit-animation: flip-in 1s reverse;\n          animation: flip-in 1s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n            transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    -webkit-transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n            transform: rotateY(270deg) rotateX(-720deg) scale(0) translateX(1000px);\n  }\n  80% {\n    -webkit-transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n            transform: rotateY(-90deg) rotateX(360deg) scale(1.1) translateX(-500px);\n  }\n  100% {\n    -webkit-transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n            transform: rotateY(0) rotateX(0) scale(1) translateX(0);\n  }\n}\nhr.split[_v-0aeac120] {\n  margin-bottom: 120px;\n}\nhr.member-intro-split[_v-0aeac120] {\n  margin: 50px 0;\n}\ndiv#about-container[_v-0aeac120] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(100,100,100,0.5);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 5% auto 0 auto;\n  width: 800px;\n  height: 80%;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120] {\n  width: 20px;\n  height: 20px;\n  position: relative;\n  left: -20px;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  padding-left: 10px;\n  font-size: 60px;\n  letter-spacing: 10px;\n  line-height: 1.4;\n  font-weight: bold;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  font-size: 80px;\n  line-height: 0.6;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -55px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo[_v-0aeac120] {\n  color: #f00;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo h1[_v-0aeac120] {\n  text-align: center;\n  font-size: 100px;\n  font-weight: 700;\n  position: relative;\n  top: -60px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-photo p[_v-0aeac120] {\n  text-align: center;\n  font-size: 25px;\n  letter-spacing: 160px;\n  position: relative;\n  top: 100px;\n  left: 80px;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text[_v-0aeac120] {\n  width: 50%;\n  margin: 0 auto;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text h1[_v-0aeac120] {\n  font-size: 50px;\n  font-weight: 500;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text p[_v-0aeac120] {\n  font-size: 30px;\n  font-weight: 200;\n}\ndiv#about-container div#about-content-container div.member-intro div.member-intro-text.align-left[_v-0aeac120] {\n  width: 50%;\n  margin-left: 10%;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo1[_v-0aeac120] {\n  width: 85%;\n  height: 500px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo1.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2[_v-0aeac120] {\n  width: 85%;\n  height: 500px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo2.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2 h1[_v-0aeac120] {\n  font-size: 74px;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo2 p[_v-0aeac120] {\n  top: 130px;\n}\ndiv#about-container div#about-content-container div.member-intro div#member-intro-photo3[_v-0aeac120] {\n  width: 95%;\n  height: 300px;\n  margin: 0 auto;\n  background: url(\"/imgs/about_us_photo3.png\");\n  background-size: 100% 100%;\n}\n")
 'use strict';
@@ -22498,9 +25284,52 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":20,"../vuex/getters":21,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],12:[function(require,module,exports){
+},{"../vuex/actions":25,"../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("div.export-grpah[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  width: 12.5%;\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert(".expand-transition {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  overflow: hidden;\n}\n.expand-enter,\n.expand-leave {\n  height: 0;\n  opacity: 0;\n}\ndiv#app {\n  height: 100%;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _IHA = require('./IHA.vue');
+
+var _IHA2 = _interopRequireDefault(_IHA);
+
+var _AboutPage = require('./AboutPage.vue');
+
+var _AboutPage2 = _interopRequireDefault(_AboutPage);
+
+var _store = require('../vuex/store');
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    store: _store2.default,
+    components: { IHA: _IHA2.default, AboutPage: _AboutPage2.default }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"app\"><i-h-a></i-h-a><router-view transition=\"expand\"></router-view><about-page></about-page></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".expand-transition {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  overflow: hidden;\n}\n.expand-enter,\n.expand-leave {\n  height: 0;\n  opacity: 0;\n}\ndiv#app {\n  height: 100%;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-37d47855", module.exports)
+  } else {
+    hotAPI.update("_v-37d47855", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../vuex/store":27,"./AboutPage.vue":13,"./IHA.vue":17,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("div.export-graph[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  width: 12.5%;\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22520,13 +25349,13 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"export-grpah\" _v-479c7bae=\"\"><div class=\"row-top row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img src=\"/imgs/nature/11.png\" class=\"t11\" _v-479c7bae=\"\"><img src=\"/imgs/nature/12.png\" class=\"t12\" _v-479c7bae=\"\"><img src=\"/imgs/nature/13.png\" class=\"t13\" _v-479c7bae=\"\"><img src=\"/imgs/nature/14.png\" class=\"t14\" _v-479c7bae=\"\"><img src=\"/imgs/nature/15.png\" class=\"t15\" _v-479c7bae=\"\"><img src=\"/imgs/nature/16.png\" class=\"t16\" _v-479c7bae=\"\"><img src=\"/imgs/nature/17.png\" class=\"t17\" _v-479c7bae=\"\"><img src=\"/imgs/nature/18.png\" class=\"t18\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img src=\"/imgs/nature/21.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/22.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/23.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/24.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/25.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/26.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/27.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/28.png\" _v-479c7bae=\"\"></div></div><div class=\"row-down row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img src=\"/imgs/nature/31.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/32.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/33.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/34.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/35.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/36.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/37.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/38.png\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img src=\"/imgs/nature/41.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/42.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/43.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/44.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/45.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/46.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/47.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/48.png\" _v-479c7bae=\"\"></div></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container questionListContainer\" _v-479c7bae=\"\"><div class=\"export-graph\" _v-479c7bae=\"\"><div class=\"row-top row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img src=\"/imgs/nature/11.png\" class=\"t11\" _v-479c7bae=\"\"><img src=\"/imgs/nature/12.png\" class=\"t12\" _v-479c7bae=\"\"><img src=\"/imgs/nature/13.png\" class=\"t13\" _v-479c7bae=\"\"><img src=\"/imgs/nature/14.png\" class=\"t14\" _v-479c7bae=\"\"><img src=\"/imgs/nature/15.png\" class=\"t15\" _v-479c7bae=\"\"><img src=\"/imgs/nature/16.png\" class=\"t16\" _v-479c7bae=\"\"><img src=\"/imgs/nature/17.png\" class=\"t17\" _v-479c7bae=\"\"><img src=\"/imgs/nature/18.png\" class=\"t18\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img src=\"/imgs/nature/21.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/22.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/23.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/24.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/25.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/26.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/27.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/28.png\" _v-479c7bae=\"\"></div></div><div class=\"row-down row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img src=\"/imgs/nature/31.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/32.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/33.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/34.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/35.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/36.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/37.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/38.png\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img src=\"/imgs/nature/41.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/42.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/43.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/44.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/45.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/46.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/47.png\" _v-479c7bae=\"\"><img src=\"/imgs/nature/48.png\" _v-479c7bae=\"\"></div></div></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["div.export-grpah[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  width: 12.5%;\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n"] = false
+    __vueify_insert__.cache["div.export-graph[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  width: 12.5%;\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -22535,7 +25364,32 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-479c7bae", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/getters":21,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],13:[function(require,module,exports){
+},{"../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],16:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    methods: {
+        goto: function goto(uri) {
+            this.$router.go(uri);
+        }
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"main-container container-fluid\">\n    <div class=\"row home-top-row\">\n        <div class=\"col-xs-6 home-logo-container\">\n            <img src=\"/imgs/itp_Logo.png\" alt=\"\" class=\"home-logo\">\n        </div>\n        <div class=\"col-xs-6 home-text-container\">\n            <div class=\"home-text-wrap\">\n                <h1>Interactive</h1>\n                <h1>Tx.</h1>\n                <h1>Planning</h1>\n                <h1>System</h1>\n            </div>\n        </div>\n    </div>\n    <div class=\"row home-bottom-row\">\n        <div\n            class=\"col-xs-6 home-grid text-base\"\n            @click=\"goto({ name: 'questionList', params: { questionPhase: 1 } })\"\n        >\n          <div>\n                <h1>Text-Based</h1>\n                <h1>User</h1>\n                <h1>Interface</h1>\n            </div>\n        </div>\n        <div class=\"col-xs-6 home-tooth\">\n            <div>\n                <h1>Graphical</h1>\n                <h1>User</h1>\n                <h1>Interface</h1>\n            </div>\n        </div>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-0491a5ec", module.exports)
+  } else {
+    hotAPI.update("_v-0491a5ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":9,"vue-hot-reload-api":7}],17:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 6, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 11, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 14, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 23, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 28, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -22548,7 +25402,6 @@ var _actions = require('../vuex/actions');
 
 exports.default = {
     el: '.btn-group',
-    props: ['urls'],
     vuex: {
         actions: {
             aboutShowToggle: _actions.aboutShowToggle
@@ -22581,12 +25434,12 @@ exports.default = {
             }
         },
         route: function route(url) {
-            window.location = url;
+            this.$router.go(url);
         }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route(this.urls.I)\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" @click=\"aboutShowToggle()\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"btn-group-container\" _v-cfa3ae54=\"\">\n    <ul class=\"btn-group\" _v-cfa3ae54=\"\">\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('I', true)\" v-on:mouseleave=\"hover('I', false)\" @click=\"route('/')\" _v-cfa3ae54=\"\">I</button>\n            <span v-cloak=\"\" v-show=\"showI\" _v-cfa3ae54=\"\">TPS</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button class=\"btn-circle btn\" v-on:mouseenter=\"hover('H', true)\" v-on:mouseleave=\"hover('H', false)\" @click=\"route(this.urls.H)\" _v-cfa3ae54=\"\">H</button>\n            <span v-cloak=\"\" v-show=\"showH\" _v-cfa3ae54=\"\">OW TO USE?</span>\n        </li>\n        <li _v-cfa3ae54=\"\">\n            <button id=\"btn-about\" class=\"btn-circle btn\" v-on:mouseenter=\"hover('A', true)\" v-on:mouseleave=\"hover('A', false)\" @click=\"aboutShowToggle()\" _v-cfa3ae54=\"\">A</button>\n            <span v-cloak=\"\" v-show=\"showA\" _v-cfa3ae54=\"\">BOUT US</span>\n        </li>\n    </ul>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -22601,26 +25454,76 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":20,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],14:[function(require,module,exports){
+},{"../vuex/actions":25,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],18:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #800080;\n  box-shadow: none;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\n")
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = {
-  data: function data() {
-    return {};
-  },
-  computed: {},
-  ready: function ready() {},
-  attached: function attached() {},
-  methods: {},
-  components: {}
+    methods: {
+        goUp: function goUp() {
+            var switchObj = {
+                1: '/',
+                2: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 1
+                    }
+                },
+                3: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 2
+                    }
+                },
+                4: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 3
+                    }
+                },
+                5: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 4
+                    }
+                }
+            };
+            this.$router.go(switchObj[this.$route.params.questionPhase]);
+        },
+        goDown: function goDown() {
+            var switchObj = {
+                1: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 2
+                    }
+                },
+                2: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 3
+                    }
+                },
+                3: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 4
+                    }
+                },
+                4: {
+                    name: 'graph'
+                }
+            };
+            this.$router.go(switchObj[this.$route.params.questionPhase]);
+        }
+    }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"page-button page-button--up\" _v-16e8d0b4=\"\"></div><div class=\"page-button page-button--down\" _v-16e8d0b4=\"\"></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div @click=\"goUp()\" class=\"page-button page-button--up\" _v-16e8d0b4=\"\"></div><div @click=\"goDown()\" class=\"page-button page-button--down\" _v-16e8d0b4=\"\"></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -22635,7 +25538,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-16e8d0b4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],15:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],19:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 5, stdin */\n.chart-container[_v-44cf8d24] {\n  margin-left: 20px; }\n\n/* line 9, stdin */\n.period-chart[_v-44cf8d24] {\n  width: 1000px;\n  table-layout: fixed;\n  border: none; }\n  /* line 13, stdin */\n  .period-chart td[_v-44cf8d24], .period-chart th[_v-44cf8d24] {\n    border: 2px solid black;\n    font-size: 10px;\n    text-align: center; }\n  /* line 19, stdin */\n  .period-chart tr td[_v-44cf8d24] {\n    height: 18px; }\n    /* line 21, stdin */\n    .period-chart tr td.vertical[_v-44cf8d24] {\n      font-style: italic;\n      -moz-transform: rotate(-90deg);\n      -o-transform: rotate(-90deg);\n      -webkit-transform: rotate(-90deg);\n      transform: rotate(-90deg); }\n    /* line 28, stdin */\n    .period-chart tr td.width185[_v-44cf8d24] {\n      width: 185px; }\n    /* line 31, stdin */\n    .period-chart tr td.align-center[_v-44cf8d24] {\n      text-align: center;\n      white-space: nowrap; }\n  /* line 37, stdin */\n  .period-chart tr.teeth td[_v-44cf8d24] {\n    background-color: #ffffda; }\n  /* line 42, stdin */\n  .period-chart tr.BOP-up td[_v-44cf8d24]:not(:first-child) {\n    background-color: #ffdddd; }\n  /* line 47, stdin */\n  .period-chart tr.BOP td[_v-44cf8d24] {\n    background-color: #ffdddd; }\n  /* line 52, stdin */\n  .period-chart tr.plaque td[_v-44cf8d24] {\n    background-color: #eeeeff; }\n\n/* line 59, stdin */\n.border-none[_v-44cf8d24] {\n  border: none !important; }\n\n/* line 63, stdin */\nh1[_v-44cf8d24] {\n  font-size: 20px;\n  margin: 0 0 20px 0;\n  font-weight: 200; }\n")
 'use strict';
@@ -22662,7 +25565,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-44cf8d24", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],16:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],20:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 61, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 65, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-4ac01936] {\n        visibility: hidden; }\n")
 'use strict';
@@ -22701,7 +25604,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":20,"../../vuex/getters":21,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],17:[function(require,module,exports){
+},{"../../vuex/actions":25,"../../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 10px;\n      margin-top: 5px; }\n\n/* line 17, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 25, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 29, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 33, stdin */\n.table-normal[_v-249c332b] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 40, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 42, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 48, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 53, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n      /* line 55, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 65, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n        /* line 68, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          z-index: 100; }\n        /* line 74, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 78, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          z-index: 100; }\n        /* line 84, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 88, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-x[_v-249c332b] {\n          background-color: white;\n          color: black;\n          border: solid;\n          position: relative;\n          z-index: 100; }\n        /* line 95, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle--top[_v-249c332b] {\n          top: -69px;\n          left: -2px; }\n        /* line 99, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle--bottom[_v-249c332b] {\n          top: -49px;\n          left: -2px; }\n      /* line 104, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 108, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n    /* line 112, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 120, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 129, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 138, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 142, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n\n/* line 153, stdin */\n.bounce-transition[_v-249c332b] {\n  display: inline-block; }\n\n/* line 156, stdin */\n.bounce-enter[_v-249c332b] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 159, stdin */\n.bounce-leave[_v-249c332b] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -22751,9 +25654,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":20,"../../vuex/getters":21,"underscore":6,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],18:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n")
+},{"../../vuex/actions":25,"../../vuex/getters":26,"underscore":6,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22772,15 +25673,25 @@ var _QuestionFour = require("./QuestionFour.vue");
 
 var _QuestionFour2 = _interopRequireDefault(_QuestionFour);
 
+var _PageButtons = require("../PageButtons.vue");
+
+var _PageButtons2 = _interopRequireDefault(_PageButtons);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    props: {
-        'questionNumbers': {
-            type: Array
+    components: { Question: _Question2.default, QuestionFour: _QuestionFour2.default, PageButtons: _PageButtons2.default },
+    computed: {
+        questionNumbers: function questionNumbers() {
+            var switchObj = {
+                1: [0],
+                2: [1, 2, 3],
+                3: [4, 5, 6, 7],
+                4: [8, 9]
+            };
+            return switchObj[this.$route.params.questionPhase];
         }
     },
-    components: { Question: _Question2.default, QuestionFour: _QuestionFour2.default },
     vuex: {
         getters: {
             questions: _getters.getQuestions
@@ -22794,22 +25705,18 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"questions-list-container\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container questionListContainer\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <div class=\"button button-down\" _v-53305aa3=\"\">\n        <page-buttons _v-53305aa3=\"\"></page-buttons>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["/* line 2, stdin */\n.question-list-container[_v-53305aa3] {\n  margin-top: 100px; }\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
   if (!module.hot.data) {
     hotAPI.createRecord("_v-53305aa3", module.exports)
   } else {
     hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":20,"../../vuex/getters":21,"./Question.vue":16,"./QuestionFour.vue":17,"vue":8,"vue-hot-reload-api":7,"vueify/lib/insert-css":9}],19:[function(require,module,exports){
+},{"../../vuex/actions":25,"../../vuex/getters":26,"../PageButtons.vue":18,"./Question.vue":20,"./QuestionFour.vue":21,"vue":9,"vue-hot-reload-api":7}],23:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -22820,29 +25727,15 @@ var _store = require('./vuex/store');
 
 var _store2 = _interopRequireDefault(_store);
 
-var _IHA = require('./components/IHA.vue');
+var _router = require('./router');
 
-var _IHA2 = _interopRequireDefault(_IHA);
+var _router2 = _interopRequireDefault(_router);
 
-var _QuestionList = require('./components/questionList/QuestionList.vue');
+var _vuexRouterSync = require('vuex-router-sync');
 
-var _QuestionList2 = _interopRequireDefault(_QuestionList);
+var _App = require('./components/App.vue');
 
-var _PeriodChart = require('./components/questionList/PeriodChart.vue');
-
-var _PeriodChart2 = _interopRequireDefault(_PeriodChart);
-
-var _AboutPage = require('./components/AboutPage.vue');
-
-var _AboutPage2 = _interopRequireDefault(_AboutPage);
-
-var _PageButtons = require('./components/PageButtons.vue');
-
-var _PageButtons2 = _interopRequireDefault(_PageButtons);
-
-var _ExportGraph = require('./components/ExportGraph.vue');
-
-var _ExportGraph2 = _interopRequireDefault(_ExportGraph);
+var _App2 = _interopRequireDefault(_App);
 
 var _jquery = require('jquery');
 
@@ -22850,17 +25743,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-new _vue2.default({
-    el: 'body',
-    components: { IHA: _IHA2.default, QuestionList: _QuestionList2.default, PeriodChart: _PeriodChart2.default, AboutPage: _AboutPage2.default, ExportGraph: _ExportGraph2.default, PageButtons: _PageButtons2.default },
-    store: _store2.default,
-    methods: {
-        jumpTo: function jumpTo(h) {
-            (0, _jquery2.default)('.main-container').animate({ height: 'toggle' }, 1000);
-            (0, _jquery2.default)('#questionList1').animate({ height: 'toggle' }, 1000);
-        }
-    }
-});
+(0, _vuexRouterSync.sync)(_store2.default, _router2.default);
+
+_router2.default.start(_App2.default, '#app');
 //NOTE: remember to uncomment this part next part 3
 // $(document).ready(() => {
 //     $('.text-base').on('click', function() {
@@ -22885,7 +25770,62 @@ new _vue2.default({
 //     })
 // })
 
-},{"./components/AboutPage.vue":11,"./components/ExportGraph.vue":12,"./components/IHA.vue":13,"./components/PageButtons.vue":14,"./components/questionList/PeriodChart.vue":15,"./components/questionList/QuestionList.vue":18,"./vuex/store":22,"jquery":4,"vue":8}],20:[function(require,module,exports){
+},{"./components/App.vue":14,"./router":24,"./vuex/store":27,"jquery":4,"vue":9,"vuex-router-sync":11}],24:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _vueRouter = require('vue-router');
+
+var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
+var _HomePage = require('./components/HomePage.vue');
+
+var _HomePage2 = _interopRequireDefault(_HomePage);
+
+var _PeriodChart = require('./components/questionList/PeriodChart.vue');
+
+var _PeriodChart2 = _interopRequireDefault(_PeriodChart);
+
+var _QuestionList = require('./components/questionList/QuestionList.vue');
+
+var _QuestionList2 = _interopRequireDefault(_QuestionList);
+
+var _ExportGraph = require('./components/ExportGraph.vue');
+
+var _ExportGraph2 = _interopRequireDefault(_ExportGraph);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.use(_vueRouter2.default);
+
+var router = new _vueRouter2.default();
+router.map({
+    '/': {
+        component: _HomePage2.default
+    },
+    '/questionList/:questionPhase': {
+        name: 'questionList',
+        component: _QuestionList2.default
+    },
+    '/graph': {
+        name: 'graph',
+        component: _ExportGraph2.default
+    },
+    '/gan': {
+        component: _PeriodChart2.default
+    }
+});
+
+exports.default = router;
+
+},{"./components/ExportGraph.vue":15,"./components/HomePage.vue":16,"./components/questionList/PeriodChart.vue":19,"./components/questionList/QuestionList.vue":22,"vue":9,"vue-router":8}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22921,7 +25861,7 @@ var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) 
   return dispatch('ABOUT_SHOW');
 };
 
-},{}],21:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22939,7 +25879,7 @@ var getAboutShow = exports.getAboutShow = function getAboutShow(state) {
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],22:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22958,6 +25898,10 @@ var _vuex = require('vuex');
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
+var _vueRouter = require('vue-router');
+
+var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
 var _underscore = require('underscore');
 
 var _underscore2 = _interopRequireDefault(_underscore);
@@ -22965,6 +25909,7 @@ var _underscore2 = _interopRequireDefault(_underscore);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vuex2.default);
+_vue2.default.use(_vueRouter2.default);
 
 var state = {
     questions: [],
@@ -22976,16 +25921,17 @@ var mutations = {
         "use strict";
 
         state.questions = [];
-        var questions = ['CD(Upper, Lower) 全口假牙 要上或下全部沒有才可以',
-
-        //if cd, just IR
-        'Implant 植體', 'Missing Teeth 缺牙', //1, 2, 3合併 if not cd
-        'Residual Roots 殘根 牙冠爛掉 剩牙根', 'Fixed Partial Denture 固定假牙', //P M, crown first, then connector
-        'Veneer 陶瓷貼片', 'Post 差一根到牙根裡', 'RPD(Upper, Lower) 活動假牙', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方
-
-        'Caries 有真的牙齒冠才會有 蛀牙', 'Vitality 牙根蛀出球 要有牙根才可以選'];
-
-        //四階段 階段間有皮卡丘
+        var questions = ['CD(Upper, Lower)', //全口假牙 要上或下全部沒有才可以
+        'Implant', //植體
+        'Missing Teeth', // 缺牙
+        'Residual Roots', // 殘根 牙冠爛掉 剩牙根
+        'Fixed Partial Denture', //P M, crown first, then connector  固定假牙
+        'Veneer', // 陶瓷貼片
+        'Post', // 差一根到牙根裡
+        'RPD(Upper, Lower)', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+        'Caries', // 有真的牙齒冠才會有 蛀牙
+        'Vitality'];
+        // 牙根蛀出球 要有牙根才可以選
         //mobility 牙齒移動程度 搖晃程度 三級 123
         //furcation 洞洞露出多寡 三級 123
         //BOP 插了進去流血多少 三個點
@@ -22993,18 +25939,17 @@ var mutations = {
         //GM 牙齦高度 看外觀 1~15 >5 red
         //PD 插進去多深 1~15 >5 red
         questions.forEach(function (question, number) {
-            //NOTE: remember to modify tableShow back to false next part 2
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
-                    tableShow: true,
+                    tableShow: false,
                     number: number + 1,
                     title: question
                 });
             } else {
                 state.questions.push({
                     teeth: teethArr(),
-                    tableShow: true,
+                    tableShow: false,
                     number: number + 1,
                     title: question
                 });
@@ -23286,6 +26231,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":8,"vuex":10}]},{},[19]);
+},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":9,"vue-router":8,"vuex":12}]},{},[23]);
 
 //# sourceMappingURL=home.js.map

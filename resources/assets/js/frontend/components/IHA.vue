@@ -46,7 +46,7 @@
                     class="btn-circle btn"
                     v-on:mouseenter="hover('I', true)"
                     v-on:mouseleave="hover('I', false)"
-                    @click="route(this.urls.I)"
+                    @click="route('/')"
                 >I</button>
                 <span v-cloak v-show="showI">TPS</span>
             </li>
@@ -78,7 +78,6 @@
 import { aboutShowToggle } from '../vuex/actions'
     export default {
         el: '.btn-group',
-        props: ['urls'],
         vuex: {
             actions: {
                 aboutShowToggle
@@ -108,7 +107,7 @@ import { aboutShowToggle } from '../vuex/actions'
                 }
             },
             route(url) {
-                window.location = url;
+                this.$router.go(url)
             }
         }
     };

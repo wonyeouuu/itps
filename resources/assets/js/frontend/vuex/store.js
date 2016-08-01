@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import VueRouter from 'vue-router'
+
+
 import _ from 'underscore'
 
-Vue.use(Vuex);
+
+Vue.use(Vuex)
+Vue.use(VueRouter)
 
 const state = {
     questions: [],
@@ -14,21 +20,16 @@ const mutations = {
         "use strict";
         state.questions = []
         let questions = [
-            'CD(Upper, Lower) 全口假牙 要上或下全部沒有才可以',
-
-            //if cd, just IR
-            'Implant 植體',
-            'Missing Teeth 缺牙',//1, 2, 3合併 if not cd
-            'Residual Roots 殘根 牙冠爛掉 剩牙根',
-
-            'Fixed Partial Denture 固定假牙',//P M, crown first, then connector
-            'Veneer 陶瓷貼片',
-            'Post 差一根到牙根裡',
-            'RPD(Upper, Lower) 活動假牙',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方
-
-            'Caries 有真的牙齒冠才會有 蛀牙',
-            'Vitality 牙根蛀出球 要有牙根才可以選',
-            //四階段 階段間有皮卡丘
+            'CD(Upper, Lower)',//全口假牙 要上或下全部沒有才可以
+            'Implant',//植體
+            'Missing Teeth',// 缺牙
+            'Residual Roots',// 殘根 牙冠爛掉 剩牙根
+            'Fixed Partial Denture',//P M, crown first, then connector  固定假牙
+            'Veneer',// 陶瓷貼片
+            'Post',// 差一根到牙根裡
+            'RPD(Upper, Lower)',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+            'Caries',// 有真的牙齒冠才會有 蛀牙
+            'Vitality',// 牙根蛀出球 要有牙根才可以選
         ]
         //mobility 牙齒移動程度 搖晃程度 三級 123
         //furcation 洞洞露出多寡 三級 123
@@ -37,18 +38,17 @@ const mutations = {
         //GM 牙齦高度 看外觀 1~15 >5 red
         //PD 插進去多深 1~15 >5 red
         questions.forEach((question, number) => {
-            //NOTE: remember to modify tableShow back to false next part 2
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
-                    tableShow: true,
+                    tableShow: false,
                     number: number + 1,
                     title: question
                 })
             } else {
                 state.questions.push({
                     teeth: teethArr(),
-                    tableShow: true,
+                    tableShow: false,
                     number: number + 1,
                     title: question
                 })

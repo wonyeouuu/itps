@@ -1,43 +1,44 @@
 <template lang="jade">
-div.export-grpah
-    div.row-top.row
-        div.row--rtl
-            img.t11(src='/imgs/nature/11.png')
-            img.t12(src='/imgs/nature/12.png')
-            img.t13(src='/imgs/nature/13.png')
-            img.t14(src='/imgs/nature/14.png')
-            img.t15(src='/imgs/nature/15.png')
-            img.t16(src='/imgs/nature/16.png')
-            img.t17(src='/imgs/nature/17.png')
-            img.t18(src='/imgs/nature/18.png')
-        div.row--ltr
-            img(src='/imgs/nature/21.png')
-            img(src='/imgs/nature/22.png')
-            img(src='/imgs/nature/23.png')
-            img(src='/imgs/nature/24.png')
-            img(src='/imgs/nature/25.png')
-            img(src='/imgs/nature/26.png')
-            img(src='/imgs/nature/27.png')
-            img(src='/imgs/nature/28.png')
-    div.row-down.row
-        div.row--rtl
-            img(src='/imgs/nature/31.png')
-            img(src='/imgs/nature/32.png')
-            img(src='/imgs/nature/33.png')
-            img(src='/imgs/nature/34.png')
-            img(src='/imgs/nature/35.png')
-            img(src='/imgs/nature/36.png')
-            img(src='/imgs/nature/37.png')
-            img(src='/imgs/nature/38.png')
-        div.row--ltr
-            img(src='/imgs/nature/41.png')
-            img(src='/imgs/nature/42.png')
-            img(src='/imgs/nature/43.png')
-            img(src='/imgs/nature/44.png')
-            img(src='/imgs/nature/45.png')
-            img(src='/imgs/nature/46.png')
-            img(src='/imgs/nature/47.png')
-            img(src='/imgs/nature/48.png')
+div.container.questionListContainer
+    div.export-graph
+        div.row-top.row
+            div.row--rtl
+                img.t11(src='/imgs/nature/11.png')
+                img.t12(src='/imgs/nature/12.png')
+                img.t13(src='/imgs/nature/13.png')
+                img.t14(src='/imgs/nature/14.png')
+                img.t15(src='/imgs/nature/15.png')
+                img.t16(src='/imgs/nature/16.png')
+                img.t17(src='/imgs/nature/17.png')
+                img.t18(src='/imgs/nature/18.png')
+            div.row--ltr
+                img(src='/imgs/nature/21.png')
+                img(src='/imgs/nature/22.png')
+                img(src='/imgs/nature/23.png')
+                img(src='/imgs/nature/24.png')
+                img(src='/imgs/nature/25.png')
+                img(src='/imgs/nature/26.png')
+                img(src='/imgs/nature/27.png')
+                img(src='/imgs/nature/28.png')
+        div.row-down.row
+            div.row--rtl
+                img(src='/imgs/nature/31.png')
+                img(src='/imgs/nature/32.png')
+                img(src='/imgs/nature/33.png')
+                img(src='/imgs/nature/34.png')
+                img(src='/imgs/nature/35.png')
+                img(src='/imgs/nature/36.png')
+                img(src='/imgs/nature/37.png')
+                img(src='/imgs/nature/38.png')
+            div.row--ltr
+                img(src='/imgs/nature/41.png')
+                img(src='/imgs/nature/42.png')
+                img(src='/imgs/nature/43.png')
+                img(src='/imgs/nature/44.png')
+                img(src='/imgs/nature/45.png')
+                img(src='/imgs/nature/46.png')
+                img(src='/imgs/nature/47.png')
+                img(src='/imgs/nature/48.png')
 </template>
 
 <script>
@@ -58,7 +59,7 @@ export default {
 
 <style lang="stylus" scoped>
 total-width = 2149
-div.export-grpah
+div.export-graph
     padding 5%
 img
     width 12.5%
