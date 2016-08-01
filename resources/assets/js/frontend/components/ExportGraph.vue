@@ -63,7 +63,7 @@ div.export-grpah
 img
     width 12.5%
     height auto
-    /*&.t11
+    &.t11
         width percentage(268 / total-width)
     &.t12
         width percentage(223 / total-width)
@@ -78,11 +78,11 @@ img
     &.t17
         width percentage(315 / total-width)
     &.t18
-        width percentage(297 / total-width)*/
+        width percentage(297 / total-width)
 div.row
     display flex
     flex-direction row
-    max-height 320px
+    max-height 250px
     div.row--rtl
         display flex
         flex-direction row-reverse

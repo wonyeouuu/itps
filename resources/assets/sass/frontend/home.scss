@@ -118,18 +118,13 @@ h1 {
     padding: 10px 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-left: 150px;
     .export-button {
         align-self: center;
-        overflow: hidden;
-        position: relative;
-        top: 10px;
         img {
             width: 200px;
             cursor: pointer;
-            position: relative;
-            top: 100px;
         }
     }
 }
@@ -138,12 +133,6 @@ div.button {
     z-index: 100;
     align-self: center;
     cursor: pointer;
-    &.button-down {
-        bottom: 5%;
-    }
-    &.button-up {
-        top: 5%;
-    }
     img {
         width: 200px;
     }
