@@ -20,9 +20,6 @@ router.map({
     '/graph': {
         name: 'graph',
         component: ExportGraph
-    },
-    '/gan': {
-        component: PeriodChart
     }
 })
 

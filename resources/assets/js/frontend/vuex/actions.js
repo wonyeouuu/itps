@@ -7,3 +7,6 @@ export const selectShowToggle4 = ({ dispatch }, teeth, newStatus) => dispatch('S
 
 
 export const aboutShowToggle = ({ dispatch }) => dispatch('ABOUT_SHOW')
+
+
+export const setGraphController = ({ dispatch }, newStatus) => dispatch('SET_GRAPH_CONTROLLER', newStatus)

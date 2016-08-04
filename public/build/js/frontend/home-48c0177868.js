@@ -25284,7 +25284,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":25,"../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],14:[function(require,module,exports){
+},{"../vuex/actions":27,"../vuex/getters":28,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".expand-transition {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  overflow: hidden;\n}\n.expand-enter,\n.expand-leave {\n  height: 0;\n  opacity: 0;\n}\ndiv#app {\n  height: 100%;\n}\n")
 'use strict';
@@ -25296,6 +25296,10 @@ Object.defineProperty(exports, "__esModule", {
 var _IHA = require('./IHA.vue');
 
 var _IHA2 = _interopRequireDefault(_IHA);
+
+var _GraphControllerList = require('./GraphControllerList.vue');
+
+var _GraphControllerList2 = _interopRequireDefault(_GraphControllerList);
 
 var _AboutPage = require('./AboutPage.vue');
 
@@ -25309,10 +25313,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     store: _store2.default,
-    components: { IHA: _IHA2.default, AboutPage: _AboutPage2.default }
+    components: { IHA: _IHA2.default, AboutPage: _AboutPage2.default, GraphControllerList: _GraphControllerList2.default }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"app\"><i-h-a></i-h-a><router-view transition=\"expand\"></router-view><about-page></about-page></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"app\"><i-h-a v-if=\"[&quot;graph&quot;].indexOf($route.name) == -1\"></i-h-a><graph-controller-list v-if=\"[&quot;graph&quot;].indexOf($route.name) != -1\"></graph-controller-list><router-view transition=\"expand\"></router-view><about-page></about-page></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25327,7 +25331,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-37d47855", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":27,"./AboutPage.vue":13,"./IHA.vue":17,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
+},{"../vuex/store":29,"./AboutPage.vue":13,"./GraphControllerList.vue":17,"./IHA.vue":19,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("div.export-graph[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  width: 12.5%;\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n")
 'use strict';
@@ -25364,7 +25368,115 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-479c7bae", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],16:[function(require,module,exports){
+},{"../vuex/getters":28,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],16:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".btn-group-container[_v-78250f3e] {\n  position: fixed;\n  top: 0;\n  padding: 10vh 0 10vh 20px;\n  height: 100vh;\n}\n.graph-control-container[_v-78250f3e] {\n  margin-bottom: 15px;\n}\n.graph-control-btn[_v-78250f3e] {\n  width: 30px;\n  height: 20px;\n  border: 2px solid #000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: pointer;\n  float: left;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e] {\n  width: 20px;\n  height: 8px;\n}\n.graph-control-btn .graph-control-btn-inside.graph-control-btn-active[_v-78250f3e] {\n  background-color: #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e]:hover {\n  background-color: #d3d3d3;\n}\n.graph-control-text[_v-78250f3e] {\n  margin-left: 40px;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getters = require('../vuex/getters');
+
+var _actions = require('../vuex/actions');
+
+exports.default = {
+    props: {
+        name: {
+            type: String
+        }
+    },
+    vuex: {
+        getters: {
+            activeGraphController: _getters.getActiveGraphController
+        },
+        actions: {
+            setGraphController: _actions.setGraphController
+        }
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"graph-control-container\" _v-78250f3e=\"\"><div @click=\"setGraphController(name)\" class=\"graph-control-btn\" _v-78250f3e=\"\"><div :class=\"{ &quot;graph-control-btn-active&quot;: activeGraphController == name }\" class=\"graph-control-btn-inside\" _v-78250f3e=\"\"></div></div><div class=\"graph-control-text\" _v-78250f3e=\"\">{{ name }} </div></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".btn-group-container[_v-78250f3e] {\n  position: fixed;\n  top: 0;\n  padding: 10vh 0 10vh 20px;\n  height: 100vh;\n}\n.graph-control-container[_v-78250f3e] {\n  margin-bottom: 15px;\n}\n.graph-control-btn[_v-78250f3e] {\n  width: 30px;\n  height: 20px;\n  border: 2px solid #000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: pointer;\n  float: left;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e] {\n  width: 20px;\n  height: 8px;\n}\n.graph-control-btn .graph-control-btn-inside.graph-control-btn-active[_v-78250f3e] {\n  background-color: #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e]:hover {\n  background-color: #d3d3d3;\n}\n.graph-control-text[_v-78250f3e] {\n  margin-left: 40px;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-78250f3e", module.exports)
+  } else {
+    hotAPI.update("_v-78250f3e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../vuex/actions":27,"../vuex/getters":28,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],17:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert(".big-container[_v-2ea1e1fc] {\n  position: fixed;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  padding-left: 20px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getters = require('../vuex/getters');
+
+var _actions = require('../vuex/actions');
+
+var _GraphController = require('./GraphController.vue');
+
+var _GraphController2 = _interopRequireDefault(_GraphController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: {
+        GraphController: _GraphController2.default
+    },
+    data: function data() {
+        return {
+            names: ['CD', //全口假牙 要上或下全部沒有才可以
+            'Implant', //植體
+            'Missing Teeth', // 缺牙
+            'Residual Roots', // 殘根 牙冠爛掉 剩牙根
+            'Veneer', // 陶瓷貼片
+            'Post', // 差一根到牙根裡
+            'RPD', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+            'Caries', // 有真的牙齒冠才會有 蛀牙
+            'Vitality']
+        };
+    },
+    // 牙根蛀出球 要有牙根才可以選
+
+    vuex: {
+        getters: {
+            activeGraphController: _getters.getActiveGraphController
+        },
+        actions: {
+            setGraphController: _actions.setGraphController
+        }
+    }
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"big-container\" _v-2ea1e1fc=\"\"><div class=\"btn-group-container\" _v-2ea1e1fc=\"\"><graph-controller :name=\"names[0]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[1]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[2]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[3]\" _v-2ea1e1fc=\"\"></graph-controller><div style=\"margin-left: 30px\" _v-2ea1e1fc=\"\"><graph-controller name=\"Crown\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller name=\"Connector\" _v-2ea1e1fc=\"\"></graph-controller></div><graph-controller :name=\"names[4]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[5]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[6]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[7]\" _v-2ea1e1fc=\"\"></graph-controller><graph-controller :name=\"names[8]\" _v-2ea1e1fc=\"\"></graph-controller></div></div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache[".big-container[_v-2ea1e1fc] {\n  position: fixed;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  padding-left: 20px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-2ea1e1fc", module.exports)
+  } else {
+    hotAPI.update("_v-2ea1e1fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../vuex/actions":27,"../vuex/getters":28,"./GraphController.vue":16,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25389,7 +25501,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0491a5ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7}],17:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":7}],19:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 6, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 11, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 14, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 23, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 28, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -25454,7 +25566,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":25,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],18:[function(require,module,exports){
+},{"../vuex/actions":27,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],20:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #800080;\n  box-shadow: none;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\n")
 'use strict';
@@ -25538,7 +25650,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-16e8d0b4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],19:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 5, stdin */\n.chart-container[_v-44cf8d24] {\n  margin-left: 20px; }\n\n/* line 9, stdin */\n.period-chart[_v-44cf8d24] {\n  width: 1000px;\n  table-layout: fixed;\n  border: none; }\n  /* line 13, stdin */\n  .period-chart td[_v-44cf8d24], .period-chart th[_v-44cf8d24] {\n    border: 2px solid black;\n    font-size: 10px;\n    text-align: center; }\n  /* line 19, stdin */\n  .period-chart tr td[_v-44cf8d24] {\n    height: 18px; }\n    /* line 21, stdin */\n    .period-chart tr td.vertical[_v-44cf8d24] {\n      font-style: italic;\n      -moz-transform: rotate(-90deg);\n      -o-transform: rotate(-90deg);\n      -webkit-transform: rotate(-90deg);\n      transform: rotate(-90deg); }\n    /* line 28, stdin */\n    .period-chart tr td.width185[_v-44cf8d24] {\n      width: 185px; }\n    /* line 31, stdin */\n    .period-chart tr td.align-center[_v-44cf8d24] {\n      text-align: center;\n      white-space: nowrap; }\n  /* line 37, stdin */\n  .period-chart tr.teeth td[_v-44cf8d24] {\n    background-color: #ffffda; }\n  /* line 42, stdin */\n  .period-chart tr.BOP-up td[_v-44cf8d24]:not(:first-child) {\n    background-color: #ffdddd; }\n  /* line 47, stdin */\n  .period-chart tr.BOP td[_v-44cf8d24] {\n    background-color: #ffdddd; }\n  /* line 52, stdin */\n  .period-chart tr.plaque td[_v-44cf8d24] {\n    background-color: #eeeeff; }\n\n/* line 59, stdin */\n.border-none[_v-44cf8d24] {\n  border: none !important; }\n\n/* line 63, stdin */\nh1[_v-44cf8d24] {\n  font-size: 20px;\n  margin: 0 0 20px 0;\n  font-weight: 200; }\n")
 'use strict';
@@ -25565,7 +25677,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-44cf8d24", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],20:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],22:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 61, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 65, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-4ac01936] {\n        visibility: hidden; }\n")
 'use strict';
@@ -25604,7 +25716,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":25,"../../vuex/getters":26,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],21:[function(require,module,exports){
+},{"../../vuex/actions":27,"../../vuex/getters":28,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],23:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 10px;\n      margin-top: 5px; }\n\n/* line 17, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 25, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 29, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 33, stdin */\n.table-normal[_v-249c332b] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 40, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 42, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 48, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 53, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n      /* line 55, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 65, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n        /* line 68, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          z-index: 100; }\n        /* line 74, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-p-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 78, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m[_v-249c332b] {\n          background-color: blue;\n          color: white;\n          position: relative;\n          z-index: 100; }\n        /* line 84, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-m-selected[_v-249c332b] {\n          background-color: blue;\n          color: white; }\n        /* line 88, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle-x[_v-249c332b] {\n          background-color: white;\n          color: black;\n          border: solid;\n          position: relative;\n          z-index: 100; }\n        /* line 95, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle--top[_v-249c332b] {\n          top: -69px;\n          left: -2px; }\n        /* line 99, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle.circle--bottom[_v-249c332b] {\n          top: -49px;\n          left: -2px; }\n      /* line 104, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 108, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n    /* line 112, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 120, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 129, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 138, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 142, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n\n/* line 153, stdin */\n.bounce-transition[_v-249c332b] {\n  display: inline-block; }\n\n/* line 156, stdin */\n.bounce-enter[_v-249c332b] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 159, stdin */\n.bounce-leave[_v-249c332b] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -25654,7 +25766,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":25,"../../vuex/getters":26,"underscore":6,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],22:[function(require,module,exports){
+},{"../../vuex/actions":27,"../../vuex/getters":28,"underscore":6,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25716,7 +25828,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":25,"../../vuex/getters":26,"../PageButtons.vue":18,"./Question.vue":20,"./QuestionFour.vue":21,"vue":9,"vue-hot-reload-api":7}],23:[function(require,module,exports){
+},{"../../vuex/actions":27,"../../vuex/getters":28,"../PageButtons.vue":20,"./Question.vue":22,"./QuestionFour.vue":23,"vue":9,"vue-hot-reload-api":7}],25:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -25770,7 +25882,7 @@ _router2.default.start(_App2.default, '#app');
 //     })
 // })
 
-},{"./components/App.vue":14,"./router":24,"./vuex/store":27,"jquery":4,"vue":9,"vuex-router-sync":11}],24:[function(require,module,exports){
+},{"./components/App.vue":14,"./router":26,"./vuex/store":29,"jquery":4,"vue":9,"vuex-router-sync":11}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25817,15 +25929,12 @@ router.map({
     '/graph': {
         name: 'graph',
         component: _ExportGraph2.default
-    },
-    '/gan': {
-        component: _PeriodChart2.default
     }
 });
 
 exports.default = router;
 
-},{"./components/ExportGraph.vue":15,"./components/HomePage.vue":16,"./components/questionList/PeriodChart.vue":19,"./components/questionList/QuestionList.vue":22,"vue":9,"vue-router":8}],25:[function(require,module,exports){
+},{"./components/ExportGraph.vue":15,"./components/HomePage.vue":18,"./components/questionList/PeriodChart.vue":21,"./components/questionList/QuestionList.vue":24,"vue":9,"vue-router":8}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25861,7 +25970,12 @@ var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) 
   return dispatch('ABOUT_SHOW');
 };
 
-},{}],26:[function(require,module,exports){
+var setGraphController = exports.setGraphController = function setGraphController(_ref8, newStatus) {
+  var dispatch = _ref8.dispatch;
+  return dispatch('SET_GRAPH_CONTROLLER', newStatus);
+};
+
+},{}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25877,9 +25991,13 @@ var getQuestions = exports.getQuestions = function getQuestions(state) {
 var getAboutShow = exports.getAboutShow = function getAboutShow(state) {
   return state.aboutShow;
 };
+
+var getActiveGraphController = exports.getActiveGraphController = function getActiveGraphController(state) {
+  return state.activeGraphController;
+};
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25913,7 +26031,8 @@ _vue2.default.use(_vueRouter2.default);
 
 var state = {
     questions: [],
-    aboutShow: false
+    aboutShow: false,
+    activeGraphController: ""
 };
 
 var mutations = {
@@ -25955,6 +26074,9 @@ var mutations = {
                 });
             }
         });
+    },
+    SET_GRAPH_CONTROLLER: function SET_GRAPH_CONTROLLER(state, newStatus) {
+        state.activeGraphController = newStatus;
     },
     TABLESHOW_TOGGLE: function TABLESHOW_TOGGLE(state, number) {
         "use strict";
@@ -26231,6 +26353,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":9,"vue-router":8,"vuex":12}]},{},[23]);
+},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":9,"vue-router":8,"vuex":12}]},{},[25]);
 
 //# sourceMappingURL=home.js.map

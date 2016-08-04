@@ -12,7 +12,8 @@ Vue.use(VueRouter)
 
 const state = {
     questions: [],
-    aboutShow: false
+    aboutShow: false,
+    activeGraphController: ""
 };
 
 const mutations = {
@@ -54,6 +55,10 @@ const mutations = {
                 })
             }
         })
+    },
+
+    SET_GRAPH_CONTROLLER (state, newStatus) {
+        state.activeGraphController = newStatus
     },
 
     TABLESHOW_TOGGLE (state, number) {
