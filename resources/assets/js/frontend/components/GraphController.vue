@@ -17,6 +17,8 @@
     justify-content center
     cursor pointer
     float left
+    &.graph-control-btn--dashed
+        border 2px dashed black
     .graph-control-btn-inside
         width 20px
         height 8px
@@ -31,9 +33,9 @@
 
 <template lang='jade'>
 div.graph-control-container
-    div.graph-control-btn(@click='setGraphController(name)')
+    div.graph-control-btn(@click='setGraphController(name, dashed)', :class='{ "graph-control-btn--dashed": dashed }')
         div.graph-control-btn-inside(:class='{ "graph-control-btn-active": activeGraphController == name }')
-    div.graph-control-text {{ name }} 
+    div.graph-control-text {{ name }}
 </template>
 
 <script>
@@ -44,6 +46,12 @@ export default {
     props: {
         name: {
             type: String
+        },
+        dashed: {
+            type: Boolean,
+            default() {
+                return false
+            }
         }
     },
     vuex: {

@@ -57,7 +57,8 @@ const mutations = {
         })
     },
 
-    SET_GRAPH_CONTROLLER (state, newStatus) {
+    SET_GRAPH_CONTROLLER (state, newStatus, dashed) {
+        if (dashed) return 
         state.activeGraphController = newStatus
     },
 
