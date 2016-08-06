@@ -80,32 +80,31 @@ total-width-2 = 2145
 total-width-3 = 1995
 total-width-4 = 1995
 .control-btn-up-text
-    font-size 40px
-    line-height 25px
+    font-size 30px
+    line-height 20px
+    font-weight bold
     letter-spacing 8px
     text-align right
-    text-shadow -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
-    color white
 
 .control-btn-up
     position fixed
     top 20px
-    right 20px
+    right 40px
     height 100px
     display flex
     flex-direction row
     align-items center
     img.control-btn-up-logo
-        width 80px
-        margin-right 20px
+        width 60px
+        margin-right 15px
     .control-btn-up-block
         display flex
         align-items center
         img
             cursor pointer
-            width 50px
+            width 35px
     .vitality
-        margin-right 20px
+        margin-right 15px
 
 div.export-graph
     padding 5%
@@ -196,9 +195,9 @@ div.row
     font-weight bold
     cursor pointer
     &.control-btn-down--previous
-        left 20px
+        left 40px
     &.control-btn-down--export
-        right 20px
+        right 40px
     &:hover
         text-shadow -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
         color white

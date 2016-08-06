@@ -3,7 +3,7 @@
     position fixed
     display flex
     height 100vh
-    padding-left 20px
+    padding-left 40px
     flex-direction column
     justify-content center
 
