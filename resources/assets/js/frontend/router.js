@@ -20,7 +20,7 @@ router.map({
     '/graph': {
         name: 'graph',
         component: ExportGraph
-    }
+    },
 })
 
 export default router

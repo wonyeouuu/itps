@@ -1,0 +1,203 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-worm-gan00 {
+  background-image: url(../img/sprite.png);
+  background-position: -617px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan01 {
+  background-image: url(../img/sprite.png);
+  background-position: -617px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan02 {
+  background-image: url(../img/sprite.png);
+  background-position: -1234px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan03 {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan04 {
+  background-image: url(../img/sprite.png);
+  background-position: -617px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan05 {
+  background-image: url(../img/sprite.png);
+  background-position: -1234px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan06 {
+  background-image: url(../img/sprite.png);
+  background-position: -1851px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan07 {
+  background-image: url(../img/sprite.png);
+  background-position: -1851px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan08 {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan09 {
+  background-image: url(../img/sprite.png);
+  background-position: -617px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan10 {
+  background-image: url(../img/sprite.png);
+  background-position: -1234px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan11 {
+  background-image: url(../img/sprite.png);
+  background-position: -1851px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan12 {
+  background-image: url(../img/sprite.png);
+  background-position: -2468px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan13 {
+  background-image: url(../img/sprite.png);
+  background-position: -2468px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan14 {
+  background-image: url(../img/sprite.png);
+  background-position: -2468px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan15 {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan16 {
+  background-image: url(../img/sprite.png);
+  background-position: 0px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan17 {
+  background-image: url(../img/sprite.png);
+  background-position: -1234px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan18 {
+  background-image: url(../img/sprite.png);
+  background-position: -1851px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan19 {
+  background-image: url(../img/sprite.png);
+  background-position: -2468px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan20 {
+  background-image: url(../img/sprite.png);
+  background-position: -3085px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan21 {
+  background-image: url(../img/sprite.png);
+  background-position: -3085px -700px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan22 {
+  background-image: url(../img/sprite.png);
+  background-position: -3085px -1400px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan23 {
+  background-image: url(../img/sprite.png);
+  background-position: -3085px -2100px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan24 {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan25 {
+  background-image: url(../img/sprite.png);
+  background-position: -617px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan26 {
+  background-image: url(../img/sprite.png);
+  background-position: -1234px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan27 {
+  background-image: url(../img/sprite.png);
+  background-position: -1851px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan28 {
+  background-image: url(../img/sprite.png);
+  background-position: -2468px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan29 {
+  background-image: url(../img/sprite.png);
+  background-position: -3085px -2800px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan30 {
+  background-image: url(../img/sprite.png);
+  background-position: -3702px 0px;
+  width: 617px;
+  height: 700px;
+}
+.icon-worm-gan31 {
+  background-image: url(../img/sprite.png);
+  background-position: -3702px -700px;
+  width: 617px;
+  height: 700px;
+}
