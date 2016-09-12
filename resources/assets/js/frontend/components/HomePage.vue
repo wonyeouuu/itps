@@ -2,7 +2,8 @@
 div.main-container.container-fluid
     div.row.home-top-row
         div.col-xs-6.home-logo-container
-            img.home-logo(:src='worm[animateProgress]', @click='animate()')
+            //- img.home-logo(:src='worm[animateProgress]', @click='animate()')
+            img.home-logo(v-for='(progress, item) in worm', @click='animate()', v-show='animateProgress === progress', :src='item')
         div.col-xs-6.home-text-container
             div.home-text-wrap
                 h1 Interactive
