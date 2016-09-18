@@ -44,6 +44,7 @@ export default {
             ]
             const wormDir = wormCases[randomNum]
             return [
+                '/imgs/logo.jpg',
                 `/imgs/worm/${wormDir}/worm_first/1.jpg`,
                 `/imgs/worm/${wormDir}/worm_first/2.jpg`,
                 `/imgs/worm/${wormDir}/worm_first/3.jpg`,

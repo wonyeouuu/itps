@@ -25510,7 +25510,7 @@ exports.default = {
             var randomNum = Math.floor(Math.random() * 4);
             var wormCases = ['worm_1', 'worm_2', 'worm_3', 'worm_big'];
             var wormDir = wormCases[randomNum];
-            return ['/imgs/worm/' + wormDir + '/worm_first/1.jpg', '/imgs/worm/' + wormDir + '/worm_first/2.jpg', '/imgs/worm/' + wormDir + '/worm_first/3.jpg', '/imgs/worm/' + wormDir + '/worm_first/4.jpg', '/imgs/worm/' + wormDir + '/worm_first/5.jpg', '/imgs/worm/' + wormDir + '/worm_second.gif'];
+            return ['/imgs/logo.jpg', '/imgs/worm/' + wormDir + '/worm_first/1.jpg', '/imgs/worm/' + wormDir + '/worm_first/2.jpg', '/imgs/worm/' + wormDir + '/worm_first/3.jpg', '/imgs/worm/' + wormDir + '/worm_first/4.jpg', '/imgs/worm/' + wormDir + '/worm_first/5.jpg', '/imgs/worm/' + wormDir + '/worm_second.gif'];
         }
     }
 };
