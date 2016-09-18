@@ -256,9 +256,9 @@
                 </div>
             </div>
             <div class="row-bottom teeth-row">
-                <div class="row-bottom-left col-xs-6 rtl">
+                <div class="row-bottom-right col-xs-6 rtl">
                     <div
-                        v-for="tooth in data.a.slice(16,24)"
+                        v-for="tooth in data.a.slice(24,32)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
@@ -284,9 +284,9 @@
                         >X</div>
                     </div>
                 </div>
-                <div class="row-bottom-right col-xs-6 ltr">
+                <div class="row-bottom-left col-xs-6 ltr">
                     <div
-                        v-for="tooth in data.a.slice(24,32)"
+                        v-for="tooth in data.a.slice(16,24)"
                         class="circle"
                         v-bind:class="{ 'circle-p-selected': tooth.selected == 'P', 'circle-m-selected': tooth.selected == 'M', 'circle--invisible': !tooth.selectable }"
                         @click="selectShowToggle4(tooth.id, !(tooth.selectShow.p || tooth.selectShow.m))"
@@ -338,7 +338,7 @@
             <div class="row-bottom teeth-row">
                 <div class="col-xs-12">
                     <div
-                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38'].reverse()"
+                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']"
                     >
                         {{ teeth }}
                     </div>

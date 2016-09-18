@@ -104,17 +104,17 @@
                 </div>
             </div>
             <div class="row-bottom teeth-row">
-                <div class="row-bottom-left col-xs-6 rtl">
+                <div class="row-bottom-right col-xs-6 rtl">
                     <div
-                        v-for="tooth in teeth.slice(16,24)"
+                        v-for="tooth in teeth.slice(24,32)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"
                     >{{ tooth.id }}</div>
                 </div>
-                <div class="row-bottom-right col-xs-6 ltr">
+                <div class="row-bottom-left col-xs-6 ltr">
                     <div
-                        v-for="tooth in teeth.slice(24,32)"
+                        v-for="tooth in teeth.slice(16,24)"
                         class="circle"
                         v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
                         @click="teethToggle(number, tooth.id, !tooth.selected)"

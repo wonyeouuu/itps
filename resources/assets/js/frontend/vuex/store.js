@@ -58,7 +58,7 @@ const mutations = {
     },
 
     SET_GRAPH_CONTROLLER (state, newStatus, dashed) {
-        if (dashed) return 
+        if (dashed) return
         state.activeGraphController = newStatus
     },
 
@@ -87,9 +87,7 @@ const mutations = {
                 state.questions[questionIndex].teeth[teethIndex].selected = newStatus
             }
         }
-
         resetPermission(state)
-        // state.questions[questionIndex].teeth[teethIndex].selected = state.questions[questionIndex].teeth[teethIndex].selectable ? newStatus : false
     },
 
     TEETH_TOGGLE4 (state, teeth, newStatus) {
@@ -121,7 +119,6 @@ const mutations = {
         } else {
             state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: true} : { p: false, m: false})
         }
-        // state.questions[4].teeth.a[teethIndex].selectShow = newStatus
     },
 
     ABOUT_SHOW(state, bool) {
@@ -337,8 +334,7 @@ function teethArr4() {
 }
 
 function connectors() {
-    let connectors = [35, 33, 31, 29, 27, 25, 23, 32, 43, 45, 47, 49, 51, 53, 55, 95, 93, 91, 89, 87, 85, 83, 72, 63, 65, 67, 69, 71, 73, 75];
-    return connectors
+    return connectorsSplit().map(connectorArr => connectorArr.reduce((carry, connector) => carry + connector))
 }
 
 function connectorsSplit() {
@@ -358,21 +354,21 @@ function connectorsSplit() {
         [25, 26],
         [26, 27],
         [27, 28],
-        [48, 47],
-        [47, 46],
-        [46, 45],
-        [45, 44],
-        [44, 43],
-        [43, 42],
-        [42, 41],
-        [41, 31],
-        [31, 32],
-        [32, 33],
-        [33, 34],
-        [34, 35],
-        [35, 36],
+        [37, 38],
         [36, 37],
-        [37, 38]
+        [35, 36],
+        [34, 35],
+        [33, 34],
+        [32, 33],
+        [31, 32],
+        [41, 31],
+        [42, 41],
+        [43, 42],
+        [44, 43],
+        [45, 44],
+        [46, 45],
+        [47, 46],
+        [48, 47]
     ]
 }
 
