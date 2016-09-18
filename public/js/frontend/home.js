@@ -25491,7 +25491,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     data: function data() {
         return {
-            worm: ['/imgs/itp_Logo.png', '/imgs/first/00.png', '/imgs/first/01.png', '/imgs/first/02.png', '/imgs/first/03.png', '/imgs/first/04.png', '/imgs/first/05.png', '/imgs/first/06.png', '/imgs/first/07.png', '/imgs/first/08.png', '/imgs/first/09.png', '/imgs/first/10.png', '/imgs/first/11.png', '/imgs/first/12.png', '/imgs/first/13.png', '/imgs/first/14.png', '/imgs/first/15.png', '/imgs/first/16.png', '/imgs/first/17.png', '/imgs/first/18.png', '/imgs/first/19.png', '/imgs/first/20.png', '/imgs/first/21.png', '/imgs/first/22.png', '/imgs/first/23.png', '/imgs/first/24.png', '/imgs/first/25.png', '/imgs/first/26.png', '/imgs/first/27.png', '/imgs/first/28.png', '/imgs/first/29.png', '/imgs/first/30.png', '/imgs/first/31.png', '/imgs/second.gif'],
+            worm: this.randomWorm(),
             animateProgress: 0
         };
     },
@@ -25505,11 +25505,17 @@ exports.default = {
                 return false;
             }
             this.animateProgress += 1;
+        },
+        randomWorm: function randomWorm() {
+            var randomNum = Math.floor(Math.random() * 4);
+            var wormCases = ['worm_1', 'worm_2', 'worm_3', 'worm_big'];
+            var wormDir = wormCases[randomNum];
+            return ['/imgs/worm/' + wormDir + '/worm_first/1.jpg', '/imgs/worm/' + wormDir + '/worm_first/2.jpg', '/imgs/worm/' + wormDir + '/worm_first/3.jpg', '/imgs/worm/' + wormDir + '/worm_first/4.jpg', '/imgs/worm/' + wormDir + '/worm_first/5.jpg', '/imgs/worm/' + wormDir + '/worm_second.gif'];
         }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"main-container container-fluid\" _v-0491a5ec=\"\"><div class=\"row home-top-row\" _v-0491a5ec=\"\"><div class=\"col-xs-6 home-logo-container\" _v-0491a5ec=\"\"><img v-for=\"(progress, item) in worm\" @click=\"animate()\" v-show=\"animateProgress === progress\" :src=\"item\" class=\"home-logo\" _v-0491a5ec=\"\"></div><div class=\"col-xs-6 home-text-container\" _v-0491a5ec=\"\"><div class=\"home-text-wrap\" _v-0491a5ec=\"\"><h1 _v-0491a5ec=\"\">Interactive</h1><h1 _v-0491a5ec=\"\">Tx.</h1><h1 _v-0491a5ec=\"\">Planning</h1><h1 _v-0491a5ec=\"\">System</h1></div></div></div><div class=\"row home-bottom-row\" _v-0491a5ec=\"\"><div @click=\"goto({ name: &quot;questionList&quot;, params: { questionPhase: 1 } })\" class=\"col-xs-6 home-grid text-base\" _v-0491a5ec=\"\"><div _v-0491a5ec=\"\"><h1 _v-0491a5ec=\"\">Text-Based</h1><h1 _v-0491a5ec=\"\">User</h1><h1 _v-0491a5ec=\"\">Interface</h1></div></div><div class=\"col-xs-6 home-tooth\" _v-0491a5ec=\"\"><div _v-0491a5ec=\"\"><h1 _v-0491a5ec=\"\">Graphical</h1><h1 _v-0491a5ec=\"\">User</h1><h1 _v-0491a5ec=\"\">Interface</h1></div></div></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"main-container container-fluid\" _v-0491a5ec=\"\"><div class=\"row home-top-row\" _v-0491a5ec=\"\"><div class=\"col-xs-12 home-logo-container\" _v-0491a5ec=\"\"><img v-for=\"(progress, item) in worm\" @click=\"animate()\" v-show=\"animateProgress === progress\" :src=\"item\" class=\"home-logo\" _v-0491a5ec=\"\"></div></div><div class=\"row home-bottom-row\" _v-0491a5ec=\"\"><div @click=\"goto({ name: &quot;questionList&quot;, params: { questionPhase: 1 } })\" class=\"col-xs-6 home-grid text-base\" _v-0491a5ec=\"\"><div _v-0491a5ec=\"\"><h1 _v-0491a5ec=\"\">Text-Based</h1><h1 _v-0491a5ec=\"\">User</h1><h1 _v-0491a5ec=\"\">Interface</h1></div></div><div class=\"col-xs-6 home-tooth\" _v-0491a5ec=\"\"><div _v-0491a5ec=\"\"><h1 _v-0491a5ec=\"\">Graphical</h1><h1 _v-0491a5ec=\"\">User</h1><h1 _v-0491a5ec=\"\">Interface</h1></div></div></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
