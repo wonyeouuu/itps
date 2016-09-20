@@ -1,8 +1,6 @@
 <style lang="stylus" scoped>
 @import './transitions/flip.styl'
 introColor = red
-hr.split
-    margin-bottom 120px
 hr.member-intro-split
     margin 50px 0
 div#about-container
@@ -12,20 +10,21 @@ div#about-container
     height 100%
     width 100%
     z-index 20000
-    background rgba(100, 100, 100, 0.5)
+    background rgba(82, 126, 104, 0.6)
     div#about-content-container
         border-radius 10px 0 0 0
         padding 0 20px
-        margin 5% auto 0 auto
+        margin 6vh auto 0 auto
         width 800px
         height 80%
         background white
         overflow-y scroll
         div#aboutShow
+            position fixed
+            top 6vh
+            left calc(50% - 400px)
             width 20px
             height 20px
-            position relative
-            left -20px
             background url('/imgs/about_close.png')
             background-size cover
             cursor pointer
@@ -64,7 +63,12 @@ div#about-container
                     font-size 40px
                     position relative
                     top -55px
-        div.member-intro
+        div#about-main
+            img
+                position relative
+                top -60px
+                width 100%
+        /*div.member-intro
             div.member-intro-photo
                 color introColor
                 h1
@@ -113,7 +117,7 @@ div#about-container
                 height 300px
                 margin 0 auto
                 background url('/imgs/about_us_photo3.png')
-                background-size 100% 100%
+                background-size 100% 100%*/
 
 
 </style>
@@ -131,54 +135,52 @@ div#about-container(v-show='aboutShow', transition='flip')
             |or know more about<br>
             |us please feel free to<br>
             |drop in.<br><br>
-            |Team IPTS
+            |Team ITPS
         div#mail-container
             div#mail-image
             div#mail-intro
                 |dentITPS<br>
                 |<span class='mail-intro-big'>@</span><br>
                 |<span class='mail-intro-small'>gmail.com</span>
-        hr.split
-        div.member-intro
-            div.member-intro-photo#member-intro-photo1
-                h1 Po-yen chen
-                p 陳柏諺
-            div.member-intro-text
-                h1 Leader.
-                p
-                    |born in 1990, live in Taipei,<br>
-                    |Taiwan.<br>
-                    |Dentist, Founder of we<br>
-                    |design company.<br><br>
-                    |Striving for the entry of a<br>
-                    |M.S. degree in orthodontics<br>
-                    |in the U.S.<br>
-                    |Please let me know if<br>
-                    |there's one seat left.<br><br>
-                    |eric79523@gmail.com
-            hr.member-intro-split
-            div.member-intro-photo#member-intro-photo2
-                h1 Sheng-chia huang
-                p 黃勝家
-            div.member-intro-text.align-left
-                h1 Graphical Designer.
-                p
-                    |Sheng-chia huang, born in<br>
-                    |1990, live in London,<br>
-                    |England.<br>
-                    |Freelance Graphical<br>
-                    |designer. Students from<br>
-                    |CSM<br><br>
-                    |XXxxxxXXXXXX<br>
-                    |XXxxxxXXXXXX<br>
-                    |XXxxxxXXXXXX<br>
-                    |XXxxxxXXXXXX<br><br>
-                    |j173262000@gmail.com
-            hr.member-intro-split
-            div.member-intro-photo#member-intro-photo3
-
-
-
+        div#about-main
+            img(src='/imgs/about_us.jpg')
+        //- div.member-intro
+        //-     div.member-intro-photo#member-intro-photo1
+        //-         h1 Po-yen chen
+        //-         p 陳柏諺
+        //-     div.member-intro-text
+        //-         h1 Leader.
+        //-         p
+        //-             |born in 1990, live in Taipei,<br>
+        //-             |Taiwan.<br>
+        //-             |Dentist, Founder of we<br>
+        //-             |design company.<br><br>
+        //-             |Striving for the entry of a<br>
+        //-             |M.S. degree in orthodontics<br>
+        //-             |in the U.S.<br>
+        //-             |Please let me know if<br>
+        //-             |there's one seat left.<br><br>
+        //-             |eric79523@gmail.com
+        //-     hr.member-intro-split
+        //-     div.member-intro-photo#member-intro-photo2
+        //-         h1 Sheng-chia huang
+        //-         p 黃勝家
+        //-     div.member-intro-text.align-left
+        //-         h1 Graphical Designer.
+        //-         p
+        //-             |Sheng-chia huang, born in<br>
+        //-             |1990, live in London,<br>
+        //-             |England.<br>
+        //-             |Freelance Graphical<br>
+        //-             |designer. Students from<br>
+        //-             |CSM<br><br>
+        //-             |XXxxxxXXXXXX<br>
+        //-             |XXxxxxXXXXXX<br>
+        //-             |XXxxxxXXXXXX<br>
+        //-             |XXxxxxXXXXXX<br><br>
+        //-             |j173262000@gmail.com
+        //-     hr.member-intro-split
+        //-     div.member-intro-photo#member-intro-photo3
 </template>
 
 <script>

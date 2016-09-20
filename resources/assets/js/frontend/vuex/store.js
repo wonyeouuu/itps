@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import VueRouter from 'vue-router'
-
-
 import _ from 'underscore'
-
 
 Vue.use(Vuex)
 Vue.use(VueRouter)

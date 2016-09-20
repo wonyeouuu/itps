@@ -13,6 +13,62 @@
             }
         }
     }
+    .circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px dotted black;
+        text-align: center;
+        line-height: 36px;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($teethSelected, 10%);
+        }
+        &.circle-p {
+            background-color: blue;
+            color: white;
+            position: relative;
+            z-index: 100;
+        }
+        &.circle-p-selected {
+            background-color: blue;
+            color: white;
+        }
+        &.circle-m {
+            background-color: blue;
+            color: white;
+            position: relative;
+            z-index: 100;
+        }
+        &.circle-m-selected {
+            background-color: blue;
+            color: white;
+        }
+        &.circle-x {
+            background-color: white;
+            color: black;
+            border: solid;
+            position: relative;
+            z-index: 100;
+        }
+        &.circle--top {
+            top: -69px;
+            left: -2px;
+        }
+        &.circle--bottom {
+            top: -49px;
+            left: -2px;
+        }
+    }
+    .circle--selected {
+        background-color: $teethSelected;
+        border: 2px solid black;
+    }
+    .circle--invisible {
+        visibility: hidden;
+    }
 
     .table-trigger {
         display: inline-block;
@@ -52,62 +108,6 @@
             }
             .col-xs-6 {
                 height: 100%;
-                .circle {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 20px;
-                    border: 2px dotted black;
-                    text-align: center;
-                    line-height: 36px;
-                    font-size: 20px;
-                    font-weight: 700;
-                    cursor: pointer;
-                    &:hover {
-                        background-color: lighten($teethSelected, 10%);
-                    }
-                    &.circle-p {
-                        background-color: blue;
-                        color: white;
-                        position: relative;
-                        z-index: 100;
-                    }
-                    &.circle-p-selected {
-                        background-color: blue;
-                        color: white;
-                    }
-                    &.circle-m {
-                        background-color: blue;
-                        color: white;
-                        position: relative;
-                        z-index: 100;
-                    }
-                    &.circle-m-selected {
-                        background-color: blue;
-                        color: white;
-                    }
-                    &.circle-x {
-                        background-color: white;
-                        color: black;
-                        border: solid;
-                        position: relative;
-                        z-index: 100;
-                    }
-                    &.circle--top {
-                        top: -69px;
-                        left: -2px;
-                    }
-                    &.circle--bottom {
-                        top: -49px;
-                        left: -2px;
-                    }
-                }
-                .circle--selected {
-                    background-color: $teethSelected;
-                    border: 2px solid black;
-                }
-                .circle--invisible {
-                    visibility: hidden;
-                }
             }
             .col-xs-12 {
                 height: 50%;
