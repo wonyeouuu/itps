@@ -25,6 +25,7 @@ div#about-container
             left calc(50% - 390px)
             width 30px
             height 30px
+            z-index 99999
             background url('/imgs/about_close.png')
             background-size cover
             cursor pointer
