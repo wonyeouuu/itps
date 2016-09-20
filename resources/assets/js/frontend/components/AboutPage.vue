@@ -63,11 +63,11 @@ div#about-container
                 span.mail-intro-small
                     font-size 40px
                     position relative
-                    top -125px
+                    top -140px
         div#about-main
             img
                 position relative
-                top -150px
+                top -165px
                 width 100%
         /*div.member-intro
             div.member-intro-photo
