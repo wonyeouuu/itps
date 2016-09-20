@@ -21,8 +21,8 @@ div#about-container
         overflow-y scroll
         div#aboutShow
             position fixed
-            top 12vh
-            left calc(50% - 400px)
+            top calc(12vh + 10px)
+            left calc(50% - 390px)
             width 20px
             height 20px
             background url('/imgs/about_close.png')
