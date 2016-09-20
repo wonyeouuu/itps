@@ -52,6 +52,8 @@ div#about-container
                     background url('/imgs/mail-image-activated.png')
                     background-size cover
             div#mail-intro
+                position relative
+                top -20px
                 font-family 'GillSans'
                 padding-left 10px
                 font-size 100px
@@ -67,7 +69,7 @@ div#about-container
         div#about-main
             img
                 position relative
-                top -165px
+                top -185px
                 width 100%
         /*div.member-intro
             div.member-intro-photo
