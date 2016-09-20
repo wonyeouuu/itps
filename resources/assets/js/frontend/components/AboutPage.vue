@@ -14,14 +14,14 @@ div#about-container
     div#about-content-container
         border-radius 10px 0 0 0
         padding 0 20px
-        margin 6vh auto 0 auto
+        margin 12vh auto 0 auto
         width 800px
-        height 80%
+        height 76vh
         background white
         overflow-y scroll
         div#aboutShow
             position fixed
-            top 6vh
+            top 12vh
             left calc(50% - 400px)
             width 20px
             height 20px

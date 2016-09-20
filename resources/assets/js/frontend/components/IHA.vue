@@ -1,5 +1,6 @@
 <style lang="scss" scoped>
     .btn-group-container {
+        font-family: 'Athelas';
         position: fixed;
         left: 15%;
         top: 0;
