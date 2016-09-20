@@ -13,7 +13,7 @@ div.pop-container
     background rgba(82, 126, 104, 0.6)
     div.pop-content-container
         border-radius 10px 0 0 0
-        padding 0 20px
+        padding 0
         margin 12vh auto 0 auto
         width 800px
         height 76vh
@@ -34,7 +34,6 @@ div.pop-container
                 background-size cover
         div.pop-main
             img
-                margin-top 40px
                 width 100%
 </style>
 
