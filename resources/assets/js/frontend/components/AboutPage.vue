@@ -70,7 +70,7 @@ div#about-container
         div#about-main
             img
                 position relative
-                top -185px
+                top -90px
                 width 100%
         /*div.member-intro
             div.member-intro-photo

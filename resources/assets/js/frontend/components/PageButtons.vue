@@ -81,7 +81,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-button-unpressed = rgb(128, 22, 74)
+button-unpressed = black
+button-hovered = rgb(128, 22, 74)
 button-text-color = rgb(62, 87, 159)
 button-radius = 20px
 div.page-button
@@ -90,7 +91,9 @@ div.page-button
     border-radius button-radius
     background-color button-unpressed
     position relative
-    box-shadow 2px 2px 4px gray
+    box-shadow 8px 8px 15px gray
+    &:hover
+        background-color button-hovered
     &.page-button--up
         left 20px
         bottom 5px
