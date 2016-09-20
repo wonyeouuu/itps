@@ -56,7 +56,7 @@
                     class="btn-circle btn"
                     v-on:mouseenter="hover('H', true)"
                     v-on:mouseleave="hover('H', false)"
-                    @click="route(this.urls.H)"
+                    @click='howToUseShowToggle()'
                 >H</button>
                 <span v-cloak v-show="showH">OW TO USE?</span>
             </li>
@@ -76,12 +76,13 @@
 
 
 <script>
-import { aboutShowToggle } from '../vuex/actions'
+import { aboutShowToggle, howToUseShowToggle } from '../vuex/actions'
     export default {
         el: '.btn-group',
         vuex: {
             actions: {
-                aboutShowToggle
+                aboutShowToggle,
+                howToUseShowToggle
             }
         },
         data() {

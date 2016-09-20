@@ -9,6 +9,7 @@ Vue.use(VueRouter)
 const state = {
     questions: [],
     aboutShow: false,
+    howToUseShow: false,
     activeGraphController: ""
 };
 
@@ -116,9 +117,11 @@ const mutations = {
             state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: true} : { p: false, m: false})
         }
     },
-
-    ABOUT_SHOW(state, bool) {
+    ABOUT_SHOW(state) {
         state.aboutShow = !state.aboutShow
+    },
+    HOW_TO_USE_SHOW(state) {
+        state.howToUseShow = !state.howToUseShow
     }
 };
 
