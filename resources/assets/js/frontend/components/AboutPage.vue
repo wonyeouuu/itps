@@ -23,8 +23,8 @@ div#about-container
             position fixed
             top calc(12vh + 10px)
             left calc(50% - 390px)
-            width 40px
-            height 40px
+            width 30px
+            height 30px
             background url('/imgs/about_close.png')
             background-size cover
             cursor pointer
