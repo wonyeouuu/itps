@@ -94,6 +94,7 @@ div.page-button
     box-shadow 8px 8px 15px gray
     &:hover
         background-color button-hovered
+        box-shadow 0px 0px 0px
     &.page-button--up
         left 20px
         bottom 5px

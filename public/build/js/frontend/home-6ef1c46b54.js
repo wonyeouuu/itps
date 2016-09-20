@@ -25643,7 +25643,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/actions":28,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],21:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n  box-shadow: 0px 0px 0px;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25729,7 +25729,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n"] = false
+    __vueify_insert__.cache["div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n  box-shadow: 0px 0px 0px;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
