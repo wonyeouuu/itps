@@ -41,6 +41,7 @@ div#about-container
             position relative
             top -200px
         div#mail-container
+            padding-left 110px
             div#mail-image
                 width 300px
                 height 220px
@@ -53,21 +54,20 @@ div#about-container
             div#mail-intro
                 font-family 'GillSans'
                 padding-left 10px
-                font-size 60px
-                letter-spacing 10px
-                line-height 1.4
-                font-weight bold
+                font-size 100px
+                font-weight 600
                 span.mail-intro-big
+                    position relative
+                    top -40px
                     font-size 80px
-                    line-height 0.6
                 span.mail-intro-small
                     font-size 40px
                     position relative
-                    top -35px
+                    top -125px
         div#about-main
             img
                 position relative
-                top -45px
+                top -150px
                 width 100%
         /*div.member-intro
             div.member-intro-photo
