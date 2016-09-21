@@ -71,6 +71,12 @@ export default {
                     }
                 },
                 4: {
+                    name: 'questionList',
+                    params: {
+                        questionPhase: 5
+                    }
+                },
+                5: {
                     name: 'graph'
                 }
             }

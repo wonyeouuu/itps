@@ -1,0 +1,16 @@
+.right-transition
+    display block
+
+.right-enter
+    animation right .3s
+
+.right-leave
+    animation right .3s reverse
+
+@keyframes right
+    0%
+        opacity 0.2
+        transform translateX(50px)
+    100%
+        opacity 1
+        transform translateX(0px)

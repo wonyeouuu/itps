@@ -10,7 +10,13 @@ const state = {
     questions: [],
     aboutShow: false,
     howToUseShow: false,
-    activeGraphController: ""
+    activeGraphController: "",
+    questionMarks: [
+        {
+            number: 5,
+            text: 'fjdksa;f'
+        }
+    ]
 };
 
 const mutations = {

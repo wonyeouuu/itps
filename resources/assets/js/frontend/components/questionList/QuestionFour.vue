@@ -193,6 +193,11 @@
                 :class="{ 'table-trigger--selected': tableShow }"
                 @click="tableShowToggle(number)"
             ></span>
+            <question-mark
+                text='FPD are classiIied by their appearance:<br><br>
+                      M : “M” etal crowns<br>
+                      P : “P”orcelain Crowns or “P”orcelain fused to metal crowns'
+            ></question-mark>
         </h1>
         <!--table a-->
         <h1 class='sub-title' v-show="tableShow">a. Crown</h1>
@@ -358,29 +363,27 @@
 </template>
 
 <script type="text/babel">
-    import { getTeethWithQuestion } from '../../vuex/getters'
-    import { tableShowToggle } from '../../vuex/actions'
-    import { selectShowToggle4, connectorToggle, teethToggle4 } from '../../vuex/actions'
-    import _ from 'underscore'
-    export default {
-        el: '.question-container',
-        props: [
-            'number',
-            'title',
-            'data',
-            'tableShow'
-        ],
-        data() {
-        },
-        ready() {
-        },
-        vuex: {
-            actions: {
-                tableShowToggle,
-                connectorToggle,
-                selectShowToggle4,
-                teethToggle4
-            }
+import QuestionMark from '../QuestionMark.vue'
+import { getTeethWithQuestion } from '../../vuex/getters'
+import { tableShowToggle } from '../../vuex/actions'
+import { selectShowToggle4, connectorToggle, teethToggle4 } from '../../vuex/actions'
+import _ from 'underscore'
+export default {
+    el: '.question-container',
+    components: { QuestionMark },
+    props: [
+        'number',
+        'title',
+        'data',
+        'tableShow'
+    ],
+    vuex: {
+        actions: {
+            tableShowToggle,
+            connectorToggle,
+            selectShowToggle4,
+            teethToggle4
         }
-    };
+    }
+};
 </script>

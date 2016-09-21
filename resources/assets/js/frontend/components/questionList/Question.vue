@@ -83,6 +83,7 @@
                 :class="{ 'table-trigger--selected': tableShow }"
                 @click="tableShowToggle(number)"
             ></span>
+            <slot></slot>
         </h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
