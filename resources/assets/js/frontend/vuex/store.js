@@ -24,27 +24,28 @@ const mutations = {
         "use strict";
         state.questions = []
         let questions = [
-            'CD(Upper, Lower)',//全口假牙 要上或下全部沒有才可以
-            'Implant',//植體
+            'Complete Dentures',//全口假牙 要上或下全部沒有才可以
+            'Implants',//植體
             'Missing Teeth',// 缺牙
-            'Residual Roots',// 殘根 牙冠爛掉 剩牙根
+            'Retained Roots',// 殘根 牙冠爛掉 剩牙根
             'Fixed Partial Denture',//P M, crown first, then connector  固定假牙
-            'Veneer',// 陶瓷貼片
-            'Post',// 差一根到牙根裡
-            'RPD(Upper, Lower)',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
-            'Caries',// 有真的牙齒冠才會有 蛀牙
-            'Vitality',// 牙根蛀出球 要有牙根才可以選
+            'Veneers',// 陶瓷貼片
+            'Posts',// 差一根到牙根裡
+            'Removable Partial Dentures',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+            'Decayed Teeth',// 有真的牙齒冠才會有 蛀牙
+            'Vitality(Conditions of the pulp)',// 牙根蛀出球 要有牙根才可以選
         ]
-        //mobility 牙齒移動程度 搖晃程度 三級 123
-        //furcation 洞洞露出多寡 三級 123
-        //BOP 插了進去流血多少 三個點
-        //plague 牙菌斑 三個點
-        //GM 牙齦高度 看外觀 1~15 >5 red
-        //PD 插進去多深 1~15 >5 red
         questions.forEach((question, number) => {
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                })
+            } else if (number == 7) {
+                state.questions.push({
+                    teeth: teethArr8(),
                     tableShow: false,
                     number: number + 1,
                     title: question
@@ -107,6 +108,20 @@ const mutations = {
         resetPermission(state)
     },
 
+    TEETH_TOGGLE8 (state, teeth, newStatus) {
+        "use strict";
+        let teethIndex = _.findKey(state.questions[8 - 1].teeth.a, { id: teeth })
+        state.questions[8 - 1].teeth.a[teethIndex].selected = state.questions[8 - 1].teeth.a[teethIndex].selectable ? newStatus : false
+        // connectorsSplit().forEach(splitArr => {
+        //     let connectorIndex = splitArr.reduce((carry, item) => carry + item)
+        //     let selectable = splitArr.reduce((carry, item) => {
+        //         return carry && state.questions[4].teeth.a[_.findKey(state.questions[4].teeth.a, { id: item.toString() })].selected != ""
+        //     }, true)
+        //     state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
+        // })
+        // resetPermission(state)
+    },
+
     CONNECTOR_TOGGLE (state, connector, newStatus) {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.b, { id: connector })
@@ -121,6 +136,57 @@ const mutations = {
             state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: false} : { p: false, m: false})
         } else {
             state.questions[4].teeth.a[teethIndex].selectShow = (newStatus ? { p: true, m: true} : { p: false, m: false})
+        }
+    },
+
+    SELECT_SHOW_TOGGLE8(state, teeth, newStatus) {
+        let teethIndex = _.findKey(state.questions[8 - 1].teeth.a, { id: teeth} )
+        let teethObj = state.questions[8 - 1].teeth.a[teethIndex]
+        switch (teethObj.selected) {
+            case 'A':
+                teethObj.selectShow = newStatus ? {
+                    a: false,
+                    w: true,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                }
+                break
+            case 'W':
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: false,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                }
+                break
+            case 'I':
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: true,
+                    i: false
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                }
+                break
+            default:
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: true,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                }
+                break
         }
     },
     ABOUT_SHOW(state) {
@@ -319,10 +385,40 @@ function teethArr4() {
                 id: `${digit10}${digit1}`,
                 selected: false,//can be true, p, m
                 selectable: true,
-                // selectShow: false
                 selectShow: {
                     p: false,
                     m: false
+                }
+            })
+        })
+    })
+
+    connectors().forEach(function(connector) {
+        teeth.b.push({
+            id: connector,
+            selected: false,
+            selectable: false
+        })
+    })
+    return teeth
+}
+
+function teethArr8() {
+    "use strict";
+    let teeth = {
+        a: [],
+        b: []
+    }
+    _.range(1, 5).forEach((digit10) => {
+        _.range(1, 9).forEach((digit1) => {
+            teeth.a.push({
+                id: `${digit10}${digit1}`,
+                selected: false,//can be true, p, m
+                selectable: true,
+                selectShow: {
+                    a: false,
+                    w: false,
+                    i: false
                 }
             })
         })

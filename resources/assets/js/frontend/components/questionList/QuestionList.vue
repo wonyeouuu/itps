@@ -40,21 +40,14 @@
         v-for='number in questionNumbers'
         v-if='$route.params.questionPhase == 4'
     >
-        <question
+        <question-eight
             v-if='number == 7'
-            :teeth="questions[number].teeth"
+            :data="questions[number].teeth"
             :number="questions[number].number"
             :table-show="questions[number].tableShow"
             :title='questions[number].title'
         >
-            <question-mark
-                text='Direct Retainers are classiIied by:<br><br>
-                      A: “A” ker’s Clasp<br>
-                      I: “I” bar<br>
-                      W: “W” rought wire'
-            >
-            </question-mark>
-        </question>
+        </question-eight>
     </div>
     <div
         v-for='number in questionNumbers'
@@ -68,7 +61,7 @@
             :title='questions[number].title'
         >
             <question-mark
-                text='We’re unable to express the classiIication of dental caries at this time.<br>
+                text='We’re unable to express the classification of dental caries at this time.<br>
                       Help support us or make a donation for further development.'
             >
             </question-mark>
@@ -81,7 +74,7 @@
             :title='questions[number].title'
         >
             <question-mark
-                text='Vitality (Conditions of the pulp) is classiIied by:<br><br>
+                text='Vitality (Conditions of the pulp) is classified by:<br><br>
                       O: Vital<br>
                       ∆: Endodontic treated ( Filled with Gutta-Percha )<br>
                       X: Necrosis'
@@ -101,10 +94,18 @@ import { init } from "../../vuex/actions"
 import { getQuestions, getQuestionMarks } from "../../vuex/getters"
 import Question from "./Question.vue"
 import QuestionFour from "./QuestionFour.vue"
+import QuestionEight from "./QuestionEight.vue"
 import PageButtons from '../PageButtons.vue'
 import QuestionMark from '../QuestionMark.vue'
+
 export default {
-    components: { Question, QuestionFour, PageButtons, QuestionMark },
+    components: {
+        Question,
+        QuestionFour,
+        QuestionEight,
+        PageButtons,
+        QuestionMark
+    },
     computed: {
         questionNumbers() {
             const switchObj = {

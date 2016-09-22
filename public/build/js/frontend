@@ -1,15 +1,349 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/json/stringify"), __esModule: true };
-},{"core-js/library/fn/json/stringify":2}],2:[function(require,module,exports){
+},{"core-js/library/fn/json/stringify":3}],2:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/values"), __esModule: true };
+},{"core-js/library/fn/object/values":4}],3:[function(require,module,exports){
 var core  = require('../../modules/_core')
   , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
 module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
   return $JSON.stringify.apply($JSON, arguments);
 };
-},{"../../modules/_core":3}],3:[function(require,module,exports){
+},{"../../modules/_core":9}],4:[function(require,module,exports){
+require('../../modules/es7.object.values');
+module.exports = require('../../modules/_core').Object.values;
+},{"../../modules/_core":9,"../../modules/es7.object.values":37}],5:[function(require,module,exports){
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+},{}],6:[function(require,module,exports){
+var isObject = require('./_is-object');
+module.exports = function(it){
+  if(!isObject(it))throw TypeError(it + ' is not an object!');
+  return it;
+};
+},{"./_is-object":22}],7:[function(require,module,exports){
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = require('./_to-iobject')
+  , toLength  = require('./_to-length')
+  , toIndex   = require('./_to-index');
+module.exports = function(IS_INCLUDES){
+  return function($this, el, fromIndex){
+    var O      = toIObject($this)
+      , length = toLength(O.length)
+      , index  = toIndex(fromIndex, length)
+      , value;
+    // Array#includes uses SameValueZero equality algorithm
+    if(IS_INCLUDES && el != el)while(length > index){
+      value = O[index++];
+      if(value != value)return true;
+    // Array#toIndex ignores holes, Array#includes - not
+    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
+      if(O[index] === el)return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+},{"./_to-index":31,"./_to-iobject":33,"./_to-length":34}],8:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = function(it){
+  return toString.call(it).slice(8, -1);
+};
+},{}],9:[function(require,module,exports){
 var core = module.exports = {version: '2.4.0'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],4:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
+// optional / simple context binding
+var aFunction = require('./_a-function');
+module.exports = function(fn, that, length){
+  aFunction(fn);
+  if(that === undefined)return fn;
+  switch(length){
+    case 1: return function(a){
+      return fn.call(that, a);
+    };
+    case 2: return function(a, b){
+      return fn.call(that, a, b);
+    };
+    case 3: return function(a, b, c){
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function(/* ...args */){
+    return fn.apply(that, arguments);
+  };
+};
+},{"./_a-function":5}],11:[function(require,module,exports){
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+};
+},{}],12:[function(require,module,exports){
+// Thank's IE8 for his funny defineProperty
+module.exports = !require('./_fails')(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+},{"./_fails":16}],13:[function(require,module,exports){
+var isObject = require('./_is-object')
+  , document = require('./_global').document
+  // in old IE typeof document.createElement is 'object'
+  , is = isObject(document) && isObject(document.createElement);
+module.exports = function(it){
+  return is ? document.createElement(it) : {};
+};
+},{"./_global":17,"./_is-object":22}],14:[function(require,module,exports){
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+},{}],15:[function(require,module,exports){
+var global    = require('./_global')
+  , core      = require('./_core')
+  , ctx       = require('./_ctx')
+  , hide      = require('./_hide')
+  , PROTOTYPE = 'prototype';
+
+var $export = function(type, name, source){
+  var IS_FORCED = type & $export.F
+    , IS_GLOBAL = type & $export.G
+    , IS_STATIC = type & $export.S
+    , IS_PROTO  = type & $export.P
+    , IS_BIND   = type & $export.B
+    , IS_WRAP   = type & $export.W
+    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+    , expProto  = exports[PROTOTYPE]
+    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
+    , key, own, out;
+  if(IS_GLOBAL)source = name;
+  for(key in source){
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if(own && key in exports)continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function(C){
+      var F = function(a, b, c){
+        if(this instanceof C){
+          switch(arguments.length){
+            case 0: return new C;
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if(IS_PROTO){
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library` 
+module.exports = $export;
+},{"./_core":9,"./_ctx":10,"./_global":17,"./_hide":19}],16:[function(require,module,exports){
+module.exports = function(exec){
+  try {
+    return !!exec();
+  } catch(e){
+    return true;
+  }
+};
+},{}],17:[function(require,module,exports){
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+},{}],18:[function(require,module,exports){
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function(it, key){
+  return hasOwnProperty.call(it, key);
+};
+},{}],19:[function(require,module,exports){
+var dP         = require('./_object-dp')
+  , createDesc = require('./_property-desc');
+module.exports = require('./_descriptors') ? function(object, key, value){
+  return dP.f(object, key, createDesc(1, value));
+} : function(object, key, value){
+  object[key] = value;
+  return object;
+};
+},{"./_descriptors":12,"./_object-dp":23,"./_property-desc":28}],20:[function(require,module,exports){
+module.exports = !require('./_descriptors') && !require('./_fails')(function(){
+  return Object.defineProperty(require('./_dom-create')('div'), 'a', {get: function(){ return 7; }}).a != 7;
+});
+},{"./_descriptors":12,"./_dom-create":13,"./_fails":16}],21:[function(require,module,exports){
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = require('./_cof');
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+},{"./_cof":8}],22:[function(require,module,exports){
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+},{}],23:[function(require,module,exports){
+var anObject       = require('./_an-object')
+  , IE8_DOM_DEFINE = require('./_ie8-dom-define')
+  , toPrimitive    = require('./_to-primitive')
+  , dP             = Object.defineProperty;
+
+exports.f = require('./_descriptors') ? Object.defineProperty : function defineProperty(O, P, Attributes){
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if(IE8_DOM_DEFINE)try {
+    return dP(O, P, Attributes);
+  } catch(e){ /* empty */ }
+  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
+  if('value' in Attributes)O[P] = Attributes.value;
+  return O;
+};
+},{"./_an-object":6,"./_descriptors":12,"./_ie8-dom-define":20,"./_to-primitive":35}],24:[function(require,module,exports){
+var has          = require('./_has')
+  , toIObject    = require('./_to-iobject')
+  , arrayIndexOf = require('./_array-includes')(false)
+  , IE_PROTO     = require('./_shared-key')('IE_PROTO');
+
+module.exports = function(object, names){
+  var O      = toIObject(object)
+    , i      = 0
+    , result = []
+    , key;
+  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while(names.length > i)if(has(O, key = names[i++])){
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+},{"./_array-includes":7,"./_has":18,"./_shared-key":29,"./_to-iobject":33}],25:[function(require,module,exports){
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys       = require('./_object-keys-internal')
+  , enumBugKeys = require('./_enum-bug-keys');
+
+module.exports = Object.keys || function keys(O){
+  return $keys(O, enumBugKeys);
+};
+},{"./_enum-bug-keys":14,"./_object-keys-internal":24}],26:[function(require,module,exports){
+exports.f = {}.propertyIsEnumerable;
+},{}],27:[function(require,module,exports){
+var getKeys   = require('./_object-keys')
+  , toIObject = require('./_to-iobject')
+  , isEnum    = require('./_object-pie').f;
+module.exports = function(isEntries){
+  return function(it){
+    var O      = toIObject(it)
+      , keys   = getKeys(O)
+      , length = keys.length
+      , i      = 0
+      , result = []
+      , key;
+    while(length > i)if(isEnum.call(O, key = keys[i++])){
+      result.push(isEntries ? [key, O[key]] : O[key]);
+    } return result;
+  };
+};
+},{"./_object-keys":25,"./_object-pie":26,"./_to-iobject":33}],28:[function(require,module,exports){
+module.exports = function(bitmap, value){
+  return {
+    enumerable  : !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable    : !(bitmap & 4),
+    value       : value
+  };
+};
+},{}],29:[function(require,module,exports){
+var shared = require('./_shared')('keys')
+  , uid    = require('./_uid');
+module.exports = function(key){
+  return shared[key] || (shared[key] = uid(key));
+};
+},{"./_shared":30,"./_uid":36}],30:[function(require,module,exports){
+var global = require('./_global')
+  , SHARED = '__core-js_shared__'
+  , store  = global[SHARED] || (global[SHARED] = {});
+module.exports = function(key){
+  return store[key] || (store[key] = {});
+};
+},{"./_global":17}],31:[function(require,module,exports){
+var toInteger = require('./_to-integer')
+  , max       = Math.max
+  , min       = Math.min;
+module.exports = function(index, length){
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+},{"./_to-integer":32}],32:[function(require,module,exports){
+// 7.1.4 ToInteger
+var ceil  = Math.ceil
+  , floor = Math.floor;
+module.exports = function(it){
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+},{}],33:[function(require,module,exports){
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = require('./_iobject')
+  , defined = require('./_defined');
+module.exports = function(it){
+  return IObject(defined(it));
+};
+},{"./_defined":11,"./_iobject":21}],34:[function(require,module,exports){
+// 7.1.15 ToLength
+var toInteger = require('./_to-integer')
+  , min       = Math.min;
+module.exports = function(it){
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+},{"./_to-integer":32}],35:[function(require,module,exports){
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = require('./_is-object');
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function(it, S){
+  if(!isObject(it))return it;
+  var fn, val;
+  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
+  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+},{"./_is-object":22}],36:[function(require,module,exports){
+var id = 0
+  , px = Math.random();
+module.exports = function(key){
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+},{}],37:[function(require,module,exports){
+// https://github.com/tc39/proposal-object-values-entries
+var $export = require('./_export')
+  , $values = require('./_object-to-array')(false);
+
+$export($export.S, 'Object', {
+  values: function values(it){
+    return $values(it);
+  }
+});
+},{"./_export":15,"./_object-to-array":27}],38:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -9825,7 +10159,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -9921,7 +10255,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],6:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -11471,7 +11805,7 @@ process.umask = function() { return 0; };
   }
 }.call(this));
 
-},{}],7:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 var Vue // late bind
 var map = Object.create(null)
 var shimmed = false
@@ -11771,7 +12105,7 @@ function format (id) {
   return id.match(/[^\/]+\.vue$/)[0]
 }
 
-},{}],8:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /*!
  * vue-router v0.7.13
  * (c) 2016 Evan You
@@ -14481,7 +14815,7 @@ function format (id) {
   return Router;
 
 }));
-},{}],9:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v1.0.24
@@ -24514,7 +24848,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":5}],10:[function(require,module,exports){
+},{"_process":39}],44:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -24534,7 +24868,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],11:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 exports.sync = function (store, router) {
   patchStore(store)
   store.router = router
@@ -24610,7 +24944,7 @@ function patchStore (store) {
   }
 }
 
-},{}],12:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /*!
  * Vuex v0.6.3
  * (c) 2016 Evan You
@@ -25245,7 +25579,7 @@ function patchStore (store) {
   return index;
 
 }));
-},{}],13:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".flip-transition[_v-0aeac120] {\n  display: block;\n}\n.flip-enter[_v-0aeac120] {\n  -webkit-animation: flip-in 0.3s;\n          animation: flip-in 0.3s;\n}\n.flip-leave[_v-0aeac120] {\n  -webkit-animation: flip-in 0.3s reverse;\n          animation: flip-in 0.3s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    transform: perspective(2000px) rotateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    -webkit-transform: perspective(2000px) rotateX(-90deg);\n            transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: perspective(2000px) rotateX(0);\n            transform: perspective(2000px) rotateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    transform: perspective(2000px) rotateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    -webkit-transform: perspective(2000px) rotateX(-90deg);\n            transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: perspective(2000px) rotateX(0);\n            transform: perspective(2000px) rotateX(0);\n  }\n}\nhr.member-intro-split[_v-0aeac120] {\n  margin: 50px 0;\n}\ndiv#about-container[_v-0aeac120] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(82,126,104,0.6);\n}\ndiv#about-container div#about-content-container[_v-0aeac120] {\n  background: #fff;\n  border-radius: 10px 0 0 0;\n  padding: 0 20px;\n  margin: 12vh auto 0 auto;\n  width: 800px;\n  height: 76vh;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120] {\n  position: fixed;\n  top: calc(12vh + 10px);\n  left: calc(50% - 390px);\n  width: 30px;\n  height: 30px;\n  z-index: 99999;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#aboutShow[_v-0aeac120]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container img[_v-0aeac120] {\n  width: 100%;\n}\ndiv#about-container div#about-content-container p#about-intro[_v-0aeac120] {\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 1.1;\n  text-align: right;\n  position: relative;\n  top: -200px;\n}\ndiv#about-container div#about-content-container div#mail-container[_v-0aeac120] {\n  padding-left: 110px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120] {\n  width: 300px;\n  height: 220px;\n  background: url(\"/imgs/mail-image.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-image[_v-0aeac120]:hover {\n  background: url(\"/imgs/mail-image-activated.png\");\n  background-size: cover;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro[_v-0aeac120] {\n  position: relative;\n  top: -20px;\n  font-family: 'GillSans';\n  padding-left: 10px;\n  font-size: 100px;\n  font-weight: 600;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-big[_v-0aeac120] {\n  position: relative;\n  top: -40px;\n  font-size: 80px;\n}\ndiv#about-container div#about-content-container div#mail-container div#mail-intro span.mail-intro-small[_v-0aeac120] {\n  font-size: 40px;\n  position: relative;\n  top: -140px;\n}\ndiv#about-container div#about-content-container div#about-main img[_v-0aeac120] {\n  position: relative;\n  top: -90px;\n  width: 100%;\n}\n")
 'use strict';
@@ -25289,7 +25623,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":29,"../vuex/getters":30,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],14:[function(require,module,exports){
+},{"../vuex/actions":64,"../vuex/getters":65,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],48:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".expand-transition {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  overflow: hidden;\n}\n.expand-enter,\n.expand-leave {\n  height: 0;\n  opacity: 0;\n}\ndiv#app {\n  height: 100%;\n}\n")
 'use strict';
@@ -25340,7 +25674,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-37d47855", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":31,"./AboutPage.vue":13,"./GraphControllerList.vue":17,"./HowToUsePage.vue":19,"./IHA.vue":20,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],15:[function(require,module,exports){
+},{"../vuex/store":66,"./AboutPage.vue":47,"./GraphControllerList.vue":51,"./HowToUsePage.vue":53,"./IHA.vue":54,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],49:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.export-graph[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\nimg.t21[_v-479c7bae] {\n  width: 12.494172494172494%;\n}\nimg.t22[_v-479c7bae] {\n  width: 10.20979020979021%;\n}\nimg.t23[_v-479c7bae] {\n  width: 10.582750582750583%;\n}\nimg.t24[_v-479c7bae] {\n  width: 11.048951048951048%;\n}\nimg.t25[_v-479c7bae] {\n  width: 10.48951048951049%;\n}\nimg.t26[_v-479c7bae] {\n  width: 16.55011655011655%;\n}\nimg.t27[_v-479c7bae] {\n  width: 14.31235431235431%;\n}\nimg.t28[_v-479c7bae] {\n  width: 14.31235431235431%;\n}\nimg.t31[_v-479c7bae] {\n  width: 8.37092731829574%;\n}\nimg.t32[_v-479c7bae] {\n  width: 8.471177944862156%;\n}\nimg.t33[_v-479c7bae] {\n  width: 9.874686716791981%;\n}\nimg.t34[_v-479c7bae] {\n  width: 11.478696741854638%;\n}\nimg.t35[_v-479c7bae] {\n  width: 11.779448621553884%;\n}\nimg.t36[_v-479c7bae] {\n  width: 16.791979949874687%;\n}\nimg.t37[_v-479c7bae] {\n  width: 17.042606516290725%;\n}\nimg.t38[_v-479c7bae] {\n  width: 16.19047619047619%;\n}\nimg.t41[_v-479c7bae] {\n  width: 8.37092731829574%;\n}\nimg.t42[_v-479c7bae] {\n  width: 8.471177944862156%;\n}\nimg.t43[_v-479c7bae] {\n  width: 9.874686716791981%;\n}\nimg.t44[_v-479c7bae] {\n  width: 11.478696741854638%;\n}\nimg.t45[_v-479c7bae] {\n  width: 11.779448621553884%;\n}\nimg.t46[_v-479c7bae] {\n  width: 16.791979949874687%;\n}\nimg.t47[_v-479c7bae] {\n  width: 17.042606516290725%;\n}\nimg.t48[_v-479c7bae] {\n  width: 16.19047619047619%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n}\n")
 'use strict';
@@ -25377,7 +25711,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-479c7bae", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/getters":30,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],16:[function(require,module,exports){
+},{"../vuex/getters":65,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],50:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".btn-group-container[_v-78250f3e] {\n  position: fixed;\n  top: 0;\n  padding: 10vh 0 10vh 20px;\n  height: 100vh;\n}\n.graph-control-container[_v-78250f3e] {\n  margin-bottom: 15px;\n}\n.graph-control-btn[_v-78250f3e] {\n  width: 30px;\n  height: 20px;\n  border: 2px solid #000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: pointer;\n  float: left;\n}\n.graph-control-btn.graph-control-btn--dashed[_v-78250f3e] {\n  border: 2px dashed #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e] {\n  width: 20px;\n  height: 8px;\n}\n.graph-control-btn .graph-control-btn-inside.graph-control-btn-active[_v-78250f3e] {\n  background-color: #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e]:hover {\n  background-color: #d3d3d3;\n}\n.graph-control-text[_v-78250f3e] {\n  margin-left: 40px;\n}\n")
 'use strict';
@@ -25427,7 +25761,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-78250f3e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":29,"../vuex/getters":30,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],17:[function(require,module,exports){
+},{"../vuex/actions":64,"../vuex/getters":65,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],51:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".big-container[_v-2ea1e1fc] {\n  position: fixed;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  padding-left: 40px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n")
 'use strict';
@@ -25491,7 +25825,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-2ea1e1fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":29,"../vuex/getters":30,"./GraphController.vue":16,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],18:[function(require,module,exports){
+},{"../vuex/actions":64,"../vuex/getters":65,"./GraphController.vue":50,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],52:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("h1[_v-0491a5ec] {\n  font-family: 'Athelas';\n}\n")
 'use strict';
@@ -25541,7 +25875,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0491a5ec", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],19:[function(require,module,exports){
+},{"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],53:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".flip-transition[_v-f5602072] {\n  display: block;\n}\n.flip-enter[_v-f5602072] {\n  -webkit-animation: flip-in 0.3s;\n          animation: flip-in 0.3s;\n}\n.flip-leave[_v-f5602072] {\n  -webkit-animation: flip-in 0.3s reverse;\n          animation: flip-in 0.3s reverse;\n}\n@-moz-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    transform: perspective(2000px) rotateX(0);\n  }\n}\n@-webkit-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    -webkit-transform: perspective(2000px) rotateX(-90deg);\n            transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: perspective(2000px) rotateX(0);\n            transform: perspective(2000px) rotateX(0);\n  }\n}\n@-o-keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    transform: perspective(2000px) rotateX(0);\n  }\n}\n@keyframes flip-in {\n  0% {\n    opacity: 0.5;\n    -webkit-transform: perspective(2000px) rotateX(-90deg);\n            transform: perspective(2000px) rotateX(-90deg);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: perspective(2000px) rotateX(0);\n            transform: perspective(2000px) rotateX(0);\n  }\n}\nhr.member-intro-split[_v-f5602072] {\n  margin: 50px 0;\n}\ndiv.pop-container[_v-f5602072] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  z-index: 20000;\n  background: rgba(82,126,104,0.6);\n}\ndiv.pop-container div.pop-content-container[_v-f5602072] {\n  border-radius: 10px 0 0 0;\n  padding: 0;\n  margin: 12vh auto 0 auto;\n  width: 800px;\n  height: 76vh;\n  background: #fff;\n  overflow-y: scroll;\n}\ndiv.pop-container div.pop-content-container div.aboutShow[_v-f5602072] {\n  position: fixed;\n  top: calc(12vh + 10px);\n  left: calc(50% - 390px);\n  width: 30px;\n  height: 30px;\n  z-index: 99999;\n  background: url(\"/imgs/about_close.png\");\n  background-size: cover;\n  cursor: pointer;\n}\ndiv.pop-container div.pop-content-container div.aboutShow[_v-f5602072]:hover {\n  background: url(\"/imgs/about_close_activated.png\");\n  background-size: cover;\n}\ndiv.pop-container div.pop-content-container div.pop-main img[_v-f5602072] {\n  width: 100%;\n}\n")
 'use strict';
@@ -25580,7 +25914,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f5602072", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":29,"../vuex/getters":30,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],20:[function(require,module,exports){
+},{"../vuex/actions":64,"../vuex/getters":65,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],54:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  font-family: 'Athelas';\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 7, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 12, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 15, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 24, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 29, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -25646,7 +25980,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":29,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],21:[function(require,module,exports){
+},{"../vuex/actions":64,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],55:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n  box-shadow: 0px 0px 0px;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n")
 'use strict';
@@ -25749,9 +26083,9 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-16e8d0b4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],22:[function(require,module,exports){
+},{"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],56:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".right-transition[_v-d02cff62] {\n  display: block;\n}\n.right-enter[_v-d02cff62] {\n  -webkit-animation: right 0.3s;\n          animation: right 0.3s;\n}\n.right-leave[_v-d02cff62] {\n  -webkit-animation: right 0.3s reverse;\n          animation: right 0.3s reverse;\n}\n@-moz-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@-webkit-keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n@-o-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n.question-container[_v-d02cff62] {\n  z-index: 10000;\n  display: inline-block;\n  position: relative;\n  margin: 0;\n}\n.question-mark[_v-d02cff62] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: #b6b7b6;\n  position: relative;\n  top: 1px;\n  text-align: center;\n  line-height: 20px;\n  color: #f4f250;\n  font-weight: bold;\n}\n.question-mark[_v-d02cff62]:hover {\n  background-color: #c5c5c5;\n}\n.question-block[_v-d02cff62] {\n  position: absolute;\n  top: 0;\n  left: 40px;\n  background: #b6b7b6;\n  border-radius: 10px;\n  padding: 10px;\n  white-space: nowrap;\n  font-weight: bold;\n}\n.question-block[_v-d02cff62]:before {\n  content: ' ';\n  position: absolute;\n  width: 0;\n  height: 0;\n  left: -10px;\n  top: 10px;\n  border: 5px solid;\n  border-color: #b6b7b6 #b6b7b6 transparent transparent;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert(".right-transition[_v-d02cff62] {\n  display: block;\n}\n.right-enter[_v-d02cff62] {\n  -webkit-animation: right 0.3s;\n          animation: right 0.3s;\n}\n.right-leave[_v-d02cff62] {\n  -webkit-animation: right 0.3s reverse;\n          animation: right 0.3s reverse;\n}\n@-moz-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@-webkit-keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n@-o-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n.question-mark-container[_v-d02cff62] {\n  z-index: 10000;\n  display: inline-block;\n  position: relative;\n  margin: 0;\n}\n.question-mark[_v-d02cff62] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: #b6b7b6;\n  position: relative;\n  top: -2px;\n  text-align: center;\n  font-size: 14px;\n  line-height: 20px;\n  color: #f4f250;\n  font-weight: bold;\n}\n.question-mark[_v-d02cff62]:hover {\n  background-color: #c5c5c5;\n}\n.question-block[_v-d02cff62] {\n  position: absolute;\n  font-size: 14px;\n  top: 0;\n  left: 40px;\n  background: #b6b7b6;\n  border-radius: 10px;\n  padding: 10px;\n  white-space: nowrap;\n  font-weight: 500;\n}\n.question-block[_v-d02cff62]:before {\n  content: ' ';\n  position: absolute;\n  width: 0;\n  height: 0;\n  left: -10px;\n  top: 10px;\n  border: 5px solid;\n  border-color: #b6b7b6 #b6b7b6 transparent transparent;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25775,13 +26109,13 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"question-container\" _v-d02cff62=\"\"><span @mouseenter=\"showBlock()\" @mouseleave=\"hideBlock()\" class=\"question-mark\" _v-d02cff62=\"\">?</span><div v-show=\"show\" transition=\"right\" class=\"question-block\" _v-d02cff62=\"\">{{{ text }}}</div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"question-mark-container\" _v-d02cff62=\"\"><span @mouseenter=\"showBlock()\" @mouseleave=\"hideBlock()\" class=\"question-mark\" _v-d02cff62=\"\">?</span><div v-show=\"show\" transition=\"right\" class=\"question-block\" _v-d02cff62=\"\">{{{ text }}}</div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache[".right-transition[_v-d02cff62] {\n  display: block;\n}\n.right-enter[_v-d02cff62] {\n  -webkit-animation: right 0.3s;\n          animation: right 0.3s;\n}\n.right-leave[_v-d02cff62] {\n  -webkit-animation: right 0.3s reverse;\n          animation: right 0.3s reverse;\n}\n@-moz-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@-webkit-keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n@-o-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n.question-container[_v-d02cff62] {\n  z-index: 10000;\n  display: inline-block;\n  position: relative;\n  margin: 0;\n}\n.question-mark[_v-d02cff62] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: #b6b7b6;\n  position: relative;\n  top: 1px;\n  text-align: center;\n  line-height: 20px;\n  color: #f4f250;\n  font-weight: bold;\n}\n.question-mark[_v-d02cff62]:hover {\n  background-color: #c5c5c5;\n}\n.question-block[_v-d02cff62] {\n  position: absolute;\n  top: 0;\n  left: 40px;\n  background: #b6b7b6;\n  border-radius: 10px;\n  padding: 10px;\n  white-space: nowrap;\n  font-weight: bold;\n}\n.question-block[_v-d02cff62]:before {\n  content: ' ';\n  position: absolute;\n  width: 0;\n  height: 0;\n  left: -10px;\n  top: 10px;\n  border: 5px solid;\n  border-color: #b6b7b6 #b6b7b6 transparent transparent;\n}\n"] = false
+    __vueify_insert__.cache[".right-transition[_v-d02cff62] {\n  display: block;\n}\n.right-enter[_v-d02cff62] {\n  -webkit-animation: right 0.3s;\n          animation: right 0.3s;\n}\n.right-leave[_v-d02cff62] {\n  -webkit-animation: right 0.3s reverse;\n          animation: right 0.3s reverse;\n}\n@-moz-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@-webkit-keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n@-o-keyframes right {\n  0% {\n    opacity: 0.2;\n    transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    transform: translateX(0px);\n  }\n}\n@keyframes right {\n  0% {\n    opacity: 0.2;\n    -webkit-transform: translateX(50px);\n            transform: translateX(50px);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: translateX(0px);\n            transform: translateX(0px);\n  }\n}\n.question-mark-container[_v-d02cff62] {\n  z-index: 10000;\n  display: inline-block;\n  position: relative;\n  margin: 0;\n}\n.question-mark[_v-d02cff62] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: #b6b7b6;\n  position: relative;\n  top: -2px;\n  text-align: center;\n  font-size: 14px;\n  line-height: 20px;\n  color: #f4f250;\n  font-weight: bold;\n}\n.question-mark[_v-d02cff62]:hover {\n  background-color: #c5c5c5;\n}\n.question-block[_v-d02cff62] {\n  position: absolute;\n  font-size: 14px;\n  top: 0;\n  left: 40px;\n  background: #b6b7b6;\n  border-radius: 10px;\n  padding: 10px;\n  white-space: nowrap;\n  font-weight: 500;\n}\n.question-block[_v-d02cff62]:before {\n  content: ' ';\n  position: absolute;\n  width: 0;\n  height: 0;\n  left: -10px;\n  top: 10px;\n  border: 5px solid;\n  border-color: #b6b7b6 #b6b7b6 transparent transparent;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -25790,7 +26124,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-d02cff62", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],23:[function(require,module,exports){
+},{"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],57:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 5, stdin */\n.chart-container[_v-44cf8d24] {\n  margin-left: 20px; }\n\n/* line 9, stdin */\n.period-chart[_v-44cf8d24] {\n  width: 1000px;\n  table-layout: fixed;\n  border: none; }\n  /* line 13, stdin */\n  .period-chart td[_v-44cf8d24], .period-chart th[_v-44cf8d24] {\n    border: 2px solid black;\n    font-size: 10px;\n    text-align: center; }\n  /* line 19, stdin */\n  .period-chart tr td[_v-44cf8d24] {\n    height: 18px; }\n    /* line 21, stdin */\n    .period-chart tr td.vertical[_v-44cf8d24] {\n      font-style: italic;\n      -moz-transform: rotate(-90deg);\n      -o-transform: rotate(-90deg);\n      -webkit-transform: rotate(-90deg);\n      transform: rotate(-90deg); }\n    /* line 28, stdin */\n    .period-chart tr td.width185[_v-44cf8d24] {\n      width: 185px; }\n    /* line 31, stdin */\n    .period-chart tr td.align-center[_v-44cf8d24] {\n      text-align: center;\n      white-space: nowrap; }\n  /* line 37, stdin */\n  .period-chart tr.teeth td[_v-44cf8d24] {\n    background-color: #ffffda; }\n  /* line 42, stdin */\n  .period-chart tr.BOP-up td[_v-44cf8d24]:not(:first-child) {\n    background-color: #ffdddd; }\n  /* line 47, stdin */\n  .period-chart tr.BOP td[_v-44cf8d24] {\n    background-color: #ffdddd; }\n  /* line 52, stdin */\n  .period-chart tr.plaque td[_v-44cf8d24] {\n    background-color: #eeeeff; }\n\n/* line 59, stdin */\n.border-none[_v-44cf8d24] {\n  border: none !important; }\n\n/* line 63, stdin */\nh1[_v-44cf8d24] {\n  font-size: 20px;\n  margin: 0 0 20px 0;\n  font-weight: 200; }\n")
 'use strict';
@@ -25817,7 +26151,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-44cf8d24", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],24:[function(require,module,exports){
+},{"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],58:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-4ac01936] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-4ac01936] {\n    font-size: 20px;\n    margin: 0;\n    font-weight: 200; }\n\n/* line 13, stdin */\n.table-trigger[_v-4ac01936] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 21, stdin */\n  .table-trigger[_v-4ac01936]:hover {\n    background-color: #333333; }\n\n/* line 25, stdin */\n.table-trigger--selected[_v-4ac01936] {\n  background-color: black; }\n\n/* line 29, stdin */\n.table-normal[_v-4ac01936] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 36, stdin */\n  .table-normal .teeth-row[_v-4ac01936] {\n    height: 50%; }\n    /* line 38, stdin */\n    .table-normal .teeth-row .rtl[_v-4ac01936] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 44, stdin */\n    .table-normal .teeth-row .ltr[_v-4ac01936] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 49, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-4ac01936] {\n      height: 100%; }\n      /* line 51, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936] {\n        width: 40px;\n        height: 40px;\n        border-radius: 20px;\n        border: 2px dotted black;\n        text-align: center;\n        line-height: 36px;\n        font-size: 20px;\n        font-weight: 700;\n        cursor: pointer; }\n        /* line 61, stdin */\n        .table-normal .teeth-row .col-xs-6 .circle[_v-4ac01936]:hover {\n          background-color: #e6f2ed; }\n      /* line 65, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--selected[_v-4ac01936] {\n        background-color: #C4E1D4;\n        border: 2px solid black; }\n      /* line 69, stdin */\n      .table-normal .teeth-row .col-xs-6 .circle--invisible[_v-4ac01936] {\n        visibility: hidden; }\n")
 'use strict';
@@ -25856,7 +26190,72 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":29,"../../vuex/getters":30,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],25:[function(require,module,exports){
+},{"../../vuex/actions":64,"../../vuex/getters":65,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],59:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-7970bada] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-7970bada] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-7970bada] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-7970bada] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 27, stdin */\n  .circle.circle--blue[_v-7970bada] {\n    background: blue;\n    color: white; }\n    /* line 30, stdin */\n    .circle.circle--blue[_v-7970bada]:hover {\n      background: blue;\n      color: white; }\n  /* line 35, stdin */\n  .circle[_v-7970bada]:hover {\n    background-color: #e6f2ed; }\n  /* line 38, stdin */\n  .circle .floating-circle[_v-7970bada] {\n    position: absolute;\n    z-index: 100; }\n    /* line 41, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(1) {\n      top: -34px;\n      left: -2px; }\n    /* line 45, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(2) {\n      top: 20px;\n      left: -28px; }\n    /* line 49, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(3) {\n      top: 20px;\n      right: -28px; }\n    /* line 53, stdin */\n    .circle .floating-circle.floating-circle--blue[_v-7970bada] {\n      background-color: blue;\n      color: white; }\n    /* line 57, stdin */\n    .circle .floating-circle.floating-circle--white[_v-7970bada] {\n      background-color: white;\n      color: black;\n      border: 2px solid black; }\n\n/* line 64, stdin */\n.circle--selected[_v-7970bada] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 68, stdin */\n.circle--invisible[_v-7970bada] {\n  visibility: hidden; }\n\n/* line 72, stdin */\n.table-trigger[_v-7970bada] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 80, stdin */\n  .table-trigger[_v-7970bada]:hover {\n    background-color: #333333; }\n\n/* line 84, stdin */\n.table-trigger--selected[_v-7970bada] {\n  background-color: black; }\n\n/* line 88, stdin */\n.table-normal[_v-7970bada] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 95, stdin */\n  .table-normal .teeth-row[_v-7970bada] {\n    height: 50%; }\n    /* line 97, stdin */\n    .table-normal .teeth-row .rtl[_v-7970bada] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 103, stdin */\n    .table-normal .teeth-row .ltr[_v-7970bada] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 108, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-7970bada] {\n      height: 100%; }\n    /* line 111, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 119, stdin */\n    .table-normal .teeth-row .connector-row[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 128, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-7970bada] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 137, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-7970bada]:hover {\n          background-color: #e6f2ed; }\n      /* line 141, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-7970bada] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 145, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-7970bada] {\n        visibility: hidden; }\n\n/* line 152, stdin */\n.bounce-transition[_v-7970bada] {\n  display: inline-block; }\n\n/* line 155, stdin */\n.bounce-enter[_v-7970bada] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 158, stdin */\n.bounce-leave[_v-7970bada] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _values = require('babel-runtime/core-js/object/values');
+
+var _values2 = _interopRequireDefault(_values);
+
+var _QuestionMark = require('../QuestionMark.vue');
+
+var _QuestionMark2 = _interopRequireDefault(_QuestionMark);
+
+var _getters = require('../../vuex/getters');
+
+var _actions = require('../../vuex/actions');
+
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    el: '.question-container',
+    components: { QuestionMark: _QuestionMark2.default },
+    props: ['number', 'title', 'data', 'tableShow'],
+    vuex: {
+        actions: {
+            tableShowToggle: _actions.tableShowToggle,
+            connectorToggle: _actions.connectorToggle,
+            selectShowToggle4: _actions.selectShowToggle4,
+            selectShowToggle8: _actions.selectShowToggle8,
+            teethToggle4: _actions.teethToggle4,
+            teethToggle8: _actions.teethToggle8
+        }
+    },
+    methods: {
+        showX: function showX(selectShow) {
+            return (0, _values2.default)(selectShow).filter(function (item) {
+                return item;
+            }).length === 2;
+        }
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-7970bada=\"\">\n    <h1 _v-7970bada=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-7970bada=\"\"></span>\n        <question-mark text=\"Direct Retainers are classified by:<br><br>\n                  A: “A” ker’s Clasp<br>\n                  I: “I” bar<br>\n                  W: “W” rought wire\" _v-7970bada=\"\">\n        </question-mark>\n    </h1>\n    <!--table a-->\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n            <div class=\"row-top-left col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n            <div class=\"row-top-left col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"teethToggle8(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--table b-->\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-7970bada=\"\">Clasp design</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div class=\"circle--small\" v-bind:class=\"{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }\" v-for=\"connector in data.b.slice(0,15)\" @click=\"connectorToggle(connector.id, !connector.selected)\" _v-7970bada=\"\">\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div class=\"circle--small\" v-bind:class=\"{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }\" v-for=\"connector in data.b.slice(15,30).reverse()\" @click=\"connectorToggle(connector.id, !connector.selected)\" _v-7970bada=\"\">\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-7970bada] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-7970bada] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-7970bada] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-7970bada] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 27, stdin */\n  .circle.circle--blue[_v-7970bada] {\n    background: blue;\n    color: white; }\n    /* line 30, stdin */\n    .circle.circle--blue[_v-7970bada]:hover {\n      background: blue;\n      color: white; }\n  /* line 35, stdin */\n  .circle[_v-7970bada]:hover {\n    background-color: #e6f2ed; }\n  /* line 38, stdin */\n  .circle .floating-circle[_v-7970bada] {\n    position: absolute;\n    z-index: 100; }\n    /* line 41, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(1) {\n      top: -34px;\n      left: -2px; }\n    /* line 45, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(2) {\n      top: 20px;\n      left: -28px; }\n    /* line 49, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(3) {\n      top: 20px;\n      right: -28px; }\n    /* line 53, stdin */\n    .circle .floating-circle.floating-circle--blue[_v-7970bada] {\n      background-color: blue;\n      color: white; }\n    /* line 57, stdin */\n    .circle .floating-circle.floating-circle--white[_v-7970bada] {\n      background-color: white;\n      color: black;\n      border: 2px solid black; }\n\n/* line 64, stdin */\n.circle--selected[_v-7970bada] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 68, stdin */\n.circle--invisible[_v-7970bada] {\n  visibility: hidden; }\n\n/* line 72, stdin */\n.table-trigger[_v-7970bada] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 80, stdin */\n  .table-trigger[_v-7970bada]:hover {\n    background-color: #333333; }\n\n/* line 84, stdin */\n.table-trigger--selected[_v-7970bada] {\n  background-color: black; }\n\n/* line 88, stdin */\n.table-normal[_v-7970bada] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 95, stdin */\n  .table-normal .teeth-row[_v-7970bada] {\n    height: 50%; }\n    /* line 97, stdin */\n    .table-normal .teeth-row .rtl[_v-7970bada] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 103, stdin */\n    .table-normal .teeth-row .ltr[_v-7970bada] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 108, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-7970bada] {\n      height: 100%; }\n    /* line 111, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 119, stdin */\n    .table-normal .teeth-row .connector-row[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 128, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-7970bada] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 137, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-7970bada]:hover {\n          background-color: #e6f2ed; }\n      /* line 141, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-7970bada] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 145, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-7970bada] {\n        visibility: hidden; }\n\n/* line 152, stdin */\n.bounce-transition[_v-7970bada] {\n  display: inline-block; }\n\n/* line 155, stdin */\n.bounce-enter[_v-7970bada] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 158, stdin */\n.bounce-leave[_v-7970bada] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-7970bada", module.exports)
+  } else {
+    hotAPI.update("_v-7970bada", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../../vuex/actions":64,"../../vuex/getters":65,"../QuestionMark.vue":56,"babel-runtime/core-js/object/values":2,"underscore":40,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],60:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 10px;\n      margin-top: 5px; }\n\n/* line 16, stdin */\n.circle[_v-249c332b] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 26, stdin */\n  .circle[_v-249c332b]:hover {\n    background-color: #e6f2ed; }\n  /* line 29, stdin */\n  .circle.circle-p[_v-249c332b] {\n    background-color: blue;\n    color: white;\n    position: relative;\n    z-index: 100; }\n  /* line 35, stdin */\n  .circle.circle-p-selected[_v-249c332b] {\n    background-color: blue;\n    color: white; }\n  /* line 39, stdin */\n  .circle.circle-m[_v-249c332b] {\n    background-color: blue;\n    color: white;\n    position: relative;\n    z-index: 100; }\n  /* line 45, stdin */\n  .circle.circle-m-selected[_v-249c332b] {\n    background-color: blue;\n    color: white; }\n  /* line 49, stdin */\n  .circle.circle-x[_v-249c332b] {\n    background-color: white;\n    color: black;\n    border: solid;\n    position: relative;\n    z-index: 100; }\n  /* line 56, stdin */\n  .circle.circle--top[_v-249c332b] {\n    top: -69px;\n    left: -2px; }\n  /* line 60, stdin */\n  .circle.circle--bottom[_v-249c332b] {\n    top: -49px;\n    left: -2px; }\n\n/* line 65, stdin */\n.circle--selected[_v-249c332b] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 69, stdin */\n.circle--invisible[_v-249c332b] {\n  visibility: hidden; }\n\n/* line 73, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 81, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 85, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 89, stdin */\n.table-normal[_v-249c332b] {\n  width: 800px;\n  height: 120px;\n  margin: 20px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 96, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 98, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 104, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 109, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n    /* line 112, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 120, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 129, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 138, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 142, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n\n/* line 153, stdin */\n.bounce-transition[_v-249c332b] {\n  display: inline-block; }\n\n/* line 156, stdin */\n.bounce-enter[_v-249c332b] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 159, stdin */\n.bounce-leave[_v-249c332b] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -25908,7 +26307,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":29,"../../vuex/getters":30,"../QuestionMark.vue":22,"underscore":6,"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],26:[function(require,module,exports){
+},{"../../vuex/actions":64,"../../vuex/getters":65,"../QuestionMark.vue":56,"underscore":40,"vue":43,"vue-hot-reload-api":41,"vueify/lib/insert-css":44}],61:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25927,6 +26326,10 @@ var _QuestionFour = require("./QuestionFour.vue");
 
 var _QuestionFour2 = _interopRequireDefault(_QuestionFour);
 
+var _QuestionEight = require("./QuestionEight.vue");
+
+var _QuestionEight2 = _interopRequireDefault(_QuestionEight);
+
 var _PageButtons = require("../PageButtons.vue");
 
 var _PageButtons2 = _interopRequireDefault(_PageButtons);
@@ -25938,7 +26341,13 @@ var _QuestionMark2 = _interopRequireDefault(_QuestionMark);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    components: { Question: _Question2.default, QuestionFour: _QuestionFour2.default, PageButtons: _PageButtons2.default, QuestionMark: _QuestionMark2.default },
+    components: {
+        Question: _Question2.default,
+        QuestionFour: _QuestionFour2.default,
+        QuestionEight: _QuestionEight2.default,
+        PageButtons: _PageButtons2.default,
+        QuestionMark: _QuestionMark2.default
+    },
     computed: {
         questionNumbers: function questionNumbers() {
             var switchObj = {
@@ -25965,7 +26374,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container questionListContainer\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 1 || $route.params.questionPhase == 2\" _v-53305aa3=\"\">\n        <question :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 3\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 4\" _v-53305aa3=\"\">\n        <question v-if=\"number == 7\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"Direct Retainers are classiIied by:<br><br>\n                      A: “A” ker’s Clasp<br>\n                      I: “I” bar<br>\n                      W: “W” rought wire\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 5\" _v-53305aa3=\"\">\n        <question v-if=\"number == 8\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"We’re unable to express the classiIication of dental caries at this time.<br>\n                      Help support us or make a donation for further development.\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n        <question v-if=\"number == 9\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"Vitality (Conditions of the pulp) is classiIied by:<br><br>\n                      O: Vital<br>\n                      ∆: Endodontic treated ( Filled with Gutta-Percha )<br>\n                      X: Necrosis\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n    </div>\n    <div class=\"button button-down\" _v-53305aa3=\"\">\n        <page-buttons _v-53305aa3=\"\"></page-buttons>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container questionListContainer\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 1 || $route.params.questionPhase == 2\" _v-53305aa3=\"\">\n        <question :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 3\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 4\" _v-53305aa3=\"\">\n        <question-eight v-if=\"number == 7\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-eight>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 5\" _v-53305aa3=\"\">\n        <question v-if=\"number == 8\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"We’re unable to express the classification of dental caries at this time.<br>\n                      Help support us or make a donation for further development.\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n        <question v-if=\"number == 9\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"Vitality (Conditions of the pulp) is classified by:<br><br>\n                      O: Vital<br>\n                      ∆: Endodontic treated ( Filled with Gutta-Percha )<br>\n                      X: Necrosis\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n    </div>\n    <div class=\"button button-down\" _v-53305aa3=\"\">\n        <page-buttons _v-53305aa3=\"\"></page-buttons>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -25976,7 +26385,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":29,"../../vuex/getters":30,"../PageButtons.vue":21,"../QuestionMark.vue":22,"./Question.vue":24,"./QuestionFour.vue":25,"vue":9,"vue-hot-reload-api":7}],27:[function(require,module,exports){
+},{"../../vuex/actions":64,"../../vuex/getters":65,"../PageButtons.vue":55,"../QuestionMark.vue":56,"./Question.vue":58,"./QuestionEight.vue":59,"./QuestionFour.vue":60,"vue":43,"vue-hot-reload-api":41}],62:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -26007,7 +26416,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _router2.default.start(_App2.default, '#app');
 
-},{"./components/App.vue":14,"./router":28,"./vuex/store":31,"jquery":4,"vue":9,"vuex-router-sync":11}],28:[function(require,module,exports){
+},{"./components/App.vue":48,"./router":63,"./vuex/store":66,"jquery":38,"vue":43,"vuex-router-sync":45}],63:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26059,7 +26468,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/ExportGraph.vue":15,"./components/HomePage.vue":18,"./components/questionList/PeriodChart.vue":23,"./components/questionList/QuestionList.vue":26,"vue":9,"vue-router":8}],29:[function(require,module,exports){
+},{"./components/ExportGraph.vue":49,"./components/HomePage.vue":52,"./components/questionList/PeriodChart.vue":57,"./components/questionList/QuestionList.vue":61,"vue":43,"vue-router":42}],64:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26085,26 +26494,34 @@ var teethToggle4 = exports.teethToggle4 = function teethToggle4(_ref5, number, t
   var dispatch = _ref5.dispatch;
   return dispatch('TEETH_TOGGLE4', number, teeth, newStatus);
 };
-var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_ref6, teeth, newStatus) {
+var teethToggle8 = exports.teethToggle8 = function teethToggle8(_ref6, number, teeth, newStatus) {
   var dispatch = _ref6.dispatch;
+  return dispatch('TEETH_TOGGLE8', number, teeth, newStatus);
+};
+var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_ref7, teeth, newStatus) {
+  var dispatch = _ref7.dispatch;
   return dispatch('SELECT_SHOW_TOGGLE4', teeth, newStatus);
 };
+var selectShowToggle8 = exports.selectShowToggle8 = function selectShowToggle8(_ref8, teeth, newStatus) {
+  var dispatch = _ref8.dispatch;
+  return dispatch('SELECT_SHOW_TOGGLE8', teeth, newStatus);
+};
 
-var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref7) {
-  var dispatch = _ref7.dispatch;
+var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref9) {
+  var dispatch = _ref9.dispatch;
   return dispatch('ABOUT_SHOW');
 };
-var howToUseShowToggle = exports.howToUseShowToggle = function howToUseShowToggle(_ref8) {
-  var dispatch = _ref8.dispatch;
+var howToUseShowToggle = exports.howToUseShowToggle = function howToUseShowToggle(_ref10) {
+  var dispatch = _ref10.dispatch;
   return dispatch('HOW_TO_USE_SHOW');
 };
 
-var setGraphController = exports.setGraphController = function setGraphController(_ref9, newStatus, dashed) {
-  var dispatch = _ref9.dispatch;
+var setGraphController = exports.setGraphController = function setGraphController(_ref11, newStatus, dashed) {
+  var dispatch = _ref11.dispatch;
   return dispatch('SET_GRAPH_CONTROLLER', newStatus, dashed);
 };
 
-},{}],30:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26132,7 +26549,7 @@ var getQuestionMarks = exports.getQuestionMarks = function getQuestionMarks(stat
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],31:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26180,27 +26597,28 @@ var mutations = {
         "use strict";
 
         state.questions = [];
-        var questions = ['CD(Upper, Lower)', //全口假牙 要上或下全部沒有才可以
-        'Implant', //植體
+        var questions = ['Complete Dentures', //全口假牙 要上或下全部沒有才可以
+        'Implants', //植體
         'Missing Teeth', // 缺牙
-        'Residual Roots', // 殘根 牙冠爛掉 剩牙根
+        'Retained Roots', // 殘根 牙冠爛掉 剩牙根
         'Fixed Partial Denture', //P M, crown first, then connector  固定假牙
-        'Veneer', // 陶瓷貼片
-        'Post', // 差一根到牙根裡
-        'RPD(Upper, Lower)', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
-        'Caries', // 有真的牙齒冠才會有 蛀牙
-        'Vitality'];
+        'Veneers', // 陶瓷貼片
+        'Posts', // 差一根到牙根裡
+        'Removable Partial Dentures', //不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+        'Decayed Teeth', // 有真的牙齒冠才會有 蛀牙
+        'Vitality(Conditions of the pulp)'];
         // 牙根蛀出球 要有牙根才可以選
-        //mobility 牙齒移動程度 搖晃程度 三級 123
-        //furcation 洞洞露出多寡 三級 123
-        //BOP 插了進去流血多少 三個點
-        //plague 牙菌斑 三個點
-        //GM 牙齦高度 看外觀 1~15 >5 red
-        //PD 插進去多深 1~15 >5 red
         questions.forEach(function (question, number) {
             if (number == 4) {
                 state.questions.push({
                     teeth: teethArr4(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                });
+            } else if (number == 7) {
+                state.questions.push({
+                    teeth: teethArr8(),
                     tableShow: false,
                     number: number + 1,
                     title: question
@@ -26263,6 +26681,20 @@ var mutations = {
         });
         resetPermission(state);
     },
+    TEETH_TOGGLE8: function TEETH_TOGGLE8(state, teeth, newStatus) {
+        "use strict";
+
+        var teethIndex = _underscore2.default.findKey(state.questions[8 - 1].teeth.a, { id: teeth });
+        state.questions[8 - 1].teeth.a[teethIndex].selected = state.questions[8 - 1].teeth.a[teethIndex].selectable ? newStatus : false;
+        // connectorsSplit().forEach(splitArr => {
+        //     let connectorIndex = splitArr.reduce((carry, item) => carry + item)
+        //     let selectable = splitArr.reduce((carry, item) => {
+        //         return carry && state.questions[4].teeth.a[_.findKey(state.questions[4].teeth.a, { id: item.toString() })].selected != ""
+        //     }, true)
+        //     state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
+        // })
+        // resetPermission(state)
+    },
     CONNECTOR_TOGGLE: function CONNECTOR_TOGGLE(state, connector, newStatus) {
         "use strict";
 
@@ -26277,6 +26709,56 @@ var mutations = {
             state.questions[4].teeth.a[teethIndex].selectShow = newStatus ? { p: true, m: false } : { p: false, m: false };
         } else {
             state.questions[4].teeth.a[teethIndex].selectShow = newStatus ? { p: true, m: true } : { p: false, m: false };
+        }
+    },
+    SELECT_SHOW_TOGGLE8: function SELECT_SHOW_TOGGLE8(state, teeth, newStatus) {
+        var teethIndex = _underscore2.default.findKey(state.questions[8 - 1].teeth.a, { id: teeth });
+        var teethObj = state.questions[8 - 1].teeth.a[teethIndex];
+        switch (teethObj.selected) {
+            case 'A':
+                teethObj.selectShow = newStatus ? {
+                    a: false,
+                    w: true,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                };
+                break;
+            case 'W':
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: false,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                };
+                break;
+            case 'I':
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: true,
+                    i: false
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                };
+                break;
+            default:
+                teethObj.selectShow = newStatus ? {
+                    a: true,
+                    w: true,
+                    i: true
+                } : {
+                    a: false,
+                    w: false,
+                    i: false
+                };
+                break;
         }
     },
     ABOUT_SHOW: function ABOUT_SHOW(state) {
@@ -26461,10 +26943,41 @@ function teethArr4() {
                 id: '' + digit10 + digit1,
                 selected: false, //can be true, p, m
                 selectable: true,
-                // selectShow: false
                 selectShow: {
                     p: false,
                     m: false
+                }
+            });
+        });
+    });
+
+    connectors().forEach(function (connector) {
+        teeth.b.push({
+            id: connector,
+            selected: false,
+            selectable: false
+        });
+    });
+    return teeth;
+}
+
+function teethArr8() {
+    "use strict";
+
+    var teeth = {
+        a: [],
+        b: []
+    };
+    _underscore2.default.range(1, 5).forEach(function (digit10) {
+        _underscore2.default.range(1, 9).forEach(function (digit1) {
+            teeth.a.push({
+                id: '' + digit10 + digit1,
+                selected: false, //can be true, p, m
+                selectable: true,
+                selectShow: {
+                    a: false,
+                    w: false,
+                    i: false
                 }
             });
         });
@@ -26497,6 +27010,6 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"babel-runtime/core-js/json/stringify":1,"underscore":6,"vue":9,"vue-router":8,"vuex":12}]},{},[27]);
+},{"babel-runtime/core-js/json/stringify":1,"underscore":40,"vue":43,"vue-router":42,"vuex":46}]},{},[62]);
 
 //# sourceMappingURL=home.js.map

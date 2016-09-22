@@ -1,5 +1,5 @@
 <template lang="jade">
-div.question-container
+div.question-mark-container
     span.question-mark(@mouseenter='showBlock()', @mouseleave='hideBlock()') ?
     div.question-block(v-show='show', transition='right') {{{ text }}}
 </template>
@@ -27,7 +27,7 @@ export default {
 @import './transitions/right-transition.styl'
 question-mark-color = rgb(244, 242, 80)
 question-mark-background = rgb(182, 183, 182)
-.question-container
+.question-mark-container
     z-index 10000
     display inline-block
     position relative
@@ -39,8 +39,9 @@ question-mark-background = rgb(182, 183, 182)
     border-radius 5px
     background-color question-mark-background
     position relative
-    top 1px
+    top -2px
     text-align center
+    font-size 14px
     line-height 20px
     color question-mark-color
     font-weight bold
@@ -48,13 +49,14 @@ question-mark-background = rgb(182, 183, 182)
         background-color lighten(question-mark-background, 20%)
 .question-block
     position absolute
+    font-size 14px
     top 0
     left 40px
     background question-mark-background
     border-radius 10px
     padding 10px
     white-space nowrap
-    font-weight bold
+    font-weight 500
     &:before
         content ' '
         position absolute
