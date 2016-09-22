@@ -9,7 +9,7 @@
             font-weight: 200;
             &.sub-title {
                 margin-left: 10px;
-                margin-top: 5px;
+                margin-top: 10px;
             }
         }
     }
@@ -89,7 +89,7 @@
     .table-normal {
         width: 800px;
         height: 120px;
-        margin: 20px 0 0 30px;
+        margin: 10px 0 0 30px;
         background-color: $tableBackground;
         border-radius: 18px;
         border: 3px black solid;
@@ -158,7 +158,6 @@
     }
     .bounce-leave {
         display: none;
-    //   animation: bounce-out .5s;
     }
     @keyframes bounce-in {
       0% {
@@ -365,9 +364,8 @@
 <script type="text/babel">
 import QuestionMark from '../QuestionMark.vue'
 import { getTeethWithQuestion } from '../../vuex/getters'
-import { tableShowToggle } from '../../vuex/actions'
-import { selectShowToggle4, connectorToggle, teethToggle4 } from '../../vuex/actions'
-import _ from 'underscore'
+import { tableShowToggle, selectShowToggle4, connectorToggle, teethToggle4 } from '../../vuex/actions'
+
 export default {
     el: '.question-container',
     components: { QuestionMark },

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Athelas';
-  src: url("/fonts/Athelas.ttf") format("truetype"); }
+  src: url("/fonts/Athelas.ttc") format("truetype"); }
 
 @font-face {
   font-family: 'GillSans';
-  src: url("/fonts/GillSans.ttf") format("truetype"); }
+  src: url("/fonts/GillSans.ttc") format("truetype"); }
 
 body, html {
   height: 100%;

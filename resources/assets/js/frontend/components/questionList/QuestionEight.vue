@@ -24,6 +24,9 @@
         font-size: 20px;
         font-weight: 700;
         cursor: pointer;
+        &.circle--translate-y_15 {
+            top: -15px;
+        }
         &.circle--blue {
             background: blue;
             color: white;
@@ -199,135 +202,46 @@
             >
             </question-mark>
         </h1>
-        <!--table a-->
+        <h1 class='sub-title' v-show="tableShow">a. Denture Bases</h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
                 <div class="row-top-left col-xs-6 rtl">
                     <div
                         v-for="tooth in data.a.slice(0,8)"
                         class="circle"
-                        v-bind:class="{ 'circle--blue': tooth.selected }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
-                    >
-                    {{ tooth.selected ? tooth.selected : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "A")'
-                        >A</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "W")'
-                        >W</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "I")'
-                        >I</div>
-                        <div class="circle floating-circle floating-circle--white"
-                            v-show="showX(tooth.selectShow)"
-                            transition='bounce'
-                            @click="teethToggle8(tooth.id, false)"
-                        >X</div>
-                    </div>
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="teethToggle8(tooth.id, !tooth.selected)"
+                    >{{ tooth.id }}</div>
                 </div>
-                <div class="row-top-left col-xs-6 ltr">
+                <div class="row-top-right col-xs-6 ltr">
                     <div
                         v-for="tooth in data.a.slice(8,16)"
                         class="circle"
-                        v-bind:class="{ 'circle--blue': tooth.selected }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
-                    >
-                    {{ tooth.selected ? tooth.selected : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "A")'
-                        >A</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "W")'
-                        >W</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "I")'
-                        >I</div>
-                        <div class="circle floating-circle floating-circle--white"
-                            v-show="showX(tooth.selectShow)"
-                            transition='bounce'
-                            @click="teethToggle8(tooth.id, false)"
-                        >X</div>
-                    </div>
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="teethToggle8(tooth.id, !tooth.selected)"
+                    >{{ tooth.id }}</div>
                 </div>
             </div>
             <div class="row-bottom teeth-row">
-                <div class="row-top-left col-xs-6 rtl">
+                <div class="row-bottom-right col-xs-6 rtl">
                     <div
                         v-for="tooth in data.a.slice(24,32)"
                         class="circle"
-                        v-bind:class="{ 'circle--blue': tooth.selected }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
-                    >
-                    {{ tooth.selected ? tooth.selected : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "A")'
-                        >A</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "W")'
-                        >W</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "I")'
-                        >I</div>
-                        <div class="circle floating-circle floating-circle--white"
-                            v-show="showX(tooth.selectShow)"
-                            transition='bounce'
-                            @click="teethToggle8(tooth.id, false)"
-                        >X</div>
-                    </div>
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="teethToggle8(tooth.id, !tooth.selected)"
+                    >{{ tooth.id }}</div>
                 </div>
-                <div class="row-top-left col-xs-6 ltr">
+                <div class="row-bottom-left col-xs-6 ltr">
                     <div
                         v-for="tooth in data.a.slice(16,24)"
                         class="circle"
-                        v-bind:class="{ 'circle--blue': tooth.selected }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
-                    >
-                    {{ tooth.selected ? tooth.selected : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "A")'
-                        >A</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "W")'
-                        >W</div>
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
-                            transition='bounce'
-                            @click='teethToggle8(tooth.id, "I")'
-                        >I</div>
-                        <div class="circle floating-circle floating-circle--white"
-                            v-show="showX(tooth.selectShow)"
-                            transition='bounce'
-                            @click="teethToggle8(tooth.id, false)"
-                        >X</div>
-                    </div>
+                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="teethToggle8(tooth.id, !tooth.selected)"
+                    >{{ tooth.id }}</div>
                 </div>
             </div>
         </div>
-        <!--table b-->
-        <h1 class='sub-title' v-show="tableShow">Clasp design</h1>
+        <h1 class='sub-title' v-show="tableShow">b. Clasp design</h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
                 <div class="col-xs-12">
@@ -339,11 +253,32 @@
                 </div>
                 <div class="connector-row">
                     <div
-                        class="circle--small"
-                        v-bind:class="{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }"
-                        v-for="connector in data.b.slice(0,15)"
-                        @click="connectorToggle(connector.id, !connector.selected)"
+                        v-for="tooth in data.b.slice(0,15)"
+                        class="circle circle--translate-y_15"
+                        v-bind:class="{ 'circle--blue': tooth.selected }"
+                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
                     >
+                    {{ tooth.selected ? tooth.selected : '' }}
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.a'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "A")'
+                        >A</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.w'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "W")'
+                        >W</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.i'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "I")'
+                        >I</div>
+                        <div class="circle floating-circle floating-circle--white"
+                            v-show="showX(tooth.selectShow)"
+                            transition='bounce'
+                            @click="claspToggle(tooth.id, false)"
+                        >X</div>
                     </div>
                 </div>
             </div>
@@ -357,11 +292,32 @@
                 </div>
                 <div class="connector-row">
                     <div
-                        class="circle--small"
-                        v-bind:class="{ 'circle--selected': connector.selected, 'circle--invisible': !connector.selectable }"
-                        v-for="connector in data.b.slice(15,30).reverse()"
-                        @click="connectorToggle(connector.id, !connector.selected)"
+                        v-for="tooth in data.b.slice(15,30).reverse()"
+                        class="circle circle--translate-y_15"
+                        v-bind:class="{ 'circle--blue': tooth.selected }"
+                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
                     >
+                    {{ tooth.selected ? tooth.selected : '' }}
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.a'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "A")'
+                        >A</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.w'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "W")'
+                        >W</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.i'
+                            transition='bounce'
+                            @click='claspToggle(tooth.id, "I")'
+                        >I</div>
+                        <div class="circle floating-circle floating-circle--white"
+                            v-show="showX(tooth.selectShow)"
+                            transition='bounce'
+                            @click="claspToggle(tooth.id, false)"
+                        >X</div>
                     </div>
                 </div>
             </div>
@@ -372,9 +328,8 @@
 <script type="text/babel">
 import QuestionMark from '../QuestionMark.vue'
 import { getTeethWithQuestion } from '../../vuex/getters'
-import { tableShowToggle } from '../../vuex/actions'
-import { selectShowToggle8, connectorToggle, teethToggle8 } from '../../vuex/actions'
-import _ from 'underscore'
+import { tableShowToggle, selectShowToggle8, claspToggle, teethToggle8 } from '../../vuex/actions'
+
 export default {
     el: '.question-container',
     components: { QuestionMark },
@@ -387,7 +342,7 @@ export default {
     vuex: {
         actions: {
             tableShowToggle,
-            connectorToggle,
+            claspToggle,
             selectShowToggle8,
             teethToggle8
         }
