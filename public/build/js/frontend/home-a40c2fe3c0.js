@@ -26225,9 +26225,7 @@ exports.default = {
         actions: {
             tableShowToggle: _actions.tableShowToggle,
             connectorToggle: _actions.connectorToggle,
-            selectShowToggle4: _actions.selectShowToggle4,
             selectShowToggle8: _actions.selectShowToggle8,
-            teethToggle4: _actions.teethToggle4,
             teethToggle8: _actions.teethToggle8
         }
     },

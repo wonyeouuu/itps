@@ -373,7 +373,7 @@
 import QuestionMark from '../QuestionMark.vue'
 import { getTeethWithQuestion } from '../../vuex/getters'
 import { tableShowToggle } from '../../vuex/actions'
-import { selectShowToggle4, selectShowToggle8, connectorToggle, teethToggle4, teethToggle8 } from '../../vuex/actions'
+import { selectShowToggle8, connectorToggle, teethToggle8 } from '../../vuex/actions'
 import _ from 'underscore'
 export default {
     el: '.question-container',
@@ -388,9 +388,7 @@ export default {
         actions: {
             tableShowToggle,
             connectorToggle,
-            selectShowToggle4,
             selectShowToggle8,
-            teethToggle4,
             teethToggle8
         }
     },
