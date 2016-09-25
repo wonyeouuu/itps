@@ -233,11 +233,6 @@
                         @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
                         {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
-                            v-if='tooth.selectShow.circle'
-                            transition='bounce'
-                            @click='vitalityToggle(tooth.id, "circle")'
-                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
                             v-if='tooth.selectShow.times'
                             transition='bounce'
@@ -248,11 +243,11 @@
                             transition='bounce'
                             @click='vitalityToggle(tooth.id, "triangle")'
                         >∆</div>
-                        <div class="circle floating-circle floating-circle--white"
+                        <div class="circle floating-circle floating-circle--blue"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
                             @click="vitalityToggle(tooth.id, false)"
-                        >X</div>
+                        >O</div>
                     </div>
                 </div>
             </div>
@@ -265,11 +260,6 @@
                         @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
                         {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
-                            v-if='tooth.selectShow.circle'
-                            transition='bounce'
-                            @click='vitalityToggle(tooth.id, "circle")'
-                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
                             v-if='tooth.selectShow.times'
                             transition='bounce'
@@ -280,11 +270,11 @@
                             transition='bounce'
                             @click='vitalityToggle(tooth.id, "triangle")'
                         >∆</div>
-                        <div class="circle floating-circle floating-circle--white"
+                        <div class="circle floating-circle floating-circle--blue"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
                             @click="vitalityToggle(tooth.id, false)"
-                        >X</div>
+                        >O</div>
                     </div>
                 </div>
                 <div class="row-bottom-left col-xs-6 ltr">
@@ -295,11 +285,6 @@
                         @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
                         {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
-                            v-if='tooth.selectShow.circle'
-                            transition='bounce'
-                            @click='vitalityToggle(tooth.id, "circle")'
-                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
                             v-if='tooth.selectShow.times'
                             transition='bounce'
@@ -310,11 +295,11 @@
                             transition='bounce'
                             @click='vitalityToggle(tooth.id, "triangle")'
                         >∆</div>
-                        <div class="circle floating-circle floating-circle--white"
+                        <div class="circle floating-circle floating-circle--blue"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
                             @click="vitalityToggle(tooth.id, false)"
-                        >X</div>
+                        >O</div>
                     </div>
                 </div>
             </div>
