@@ -193,7 +193,7 @@
                 @click="tableShowToggle(number)"
             ></span>
             <question-mark
-                text='FPD are classiIied by their appearance:<br><br>
+                text='FPD are classified by their appearance:<br><br>
                       M : “M” etal crowns<br>
                       P : “P”orcelain Crowns or “P”orcelain fused to metal crowns'
             ></question-mark>

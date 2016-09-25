@@ -172,44 +172,36 @@ const mutations = {
         switch (teethObj.selected) {
             case 'circle':
                 teethObj.selectShow = newStatus ? {
-                    circle: false,
                     times: true,
                     triangle: true
                 } : {
-                    circle: false,
                     times: false,
                     triangle: false
                 }
                 break
             case 'times':
                 teethObj.selectShow = newStatus ? {
-                    circle: true,
                     times: false,
                     triangle: true
                 } : {
-                    circle: false,
                     times: false,
                     triangle: false
                 }
                 break
             case 'triangle':
                 teethObj.selectShow = newStatus ? {
-                    circle: true,
                     times: true,
                     triangle: false
                 } : {
-                    circle: false,
                     times: false,
                     triangle: false
                 }
                 break
             default:
                 teethObj.selectShow = newStatus ? {
-                    circle: true,
                     times: true,
                     triangle: true
                 } : {
-                    circle: false,
                     times: false,
                     triangle: false
                 }

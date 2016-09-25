@@ -46,12 +46,8 @@
                 left: -2px;
             }
             &:nth-child(2) {
-                top: 20px;
-                left: -28px;
-            }
-            &:nth-child(3) {
-                top: 20px;
-                right: -28px;
+                top: 28px;
+                left: -2px;
             }
             &.floating-circle--blue {
                 background-color: blue;
@@ -61,8 +57,6 @@
                 background-color: white;
                 color: black;
                 border: 2px solid black;
-            }
-            &.floating-circle--circle {
             }
         }
     }
@@ -198,7 +192,7 @@
             ></span>
             <question-mark
                 text='Vitality (Conditions of the pulp) is classified by:<br><br>
-                      O: Vital<br>
+                      Unselected, O: Vital<br>
                       ∆: Endodontic treated ( Filled with Gutta-Percha )<br>
                       X: Necrosis'
             >
@@ -214,11 +208,6 @@
                         @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
                         {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
-                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
-                            v-if='tooth.selectShow.circle'
-                            transition='bounce'
-                            @click='vitalityToggle(tooth.id, "circle")'
-                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
                             v-if='tooth.selectShow.times'
                             transition='bounce'
@@ -229,11 +218,11 @@
                             transition='bounce'
                             @click='vitalityToggle(tooth.id, "triangle")'
                         >∆</div>
-                        <div class="circle floating-circle floating-circle--white"
+                        <div class="circle floating-circle floating-circle--blue"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
                             @click="vitalityToggle(tooth.id, false)"
-                        >X</div>
+                        >O</div>
                     </div>
                 </div>
                 <div class="row-top-right col-xs-6 ltr">
@@ -356,7 +345,7 @@ export default {
     },
     methods: {
         showX(selectShow) {
-            return Object.values(selectShow).filter(item => item).length === 2
+            return Object.values(selectShow).filter(item => item).length === 1
         },
         selectedMapper(selected) {
             switch (selected) {

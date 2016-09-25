@@ -57,7 +57,6 @@ export const teethArr10 = () => {
                 selected: false,
                 selectable: true,
                 selectShow: {
-                    circle: false,
                     times: false,
                     triangle: false
                 }
