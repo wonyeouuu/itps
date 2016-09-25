@@ -201,13 +201,6 @@
                 :class="{ 'table-trigger--selected': tableShow }"
                 @click="tableShowToggle(number)"
             ></span>
-            <question-mark
-                text='Direct Retainers are classified by:<br><br>
-                      A: “A” ker’s Clasp<br>
-                      I: “I” bar<br>
-                      W: “W” rought wire'
-            >
-            </question-mark>
         </h1>
         <h1 class='sub-title' v-show="tableShow">a. Denture Bases</h1>
         <div class="table-normal" v-show="tableShow">
@@ -248,7 +241,15 @@
                 </div>
             </div>
         </div>
-        <h1 class='sub-title' v-show="tableShow">b. Clasp design</h1>
+        <h1 class='sub-title' v-show="tableShow">b. Clasp design
+            <question-mark
+                text='Direct Retainers are classified by:<br><br>
+                      A: “A” ker’s Clasp<br>
+                      I: “I” bar<br>
+                      W: “W” rought wire'
+            >
+            </question-mark>
+        </h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
                 <div class="col-xs-12">
