@@ -192,7 +192,7 @@
             ></span>
             <question-mark
                 text='Vitality (Conditions of the pulp) is classified by:<br><br>
-                      Unselected, O: Vital<br>
+                      O or Unselected: Vital<br>
                       ∆: Endodontic treated ( Filled with Gutta-Percha )<br>
                       X: Necrosis'
             >
