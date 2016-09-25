@@ -30610,7 +30610,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0aeac120", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":65,"../vuex/getters":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],49:[function(require,module,exports){
+},{"../vuex/actions":66,"../vuex/getters":67,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],49:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".expand-transition {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  overflow: hidden;\n}\n.expand-enter,\n.expand-leave {\n  height: 0;\n  opacity: 0;\n}\ndiv#app {\n  height: 100%;\n}\n")
 'use strict';
@@ -30661,7 +30661,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-37d47855", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/store":68,"./AboutPage.vue":48,"./GraphControllerList.vue":52,"./HowToUsePage.vue":54,"./IHA.vue":55,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],50:[function(require,module,exports){
+},{"../vuex/store":69,"./AboutPage.vue":48,"./GraphControllerList.vue":52,"./HowToUsePage.vue":54,"./IHA.vue":55,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],50:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.export-graph[_v-479c7bae] {\n  padding: 5%;\n}\nimg[_v-479c7bae] {\n  height: auto;\n}\nimg.t11[_v-479c7bae] {\n  width: 12.470916705444393%;\n}\nimg.t12[_v-479c7bae] {\n  width: 10.37691949744067%;\n}\nimg.t13[_v-479c7bae] {\n  width: 10.6561191251745%;\n}\nimg.t14[_v-479c7bae] {\n  width: 10.93531875290833%;\n}\nimg.t15[_v-479c7bae] {\n  width: 10.749185667752444%;\n}\nimg.t16[_v-479c7bae] {\n  width: 16.333178222429037%;\n}\nimg.t17[_v-479c7bae] {\n  width: 14.65798045602606%;\n}\nimg.t18[_v-479c7bae] {\n  width: 13.82038157282457%;\n}\nimg.t21[_v-479c7bae] {\n  width: 12.494172494172494%;\n}\nimg.t22[_v-479c7bae] {\n  width: 10.20979020979021%;\n}\nimg.t23[_v-479c7bae] {\n  width: 10.582750582750583%;\n}\nimg.t24[_v-479c7bae] {\n  width: 11.048951048951048%;\n}\nimg.t25[_v-479c7bae] {\n  width: 10.48951048951049%;\n}\nimg.t26[_v-479c7bae] {\n  width: 16.55011655011655%;\n}\nimg.t27[_v-479c7bae] {\n  width: 14.31235431235431%;\n}\nimg.t28[_v-479c7bae] {\n  width: 14.31235431235431%;\n}\nimg.t31[_v-479c7bae] {\n  width: 8.37092731829574%;\n}\nimg.t32[_v-479c7bae] {\n  width: 8.471177944862156%;\n}\nimg.t33[_v-479c7bae] {\n  width: 9.874686716791981%;\n}\nimg.t34[_v-479c7bae] {\n  width: 11.478696741854638%;\n}\nimg.t35[_v-479c7bae] {\n  width: 11.779448621553884%;\n}\nimg.t36[_v-479c7bae] {\n  width: 16.791979949874687%;\n}\nimg.t37[_v-479c7bae] {\n  width: 17.042606516290725%;\n}\nimg.t38[_v-479c7bae] {\n  width: 16.19047619047619%;\n}\nimg.t41[_v-479c7bae] {\n  width: 8.37092731829574%;\n}\nimg.t42[_v-479c7bae] {\n  width: 8.471177944862156%;\n}\nimg.t43[_v-479c7bae] {\n  width: 9.874686716791981%;\n}\nimg.t44[_v-479c7bae] {\n  width: 11.478696741854638%;\n}\nimg.t45[_v-479c7bae] {\n  width: 11.779448621553884%;\n}\nimg.t46[_v-479c7bae] {\n  width: 16.791979949874687%;\n}\nimg.t47[_v-479c7bae] {\n  width: 17.042606516290725%;\n}\nimg.t48[_v-479c7bae] {\n  width: 16.19047619047619%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 250px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n}\n")
 'use strict';
@@ -30698,7 +30698,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-479c7bae", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/getters":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],51:[function(require,module,exports){
+},{"../vuex/getters":67,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],51:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".btn-group-container[_v-78250f3e] {\n  position: fixed;\n  top: 0;\n  padding: 10vh 0 10vh 20px;\n  height: 100vh;\n}\n.graph-control-container[_v-78250f3e] {\n  margin-bottom: 15px;\n}\n.graph-control-btn[_v-78250f3e] {\n  width: 30px;\n  height: 20px;\n  border: 2px solid #000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  cursor: pointer;\n  float: left;\n}\n.graph-control-btn.graph-control-btn--dashed[_v-78250f3e] {\n  border: 2px dashed #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e] {\n  width: 20px;\n  height: 8px;\n}\n.graph-control-btn .graph-control-btn-inside.graph-control-btn-active[_v-78250f3e] {\n  background-color: #000;\n}\n.graph-control-btn .graph-control-btn-inside[_v-78250f3e]:hover {\n  background-color: #d3d3d3;\n}\n.graph-control-text[_v-78250f3e] {\n  margin-left: 40px;\n}\n")
 'use strict';
@@ -30748,7 +30748,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-78250f3e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":65,"../vuex/getters":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],52:[function(require,module,exports){
+},{"../vuex/actions":66,"../vuex/getters":67,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],52:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert(".big-container[_v-2ea1e1fc] {\n  position: fixed;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 100vh;\n  padding-left: 40px;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n")
 'use strict';
@@ -30812,7 +30812,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-2ea1e1fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":65,"../vuex/getters":66,"./GraphController.vue":51,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],53:[function(require,module,exports){
+},{"../vuex/actions":66,"../vuex/getters":67,"./GraphController.vue":51,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],53:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("h1[_v-0491a5ec] {\n  font-family: 'Athelas';\n}\n")
 'use strict';
@@ -30901,7 +30901,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-f5602072", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":65,"../vuex/getters":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],55:[function(require,module,exports){
+},{"../vuex/actions":66,"../vuex/getters":67,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],55:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 2, stdin */\n.btn-group-container[_v-cfa3ae54] {\n  font-family: 'Athelas';\n  position: fixed;\n  left: 15%;\n  top: 0; }\n  /* line 7, stdin */\n  .btn-group-container .btn-group[_v-cfa3ae54] {\n    list-style-type: none;\n    position: absolute;\n    top: 0;\n    right: 0; }\n    /* line 12, stdin */\n    .btn-group-container .btn-group li[_v-cfa3ae54] {\n      position: relative;\n      margin: 2.5vw 0; }\n      /* line 15, stdin */\n      .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54] {\n        width: 6vw;\n        height: 6vw;\n        font-size: 3vw;\n        font-weight: 200;\n        border-radius: 50%;\n        border: 1px black solid;\n        background-color: black;\n        color: white; }\n        /* line 24, stdin */\n        .btn-group-container .btn-group li .btn-circle[_v-cfa3ae54]:hover {\n          background-color: white;\n          color: black; }\n      /* line 29, stdin */\n      .btn-group-container .btn-group li span[_v-cfa3ae54] {\n        position: absolute;\n        white-space: nowrap;\n        font-size: 1vw;\n        left: 115%;\n        bottom: 35%;\n        font-weight: 200; }\n")
 'use strict';
@@ -30967,7 +30967,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-cfa3ae54", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../vuex/actions":65,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],56:[function(require,module,exports){
+},{"../vuex/actions":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],56:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("div.page-button[_v-16e8d0b4] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background-color: #000;\n  position: relative;\n  box-shadow: 8px 8px 15px #808080;\n}\ndiv.page-button[_v-16e8d0b4]:hover {\n  background-color: #80164a;\n  box-shadow: 0px 0px 0px;\n}\ndiv.page-button.page-button--up[_v-16e8d0b4] {\n  left: 20px;\n  bottom: 5px;\n}\ndiv.page-button.page-button--down[_v-16e8d0b4] {\n  right: 20px;\n  top: 5px;\n}\ndiv.page-button .page-button-text[_v-16e8d0b4] {\n  position: relative;\n  color: #3e579f;\n  top: 25px;\n  left: 36px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n")
 'use strict';
@@ -31177,7 +31177,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-4ac01936", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":65,"../../vuex/getters":66,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],60:[function(require,module,exports){
+},{"../../vuex/actions":66,"../../vuex/getters":67,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],60:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-7970bada] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-7970bada] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-7970bada] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-7970bada] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 27, stdin */\n  .circle.circle--translate-y_15[_v-7970bada] {\n    top: -15px; }\n  /* line 30, stdin */\n  .circle.circle--blue[_v-7970bada] {\n    background: blue;\n    color: white; }\n    /* line 33, stdin */\n    .circle.circle--blue[_v-7970bada]:hover {\n      background: blue;\n      color: white; }\n  /* line 38, stdin */\n  .circle[_v-7970bada]:hover {\n    background-color: #e6f2ed; }\n  /* line 41, stdin */\n  .circle .floating-circle[_v-7970bada] {\n    position: absolute;\n    z-index: 100; }\n    /* line 44, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(1) {\n      top: -34px;\n      left: -2px; }\n    /* line 48, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(2) {\n      top: 20px;\n      left: -28px; }\n    /* line 52, stdin */\n    .circle .floating-circle[_v-7970bada]:nth-child(3) {\n      top: 20px;\n      right: -28px; }\n    /* line 56, stdin */\n    .circle .floating-circle.floating-circle--blue[_v-7970bada] {\n      background-color: blue;\n      color: white; }\n    /* line 60, stdin */\n    .circle .floating-circle.floating-circle--white[_v-7970bada] {\n      background-color: white;\n      color: black;\n      border: 2px solid black; }\n\n/* line 67, stdin */\n.circle--selected[_v-7970bada] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 71, stdin */\n.circle--invisible[_v-7970bada] {\n  visibility: hidden; }\n\n/* line 75, stdin */\n.table-trigger[_v-7970bada] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 83, stdin */\n  .table-trigger[_v-7970bada]:hover {\n    background-color: #333333; }\n\n/* line 87, stdin */\n.table-trigger--selected[_v-7970bada] {\n  background-color: black; }\n\n/* line 91, stdin */\n.table-normal[_v-7970bada] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 98, stdin */\n  .table-normal .teeth-row[_v-7970bada] {\n    height: 50%; }\n    /* line 100, stdin */\n    .table-normal .teeth-row .rtl[_v-7970bada] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 106, stdin */\n    .table-normal .teeth-row .ltr[_v-7970bada] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 111, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-7970bada] {\n      height: 100%; }\n    /* line 114, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 122, stdin */\n    .table-normal .teeth-row .connector-row[_v-7970bada] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 131, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-7970bada] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 140, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-7970bada]:hover {\n          background-color: #e6f2ed; }\n      /* line 144, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-7970bada] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 148, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-7970bada] {\n        visibility: hidden; }\n\n/* line 155, stdin */\n.bounce-transition[_v-7970bada] {\n  display: inline-block; }\n\n/* line 158, stdin */\n.bounce-enter[_v-7970bada] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 161, stdin */\n.bounce-leave[_v-7970bada] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -31221,7 +31221,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-7970bada=\"\">\n    <h1 _v-7970bada=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-7970bada=\"\"></span>\n        <question-mark text=\"Direct Retainers are classified by:<br><br>\n                  A: “A” ker’s Clasp<br>\n                  I: “I” bar<br>\n                  W: “W” rought wire\" _v-7970bada=\"\">\n        </question-mark>\n    </h1>\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-7970bada=\"\">a. Denture Bases</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-bottom-right col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-left col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-7970bada=\"\">b. Clasp design</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.b.slice(0,15)\" class=\"circle circle--translate-y_15\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : '' }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"claspToggle(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.b.slice(15,30).reverse()\" class=\"circle circle--translate-y_15\" v-bind:class=\"{ 'circle--blue': tooth.selected }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : '' }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"claspToggle(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-7970bada=\"\">\n    <h1 _v-7970bada=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-7970bada=\"\"></span>\n        <question-mark text=\"Direct Retainers are classified by:<br><br>\n                  A: “A” ker’s Clasp<br>\n                  I: “I” bar<br>\n                  W: “W” rought wire\" _v-7970bada=\"\">\n        </question-mark>\n    </h1>\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-7970bada=\"\">a. Denture Bases</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"row-bottom-right col-xs-6 rtl\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n            <div class=\"row-bottom-left col-xs-6 ltr\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.a.slice(16,24)\" class=\"circle\" v-bind:class=\"{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"teethToggle8(tooth.id, !tooth.selected)\" _v-7970bada=\"\">{{ tooth.id }}</div>\n            </div>\n        </div>\n    </div>\n    <h1 class=\"sub-title\" v-show=\"tableShow\" _v-7970bada=\"\">b. Clasp design</h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-7970bada=\"\">\n        <div class=\"row-top teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.b.slice(0,15)\" class=\"circle circle--translate-y_15\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : '' }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"claspToggle(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-7970bada=\"\">\n            <div class=\"col-xs-12\" _v-7970bada=\"\">\n                <div v-for=\"teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']\" _v-7970bada=\"\">\n                    {{ teeth }}\n                </div>\n            </div>\n            <div class=\"connector-row\" _v-7970bada=\"\">\n                <div v-for=\"tooth in data.b.slice(15,30).reverse()\" class=\"circle circle--translate-y_15\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))\" _v-7970bada=\"\">\n                {{ tooth.selected ? tooth.selected : '' }}\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.a\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;A&quot;)\" _v-7970bada=\"\">A</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.w\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;W&quot;)\" _v-7970bada=\"\">W</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.i\" transition=\"bounce\" @click=\"claspToggle(tooth.id, &quot;I&quot;)\" _v-7970bada=\"\">I</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"claspToggle(tooth.id, false)\" _v-7970bada=\"\">X</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -31236,7 +31236,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7970bada", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":65,"../../vuex/getters":66,"../QuestionMark.vue":57,"babel-runtime/core-js/object/values":2,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],61:[function(require,module,exports){
+},{"../../vuex/actions":66,"../../vuex/getters":67,"../QuestionMark.vue":57,"babel-runtime/core-js/object/values":2,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],61:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-249c332b] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-249c332b] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-249c332b] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-249c332b] {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 26, stdin */\n  .circle[_v-249c332b]:hover {\n    background-color: #e6f2ed; }\n  /* line 29, stdin */\n  .circle.circle-p[_v-249c332b] {\n    background-color: blue;\n    color: white;\n    position: relative;\n    z-index: 100; }\n  /* line 35, stdin */\n  .circle.circle-p-selected[_v-249c332b] {\n    background-color: blue;\n    color: white; }\n  /* line 39, stdin */\n  .circle.circle-m[_v-249c332b] {\n    background-color: blue;\n    color: white;\n    position: relative;\n    z-index: 100; }\n  /* line 45, stdin */\n  .circle.circle-m-selected[_v-249c332b] {\n    background-color: blue;\n    color: white; }\n  /* line 49, stdin */\n  .circle.circle-x[_v-249c332b] {\n    background-color: white;\n    color: black;\n    border: solid;\n    position: relative;\n    z-index: 100; }\n  /* line 56, stdin */\n  .circle.circle--top[_v-249c332b] {\n    top: -69px;\n    left: -2px; }\n  /* line 60, stdin */\n  .circle.circle--bottom[_v-249c332b] {\n    top: -49px;\n    left: -2px; }\n\n/* line 65, stdin */\n.circle--selected[_v-249c332b] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 69, stdin */\n.circle--invisible[_v-249c332b] {\n  visibility: hidden; }\n\n/* line 73, stdin */\n.table-trigger[_v-249c332b] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 81, stdin */\n  .table-trigger[_v-249c332b]:hover {\n    background-color: #333333; }\n\n/* line 85, stdin */\n.table-trigger--selected[_v-249c332b] {\n  background-color: black; }\n\n/* line 89, stdin */\n.table-normal[_v-249c332b] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 96, stdin */\n  .table-normal .teeth-row[_v-249c332b] {\n    height: 50%; }\n    /* line 98, stdin */\n    .table-normal .teeth-row .rtl[_v-249c332b] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 104, stdin */\n    .table-normal .teeth-row .ltr[_v-249c332b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 109, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-249c332b] {\n      height: 100%; }\n    /* line 112, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 120, stdin */\n    .table-normal .teeth-row .connector-row[_v-249c332b] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 129, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-249c332b] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 138, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-249c332b]:hover {\n          background-color: #e6f2ed; }\n      /* line 142, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-249c332b] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-249c332b] {\n        visibility: hidden; }\n\n/* line 153, stdin */\n.bounce-transition[_v-249c332b] {\n  display: inline-block; }\n\n/* line 156, stdin */\n.bounce-enter[_v-249c332b] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 159, stdin */\n.bounce-leave[_v-249c332b] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
 'use strict';
@@ -31284,7 +31284,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-249c332b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":65,"../../vuex/getters":66,"../QuestionMark.vue":57,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],62:[function(require,module,exports){
+},{"../../vuex/actions":66,"../../vuex/getters":67,"../QuestionMark.vue":57,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31307,6 +31307,10 @@ var _QuestionEight = require("./QuestionEight.vue");
 
 var _QuestionEight2 = _interopRequireDefault(_QuestionEight);
 
+var _QuestionTen = require("./QuestionTen.vue");
+
+var _QuestionTen2 = _interopRequireDefault(_QuestionTen);
+
 var _PageButtons = require("../PageButtons.vue");
 
 var _PageButtons2 = _interopRequireDefault(_PageButtons);
@@ -31322,6 +31326,7 @@ exports.default = {
         Question: _Question2.default,
         QuestionFour: _QuestionFour2.default,
         QuestionEight: _QuestionEight2.default,
+        QuestionTen: _QuestionTen2.default,
         PageButtons: _PageButtons2.default,
         QuestionMark: _QuestionMark2.default
     },
@@ -31351,7 +31356,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container questionListContainer\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 1 || $route.params.questionPhase == 2\" _v-53305aa3=\"\">\n        <question :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 3\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 4\" _v-53305aa3=\"\">\n        <question-eight v-if=\"number == 7\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-eight>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 5\" _v-53305aa3=\"\">\n        <question v-if=\"number == 8\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"We’re unable to express the classification of dental caries at this time.<br>\n                      Help support us or make a donation for further development.\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n        <question v-if=\"number == 9\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"Vitality (Conditions of the pulp) is classified by:<br><br>\n                      O: Vital<br>\n                      ∆: Endodontic treated ( Filled with Gutta-Percha )<br>\n                      X: Necrosis\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n    </div>\n    <div class=\"button button-down\" _v-53305aa3=\"\">\n        <page-buttons _v-53305aa3=\"\"></page-buttons>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container questionListContainer\" _v-53305aa3=\"\">\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 1 || $route.params.questionPhase == 2\" _v-53305aa3=\"\">\n        <question :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 3\" _v-53305aa3=\"\">\n        <question v-if=\"number != 4\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question>\n        <question-four v-if=\"number == 4\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-four>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 4\" _v-53305aa3=\"\">\n        <question-eight v-if=\"number == 7\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-eight>\n    </div>\n    <div v-for=\"number in questionNumbers\" v-if=\"$route.params.questionPhase == 5\" _v-53305aa3=\"\">\n        <question v-if=\"number == 8\" :teeth=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n            <question-mark text=\"We’re unable to express the classification of dental caries at this time.<br>\n                      Help support us or make a donation for further development.\" _v-53305aa3=\"\">\n            </question-mark>\n        </question>\n        <question-ten v-if=\"number == 9\" :data=\"questions[number].teeth\" :number=\"questions[number].number\" :table-show=\"questions[number].tableShow\" :title=\"questions[number].title\" _v-53305aa3=\"\">\n        </question-ten>\n    </div>\n    <div class=\"button button-down\" _v-53305aa3=\"\">\n        <page-buttons _v-53305aa3=\"\"></page-buttons>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -31362,7 +31367,78 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-53305aa3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../vuex/actions":65,"../../vuex/getters":66,"../PageButtons.vue":56,"../QuestionMark.vue":57,"./Question.vue":59,"./QuestionEight.vue":60,"./QuestionFour.vue":61,"vue":44,"vue-hot-reload-api":42}],63:[function(require,module,exports){
+},{"../../vuex/actions":66,"../../vuex/getters":67,"../PageButtons.vue":56,"../QuestionMark.vue":57,"./Question.vue":59,"./QuestionEight.vue":60,"./QuestionFour.vue":61,"./QuestionTen.vue":63,"vue":44,"vue-hot-reload-api":42}],63:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("/* line 4, stdin */\n.question-container[_v-5855a428] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-5855a428] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-5855a428] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-5855a428] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 27, stdin */\n  .circle.circle--translate-y_15[_v-5855a428] {\n    top: -15px; }\n  /* line 30, stdin */\n  .circle.circle--blue[_v-5855a428] {\n    background: blue;\n    color: white; }\n    /* line 33, stdin */\n    .circle.circle--blue[_v-5855a428]:hover {\n      background: blue;\n      color: white; }\n  /* line 38, stdin */\n  .circle[_v-5855a428]:hover {\n    background-color: #e6f2ed; }\n  /* line 41, stdin */\n  .circle .floating-circle[_v-5855a428] {\n    position: absolute;\n    z-index: 100; }\n    /* line 44, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(1) {\n      top: -34px;\n      left: -2px; }\n    /* line 48, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(2) {\n      top: 20px;\n      left: -28px; }\n    /* line 52, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(3) {\n      top: 20px;\n      right: -28px; }\n    /* line 56, stdin */\n    .circle .floating-circle.floating-circle--blue[_v-5855a428] {\n      background-color: blue;\n      color: white; }\n    /* line 60, stdin */\n    .circle .floating-circle.floating-circle--white[_v-5855a428] {\n      background-color: white;\n      color: black;\n      border: 2px solid black; }\n\n/* line 69, stdin */\n.circle--selected[_v-5855a428] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 73, stdin */\n.circle--invisible[_v-5855a428] {\n  visibility: hidden; }\n\n/* line 77, stdin */\n.table-trigger[_v-5855a428] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 85, stdin */\n  .table-trigger[_v-5855a428]:hover {\n    background-color: #333333; }\n\n/* line 89, stdin */\n.table-trigger--selected[_v-5855a428] {\n  background-color: black; }\n\n/* line 93, stdin */\n.table-normal[_v-5855a428] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 100, stdin */\n  .table-normal .teeth-row[_v-5855a428] {\n    height: 50%; }\n    /* line 102, stdin */\n    .table-normal .teeth-row .rtl[_v-5855a428] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 108, stdin */\n    .table-normal .teeth-row .ltr[_v-5855a428] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 113, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5855a428] {\n      height: 100%; }\n    /* line 116, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-5855a428] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 124, stdin */\n    .table-normal .teeth-row .connector-row[_v-5855a428] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 133, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-5855a428] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 142, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-5855a428]:hover {\n          background-color: #e6f2ed; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-5855a428] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 150, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-5855a428] {\n        visibility: hidden; }\n\n/* line 157, stdin */\n.bounce-transition[_v-5855a428] {\n  display: inline-block; }\n\n/* line 160, stdin */\n.bounce-enter[_v-5855a428] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 163, stdin */\n.bounce-leave[_v-5855a428] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _values = require('babel-runtime/core-js/object/values');
+
+var _values2 = _interopRequireDefault(_values);
+
+var _QuestionMark = require('../QuestionMark.vue');
+
+var _QuestionMark2 = _interopRequireDefault(_QuestionMark);
+
+var _getters = require('../../vuex/getters');
+
+var _actions = require('../../vuex/actions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    el: '.question-container',
+    components: { QuestionMark: _QuestionMark2.default },
+    props: ['number', 'title', 'data', 'tableShow'],
+    vuex: {
+        actions: {
+            tableShowToggle: _actions.tableShowToggle,
+            vitalityToggle: _actions.vitalityToggle,
+            selectShowToggle10: _actions.selectShowToggle10
+        }
+    },
+    methods: {
+        showX: function showX(selectShow) {
+            return (0, _values2.default)(selectShow).filter(function (item) {
+                return item;
+            }).length === 2;
+        },
+        selectedMapper: function selectedMapper(selected) {
+            switch (selected) {
+                case 'circle':
+                    return 'O';
+                    break;
+                case 'times':
+                    return 'X';
+                    break;
+                case 'triangle':
+                    return '∆';
+                    break;
+            }
+        }
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"question-container\" _v-5855a428=\"\">\n    <h1 _v-5855a428=\"\">\n        {{ number }}. {{ title }}\n        <span class=\"table-trigger\" :class=\"{ 'table-trigger--selected': tableShow }\" @click=\"tableShowToggle(number)\" _v-5855a428=\"\"></span>\n        <question-mark text=\"Vitality (Conditions of the pulp) is classified by:<br><br>\n                  O: Vital<br>\n                  ∆: Endodontic treated ( Filled with Gutta-Percha )<br>\n                  X: Necrosis\" _v-5855a428=\"\">\n        </question-mark>\n    </h1>\n    <div class=\"table-normal\" v-show=\"tableShow\" _v-5855a428=\"\">\n        <div class=\"row-top teeth-row\" _v-5855a428=\"\">\n            <div class=\"row-top-left col-xs-6 rtl\" _v-5855a428=\"\">\n                <div v-for=\"tooth in data.slice(0,8)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))\" _v-5855a428=\"\">\n                    {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue floating-circle--circle\" v-if=\"tooth.selectShow.circle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;circle&quot;)\" _v-5855a428=\"\">O</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.times\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;times&quot;)\" _v-5855a428=\"\">X</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.triangle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;triangle&quot;)\" _v-5855a428=\"\">∆</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, false)\" _v-5855a428=\"\">X</div>\n                </div>\n            </div>\n            <div class=\"row-top-right col-xs-6 ltr\" _v-5855a428=\"\">\n                <div v-for=\"tooth in data.slice(8,16)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))\" _v-5855a428=\"\">\n                    {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue floating-circle--circle\" v-if=\"tooth.selectShow.circle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;circle&quot;)\" _v-5855a428=\"\">O</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.times\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;times&quot;)\" _v-5855a428=\"\">X</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.triangle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;triangle&quot;)\" _v-5855a428=\"\">∆</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, false)\" _v-5855a428=\"\">X</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row-bottom teeth-row\" _v-5855a428=\"\">\n            <div class=\"row-bottom-right col-xs-6 rtl\" _v-5855a428=\"\">\n                <div v-for=\"tooth in data.slice(24,32)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))\" _v-5855a428=\"\">\n                    {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue floating-circle--circle\" v-if=\"tooth.selectShow.circle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;circle&quot;)\" _v-5855a428=\"\">O</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.times\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;times&quot;)\" _v-5855a428=\"\">X</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.triangle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;triangle&quot;)\" _v-5855a428=\"\">∆</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, false)\" _v-5855a428=\"\">X</div>\n                </div>\n            </div>\n            <div class=\"row-bottom-left col-xs-6 ltr\" _v-5855a428=\"\">\n                <div v-for=\"tooth in data.slice(16, 24)\" class=\"circle\" v-bind:class=\"{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }\" @click=\"selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))\" _v-5855a428=\"\">\n                    {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}\n                    <div class=\"circle floating-circle floating-circle--blue floating-circle--circle\" v-if=\"tooth.selectShow.circle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;circle&quot;)\" _v-5855a428=\"\">O</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.times\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;times&quot;)\" _v-5855a428=\"\">X</div>\n                    <div class=\"circle floating-circle floating-circle--blue\" v-if=\"tooth.selectShow.triangle\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, &quot;triangle&quot;)\" _v-5855a428=\"\">∆</div>\n                    <div class=\"circle floating-circle floating-circle--white\" v-show=\"showX(tooth.selectShow)\" transition=\"bounce\" @click=\"vitalityToggle(tooth.id, false)\" _v-5855a428=\"\">X</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["/* line 4, stdin */\n.question-container[_v-5855a428] {\n  margin: 0 0 30px 20px; }\n  /* line 6, stdin */\n  .question-container h1[_v-5855a428] {\n    margin: 0;\n    font-size: 20px;\n    font-weight: 200; }\n    /* line 10, stdin */\n    .question-container h1.sub-title[_v-5855a428] {\n      margin-left: 10px;\n      margin-top: 10px; }\n\n/* line 16, stdin */\n.circle[_v-5855a428] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  border: 2px dotted black;\n  text-align: center;\n  line-height: 36px;\n  font-size: 20px;\n  font-weight: 700;\n  cursor: pointer; }\n  /* line 27, stdin */\n  .circle.circle--translate-y_15[_v-5855a428] {\n    top: -15px; }\n  /* line 30, stdin */\n  .circle.circle--blue[_v-5855a428] {\n    background: blue;\n    color: white; }\n    /* line 33, stdin */\n    .circle.circle--blue[_v-5855a428]:hover {\n      background: blue;\n      color: white; }\n  /* line 38, stdin */\n  .circle[_v-5855a428]:hover {\n    background-color: #e6f2ed; }\n  /* line 41, stdin */\n  .circle .floating-circle[_v-5855a428] {\n    position: absolute;\n    z-index: 100; }\n    /* line 44, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(1) {\n      top: -34px;\n      left: -2px; }\n    /* line 48, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(2) {\n      top: 20px;\n      left: -28px; }\n    /* line 52, stdin */\n    .circle .floating-circle[_v-5855a428]:nth-child(3) {\n      top: 20px;\n      right: -28px; }\n    /* line 56, stdin */\n    .circle .floating-circle.floating-circle--blue[_v-5855a428] {\n      background-color: blue;\n      color: white; }\n    /* line 60, stdin */\n    .circle .floating-circle.floating-circle--white[_v-5855a428] {\n      background-color: white;\n      color: black;\n      border: 2px solid black; }\n\n/* line 69, stdin */\n.circle--selected[_v-5855a428] {\n  background-color: #C4E1D4;\n  border: 2px solid black; }\n\n/* line 73, stdin */\n.circle--invisible[_v-5855a428] {\n  visibility: hidden; }\n\n/* line 77, stdin */\n.table-trigger[_v-5855a428] {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 5px;\n  background-color: lightgrey;\n  position: relative;\n  top: 3px; }\n  /* line 85, stdin */\n  .table-trigger[_v-5855a428]:hover {\n    background-color: #333333; }\n\n/* line 89, stdin */\n.table-trigger--selected[_v-5855a428] {\n  background-color: black; }\n\n/* line 93, stdin */\n.table-normal[_v-5855a428] {\n  width: 800px;\n  height: 120px;\n  margin: 10px 0 0 30px;\n  background-color: white;\n  border-radius: 18px;\n  border: 3px black solid; }\n  /* line 100, stdin */\n  .table-normal .teeth-row[_v-5855a428] {\n    height: 50%; }\n    /* line 102, stdin */\n    .table-normal .teeth-row .rtl[_v-5855a428] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: reverse;\n          -ms-flex-direction: row-reverse;\n              flex-direction: row-reverse;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 108, stdin */\n    .table-normal .teeth-row .ltr[_v-5855a428] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around; }\n    /* line 113, stdin */\n    .table-normal .teeth-row .col-xs-6[_v-5855a428] {\n      height: 100%; }\n    /* line 116, stdin */\n    .table-normal .teeth-row .col-xs-12[_v-5855a428] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 12px;\n      font-weight: 700; }\n    /* line 124, stdin */\n    .table-normal .teeth-row .connector-row[_v-5855a428] {\n      height: 50%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n      font-size: 6px;\n      font-weight: 700;\n      width: 89%;\n      margin: 0 auto; }\n      /* line 133, stdin */\n      .table-normal .teeth-row .connector-row .circle--small[_v-5855a428] {\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        border: 1px solid black;\n        text-align: center;\n        line-height: 18px;\n        font-size: 18px;\n        font-weight: 700; }\n        /* line 142, stdin */\n        .table-normal .teeth-row .connector-row .circle--small[_v-5855a428]:hover {\n          background-color: #e6f2ed; }\n      /* line 146, stdin */\n      .table-normal .teeth-row .connector-row .circle--selected[_v-5855a428] {\n        background-color: #C4E1D4;\n        border: 1px solid black; }\n      /* line 150, stdin */\n      .table-normal .teeth-row .connector-row .circle--invisible[_v-5855a428] {\n        visibility: hidden; }\n\n/* line 157, stdin */\n.bounce-transition[_v-5855a428] {\n  display: inline-block; }\n\n/* line 160, stdin */\n.bounce-enter[_v-5855a428] {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s; }\n\n/* line 163, stdin */\n.bounce-leave[_v-5855a428] {\n  display: none; }\n\n@-webkit-keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes bounce-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n\n@keyframes bounce-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1); }\n  50% {\n    -webkit-transform: scale(1.5);\n            transform: scale(1.5); }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0); } }\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-5855a428", module.exports)
+  } else {
+    hotAPI.update("_v-5855a428", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../../vuex/actions":66,"../../vuex/getters":67,"../QuestionMark.vue":57,"babel-runtime/core-js/object/values":2,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],64:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -31393,7 +31469,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _router2.default.start(_App2.default, '#app');
 
-},{"./components/App.vue":49,"./router":64,"./vuex/store":68,"jquery":38,"vue":44,"vuex-router-sync":46}],64:[function(require,module,exports){
+},{"./components/App.vue":49,"./router":65,"./vuex/store":69,"jquery":38,"vue":44,"vuex-router-sync":46}],65:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31445,7 +31521,7 @@ router.map({
 
 exports.default = router;
 
-},{"./components/ExportGraph.vue":50,"./components/HomePage.vue":53,"./components/questionList/PeriodChart.vue":58,"./components/questionList/QuestionList.vue":62,"vue":44,"vue-router":43}],65:[function(require,module,exports){
+},{"./components/ExportGraph.vue":50,"./components/HomePage.vue":53,"./components/questionList/PeriodChart.vue":58,"./components/questionList/QuestionList.vue":62,"vue":44,"vue-router":43}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31467,42 +31543,50 @@ var claspToggle = exports.claspToggle = function claspToggle(_ref4, clasp, newSt
   var dispatch = _ref4.dispatch;
   return dispatch('CLASP_TOGGLE', clasp, newStatus);
 };
-var teethToggle = exports.teethToggle = function teethToggle(_ref5, number, teeth, newStatus) {
+var vitalityToggle = exports.vitalityToggle = function vitalityToggle(_ref5, vitality, newStatus) {
   var dispatch = _ref5.dispatch;
+  return dispatch('VITALITY_TOGGLE', vitality, newStatus);
+};
+var teethToggle = exports.teethToggle = function teethToggle(_ref6, number, teeth, newStatus) {
+  var dispatch = _ref6.dispatch;
   return dispatch('TEETH_TOGGLE', number, teeth, newStatus);
 };
-var teethToggle4 = exports.teethToggle4 = function teethToggle4(_ref6, number, teeth, newStatus) {
-  var dispatch = _ref6.dispatch;
+var teethToggle4 = exports.teethToggle4 = function teethToggle4(_ref7, number, teeth, newStatus) {
+  var dispatch = _ref7.dispatch;
   return dispatch('TEETH_TOGGLE4', number, teeth, newStatus);
 };
-var teethToggle8 = exports.teethToggle8 = function teethToggle8(_ref7, number, teeth, newStatus) {
-  var dispatch = _ref7.dispatch;
+var teethToggle8 = exports.teethToggle8 = function teethToggle8(_ref8, number, teeth, newStatus) {
+  var dispatch = _ref8.dispatch;
   return dispatch('TEETH_TOGGLE8', number, teeth, newStatus);
 };
-var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_ref8, teeth, newStatus) {
-  var dispatch = _ref8.dispatch;
+var selectShowToggle4 = exports.selectShowToggle4 = function selectShowToggle4(_ref9, teeth, newStatus) {
+  var dispatch = _ref9.dispatch;
   return dispatch('SELECT_SHOW_TOGGLE4', teeth, newStatus);
 };
-var selectShowToggle8 = exports.selectShowToggle8 = function selectShowToggle8(_ref9, teeth, newStatus) {
-  var dispatch = _ref9.dispatch;
+var selectShowToggle8 = exports.selectShowToggle8 = function selectShowToggle8(_ref10, teeth, newStatus) {
+  var dispatch = _ref10.dispatch;
   return dispatch('SELECT_SHOW_TOGGLE8', teeth, newStatus);
 };
+var selectShowToggle10 = exports.selectShowToggle10 = function selectShowToggle10(_ref11, teeth, newStatus) {
+  var dispatch = _ref11.dispatch;
+  return dispatch('SELECT_SHOW_TOGGLE10', teeth, newStatus);
+};
 
-var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref10) {
-  var dispatch = _ref10.dispatch;
+var aboutShowToggle = exports.aboutShowToggle = function aboutShowToggle(_ref12) {
+  var dispatch = _ref12.dispatch;
   return dispatch('ABOUT_SHOW');
 };
-var howToUseShowToggle = exports.howToUseShowToggle = function howToUseShowToggle(_ref11) {
-  var dispatch = _ref11.dispatch;
+var howToUseShowToggle = exports.howToUseShowToggle = function howToUseShowToggle(_ref13) {
+  var dispatch = _ref13.dispatch;
   return dispatch('HOW_TO_USE_SHOW');
 };
 
-var setGraphController = exports.setGraphController = function setGraphController(_ref12, newStatus, dashed) {
-  var dispatch = _ref12.dispatch;
+var setGraphController = exports.setGraphController = function setGraphController(_ref14, newStatus, dashed) {
+  var dispatch = _ref14.dispatch;
   return dispatch('SET_GRAPH_CONTROLLER', newStatus, dashed);
 };
 
-},{}],66:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31530,7 +31614,7 @@ var getQuestionMarks = exports.getQuestionMarks = function getQuestionMarks(stat
 };
 // export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 
-},{}],67:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31660,7 +31744,7 @@ var resetPermission = exports.resetPermission = function resetPermission(state) 
     });
 };
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31734,6 +31818,13 @@ var mutations = {
                     number: number + 1,
                     title: question
                 });
+            } else if (number == 9) {
+                state.questions.push({
+                    teeth: (0, _teethConstructor.teethArr10)(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                });
             } else {
                 state.questions.push({
                     teeth: (0, _teethConstructor.teethArr)(),
@@ -31797,14 +31888,18 @@ var mutations = {
 
         var teethIndex = _underscore2.default.findKey(state.questions[8 - 1].teeth.a, { id: teeth });
         state.questions[8 - 1].teeth.a[teethIndex].selected = state.questions[8 - 1].teeth.a[teethIndex].selectable ? newStatus : false;
-        // connectorsSplit().forEach(splitArr => {
-        //     let connectorIndex = splitArr.reduce((carry, item) => carry + item)
-        //     let selectable = splitArr.reduce((carry, item) => {
-        //         return carry && state.questions[4].teeth.a[_.findKey(state.questions[4].teeth.a, { id: item.toString() })].selected != ""
-        //     }, true)
-        //     state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
-        // })
-        // resetPermission(state)
+        (0, _teethConstructor.connectorsSplit)().forEach(function (splitArr) {
+            var connectorIndex = splitArr.reduce(function (carry, item) {
+                return carry + item;
+            });
+            var selectable = splitArr.map(function (toothIndex) {
+                return state.questions[8 - 1].teeth.a[_underscore2.default.findKey(state.questions[8 - 1].teeth.a, { id: toothIndex.toString() })].selected;
+            }).filter(function (item) {
+                return item;
+            }).length === 1;
+            state.questions[8 - 1].teeth.b[_underscore2.default.findKey(state.questions[8 - 1].teeth.b, { id: connectorIndex })].selectable = selectable;
+        });
+        (0, _permission.resetPermission)(state);
     },
     CONNECTOR_TOGGLE: function CONNECTOR_TOGGLE(state, connector, newStatus) {
         "use strict";
@@ -31818,6 +31913,12 @@ var mutations = {
         var teethIndex = _underscore2.default.findKey(state.questions[8 - 1].teeth.b, { id: clasp });
         state.questions[8 - 1].teeth.b[teethIndex].selected = state.questions[8 - 1].teeth.b[teethIndex].selectable ? newStatus : false;
     },
+    VITALITY_TOGGLE: function VITALITY_TOGGLE(state, vitality, newStatus) {
+        "use strict";
+
+        var teethIndex = _underscore2.default.findKey(state.questions[10 - 1].teeth, { id: vitality });
+        state.questions[10 - 1].teeth[teethIndex].selected = state.questions[10 - 1].teeth[teethIndex].selectable ? newStatus : false;
+    },
     SELECT_SHOW_TOGGLE4: function SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
         if (state.questions[4].teeth.a[teethIndex].selected == 'P') {
@@ -31826,6 +31927,56 @@ var mutations = {
             state.questions[4].teeth.a[teethIndex].selectShow = newStatus ? { p: true, m: false } : { p: false, m: false };
         } else {
             state.questions[4].teeth.a[teethIndex].selectShow = newStatus ? { p: true, m: true } : { p: false, m: false };
+        }
+    },
+    SELECT_SHOW_TOGGLE10: function SELECT_SHOW_TOGGLE10(state, teeth, newStatus) {
+        var teethIndex = _underscore2.default.findKey(state.questions[10 - 1].teeth, { id: teeth });
+        var teethObj = state.questions[10 - 1].teeth[teethIndex];
+        switch (teethObj.selected) {
+            case 'circle':
+                teethObj.selectShow = newStatus ? {
+                    circle: false,
+                    times: true,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                };
+                break;
+            case 'times':
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: false,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                };
+                break;
+            case 'triangle':
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: true,
+                    triangle: false
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                };
+                break;
+            default:
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: true,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                };
+                break;
         }
     },
     SELECT_SHOW_TOGGLE8: function SELECT_SHOW_TOGGLE8(state, teeth, newStatus) {
@@ -31895,13 +32046,13 @@ exports.default = new _vuex2.default.Store({
     mutations: mutations
 });
 
-},{"./permission":67,"./teethConstructor":69,"babel-runtime/core-js/json/stringify":1,"underscore":41,"vue":44,"vue-router":43,"vuex":47}],69:[function(require,module,exports){
+},{"./permission":68,"./teethConstructor":70,"babel-runtime/core-js/json/stringify":1,"underscore":41,"vue":44,"vue-router":43,"vuex":47}],70:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.teethArr8 = exports.teethArr4 = exports.teethArr = exports.connectors = exports.connectorsSplit = undefined;
+exports.teethArr8 = exports.teethArr4 = exports.teethArr10 = exports.teethArr = exports.connectors = exports.connectorsSplit = undefined;
 
 var _lodash = require("lodash");
 
@@ -31927,6 +32078,24 @@ var teethArr = exports.teethArr = function teethArr() {
                 id: "" + digit10 + digit1,
                 selected: false,
                 selectable: true
+            });
+        });
+    });
+    return teeth;
+};
+var teethArr10 = exports.teethArr10 = function teethArr10() {
+    var teeth = [];
+    _lodash2.default.range(1, 5).forEach(function (digit10) {
+        _lodash2.default.range(1, 9).forEach(function (digit1) {
+            teeth.push({
+                id: "" + digit10 + digit1,
+                selected: false,
+                selectable: true,
+                selectShow: {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
             });
         });
     });
@@ -31982,8 +32151,7 @@ var teethArr8 = exports.teethArr8 = function teethArr8() {
         teeth.b.push({
             id: connector,
             selected: false,
-            // selectable: false,
-            selectable: true,
+            selectable: false,
             selectShow: {
                 a: false,
                 w: false,
@@ -31994,6 +32162,6 @@ var teethArr8 = exports.teethArr8 = function teethArr8() {
     return teeth;
 };
 
-},{"lodash":39}]},{},[63]);
+},{"lodash":39}]},{},[64]);
 
 //# sourceMappingURL=home.js.map

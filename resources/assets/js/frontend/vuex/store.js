@@ -7,6 +7,7 @@ import {
     teethArr,
     teethArr4,
     teethArr8,
+    teethArr10,
     connectors,
     connectorsSplit
 } from './teethConstructor'
@@ -50,6 +51,13 @@ const mutations = {
             } else if (number == 7) {
                 state.questions.push({
                     teeth: teethArr8(),
+                    tableShow: false,
+                    number: number + 1,
+                    title: question
+                })
+            } else if (number == 9) {
+                state.questions.push({
+                    teeth: teethArr10(),
                     tableShow: false,
                     number: number + 1,
                     title: question
@@ -116,14 +124,17 @@ const mutations = {
         "use strict";
         let teethIndex = _.findKey(state.questions[8 - 1].teeth.a, { id: teeth })
         state.questions[8 - 1].teeth.a[teethIndex].selected = state.questions[8 - 1].teeth.a[teethIndex].selectable ? newStatus : false
-        // connectorsSplit().forEach(splitArr => {
-        //     let connectorIndex = splitArr.reduce((carry, item) => carry + item)
-        //     let selectable = splitArr.reduce((carry, item) => {
-        //         return carry && state.questions[4].teeth.a[_.findKey(state.questions[4].teeth.a, { id: item.toString() })].selected != ""
-        //     }, true)
-        //     state.questions[4].teeth.b[_.findKey(state.questions[4].teeth.b, { id: connectorIndex })].selectable = selectable
-        // })
-        // resetPermission(state)
+        connectorsSplit().forEach(splitArr => {
+            let connectorIndex = splitArr.reduce((carry, item) => carry + item)
+            let selectable = splitArr
+            .map(toothIndex => {
+                return state.questions[8 - 1].teeth.a[_.findKey(state.questions[8 - 1].teeth.a, {id: toothIndex.toString()})].selected
+            })
+            .filter(item => item)
+            .length === 1
+            state.questions[8 - 1].teeth.b[_.findKey(state.questions[8 - 1].teeth.b, { id: connectorIndex })].selectable = selectable
+        })
+        resetPermission(state)
     },
 
     CONNECTOR_TOGGLE (state, connector, newStatus) {
@@ -138,6 +149,12 @@ const mutations = {
         state.questions[8 - 1].teeth.b[teethIndex].selected = state.questions[8 - 1].teeth.b[teethIndex].selectable ? newStatus : false
     },
 
+    VITALITY_TOGGLE (state, vitality, newStatus) {
+        "use strict";
+        let teethIndex = _.findKey(state.questions[10 - 1].teeth, { id: vitality })
+        state.questions[10 - 1].teeth[teethIndex].selected = state.questions[10 - 1].teeth[teethIndex].selectable ? newStatus : false
+    },
+
     SELECT_SHOW_TOGGLE4(state, teeth, newStatus) {
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth} )
         if (state.questions[4].teeth.a[teethIndex].selected == 'P') {
@@ -149,6 +166,56 @@ const mutations = {
         }
     },
 
+    SELECT_SHOW_TOGGLE10(state, teeth, newStatus) {
+        let teethIndex = _.findKey(state.questions[10 - 1].teeth, { id: teeth} )
+        let teethObj = state.questions[10 - 1].teeth[teethIndex]
+        switch (teethObj.selected) {
+            case 'circle':
+                teethObj.selectShow = newStatus ? {
+                    circle: false,
+                    times: true,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
+                break
+            case 'times':
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: false,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
+                break
+            case 'triangle':
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: true,
+                    triangle: false
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
+                break
+            default:
+                teethObj.selectShow = newStatus ? {
+                    circle: true,
+                    times: true,
+                    triangle: true
+                } : {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
+                break
+        }
+    },
     SELECT_SHOW_TOGGLE8(state, teeth, newStatus) {
         let teethIndex = _.findKey(state.questions[8 - 1].teeth.b, { id: teeth} )
         let teethObj = state.questions[8 - 1].teeth.b[teethIndex]

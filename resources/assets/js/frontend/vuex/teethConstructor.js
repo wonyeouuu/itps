@@ -48,6 +48,24 @@ export const teethArr = () => {
     })
     return teeth
 }
+export const teethArr10 = () => {
+    let teeth = []
+    _.range(1, 5).forEach((digit10) => {
+        _.range(1, 9).forEach((digit1) => {
+            teeth.push({
+                id: `${digit10}${digit1}`,
+                selected: false,
+                selectable: true,
+                selectShow: {
+                    circle: false,
+                    times: false,
+                    triangle: false
+                }
+            })
+        })
+    })
+    return teeth
+}
 export const teethArr4 = () => {
     "use strict";
     let teeth = {
@@ -97,8 +115,7 @@ export const teethArr8 = () => {
         teeth.b.push({
             id: connector,
             selected: false,
-            // selectable: false,
-            selectable: true,
+            selectable: false,
             selectShow: {
                 a: false,
                 w: false,

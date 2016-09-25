@@ -62,6 +62,8 @@
                 color: black;
                 border: 2px solid black;
             }
+            &.floating-circle--circle {
+            }
         }
     }
     .circle--selected {
@@ -195,128 +197,134 @@
                 @click="tableShowToggle(number)"
             ></span>
             <question-mark
-                text='Direct Retainers are classified by:<br><br>
-                      A: “A” ker’s Clasp<br>
-                      I: “I” bar<br>
-                      W: “W” rought wire'
+                text='Vitality (Conditions of the pulp) is classified by:<br><br>
+                      O: Vital<br>
+                      ∆: Endodontic treated ( Filled with Gutta-Percha )<br>
+                      X: Necrosis'
             >
             </question-mark>
         </h1>
-        <h1 class='sub-title' v-show="tableShow">a. Denture Bases</h1>
         <div class="table-normal" v-show="tableShow">
             <div class="row-top teeth-row">
                 <div class="row-top-left col-xs-6 rtl">
                     <div
-                        v-for="tooth in data.a.slice(0,8)"
+                        v-for="tooth in data.slice(0,8)"
                         class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="teethToggle8(tooth.id, !tooth.selected)"
-                    >{{ tooth.id }}</div>
-                </div>
-                <div class="row-top-right col-xs-6 ltr">
-                    <div
-                        v-for="tooth in data.a.slice(8,16)"
-                        class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="teethToggle8(tooth.id, !tooth.selected)"
-                    >{{ tooth.id }}</div>
-                </div>
-            </div>
-            <div class="row-bottom teeth-row">
-                <div class="row-bottom-right col-xs-6 rtl">
-                    <div
-                        v-for="tooth in data.a.slice(24,32)"
-                        class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="teethToggle8(tooth.id, !tooth.selected)"
-                    >{{ tooth.id }}</div>
-                </div>
-                <div class="row-bottom-left col-xs-6 ltr">
-                    <div
-                        v-for="tooth in data.a.slice(16,24)"
-                        class="circle"
-                        v-bind:class="{ 'circle--selected': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="teethToggle8(tooth.id, !tooth.selected)"
-                    >{{ tooth.id }}</div>
-                </div>
-            </div>
-        </div>
-        <h1 class='sub-title' v-show="tableShow">b. Clasp design</h1>
-        <div class="table-normal" v-show="tableShow">
-            <div class="row-top teeth-row">
-                <div class="col-xs-12">
-                    <div
-                        v-for="teeth in ['18','17','16','15','14','13','12','11','21','22','23','24','25','26','27','28']"
-                    >
-                        {{ teeth }}
-                    </div>
-                </div>
-                <div class="connector-row">
-                    <div
-                        v-for="tooth in data.b.slice(0,15)"
-                        class="circle circle--translate-y_15"
                         v-bind:class="{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
+                        @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
-                    {{ tooth.selected ? tooth.selected : '' }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
+                        {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
+                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
+                            v-if='tooth.selectShow.circle'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "A")'
-                        >A</div>
+                            @click='vitalityToggle(tooth.id, "circle")'
+                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
+                            v-if='tooth.selectShow.times'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "W")'
-                        >W</div>
+                            @click='vitalityToggle(tooth.id, "times")'
+                        >X</div>
                         <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
+                            v-if='tooth.selectShow.triangle'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "I")'
-                        >I</div>
+                            @click='vitalityToggle(tooth.id, "triangle")'
+                        >∆</div>
                         <div class="circle floating-circle floating-circle--white"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
-                            @click="claspToggle(tooth.id, false)"
+                            @click="vitalityToggle(tooth.id, false)"
+                        >X</div>
+                    </div>
+                </div>
+                <div class="row-top-right col-xs-6 ltr">
+                    <div
+                        v-for="tooth in data.slice(8,16)"
+                        class="circle"
+                        v-bind:class="{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
+                    >
+                        {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
+                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
+                            v-if='tooth.selectShow.circle'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "circle")'
+                        >O</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.times'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "times")'
+                        >X</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.triangle'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "triangle")'
+                        >∆</div>
+                        <div class="circle floating-circle floating-circle--white"
+                            v-show="showX(tooth.selectShow)"
+                            transition='bounce'
+                            @click="vitalityToggle(tooth.id, false)"
                         >X</div>
                     </div>
                 </div>
             </div>
             <div class="row-bottom teeth-row">
-                <div class="col-xs-12">
+                <div class="row-bottom-right col-xs-6 rtl">
                     <div
-                        v-for="teeth in ['48','47','46','45','44','43','42','41','31','32','33','34','35','36','37','38']"
-                    >
-                        {{ teeth }}
-                    </div>
-                </div>
-                <div class="connector-row">
-                    <div
-                        v-for="tooth in data.b.slice(15,30).reverse()"
-                        class="circle circle--translate-y_15"
+                        v-for="tooth in data.slice(24,32)"
+                        class="circle"
                         v-bind:class="{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }"
-                        @click="selectShowToggle8(tooth.id, !(tooth.selectShow.a || tooth.selectShow.w || tooth.selectShow.i))"
+                        @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
                     >
-                    {{ tooth.selected ? tooth.selected : '' }}
-                        <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.a'
+                        {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
+                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
+                            v-if='tooth.selectShow.circle'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "A")'
-                        >A</div>
+                            @click='vitalityToggle(tooth.id, "circle")'
+                        >O</div>
                         <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.w'
+                            v-if='tooth.selectShow.times'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "W")'
-                        >W</div>
+                            @click='vitalityToggle(tooth.id, "times")'
+                        >X</div>
                         <div class='circle floating-circle floating-circle--blue'
-                            v-if='tooth.selectShow.i'
+                            v-if='tooth.selectShow.triangle'
                             transition='bounce'
-                            @click='claspToggle(tooth.id, "I")'
-                        >I</div>
+                            @click='vitalityToggle(tooth.id, "triangle")'
+                        >∆</div>
                         <div class="circle floating-circle floating-circle--white"
                             v-show="showX(tooth.selectShow)"
                             transition='bounce'
-                            @click="claspToggle(tooth.id, false)"
+                            @click="vitalityToggle(tooth.id, false)"
+                        >X</div>
+                    </div>
+                </div>
+                <div class="row-bottom-left col-xs-6 ltr">
+                    <div
+                        v-for="tooth in data.slice(16, 24)"
+                        class="circle"
+                        v-bind:class="{ 'circle--blue': tooth.selected, 'circle--invisible': !tooth.selectable }"
+                        @click="selectShowToggle10(tooth.id, !(tooth.selectShow.circle || tooth.selectShow.times || tooth.selectShow.triangle))"
+                    >
+                        {{ tooth.selected ? selectedMapper(tooth.selected) : tooth.id }}
+                        <div class='circle floating-circle floating-circle--blue floating-circle--circle'
+                            v-if='tooth.selectShow.circle'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "circle")'
+                        >O</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.times'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "times")'
+                        >X</div>
+                        <div class='circle floating-circle floating-circle--blue'
+                            v-if='tooth.selectShow.triangle'
+                            transition='bounce'
+                            @click='vitalityToggle(tooth.id, "triangle")'
+                        >∆</div>
+                        <div class="circle floating-circle floating-circle--white"
+                            v-show="showX(tooth.selectShow)"
+                            transition='bounce'
+                            @click="vitalityToggle(tooth.id, false)"
                         >X</div>
                     </div>
                 </div>
@@ -328,7 +336,7 @@
 <script type="text/babel">
 import QuestionMark from '../QuestionMark.vue'
 import { getTeethWithQuestion } from '../../vuex/getters'
-import { tableShowToggle, selectShowToggle8, claspToggle, teethToggle8 } from '../../vuex/actions'
+import { tableShowToggle, selectShowToggle10, vitalityToggle } from '../../vuex/actions'
 
 export default {
     el: '.question-container',
@@ -342,14 +350,26 @@ export default {
     vuex: {
         actions: {
             tableShowToggle,
-            claspToggle,
-            selectShowToggle8,
-            teethToggle8
+            vitalityToggle,
+            selectShowToggle10
         }
     },
     methods: {
         showX(selectShow) {
             return Object.values(selectShow).filter(item => item).length === 2
+        },
+        selectedMapper(selected) {
+            switch (selected) {
+                case 'circle':
+                    return 'O'
+                    break
+                case 'times':
+                    return 'X'
+                    break
+                case 'triangle':
+                    return '∆'
+                    break
+            }
         }
     }
 };

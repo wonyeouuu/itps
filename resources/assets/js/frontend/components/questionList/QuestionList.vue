@@ -66,21 +66,14 @@
             >
             </question-mark>
         </question>
-        <question
+        <question-ten
             v-if='number == 9'
-            :teeth="questions[number].teeth"
+            :data="questions[number].teeth"
             :number="questions[number].number"
             :table-show="questions[number].tableShow"
             :title='questions[number].title'
         >
-            <question-mark
-                text='Vitality (Conditions of the pulp) is classified by:<br><br>
-                      O: Vital<br>
-                      ∆: Endodontic treated ( Filled with Gutta-Percha )<br>
-                      X: Necrosis'
-            >
-            </question-mark>
-        </question>
+        </question-ten>
     </div>
     <div class="button button-down">
         <page-buttons></page-buttons>
@@ -95,6 +88,7 @@ import { getQuestions, getQuestionMarks } from "../../vuex/getters"
 import Question from "./Question.vue"
 import QuestionFour from "./QuestionFour.vue"
 import QuestionEight from "./QuestionEight.vue"
+import QuestionTen from "./QuestionTen.vue"
 import PageButtons from '../PageButtons.vue'
 import QuestionMark from '../QuestionMark.vue'
 
@@ -103,6 +97,7 @@ export default {
         Question,
         QuestionFour,
         QuestionEight,
+        QuestionTen,
         PageButtons,
         QuestionMark
     },
