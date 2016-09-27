@@ -125,75 +125,75 @@ total-width-4 = 600
 
 div.export-graph
     padding 5%
-img
-    height auto
-    &.t11
-        width percentage(75 / total-width-1)
-    &.t12
-        width percentage(61 / total-width-1)
-    &.t13
-        width percentage(65 / total-width-1)
-    &.t14
-        width percentage(66 / total-width-1)
-    &.t15
-        width percentage(64 / total-width-1)
-    &.t16
-        width percentage(100 / total-width-1)
-    &.t17
-        width percentage(87 / total-width-1)
-    &.t18
-        width percentage(82 / total-width-1)
+    img
+        height 200px
+        &.t11
+            width percentage(75 / total-width-1)
+        &.t12
+            width percentage(61 / total-width-1)
+        &.t13
+            width percentage(65 / total-width-1)
+        &.t14
+            width percentage(66 / total-width-1)
+        &.t15
+            width percentage(64 / total-width-1)
+        &.t16
+            width percentage(100 / total-width-1)
+        &.t17
+            width percentage(87 / total-width-1)
+        &.t18
+            width percentage(82 / total-width-1)
 
-    &.t21
-        width percentage(75 / total-width-2)
-    &.t22
-        width percentage(61 / total-width-2)
-    &.t23
-        width percentage(64 / total-width-2)
-    &.t24
-        width percentage(67 / total-width-2)
-    &.t25
-        width percentage(63 / total-width-2)
-    &.t26
-        width percentage(100 / total-width-2)
-    &.t27
-        width percentage(87 / total-width-2)
-    &.t28
-        width percentage(83 / total-width-2)
+        &.t21
+            width percentage(75 / total-width-2)
+        &.t22
+            width percentage(61 / total-width-2)
+        &.t23
+            width percentage(64 / total-width-2)
+        &.t24
+            width percentage(67 / total-width-2)
+        &.t25
+            width percentage(63 / total-width-2)
+        &.t26
+            width percentage(100 / total-width-2)
+        &.t27
+            width percentage(87 / total-width-2)
+        &.t28
+            width percentage(83 / total-width-2)
 
-    &.t31
-        width percentage(46 / total-width-3)
-    &.t32
-        width percentage(49 / total-width-3)
-    &.t33
-        width percentage(55 / total-width-3)
-    &.t34
-        width percentage(64 / total-width-3)
-    &.t35
-        width percentage(66 / total-width-3)
-    &.t36
-        width percentage(95 / total-width-3)
-    &.t37
-        width percentage(96 / total-width-3)
-    &.t38
-        width percentage(129 / total-width-3)
+        &.t31
+            width percentage(46 / total-width-3)
+        &.t32
+            width percentage(49 / total-width-3)
+        &.t33
+            width percentage(55 / total-width-3)
+        &.t34
+            width percentage(64 / total-width-3)
+        &.t35
+            width percentage(66 / total-width-3)
+        &.t36
+            width percentage(95 / total-width-3)
+        &.t37
+            width percentage(96 / total-width-3)
+        &.t38
+            width percentage(129 / total-width-3)
 
-    &.t41
-        width percentage(46 / total-width-4)
-    &.t42
-        width percentage(49 / total-width-4)
-    &.t43
-        width percentage(55 / total-width-4)
-    &.t44
-        width percentage(64 / total-width-4)
-    &.t45
-        width percentage(66 / total-width-4)
-    &.t46
-        width percentage(94 / total-width-4)
-    &.t47
-        width percentage(97 / total-width-4)
-    &.t48
-        width percentage(129 / total-width-4)
+        &.t41
+            width percentage(46 / total-width-4)
+        &.t42
+            width percentage(49 / total-width-4)
+        &.t43
+            width percentage(55 / total-width-4)
+        &.t44
+            width percentage(64 / total-width-4)
+        &.t45
+            width percentage(66 / total-width-4)
+        &.t46
+            width percentage(94 / total-width-4)
+        &.t47
+            width percentage(97 / total-width-4)
+        &.t48
+            width percentage(129 / total-width-4)
 div.row
     display flex
     flex-direction row
