@@ -5,7 +5,8 @@ div.container.questionListContainer
             div.row--rtl
                 //- img.t11(v-img='test[current]', :src='preload', @click='current = current ? 0 : 1')
                 img.t11(:src='test[current]', @click='current = current ? 0 : 1')
-                img.t12(v-img='"/imgs/teeth/12/01.png"', :src='preload')
+                img.t12(v-img='test2[current2]', :src='preload', @click='current2 = current2 ? 0 : 1')
+                //- img.t12(v-img='"/imgs/teeth/12/01.png"', :src='preload')
                 img.t13(v-img='"/imgs/teeth/13/01.png"', :src='preload')
                 img.t14(v-img='"/imgs/teeth/14/01.png"', :src='preload')
                 img.t15(v-img='"/imgs/teeth/15/01.png"', :src='preload')
@@ -75,7 +76,12 @@ export default {
                 '/imgs/teeth/11/01.png',
                 '/imgs/teeth/11/02.png'
             ],
-            current: 0
+            test2: [
+                '/imgs/teeth/12/01.png',
+                '/imgs/teeth/12/02.png'
+            ],
+            current: 0,
+            current2: 0
         }
     },
     ready() {
