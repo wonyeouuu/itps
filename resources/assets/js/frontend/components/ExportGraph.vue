@@ -85,7 +85,7 @@ export default {
     },
     data() {
         return {
-            preload: 'http://perronimg.com/loading-gifs/white/animations/white-loading-circles-large.gif'
+            preload: 'https://www.marcotec-shop.com/pub/static/frontend/Triple/marcotec/en_US/images/loading_small.gif'
         }
     },
     ready() {
