@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+// import VueImageLoader from 'vue-image-loader'
 import _ from 'underscore'
 
 import {
@@ -16,6 +17,7 @@ import { pivot, resetPermission } from './permission'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+// Vue.use(VueImageLoader)
 
 const state = {
     questions: [],
