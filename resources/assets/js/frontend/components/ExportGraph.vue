@@ -85,7 +85,7 @@ export default {
     },
     data() {
         return {
-            preload: 'http://instidy.com/images/loading.gif'
+            preload: 'http://perronimg.com/loading-gifs/white/animations/white-loading-circles-large.gif'
         }
     },
     ready() {
