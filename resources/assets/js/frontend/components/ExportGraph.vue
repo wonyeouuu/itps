@@ -3,7 +3,7 @@ div.container.questionListContainer
     div.export-graph
         div.row-top.row
             div.row--rtl
-                img.t11(v-img='"/imgs/teeth/11/01.png"', :src='preload')
+                img.t11(v-img='test[current]', :src='preload', @click='current++')
                 img.t12(v-img='"/imgs/teeth/12/01.png"', :src='preload')
                 img.t13(v-img='"/imgs/teeth/13/01.png"', :src='preload')
                 img.t14(v-img='"/imgs/teeth/14/01.png"', :src='preload')
@@ -11,14 +11,6 @@ div.container.questionListContainer
                 img.t16(v-img='"/imgs/teeth/16/01.png"', :src='preload')
                 img.t17(v-img='"/imgs/teeth/17/01.png"', :src='preload')
                 img.t18(v-img='"/imgs/teeth/18/01.png"', :src='preload')
-                //- img.t11(src='/imgs/teeth/11/01.png')
-                //- img.t12(src='/imgs/teeth/12/01.png')
-                //- img.t13(src='/imgs/teeth/13/01.png')
-                //- img.t14(src='/imgs/teeth/14/01.png')
-                //- img.t15(src='/imgs/teeth/15/01.png')
-                //- img.t16(src='/imgs/teeth/16/01.png')
-                //- img.t17(src='/imgs/teeth/17/01.png')
-                //- img.t18(src='/imgs/teeth/18/01.png')
             div.row--ltr
                 img.t21(v-img='"/imgs/teeth/21/01.png"', :src='preload')
                 img.t22(v-img='"/imgs/teeth/22/01.png"', :src='preload')
@@ -28,14 +20,6 @@ div.container.questionListContainer
                 img.t26(v-img='"/imgs/teeth/26/01.png"', :src='preload')
                 img.t27(v-img='"/imgs/teeth/27/01.png"', :src='preload')
                 img.t28(v-img='"/imgs/teeth/28/01.png"', :src='preload')
-                //- img.t21(src='/imgs/teeth/21/01.png')
-                //- img.t22(src='/imgs/teeth/22/01.png')
-                //- img.t23(src='/imgs/teeth/23/01.png')
-                //- img.t24(src='/imgs/teeth/24/01.png')
-                //- img.t25(src='/imgs/teeth/25/01.png')
-                //- img.t26(src='/imgs/teeth/26/01.png')
-                //- img.t27(src='/imgs/teeth/27/01.png')
-                //- img.t28(src='/imgs/teeth/28/01.png')
         div.row-down.row
             div.row--rtl
                 img.t31(src='/imgs/teeth/31/01.png')
@@ -85,7 +69,12 @@ export default {
     },
     data() {
         return {
-            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png'
+            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png',
+            test: [
+                '/imgs/teeth/11/01.png',
+                '/imgs/teeth/11/02.png'
+            ],
+            current: 0
         }
     },
     ready() {
