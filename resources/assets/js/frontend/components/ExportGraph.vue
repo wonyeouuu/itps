@@ -3,7 +3,8 @@ div.container.questionListContainer
     div.export-graph
         div.row-top.row
             div.row--rtl
-                img.t11(v-img='test[current]', :src='preload', @click='current++')
+                //- img.t11(v-img='test[current]', :src='preload', @click='current = current ? 0 : 1')
+                img.t11(:src='test[current]', @click='current = current ? 0 : 1')
                 img.t12(v-img='"/imgs/teeth/12/01.png"', :src='preload')
                 img.t13(v-img='"/imgs/teeth/13/01.png"', :src='preload')
                 img.t14(v-img='"/imgs/teeth/14/01.png"', :src='preload')
