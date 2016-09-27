@@ -124,6 +124,7 @@ total-width-4 = 600
         margin-right 15px
 
 div.export-graph
+    width 100%
     padding 5%
     img
         height auto
