@@ -3,43 +3,74 @@ div.container.questionListContainer
     div.export-graph
         div.row-top.row
             div.row--rtl
-                img.t11(:src='test[current]', @click='current = current ? 0 : 1')
-                img.t12(src='/imgs/teeth/12/01.png')
-                img.t13(src='/imgs/teeth/13/01.png')
-                img.t14(src='/imgs/teeth/14/01.png')
-                img.t15(src='/imgs/teeth/15/01.png')
-                img.t16(src='/imgs/teeth/16/01.png')
-                img.t17(src='/imgs/teeth/17/01.png')
-                img.t18(src='/imgs/teeth/18/01.png')
+                div.image-container.t11
+                    img(:src='test[current]', @click='current = current ? 0 : 1')
+                div.image-container.t12
+                    img(src='/imgs/teeth/12/01.png')
+                div.image-container.t13
+                    img(src='/imgs/teeth/13/01.png')
+                div.image-container.t14
+                    img(src='/imgs/teeth/14/01.png')
+                div.image-container.t15
+                    img(src='/imgs/teeth/15/01.png')
+                div.image-container.t16
+                    img(src='/imgs/teeth/16/01.png')
+                div.image-container.t17
+                    img(src='/imgs/teeth/17/01.png')
+                div.image-container.t18
+                    img(src='/imgs/teeth/18/01.png')
             div.row--ltr
-                img.t21(src='/imgs/teeth/21/01.png')
-                img.t22(src='/imgs/teeth/22/01.png')
-                img.t23(src='/imgs/teeth/23/01.png')
-                img.t24(src='/imgs/teeth/24/01.png')
-                img.t25(src='/imgs/teeth/25/01.png')
-                img.t26(src='/imgs/teeth/26/01.png')
-                img.t27(src='/imgs/teeth/27/01.png')
-                img.t28(src='/imgs/teeth/28/01.png')
-                //- img.t28(v-img='"/imgs/teeth/28/01.png"', :src='preload')
+                div.image-container.t21
+                    img(src='/imgs/teeth/21/01.png')
+                div.image-container.t22
+                    img(src='/imgs/teeth/22/01.png')
+                div.image-container.t23
+                    img(src='/imgs/teeth/23/01.png')
+                div.image-container.t24
+                    img(src='/imgs/teeth/24/01.png')
+                div.image-container.t25
+                    img(src='/imgs/teeth/25/01.png')
+                div.image-container.t26
+                    img(src='/imgs/teeth/26/01.png')
+                div.image-container.t27
+                    img(src='/imgs/teeth/27/01.png')
+                div.image-container.t28
+                    img(src='/imgs/teeth/28/01.png')
         div.row-down.row
             div.row--rtl
-                img.t31(src='/imgs/teeth/31/01.png')
-                img.t32(src='/imgs/teeth/32/01.png')
-                img.t33(src='/imgs/teeth/33/01.png')
-                img.t34(src='/imgs/teeth/34/01.png')
-                img.t35(src='/imgs/teeth/35/01.png')
-                img.t36(src='/imgs/teeth/36/01.png')
-                img.t37(src='/imgs/teeth/37/01.png')
-                img.t38(src='/imgs/teeth/38/01.png')
+                div.image-container.t31
+                    img(src='/imgs/teeth/31/01.png')
+                div.image-container.t32
+                    img(src='/imgs/teeth/32/01.png')
+                div.image-container.t33
+                    img(src='/imgs/teeth/33/01.png')
+                div.image-container.t34
+                    img(src='/imgs/teeth/34/01.png')
+                div.image-container.t35
+                    img(src='/imgs/teeth/35/01.png')
+                div.image-container.t36
+                    img(src='/imgs/teeth/36/01.png')
+                div.image-container.t37
+                    img(src='/imgs/teeth/37/01.png')
+                div.image-container.t38
+                    img(src='/imgs/teeth/38/01.png')
             div.row--ltr
-                img.t41(src='/imgs/teeth/41/01.png')
-                img.t42(src='/imgs/teeth/42/01.png')
-                img.t43(src='/imgs/teeth/43/01.png')
-                img.t44(src='/imgs/teeth/44/01.png')
-                img.t45(src='/imgs/teeth/45/01.png')
-                img.t46(src='/imgs/teeth/46/01.png')
-                img.t47(src='/imgs/teeth/47/01.png')
-                img.t48(src='/imgs/teeth/48/01.png')
+                div.image-container.t41
+                    img(src='/imgs/teeth/41/01.png')
+                div.image-container.t42
+                    img(src='/imgs/teeth/42/01.png')
+                div.image-container.t43
+                    img(src='/imgs/teeth/43/01.png')
+                div.image-container.t44
+                    img(src='/imgs/teeth/44/01.png')
+                div.image-container.t45
+                    img(src='/imgs/teeth/45/01.png')
+                div.image-container.t46
+                    img(src='/imgs/teeth/46/01.png')
+                div.image-container.t47
+                    img(src='/imgs/teeth/47/01.png')
+                div.image-container.t48
+                    img(src='/imgs/teeth/48/01.png')
 div.control-btn-down.control-btn-down--previous previous
 div.control-btn-down.control-btn-down--export export
 div.control-btn-up
@@ -126,8 +157,10 @@ total-width-4 = 600
 div.export-graph
     width 100%
     padding 5%
-    img
-        height auto
+    div.image-container
+        img
+            height 100%
+            width 100%
         &.t11
             width percentage(75 / total-width-1)
         &.t12
