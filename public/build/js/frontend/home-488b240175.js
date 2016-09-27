@@ -30680,7 +30680,7 @@ exports.default = {
     },
     data: function data() {
         return {
-            preload: 'https://www.marcotec-shop.com/pub/static/frontend/Triple/marcotec/en_US/images/loading_small.gif'
+            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png'
         };
     },
     ready: function ready() {
