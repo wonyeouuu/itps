@@ -3,14 +3,14 @@ div.container.questionListContainer
     div.export-graph
         div.row-top.row
             div.row--rtl
-                img.t11(v-img='"/imgs/teeth/11/01.png"')
-                img.t12(v-img='"/imgs/teeth/12/01.png"')
-                img.t13(v-img='"/imgs/teeth/13/01.png"')
-                img.t14(v-img='"/imgs/teeth/14/01.png"')
-                img.t15(v-img='"/imgs/teeth/15/01.png"')
-                img.t16(v-img='"/imgs/teeth/16/01.png"')
-                img.t17(v-img='"/imgs/teeth/17/01.png"')
-                img.t18(v-img='"/imgs/teeth/18/01.png"')
+                img.t11(v-img='"/imgs/teeth/11/01.png"', :src='preload')
+                img.t12(v-img='"/imgs/teeth/12/01.png"', :src='preload')
+                img.t13(v-img='"/imgs/teeth/13/01.png"', :src='preload')
+                img.t14(v-img='"/imgs/teeth/14/01.png"', :src='preload')
+                img.t15(v-img='"/imgs/teeth/15/01.png"', :src='preload')
+                img.t16(v-img='"/imgs/teeth/16/01.png"', :src='preload')
+                img.t17(v-img='"/imgs/teeth/17/01.png"', :src='preload')
+                img.t18(v-img='"/imgs/teeth/18/01.png"', :src='preload')
                 //- img.t11(src='/imgs/teeth/11/01.png')
                 //- img.t12(src='/imgs/teeth/12/01.png')
                 //- img.t13(src='/imgs/teeth/13/01.png')
@@ -20,14 +20,14 @@ div.container.questionListContainer
                 //- img.t17(src='/imgs/teeth/17/01.png')
                 //- img.t18(src='/imgs/teeth/18/01.png')
             div.row--ltr
-                img.t21(v-img='"/imgs/teeth/21/01.png"')
-                img.t22(v-img='"/imgs/teeth/22/01.png"')
-                img.t23(v-img='"/imgs/teeth/23/01.png"')
-                img.t24(v-img='"/imgs/teeth/24/01.png"')
-                img.t25(v-img='"/imgs/teeth/25/01.png"')
-                img.t26(v-img='"/imgs/teeth/26/01.png"')
-                img.t27(v-img='"/imgs/teeth/27/01.png"')
-                img.t28(v-img='"/imgs/teeth/28/01.png"')
+                img.t21(v-img='"/imgs/teeth/21/01.png"', :src='preload')
+                img.t22(v-img='"/imgs/teeth/22/01.png"', :src='preload')
+                img.t23(v-img='"/imgs/teeth/23/01.png"', :src='preload')
+                img.t24(v-img='"/imgs/teeth/24/01.png"', :src='preload')
+                img.t25(v-img='"/imgs/teeth/25/01.png"', :src='preload')
+                img.t26(v-img='"/imgs/teeth/26/01.png"', :src='preload')
+                img.t27(v-img='"/imgs/teeth/27/01.png"', :src='preload')
+                img.t28(v-img='"/imgs/teeth/28/01.png"', :src='preload')
                 //- img.t21(src='/imgs/teeth/21/01.png')
                 //- img.t22(src='/imgs/teeth/22/01.png')
                 //- img.t23(src='/imgs/teeth/23/01.png')
@@ -83,6 +83,11 @@ export default {
             questions: getQuestions
         }
     },
+    data() {
+        return {
+            preload: 'https://d3us2i0tqwa7m7.cloudfront.net/charts/53d6c6761861499d3e00bbb0/black_20square_small.jpg'
+        }
+    },
     ready() {
         console.log(this.questions)
     }
@@ -126,7 +131,7 @@ total-width-4 = 600
 div.export-graph
     padding 5%
     img
-        height 200px
+        height auto
         &.t11
             width percentage(75 / total-width-1)
         &.t12
