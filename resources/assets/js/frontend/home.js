@@ -19,6 +19,10 @@ Vue.directive('img', function(url) {
 
 });
 
+window.onload = function () {
+    console.log('load')
+}
+
 sync(store, router)
 
 router.start(App, '#app')

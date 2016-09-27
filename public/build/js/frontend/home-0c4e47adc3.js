@@ -31482,6 +31482,10 @@ _vue2.default.directive('img', function (url) {
   }.bind(this);
 });
 
+window.onload = function () {
+  console.log('load');
+};
+
 (0, _vuexRouterSync.sync)(_store2.default, _router2.default);
 
 _router2.default.start(_App2.default, '#app');
