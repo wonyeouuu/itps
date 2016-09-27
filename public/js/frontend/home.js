@@ -30680,7 +30680,7 @@ exports.default = {
     },
     data: function data() {
         return {
-            preload: 'https://d3us2i0tqwa7m7.cloudfront.net/charts/53d6c6761861499d3e00bbb0/black_20square_small.jpg'
+            preload: 'http://instidy.com/images/loading.gif'
         };
     },
     ready: function ready() {
