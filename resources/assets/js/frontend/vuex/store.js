@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-// import VueImageLoader from 'vue-image-loader'
 import _ from 'underscore'
-
 import {
     teethArr,
     teethArr4,
@@ -14,10 +12,8 @@ import {
 } from './teethConstructor'
 import { pivot, resetPermission } from './permission'
 
-
 Vue.use(Vuex)
 Vue.use(VueRouter)
-// Vue.use(VueImageLoader)
 
 const state = {
     questions: [],
@@ -28,7 +24,6 @@ const state = {
 
 const mutations = {
     INIT (state) {
-        "use strict";
         state.questions = []
         let questions = [
             'Complete Dentures',//全口假牙 要上或下全部沒有才可以

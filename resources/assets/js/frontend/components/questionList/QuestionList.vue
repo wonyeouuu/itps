@@ -83,7 +83,6 @@
 
 
 <script>
-import { init } from "../../vuex/actions"
 import { getQuestions, getQuestionMarks } from "../../vuex/getters"
 import Question from "./Question.vue"
 import QuestionFour from "./QuestionFour.vue"
@@ -108,7 +107,7 @@ export default {
                 2: [1, 2, 3],
                 3: [4, 5, 6],
                 4: [7],
-                5: [8, 9],
+                5: [8, 9]
             }
             return switchObj[this.$route.params.questionPhase]
         }
@@ -117,13 +116,7 @@ export default {
         getters: {
             questions: getQuestions,
             questionMarks: getQuestionMarks
-        },
-        actions: {
-            init
         }
-    },
-    ready() {
-        this.init()
     }
 };
 </script>

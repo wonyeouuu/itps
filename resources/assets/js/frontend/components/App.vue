@@ -13,9 +13,19 @@ import GraphControllerList from './GraphControllerList.vue'
 import AboutPage from './AboutPage.vue'
 import HowToUsePage from './HowToUsePage.vue'
 import store from '../vuex/store'
+import { init } from "../vuex/actions"
+
 export default {
     store,
-    components: { IHA, AboutPage, HowToUsePage, GraphControllerList }
+    components: { IHA, AboutPage, HowToUsePage, GraphControllerList },
+    vuex: {
+        actions: {
+            init
+        }
+    },
+    ready() {
+        this.init()
+    }
 }
 </script>
 

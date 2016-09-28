@@ -124,3 +124,13 @@ export const teethArr8 = () => {
     })
     return teeth
 }
+
+export const allTeeth = () => {
+    const returnArr = []
+    _.range(1, 5).forEach(digit10 => {
+        _.range(1, 9).forEach(digit1 => {
+            returnArr.push(`${digit10}${digit1}`)
+        })
+    })
+    return returnArr
+}

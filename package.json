@@ -21,6 +21,7 @@
     "jquery": "^2.2.4",
     "laravel-elixir-spritesmith": "^0.4.0",
     "laravel-elixir-stylus": "^2.0.3",
+    "lodash": "^4.16.2",
     "onclick-outside": "^0.1.1",
     "underscore": "^1.8.3",
     "vue": "^1.0.24",
