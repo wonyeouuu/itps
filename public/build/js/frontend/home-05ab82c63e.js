@@ -42635,7 +42635,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"../vuex/actions":66,"../vuex/store":69,"./AboutPage.vue":48,"./GraphControllerList.vue":52,"./HowToUsePage.vue":54,"./IHA.vue":55,"vue":44,"vue-hot-reload-api":42,"vueify/lib/insert-css":45}],50:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("/*@import '/resources/assets/stylus/teeth.styl'*/\n.control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.export-graph[_v-479c7bae] {\n  width: 100%;\n  padding: 5%;\n}\ndiv.export-graph img.t11[_v-479c7bae] {\n  width: 12.5%;\n}\ndiv.export-graph img.t12[_v-479c7bae] {\n  width: 10.166666666666666%;\n}\ndiv.export-graph img.t13[_v-479c7bae] {\n  width: 10.833333333333334%;\n}\ndiv.export-graph img.t14[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t15[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t16[_v-479c7bae] {\n  width: 16.666666666666664%;\n}\ndiv.export-graph img.t17[_v-479c7bae] {\n  width: 14.499999999999998%;\n}\ndiv.export-graph img.t18[_v-479c7bae] {\n  width: 13.666666666666666%;\n}\ndiv.export-graph img.t21[_v-479c7bae] {\n  width: 12.5%;\n}\ndiv.export-graph img.t22[_v-479c7bae] {\n  width: 10.166666666666666%;\n}\ndiv.export-graph img.t23[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t24[_v-479c7bae] {\n  width: 11.166666666666666%;\n}\ndiv.export-graph img.t25[_v-479c7bae] {\n  width: 10.5%;\n}\ndiv.export-graph img.t26[_v-479c7bae] {\n  width: 16.666666666666664%;\n}\ndiv.export-graph img.t27[_v-479c7bae] {\n  width: 14.499999999999998%;\n}\ndiv.export-graph img.t28[_v-479c7bae] {\n  width: 13.833333333333334%;\n}\ndiv.export-graph img.t31[_v-479c7bae] {\n  width: 7.666666666666666%;\n}\ndiv.export-graph img.t32[_v-479c7bae] {\n  width: 8.166666666666666%;\n}\ndiv.export-graph img.t33[_v-479c7bae] {\n  width: 9.166666666666666%;\n}\ndiv.export-graph img.t34[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t35[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t36[_v-479c7bae] {\n  width: 15.833333333333332%;\n}\ndiv.export-graph img.t37[_v-479c7bae] {\n  width: 16%;\n}\ndiv.export-graph img.t38[_v-479c7bae] {\n  width: 21.5%;\n}\ndiv.export-graph img.t41[_v-479c7bae] {\n  width: 7.666666666666666%;\n}\ndiv.export-graph img.t42[_v-479c7bae] {\n  width: 8.166666666666666%;\n}\ndiv.export-graph img.t43[_v-479c7bae] {\n  width: 9.166666666666666%;\n}\ndiv.export-graph img.t44[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t45[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t46[_v-479c7bae] {\n  width: 15.666666666666668%;\n}\ndiv.export-graph img.t47[_v-479c7bae] {\n  width: 16.166666666666664%;\n}\ndiv.export-graph img.t48[_v-479c7bae] {\n  width: 21.5%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 200px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert("/*@import '/resources/assets/stylus/teeth.styl'*/\n.control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.overlay-container[_v-479c7bae] {\n  position: relative;\n}\ndiv.overlay-container img[_v-479c7bae]:nth-child(1) {\n  width: 100%;\n}\ndiv.export-graph[_v-479c7bae] {\n  width: 100%;\n  padding: 5%;\n}\ndiv.export-graph img.hooks[_v-479c7bae] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  max-height: 200px;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 200px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n/*&.t11\n            width percentage(75 / total-width-1)\n        &.t12\n            width percentage(61 / total-width-1)\n        &.t13\n            width percentage(65 / total-width-1)\n        &.t14\n            width percentage(66 / total-width-1)\n        &.t15\n            width percentage(64 / total-width-1)\n        &.t16\n            width percentage(100 / total-width-1)\n        &.t17\n            width percentage(87 / total-width-1)\n        &.t18\n            width percentage(82 / total-width-1)*/\n/*&.t21\n            width percentage(75 / total-width-2)\n        &.t22\n            width percentage(61 / total-width-2)\n        &.t23\n            width percentage(64 / total-width-2)\n        &.t24\n            width percentage(67 / total-width-2)\n        &.t25\n            width percentage(63 / total-width-2)\n        &.t26\n            width percentage(100 / total-width-2)\n        &.t27\n            width percentage(87 / total-width-2)\n        &.t28\n            width percentage(83 / total-width-2)\n\n        &.t31\n            width percentage(46 / total-width-3)\n        &.t32\n            width percentage(49 / total-width-3)\n        &.t33\n            width percentage(55 / total-width-3)\n        &.t34\n            width percentage(64 / total-width-3)\n        &.t35\n            width percentage(66 / total-width-3)\n        &.t36\n            width percentage(95 / total-width-3)\n        &.t37\n            width percentage(96 / total-width-3)\n        &.t38\n            width percentage(129 / total-width-3)\n\n        &.t41\n            width percentage(46 / total-width-4)\n        &.t42\n            width percentage(49 / total-width-4)\n        &.t43\n            width percentage(55 / total-width-4)\n        &.t44\n            width percentage(64 / total-width-4)\n        &.t45\n            width percentage(66 / total-width-4)\n        &.t46\n            width percentage(94 / total-width-4)\n        &.t47\n            width percentage(97 / total-width-4)\n        &.t48\n            width percentage(129 / total-width-4)*/\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42663,11 +42663,7 @@ exports.default = {
             preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png'
         };
     },
-    ready: function ready() {
-        // this.questions[0].teeth.forEach(tooth => {
-        //     console.log(tooth.id)
-        // })
-    },
+    ready: function ready() {},
 
     computed: {
         teethImg: function teethImg() {
@@ -42675,7 +42671,9 @@ exports.default = {
 
             return this.allTeeth().reduce(function (carry, teeth) {
                 var status = _this.statusMapper(teeth);
-                carry[teeth] = '/imgs/teeth/' + teeth + '/' + status + '.png';
+                carry[teeth] = {};
+                carry[teeth].tooth = '/imgs/teeth/' + teeth + '/' + status.tooth + '.png';
+                carry[teeth].hook = status.hook ? '/imgs/hooks/' + teeth + '/' + status.hook + '.png' : false;
                 return carry;
             }, {});
         }
@@ -42690,7 +42688,7 @@ exports.default = {
                 // CD
                 if (this.questions[2 - 1].teeth[teethIndex].selected) {
                     // CD + Implant
-                    return '17';
+                    return this.statusBuilder('17');
                 }
                 if (this.questions[4 - 1].teeth[teethIndex].selected) {
                     // CD + RR
@@ -42698,43 +42696,43 @@ exports.default = {
                         // CD + RR + post
                         if (this.questions[9 - 1].teeth[teethIndex].selected) {
                             // CD + RR + post + decayed teeth
-                            return '25';
+                            return this.statusBuilder('25');
                         }
-                        return '15';
+                        return this.statusBuilder('15');
                     }
                     if (this.questions[9 - 1].teeth[teethIndex].selected) {
                         // CD + RR + decayed teeth
-                        return '26';
+                        return this.statusBuilder('26');
                     }
-                    return '14';
+                    return this.statusBuilder('14');
                 }
-                return '16';
+                return this.statusBuilder('16');
             }
             if (this.questions[2 - 1].teeth[teethIndex].selected) {
                 // Implant
                 if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'M') {
                     // Implant + FPD(M)
-                    return '11';
+                    return this.statusBuilder('11');
                 } else if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'P') {
                     // Implant + FPD(P)
-                    return '07';
+                    return this.statusBuilder('07');
                 }
                 if (this.questions[8 - 1].teeth.a[teethIndex].selected) {
                     // Implant + RPD
-                    return '17';
+                    return this.statusBuilder('17');
                 }
-                return '04';
+                return this.statusBuilder('04');
             }
             if (this.questions[3 - 1].teeth[teethIndex].selected) {
                 // Missing Teeth
                 if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'M') {
                     // Missing Teeth + FPD(M)
-                    return '10';
+                    return this.statusBuilder('10');
                 } else if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'P') {
                     // Missing Teeth + FPD(P)
-                    return '06';
+                    return this.statusBuilder('06');
                 }
-                return '03';
+                return this.statusBuilder('03');
             }
             if (this.questions[4 - 1].teeth[teethIndex].selected) {
                 // RR
@@ -42742,98 +42740,107 @@ exports.default = {
                     // RR + post
                     if (this.questions[8 - 1].teeth.a[teethIndex].selected && this.questions[9 - 1].teeth[teethIndex].selected) {
                         // RR + post + RPD + decayed teeth
-                        return '25';
+                        return this.statusBuilder('25');
                     }
                     if (this.questions[8 - 1].teeth.a[teethIndex].selected) {
                         // RR + post + RPD
-                        return '15';
+                        return this.statusBuilder('15');
                     }
-                    if (this.questions[9 - 1].teeth[teethIndex].selected) {} // RR + post + decayed teeth
-                    // return '28'// not yet
-
-                    // return '27'// not yet
+                    if (this.questions[9 - 1].teeth[teethIndex].selected) {
+                        // RR + post + decayed teeth
+                        return this.statusBuilder('28');
+                    }
+                    return this.statusBuilder('27');
                 }
                 if (this.questions[8 - 1].teeth.a[teethIndex].selected) {
                     // RR + RPD
                     if (this.questions[9 - 1].teeth[teethIndex].selected) {
                         // RR + RPD + decayed teeth
-                        return '26';
+                        return this.statusBuilder('26');
                     }
-                    return '14';
+                    return this.statusBuilder('14');
                 }
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {
                     // RR + decayed teeth
-                    return '19';
+                    return this.statusBuilder('19');
                 }
-                return '02';
+                return this.statusBuilder('02');
             }
             if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'M') {
                 // FPD(M)
                 if (this.questions[7 - 1].teeth[teethIndex].selected && this.questions[9 - 1].teeth[teethIndex].selected) {
                     // FPD(M) + posts + decayed teeth
-                    return '22';
+                    return this.statusBuilder('22');
                 }
                 if (this.questions[7 - 1].teeth[teethIndex].selected) {
                     // FPD(M) + posts
-                    return '09';
+                    return this.statusBuilder('09');
                 }
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {
                     // FPD(M) + decayed teeth
-                    return '23';
+                    return this.statusBuilder('23');
                 }
-                return '08';
+                return this.statusBuilder('08');
             } else if (this.questions[5 - 1].teeth.a[teethIndex].selected === 'P') {
                 // FPD(P)
                 if (this.questions[7 - 1].teeth[teethIndex].selected && this.questions[9 - 1].teeth[teethIndex].selected) {
                     // FPD(P) + posts + decayed teeth
-                    return '20';
+                    return this.statusBuilder('20');
                 }
                 if (this.questions[7 - 1].teeth[teethIndex].selected) {
                     // FPD(P) + posts
-                    return '13';
+                    return this.statusBuilder('13');
                 }
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {
                     // FPD(P) + decayed teeth
-                    return '21';
+                    return this.statusBuilder('21');
                 }
-                return '05';
+                return this.statusBuilder('05');
             }
             if (this.questions[6 - 1].teeth[teethIndex].selected) {
                 // Veneer
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {
                     // Veneer + decayed teeth
-                    return '24';
+                    return this.statusBuilder('24');
                 }
-                return '12';
+                return this.statusBuilder('12');
             }
             if (this.questions[7 - 1].teeth[teethIndex].selected) {
                 // posts
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {
                     // posts + decayed teeth
-                    return '28';
+                    return this.statusBuilder('28');
                 }
-                return '27';
+                return this.statusBuilder('27');
             }
             if (this.questions[9 - 1].teeth[teethIndex].selected) {
                 // decayed teeth
-                return '18';
+                return this.statusBuilder('18');
             }
             if (this.questions[8 - 1].teeth.a[teethIndex].selected) {
                 // RPD
-                return '16';
+                return this.statusBuilder('16', '80');
             }
-            return '01'; // nothing matched => default
+            return this.statusBuilder('01'); // nothing matched => default
+        },
+        statusBuilder: function statusBuilder(tooth) {
+            var hook = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+            return {
+                tooth: tooth,
+                hook: hook
+            };
         }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container questionListContainer\" _v-479c7bae=\"\"><div class=\"export-graph\" _v-479c7bae=\"\"><div class=\"row-top row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;11&quot;]\" class=\"t11\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;12&quot;]\" class=\"t12\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;13&quot;]\" class=\"t13\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;14&quot;]\" class=\"t14\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;15&quot;]\" class=\"t15\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;16&quot;]\" class=\"t16\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;17&quot;]\" class=\"t17\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;18&quot;]\" class=\"t18\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;21&quot;]\" class=\"t21\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;22&quot;]\" class=\"t22\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;23&quot;]\" class=\"t23\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;24&quot;]\" class=\"t24\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;25&quot;]\" class=\"t25\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;26&quot;]\" class=\"t26\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;27&quot;]\" class=\"t27\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;28&quot;]\" class=\"t28\" _v-479c7bae=\"\"></div></div><div class=\"row-down row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;41&quot;]\" class=\"t41\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;42&quot;]\" class=\"t42\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;43&quot;]\" class=\"t43\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;44&quot;]\" class=\"t44\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;45&quot;]\" class=\"t45\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;46&quot;]\" class=\"t46\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;47&quot;]\" class=\"t47\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;48&quot;]\" class=\"t48\" _v-479c7bae=\"\"></div><div class=\"row--ltr\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;31&quot;]\" class=\"t31\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;32&quot;]\" class=\"t32\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;33&quot;]\" class=\"t33\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;34&quot;]\" class=\"t34\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;35&quot;]\" class=\"t35\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;36&quot;]\" class=\"t36\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;37&quot;]\" class=\"t37\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;38&quot;]\" class=\"t38\" _v-479c7bae=\"\"></div></div></div></div><div class=\"control-btn-down control-btn-down--previous\" _v-479c7bae=\"\">previous</div><div class=\"control-btn-down control-btn-down--export\" _v-479c7bae=\"\">export</div><div class=\"control-btn-up\" _v-479c7bae=\"\"><img src=\"/imgs/itp_Logo.png\" class=\"control-btn-up-logo\" _v-479c7bae=\"\"><div class=\"vitality control-btn-up-block\" _v-479c7bae=\"\"><div class=\"control-btn-up-text\" _v-479c7bae=\"\"><p _v-479c7bae=\"\">Vita-</p><p _v-479c7bae=\"\">lity</p></div><img src=\"/imgs/buttons_on.png\" _v-479c7bae=\"\"></div><div class=\"perio-chart control-btn-up-block\" _v-479c7bae=\"\"><div class=\"control-btn-up-text\" _v-479c7bae=\"\"><p _v-479c7bae=\"\">Perio-</p><p _v-479c7bae=\"\">chart</p></div><img src=\"/imgs/buttons_on.png\" _v-479c7bae=\"\"></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div class=\"container questionListContainer\" _v-479c7bae=\"\"><div class=\"export-graph\" _v-479c7bae=\"\"><div class=\"row-top row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;11&quot;].tooth\" class=\"t11\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;11&quot;].hook\" v-if=\"teethImg[&quot;11&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;12&quot;].tooth\" class=\"t12\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;12&quot;].hook\" v-if=\"teethImg[&quot;12&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;13&quot;].tooth\" class=\"t13\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;13&quot;].hook\" v-if=\"teethImg[&quot;13&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;14&quot;].tooth\" class=\"t14\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;14&quot;].hook\" v-if=\"teethImg[&quot;14&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;15&quot;].tooth\" class=\"t15\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;15&quot;].hook\" v-if=\"teethImg[&quot;15&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;16&quot;].tooth\" class=\"t16\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;16&quot;].hook\" v-if=\"teethImg[&quot;16&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;17&quot;].tooth\" class=\"t17\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;17&quot;].hook\" v-if=\"teethImg[&quot;17&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;18&quot;].tooth\" class=\"t18\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;18&quot;].hook\" v-if=\"teethImg[&quot;18&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div></div><div class=\"row--ltr\" _v-479c7bae=\"\"><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;21&quot;].tooth\" class=\"t21\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;21&quot;].hook\" v-if=\"teethImg[&quot;21&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;22&quot;].tooth\" class=\"t22\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;22&quot;].hook\" v-if=\"teethImg[&quot;22&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;23&quot;].tooth\" class=\"t23\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;23&quot;].hook\" v-if=\"teethImg[&quot;23&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;24&quot;].tooth\" class=\"t24\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;24&quot;].hook\" v-if=\"teethImg[&quot;24&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;25&quot;].tooth\" class=\"t25\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;25&quot;].hook\" v-if=\"teethImg[&quot;25&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;26&quot;].tooth\" class=\"t26\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;26&quot;].hook\" v-if=\"teethImg[&quot;26&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;27&quot;].tooth\" class=\"t27\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;27&quot;].hook\" v-if=\"teethImg[&quot;27&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;28&quot;].tooth\" class=\"t28\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;28&quot;].hook\" v-if=\"teethImg[&quot;28&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div></div></div><div class=\"row-down row\" _v-479c7bae=\"\"><div class=\"row--rtl\" _v-479c7bae=\"\"><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;41&quot;].tooth\" class=\"t41\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;41&quot;].hook\" v-if=\"teethImg[&quot;41&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;42&quot;].tooth\" class=\"t42\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;42&quot;].hook\" v-if=\"teethImg[&quot;42&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;43&quot;].tooth\" class=\"t43\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;43&quot;].hook\" v-if=\"teethImg[&quot;43&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;44&quot;].tooth\" class=\"t44\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;44&quot;].hook\" v-if=\"teethImg[&quot;44&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;45&quot;].tooth\" class=\"t45\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;45&quot;].hook\" v-if=\"teethImg[&quot;45&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;46&quot;].tooth\" class=\"t46\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;46&quot;].hook\" v-if=\"teethImg[&quot;46&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;47&quot;].tooth\" class=\"t47\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;47&quot;].hook\" v-if=\"teethImg[&quot;47&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;48&quot;].tooth\" class=\"t48\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;48&quot;].hook\" v-if=\"teethImg[&quot;48&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div></div><div class=\"row--ltr\" _v-479c7bae=\"\"><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;31&quot;].tooth\" class=\"t31\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;31&quot;].hook\" v-if=\"teethImg[&quot;31&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;32&quot;].tooth\" class=\"t32\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;32&quot;].hook\" v-if=\"teethImg[&quot;32&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;33&quot;].tooth\" class=\"t33\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;33&quot;].hook\" v-if=\"teethImg[&quot;33&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;34&quot;].tooth\" class=\"t34\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;34&quot;].hook\" v-if=\"teethImg[&quot;34&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;35&quot;].tooth\" class=\"t35\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;35&quot;].hook\" v-if=\"teethImg[&quot;35&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;36&quot;].tooth\" class=\"t36\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;36&quot;].hook\" v-if=\"teethImg[&quot;36&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;37&quot;].tooth\" class=\"t37\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;37&quot;].hook\" v-if=\"teethImg[&quot;37&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div><div class=\"overlay-container\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;38&quot;].tooth\" class=\"t38\" _v-479c7bae=\"\"><img :src=\"preload\" v-img=\"teethImg[&quot;38&quot;].hook\" v-if=\"teethImg[&quot;38&quot;].hook\" class=\"hooks\" _v-479c7bae=\"\"></div></div></div></div></div><div class=\"control-btn-down control-btn-down--previous\" _v-479c7bae=\"\">previous</div><div class=\"control-btn-down control-btn-down--export\" _v-479c7bae=\"\">export</div><div class=\"control-btn-up\" _v-479c7bae=\"\"><img src=\"/imgs/itp_Logo.png\" class=\"control-btn-up-logo\" _v-479c7bae=\"\"><div class=\"vitality control-btn-up-block\" _v-479c7bae=\"\"><div class=\"control-btn-up-text\" _v-479c7bae=\"\"><p _v-479c7bae=\"\">Vita-</p><p _v-479c7bae=\"\">lity</p></div><img src=\"/imgs/buttons_on.png\" _v-479c7bae=\"\"></div><div class=\"perio-chart control-btn-up-block\" _v-479c7bae=\"\"><div class=\"control-btn-up-text\" _v-479c7bae=\"\"><p _v-479c7bae=\"\">Perio-</p><p _v-479c7bae=\"\">chart</p></div><img src=\"/imgs/buttons_on.png\" _v-479c7bae=\"\"></div></div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["/*@import '/resources/assets/stylus/teeth.styl'*/\n.control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.export-graph[_v-479c7bae] {\n  width: 100%;\n  padding: 5%;\n}\ndiv.export-graph img.t11[_v-479c7bae] {\n  width: 12.5%;\n}\ndiv.export-graph img.t12[_v-479c7bae] {\n  width: 10.166666666666666%;\n}\ndiv.export-graph img.t13[_v-479c7bae] {\n  width: 10.833333333333334%;\n}\ndiv.export-graph img.t14[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t15[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t16[_v-479c7bae] {\n  width: 16.666666666666664%;\n}\ndiv.export-graph img.t17[_v-479c7bae] {\n  width: 14.499999999999998%;\n}\ndiv.export-graph img.t18[_v-479c7bae] {\n  width: 13.666666666666666%;\n}\ndiv.export-graph img.t21[_v-479c7bae] {\n  width: 12.5%;\n}\ndiv.export-graph img.t22[_v-479c7bae] {\n  width: 10.166666666666666%;\n}\ndiv.export-graph img.t23[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t24[_v-479c7bae] {\n  width: 11.166666666666666%;\n}\ndiv.export-graph img.t25[_v-479c7bae] {\n  width: 10.5%;\n}\ndiv.export-graph img.t26[_v-479c7bae] {\n  width: 16.666666666666664%;\n}\ndiv.export-graph img.t27[_v-479c7bae] {\n  width: 14.499999999999998%;\n}\ndiv.export-graph img.t28[_v-479c7bae] {\n  width: 13.833333333333334%;\n}\ndiv.export-graph img.t31[_v-479c7bae] {\n  width: 7.666666666666666%;\n}\ndiv.export-graph img.t32[_v-479c7bae] {\n  width: 8.166666666666666%;\n}\ndiv.export-graph img.t33[_v-479c7bae] {\n  width: 9.166666666666666%;\n}\ndiv.export-graph img.t34[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t35[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t36[_v-479c7bae] {\n  width: 15.833333333333332%;\n}\ndiv.export-graph img.t37[_v-479c7bae] {\n  width: 16%;\n}\ndiv.export-graph img.t38[_v-479c7bae] {\n  width: 21.5%;\n}\ndiv.export-graph img.t41[_v-479c7bae] {\n  width: 7.666666666666666%;\n}\ndiv.export-graph img.t42[_v-479c7bae] {\n  width: 8.166666666666666%;\n}\ndiv.export-graph img.t43[_v-479c7bae] {\n  width: 9.166666666666666%;\n}\ndiv.export-graph img.t44[_v-479c7bae] {\n  width: 10.666666666666668%;\n}\ndiv.export-graph img.t45[_v-479c7bae] {\n  width: 11%;\n}\ndiv.export-graph img.t46[_v-479c7bae] {\n  width: 15.666666666666668%;\n}\ndiv.export-graph img.t47[_v-479c7bae] {\n  width: 16.166666666666664%;\n}\ndiv.export-graph img.t48[_v-479c7bae] {\n  width: 21.5%;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 200px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n}\n"] = false
+    __vueify_insert__.cache["/*@import '/resources/assets/stylus/teeth.styl'*/\n.control-btn-up-text[_v-479c7bae] {\n  font-size: 30px;\n  line-height: 20px;\n  font-weight: bold;\n  letter-spacing: 8px;\n  text-align: right;\n}\n.control-btn-up[_v-479c7bae] {\n  position: fixed;\n  top: 20px;\n  right: 40px;\n  height: 100px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up img.control-btn-up-logo[_v-479c7bae] {\n  width: 60px;\n  margin-right: 15px;\n}\n.control-btn-up .control-btn-up-block[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.control-btn-up .control-btn-up-block img[_v-479c7bae] {\n  cursor: pointer;\n  width: 35px;\n}\n.control-btn-up .vitality[_v-479c7bae] {\n  margin-right: 15px;\n}\ndiv.overlay-container[_v-479c7bae] {\n  position: relative;\n}\ndiv.overlay-container img[_v-479c7bae]:nth-child(1) {\n  width: 100%;\n}\ndiv.export-graph[_v-479c7bae] {\n  width: 100%;\n  padding: 5%;\n}\ndiv.export-graph img.hooks[_v-479c7bae] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  max-height: 200px;\n}\ndiv.row[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  max-height: 200px;\n}\ndiv.row div.row--rtl[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: row-reverse;\n          flex-direction: row-reverse;\n}\ndiv.row div.row--ltr[_v-479c7bae] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.control-btn-down[_v-479c7bae] {\n  position: fixed;\n  bottom: 20px;\n  font-size: 50px;\n  font-weight: bold;\n  cursor: pointer;\n}\n.control-btn-down.control-btn-down--previous[_v-479c7bae] {\n  left: 40px;\n}\n.control-btn-down.control-btn-down--export[_v-479c7bae] {\n  right: 40px;\n}\n.control-btn-down[_v-479c7bae]:hover {\n  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;\n  color: #fff;\n/*&.t11\n            width percentage(75 / total-width-1)\n        &.t12\n            width percentage(61 / total-width-1)\n        &.t13\n            width percentage(65 / total-width-1)\n        &.t14\n            width percentage(66 / total-width-1)\n        &.t15\n            width percentage(64 / total-width-1)\n        &.t16\n            width percentage(100 / total-width-1)\n        &.t17\n            width percentage(87 / total-width-1)\n        &.t18\n            width percentage(82 / total-width-1)*/\n/*&.t21\n            width percentage(75 / total-width-2)\n        &.t22\n            width percentage(61 / total-width-2)\n        &.t23\n            width percentage(64 / total-width-2)\n        &.t24\n            width percentage(67 / total-width-2)\n        &.t25\n            width percentage(63 / total-width-2)\n        &.t26\n            width percentage(100 / total-width-2)\n        &.t27\n            width percentage(87 / total-width-2)\n        &.t28\n            width percentage(83 / total-width-2)\n\n        &.t31\n            width percentage(46 / total-width-3)\n        &.t32\n            width percentage(49 / total-width-3)\n        &.t33\n            width percentage(55 / total-width-3)\n        &.t34\n            width percentage(64 / total-width-3)\n        &.t35\n            width percentage(66 / total-width-3)\n        &.t36\n            width percentage(95 / total-width-3)\n        &.t37\n            width percentage(96 / total-width-3)\n        &.t38\n            width percentage(129 / total-width-3)\n\n        &.t41\n            width percentage(46 / total-width-4)\n        &.t42\n            width percentage(49 / total-width-4)\n        &.t43\n            width percentage(55 / total-width-4)\n        &.t44\n            width percentage(64 / total-width-4)\n        &.t45\n            width percentage(66 / total-width-4)\n        &.t46\n            width percentage(94 / total-width-4)\n        &.t47\n            width percentage(97 / total-width-4)\n        &.t48\n            width percentage(129 / total-width-4)*/\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
