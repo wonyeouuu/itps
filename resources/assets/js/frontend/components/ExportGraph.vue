@@ -169,12 +169,12 @@ export default {
                     return '20'
                 }
                 if (this.questions[7 - 1].teeth[teethIndex].selected) {// FPD(P) + posts
-                    return '05'
+                    return '13'
                 }
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {// FPD(P) + decayed teeth
                     return '21'
                 }
-                return '04'
+                return '05'
             }
             if (this.questions[6 - 1].teeth[teethIndex].selected) {// Veneer
                 if (this.questions[9 - 1].teeth[teethIndex].selected) {// Veneer + decayed teeth
