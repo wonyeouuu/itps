@@ -1,28 +1,33 @@
 <template lang="jade">
 div.container.questionListContainer
+    pre {{ hook | json }}
     div.export-graph
         div.row-top.row
+            div.bar-container
+                img(src='/imgs/bar/up.png', v-if='bar.up')
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
-                    img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
+                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["21", "22", "23", "24", "25", "26", "27", "28"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
-                    img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
+                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
         div.row-down.row
+            div.bar-container
+                img(src='/imgs/bar/down.png', v-if='bar.down')
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
-                    img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
+                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["31", "32", "33", "34", "35", "36", "37", "38"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
-                    img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
+                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
 div.control-btn-down.control-btn-down--previous previous
 div.control-btn-down.control-btn-down--export export
 div.control-btn-up
@@ -74,10 +79,10 @@ export default {
             return this.hookMapper().reduce((carry, hookDetail) => {
                 switch(hookDetail.clasp) {
                     case 'A':
-                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '85' : '86'}.png`
+                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '86' : '85'}.png`
                         break
                     case 'W':
-                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '83' : '84'}.png`
+                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '84' : '83'}.png`
                         break
                     case 'I':
                         carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '82' : '81'}.png`
@@ -129,13 +134,13 @@ export default {
                 if (hookDetail.selectedArr[0].selected) {
                     return {
                         clasp: hookDetail.clasp,
-                        id: hookDetail.selectedArr[0].id,
+                        id: hookDetail.selectedArr[1].id,
                         pos: 'left'
                     }
                 } else {
                     return {
                         clasp: hookDetail.clasp,
-                        id: hookDetail.selectedArr[1].id,
+                        id: hookDetail.selectedArr[0].id,
                         pos: 'right'
                     }
                 }
@@ -305,20 +310,28 @@ div.export-graph
     padding 5%
     img.hooks
         z-index z-hook
+        height 100%
         position absolute
         top 0
         left 0
-        max-height 200px
     img.bar
         z-index z-bar
+        height 100%
         position absolute
         top 0
         left 0
-        max-height 200px
 div.row
     display flex
     flex-direction row
     max-height 200px
+    position relative
+    div.bar-container
+        width 100%
+        height 100%
+        position absolute
+        img
+            z-index z-bar
+            height 100%
     div.row--rtl
         display flex
         flex-direction row-reverse

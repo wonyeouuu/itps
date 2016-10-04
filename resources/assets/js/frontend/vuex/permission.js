@@ -137,3 +137,9 @@ export const resetPermission = state => {
         }
     })
 }
+
+export const resetClasp = state => {
+    state.questions[8 - 1].teeth.b.forEach(clasp => {
+        clasp.selected = false
+    })
+}
