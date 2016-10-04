@@ -1,6 +1,5 @@
 <template lang="jade">
 div.container.questionListContainer
-    pre {{ hook | json }}
     div.export-graph
         div.row-top.row
             div.bar-container
@@ -8,12 +7,14 @@ div.container.questionListContainer
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]')
                     img(:src='preload', v-img='teethImg[toothID]')
-                    img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
                     //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["21", "22", "23", "24", "25", "26", "27", "28"]')
                     img(:src='preload', v-img='teethImg[toothID]')
-                    img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
                     //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
         div.row-down.row
             div.bar-container
@@ -21,12 +22,14 @@ div.container.questionListContainer
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]')
                     img(:src='preload', v-img='teethImg[toothID]')
-                    img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
                     //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["31", "32", "33", "34", "35", "36", "37", "38"]')
                     img(:src='preload', v-img='teethImg[toothID]')
-                    img.hooks(:src='preload', v-img='hook[toothID]', v-if='hook[toothID]')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
+                    img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
                     //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
 div.control-btn-down.control-btn-down--previous previous
 div.control-btn-down.control-btn-down--export export
@@ -76,20 +79,21 @@ export default {
             return this.barMapper()
         },
         hook() {
-            return this.hookMapper().reduce((carry, hookDetail) => {
+            const tmp = this.hookMapper().map(hookDetail => {
                 switch(hookDetail.clasp) {
                     case 'A':
-                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '86' : '85'}.png`
+                        hookDetail.img = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '86' : '85'}.png`
                         break
                     case 'W':
-                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '84' : '83'}.png`
+                        hookDetail.img = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '84' : '83'}.png`
                         break
                     case 'I':
-                        carry[hookDetail.id] = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '82' : '81'}.png`
+                        hookDetail.img = `/imgs/hooks/${hookDetail.id}/${hookDetail.pos == 'left' ? '82' : '81'}.png`
                         break
                 }
-                return carry
-            }, {})
+                return hookDetail
+            })
+            return _.groupBy(tmp, 'id')
         }
     },
     methods: {
