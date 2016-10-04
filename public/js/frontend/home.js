@@ -43983,6 +43983,12 @@ var resetClasp = exports.resetClasp = function resetClasp(state) {
     });
 };
 
+var resetConnector = exports.resetConnector = function resetConnector(state) {
+    state.questions[5 - 1].teeth.b.forEach(function (connector) {
+        connector.selected = false;
+    });
+};
+
 },{}],69:[function(require,module,exports){
 'use strict';
 
@@ -44108,6 +44114,7 @@ var mutations = {
         "use strict";
 
         var teethIndex = _underscore2.default.findKey(state.questions[4].teeth.a, { id: teeth });
+        (0, _permission.resetConnector)(state);
         state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false;
         (0, _teethConstructor.connectorsSplit)().forEach(function (splitArr) {
             var connectorIndex = splitArr.reduce(function (carry, item) {

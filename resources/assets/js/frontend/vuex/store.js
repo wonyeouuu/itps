@@ -10,7 +10,7 @@ import {
     connectors,
     connectorsSplit
 } from './teethConstructor'
-import { pivot, resetPermission, resetClasp } from './permission'
+import { pivot, resetPermission, resetClasp, resetConnector } from './permission'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -106,6 +106,7 @@ const mutations = {
     TEETH_TOGGLE4 (state, teeth, newStatus) {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.a, { id: teeth })
+        resetConnector(state)
         state.questions[4].teeth.a[teethIndex].selected = state.questions[4].teeth.a[teethIndex].selectable ? newStatus : false
         connectorsSplit().forEach(splitArr => {
             let connectorIndex = splitArr.reduce((carry, item) => carry + item)

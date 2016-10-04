@@ -143,3 +143,9 @@ export const resetClasp = state => {
         clasp.selected = false
     })
 }
+
+export const resetConnector = state => {
+    state.questions[5 - 1].teeth.b.forEach(connector => {
+        connector.selected = false
+    })
+}
