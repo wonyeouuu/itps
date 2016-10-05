@@ -1,5 +1,6 @@
 <template lang="jade">
 div.container.questionListContainer
+    pre {{ connectorMapper() | json }}
     div.export-graph
         div.row-top.row
             div.bar-container
@@ -9,13 +10,16 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["21", "22", "23", "24", "25", "26", "27", "28"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.up')
+            div.connector-container
+                img(v-for='connectorID in upperConnectors',
+                    v-img='connector[connectorID] ? connector[connectorID] : null',
+                    :src='preload',
+                    v-if='connector[connectorID]')
         div.row-down.row
             div.bar-container
                 img(src='/imgs/bar/down.png', v-if='bar.down')
@@ -24,13 +28,13 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
             div.row--ltr
                 div.overlay-container(v-for='toothID in ["31", "32", "33", "34", "35", "36", "37", "38"]')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-                    //- img.bar(:src='barPathBuilder(toothID)', v-if='bar.down')
+            div.connector-container
+                img(v-for='connector in lowerConnectors', v-img='`/imgs/connectors/90/${connector}.png`', :src='preload')
 div.control-btn-down.control-btn-down--previous previous
 div.control-btn-down.control-btn-down--export export
 div.control-btn-up
@@ -62,7 +66,9 @@ export default {
     },
     data() {
         return {
-            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png'
+            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png',
+            upperConnectors: connectorsSplit().splice(0, 15).map(connectorsArr => connectorsArr.reduce((a, b) => a + b)),
+            lowerConnectors: connectorsSplit().splice(15, 30).map(connectorsArr => connectorsArr.reduce((a, b) => a + b))
         }
     },
     ready() {
@@ -94,6 +100,9 @@ export default {
                 return hookDetail
             })
             return _.groupBy(tmp, 'id')
+        },
+        connector() {
+            return this.connectorMapper()
         }
     },
     methods: {
@@ -111,6 +120,32 @@ export default {
                 up: upperLeft1.reduce(hasAnyTrue, false) && upperRight2.reduce(hasAnyTrue, false),
                 down: lowerRight3.reduce(hasAnyTrue, false) && lowerLeft4.reduce(hasAnyTrue, false)
             }
+        },
+        connectorMapper() {
+            const add = (carry, item) => carry + item
+            const FPD = this.questions[5 - 1].teeth.a
+            const connectorsData = this.questions[5 - 1].teeth.b
+                                    .filter(datum => datum.selected)
+                                    .map(connector => {
+                                        connector.img = connectorsSplit()
+                                        .filter(connectorArr => connectorArr.reduce(add, 0) == connector.id)[0]
+                                        .map(toothID => {
+                                            return FPD[_.findIndex(FPD, tooth => tooth.id == toothID)].selected
+                                        })
+                                        .reduce((carry, selected) => {
+                                            return carry && selected == 'M'
+                                        }, true)
+                                        return connector
+                                    })
+                                    .reduce((carry, connector) => {
+                                        // carry[connector.id] = connector.img ? '91' : '90'
+                                        carry[connector.id] = connector.img ?
+                                            `/imgs/connectors/91/${connector.id}.png` :
+                                            `/imgs/connectors/90/${connector.id}.png`
+                                        return carry
+                                    }, {})
+            return connectorsData
+
         },
         hookMapper() {
             const dentureBases = this.questions[8 - 1].teeth.a
@@ -330,11 +365,20 @@ div.row
     max-height 200px
     position relative
     div.bar-container
+        z-index z-bar
         width 100%
         height 100%
         position absolute
         img
-            z-index z-bar
+            height 100%
+    div.connector-container
+        display flex
+        z-index z-hook
+        width 100%
+        height 100%
+        position absolute
+        img
+            flex 1
             height 100%
     div.row--rtl
         display flex
