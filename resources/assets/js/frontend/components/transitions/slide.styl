@@ -1,0 +1,16 @@
+.slide-transition
+    display block
+
+.slide-enter
+    animation flip-in .3s
+
+.slide-leave
+    animation flip-in .3s reverse
+
+@keyframes flip-in
+    0%
+        opacity 0.5
+        transform perspective(2000px) rotateX(-90deg)
+    100%
+        opacity 1
+        transform perspective(2000px) rotateX(0)

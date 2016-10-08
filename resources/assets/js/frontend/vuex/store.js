@@ -19,24 +19,48 @@ const state = {
     questions: [],
     aboutShow: false,
     howToUseShow: false,
-    activeGraphController: ""
+    activeGraphController: '',
+    activeGraphSlider: '',
+    questionNames: [
+        'Complete Dentures',//全口假牙 要上或下全部沒有才可以
+        'Implants',//植體
+        'Missing Teeth',// 缺牙
+        'Retained Roots',// 殘根 牙冠爛掉 剩牙根
+        'Fixed Partial Denture',//P M, crown first, then connector  固定假牙
+        'Veneers',// 陶瓷貼片
+        'Posts',// 差一根到牙根裡
+        'Removable Partial Dentures',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
+        'Decayed Teeth',// 有真的牙齒冠才會有 蛀牙
+        'Vitality(Conditions of the pulp)',// 牙根蛀出球 要有牙根才可以選
+    ],
+    graphControllers: [
+        'Complete Dentures',
+        'Implants',
+        'Missing Teeth',
+        'Retained Roots',
+        'FPD',
+        'Procelain',
+        'Metal',
+        'Connector',
+        'Veneer',
+        'Post',
+        'RPD',
+        'Denture Bases',
+        'A Bar',
+        'I Bar',
+        'Wrought wire',
+        'Decayed Teeth',
+        'Vitality',
+        'Vital',
+        'Endodontic treated',
+        'Necrosis'
+    ]
 };
 
 const mutations = {
     INIT (state) {
         state.questions = []
-        let questions = [
-            'Complete Dentures',//全口假牙 要上或下全部沒有才可以
-            'Implants',//植體
-            'Missing Teeth',// 缺牙
-            'Retained Roots',// 殘根 牙冠爛掉 剩牙根
-            'Fixed Partial Denture',//P M, crown first, then connector  固定假牙
-            'Veneers',// 陶瓷貼片
-            'Posts',// 差一根到牙根裡
-            'Removable Partial Dentures',//不用選 只有開關 會出現另一種顏色補齊沒有牙冠的地方 活動假牙
-            'Decayed Teeth',// 有真的牙齒冠才會有 蛀牙
-            'Vitality(Conditions of the pulp)',// 牙根蛀出球 要有牙根才可以選
-        ]
+        let questions = state.questionNames
         questions.forEach((question, number) => {
             if (number == 4) {
                 state.questions.push({
@@ -80,10 +104,12 @@ const mutations = {
         state.questions[_.findKey(state.questions, {number})].tableShow = !state.questions[_.findKey(state.questions, {number})].tableShow
     },
 
-    TEETH_TOGGLE (state, number, teeth, newStatus) {
+    // TEETH_TOGGLE (state, number, teeth, newStatus) {
+    TEETH_TOGGLE (state, number, teeth) {
         "use strict";
         const questionIndex = _.findKey(state.questions, {number})
         const teethIndex = _.findKey(state.questions[questionIndex].teeth, { id: teeth })
+        const newStatus = !state.questions[questionIndex].teeth[teethIndex].selected
 
         if (state.questions[questionIndex].teeth[teethIndex].selectable) {
             if (number == 1) {
@@ -118,16 +144,18 @@ const mutations = {
         resetPermission(state)
     },
 
-    TEETH_TOGGLE8 (state, teeth, newStatus) {
+    // TEETH_TOGGLE8 (state, teeth, newStatus) {
+    TEETH_TOGGLE8 (state, teeth) {
         "use strict";
         let teethIndex = _.findKey(state.questions[8 - 1].teeth.a, { id: teeth })
+        const newStatus = !state.questions[8 - 1].teeth.a[teethIndex].selected
         state.questions[8 - 1].teeth.a[teethIndex].selected = state.questions[8 - 1].teeth.a[teethIndex].selectable ? newStatus : false
         resetClasp(state)
         connectorsSplit().forEach(splitArr => {
             let connectorIndex = splitArr.reduce((carry, item) => carry + item)
             let selectable = splitArr
             .map(toothIndex => {
-                return state.questions[8 - 1].teeth.a[_.findKey(state.questions[8 - 1].teeth.a, {id: toothIndex.toString()})].selected
+                return state.questions[8 - 1].teeth.a[_.findKey(state.questions[8 - 1].teeth.a, { id: toothIndex.toString() })].selected
             })
             .filter(item => item)
             .length === 1
@@ -262,6 +290,20 @@ const mutations = {
     },
     HOW_TO_USE_SHOW(state) {
         state.howToUseShow = !state.howToUseShow
+    },
+    SET_GRAPH_SLIDER(state, newStatus) {
+        state.activeGraphSlider = newStatus
+        switch(newStatus) {
+            case 'FPD':
+                state.activeGraphController = 'Procelain'
+                break;
+            case 'RPD':
+                state.activeGraphController = 'Denture Bases'
+                break;
+            case 'Vitality':
+                state.activeGraphController = 'Vital'
+                break;
+        }
     }
 };
 

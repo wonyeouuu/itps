@@ -9,12 +9,12 @@ div.container.questionListContainer
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
                     :src='preload')
             div.row--rtl
-                div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]')
+                div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]', @click='graphTeethToggle(activeGraphController, toothID)')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
             div.row--ltr
-                div.overlay-container(v-for='toothID in ["21", "22", "23", "24", "25", "26", "27", "28"]')
+                div.overlay-container(v-for='toothID in ["21", "22", "23", "24", "25", "26", "27", "28"]', @click='graphTeethToggle(activeGraphController, toothID)')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
@@ -26,12 +26,12 @@ div.container.questionListContainer
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
                     :src='preload')
             div.row--rtl
-                div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]')
+                div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]', @click='graphTeethToggle(activeGraphController, toothID)')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
             div.row--ltr
-                div.overlay-container(v-for='toothID in ["31", "32", "33", "34", "35", "36", "37", "38"]')
+                div.overlay-container(v-for='toothID in ["31", "32", "33", "34", "35", "36", "37", "38"]', @click='graphTeethToggle(activeGraphController, toothID)')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
@@ -49,19 +49,25 @@ div.control-btn-up
             p Perio-
             p chart
         img(src='/imgs/buttons_on.png')
-
-
 </template>
 
 <script>
 import _ from 'lodash'
 import { allTeeth, connectorsSplit } from '../vuex/teethConstructor'
-import { getQuestions } from '../vuex/getters'
+import { getQuestions, getActiveGraphController } from '../vuex/getters'
+import { teethToggle, teethToggle4, teethToggle8, graphTeethToggle } from '../vuex/actions'
 
 export default {
     vuex: {
         getters: {
-            questions: getQuestions
+            questions: getQuestions,
+            activeGraphController: getActiveGraphController
+        },
+        actions: {
+            teethToggle,
+            teethToggle4,
+            teethToggle8,
+            graphTeethToggle
         }
     },
     data() {
