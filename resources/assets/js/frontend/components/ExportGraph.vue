@@ -1,10 +1,13 @@
 <template lang="jade">
 div.container.questionListContainer
-    pre {{ connectorMapper() | json }}
     div.export-graph
         div.row-top.row
             div.bar-container
                 img(src='/imgs/bar/up.png', v-if='bar.up')
+            div.connector-container
+                img(v-for='connectorID in upperConnectors',
+                    v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
+                    :src='preload')
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]')
                     img(:src='preload', v-img='teethImg[toothID]')
@@ -15,14 +18,13 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-            div.connector-container
-                img(v-for='connectorID in upperConnectors',
-                    v-img='connector[connectorID] ? connector[connectorID] : null',
-                    :src='preload',
-                    v-if='connector[connectorID]')
         div.row-down.row
             div.bar-container
                 img(src='/imgs/bar/down.png', v-if='bar.down')
+            div.connector-container
+                img(v-for='connectorID in lowerConnectors',
+                    v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
+                    :src='preload')
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]')
                     img(:src='preload', v-img='teethImg[toothID]')
@@ -33,8 +35,6 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-            div.connector-container
-                img(v-for='connector in lowerConnectors', v-img='`/imgs/connectors/90/${connector}.png`', :src='preload')
 div.control-btn-down.control-btn-down--previous previous
 div.control-btn-down.control-btn-down--export export
 div.control-btn-up
@@ -66,9 +66,9 @@ export default {
     },
     data() {
         return {
-            preload: 'http://design.ubuntu.com/wp-content/uploads/logo-ubuntu_su-white-hex-140x140.png',
+            preload: '/imgs/preload.png',
             upperConnectors: connectorsSplit().splice(0, 15).map(connectorsArr => connectorsArr.reduce((a, b) => a + b)),
-            lowerConnectors: connectorsSplit().splice(15, 30).map(connectorsArr => connectorsArr.reduce((a, b) => a + b))
+            lowerConnectors: connectorsSplit().splice(15, 30).map(connectorsArr => connectorsArr.reduce((a, b) => a + b)).reverse()
         }
     },
     ready() {
@@ -290,13 +290,7 @@ export default {
                 return '16'
             }
             return '01'
-        },
-        // statusBuilder(tooth, hook = false) {
-        //     return {
-        //         tooth,
-        //         hook
-        //     }
-        // }
+        }
     }
 }
 </script>
@@ -308,8 +302,9 @@ total-width-2 = 600
 total-width-3 = 600
 total-width-4 = 600
 z-bar = 1
-z-tooth = 2
-z-hook = 3
+z-connector = 2
+z-tooth = 3
+z-hook = 4
 .control-btn-up-text
     font-size 30px
     line-height 20px
@@ -373,7 +368,7 @@ div.row
             height 100%
     div.connector-container
         display flex
-        z-index z-hook
+        z-index z-connector
         width 100%
         height 100%
         position absolute
