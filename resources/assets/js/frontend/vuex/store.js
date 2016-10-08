@@ -164,9 +164,11 @@ const mutations = {
         resetPermission(state)
     },
 
-    CONNECTOR_TOGGLE (state, connector, newStatus) {
+    // CONNECTOR_TOGGLE (state, connector, newStatus) {
+    CONNECTOR_TOGGLE (state, connector) {
         "use strict";
         let teethIndex = _.findKey(state.questions[4].teeth.b, { id: connector })
+        const newStatus = !state.questions[4].teeth.b[teethIndex].selected
         state.questions[4].teeth.b[teethIndex].selected = state.questions[4].teeth.b[teethIndex].selectable ? newStatus : false
     },
 

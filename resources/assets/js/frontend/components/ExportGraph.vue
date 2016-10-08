@@ -9,7 +9,9 @@ div.container.questionListContainer
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
                     :src='preload')
             div.row--rtl
-                div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]', @click='graphTeethToggle(activeGraphController, toothID)')
+                div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]',
+                                        @click='graphTeethToggle(activeGraphController, toothID)',
+                                        :class='{ "not-selectable": !selectable[toothID] }')
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
@@ -51,23 +53,22 @@ div.control-btn-up
         img(src='/imgs/buttons_on.png')
 </template>
 
-<script>
+<script type="text/babel">
 import _ from 'lodash'
 import { allTeeth, connectorsSplit } from '../vuex/teethConstructor'
-import { getQuestions, getActiveGraphController } from '../vuex/getters'
-import { teethToggle, teethToggle4, teethToggle8, graphTeethToggle } from '../vuex/actions'
+import { getQuestions, getActiveGraphController, getSelectable } from '../vuex/getters'
+import { graphTeethToggle, graphConnectorToggle } from '../vuex/actions'
 
 export default {
     vuex: {
         getters: {
             questions: getQuestions,
-            activeGraphController: getActiveGraphController
+            activeGraphController: getActiveGraphController,
+            selectable: getSelectable
         },
         actions: {
-            teethToggle,
-            teethToggle4,
-            teethToggle8,
-            graphTeethToggle
+            graphTeethToggle,
+            graphConnectorToggle
         }
     },
     data() {
@@ -311,6 +312,8 @@ z-bar = 1
 z-connector = 2
 z-tooth = 3
 z-hook = 4
+.not-selectable
+    cursor not-allowed
 .control-btn-up-text
     font-size 30px
     line-height 20px
