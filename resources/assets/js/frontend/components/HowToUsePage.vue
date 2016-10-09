@@ -3,6 +3,13 @@
 introColor = red
 hr.member-intro-split
     margin 50px 0
+div.shadow
+    position absolute
+    top 0
+    left 0
+    width 100vw
+    height 100vh
+    background rgba(82, 126, 104, 0.6)
 div.pop-container
     position fixed
     top 0
@@ -10,8 +17,10 @@ div.pop-container
     height 100%
     width 100%
     z-index 20000
-    background rgba(82, 126, 104, 0.6)
+    /*background rgba(82, 126, 104, 0.6)*/
     div.pop-content-container
+        position absolute
+        left calc(50% - 400px)
         border-radius 10px 0 0 0
         padding 0
         margin 12vh auto 0 auto
@@ -39,8 +48,9 @@ div.pop-container
 
 <template lang='jade'>
 div.pop-container(v-show='show', transition='flip')
+    div.shadow(@click='howToUseShowToggle()')
     div.pop-content-container
-        div.aboutShow(@click='howToUseShowToggle()')
+        <!--div.aboutShow(@click='howToUseShowToggle()')-->
         div.pop-main
             img(src='/imgs/howtouse.jpg')
 </template>

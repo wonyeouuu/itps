@@ -1,6 +1,13 @@
 <style lang="stylus" scoped>
 @import './transitions/flip.styl'
 introColor = red
+div.shadow
+    position absolute
+    top 0
+    left 0
+    width 100vw
+    height 100vh
+    background rgba(82, 126, 104, 0.6)
 hr.member-intro-split
     margin 50px 0
 div#about-container
@@ -10,8 +17,9 @@ div#about-container
     height 100%
     width 100%
     z-index 20000
-    background rgba(82, 126, 104, 0.6)
     div#about-content-container
+        position absolute
+        left calc(50% - 400px)
         background white
         border-radius 10px 0 0 0
         padding 0 20px
@@ -77,8 +85,9 @@ div#about-container
 
 <template lang='jade'>
 div#about-container(v-show='aboutShow', transition='flip')
+    div.shadow(@click='aboutShowToggle()')
     div#about-content-container
-        div#aboutShow(@click='aboutShowToggle()')
+        <!--div#aboutShow(@click='aboutShowToggle()')-->
         img(src='/imgs/about_us_top.png')
         p#about-intro.pull-right
             |If you would like to<br>
