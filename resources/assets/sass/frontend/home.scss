@@ -151,3 +151,20 @@ div.button {
   height: 100%;
   overflow: hidden;
 }
+
+div#app-mobile > img {
+    width: 100%;
+}
+
+
+@media screen and (max-width: 480px) {
+    div#app {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    div#app-mobile {
+        display: none;
+    }
+}

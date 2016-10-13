@@ -7,5 +7,8 @@
 @endsection
 
 @section('content')
-    <div id="app"></div>
+    <div id='app'></div>
+    <div id='app-mobile'>
+        <img src="{{ url('/imgs/mobile-home.png') }}">
+    </div>
 @endsection
