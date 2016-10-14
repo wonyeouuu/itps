@@ -1,4 +1,6 @@
-<style lang="sass" rel="stylesheet/scss" scoped>
+<style lang="stylus" scoped>
+.questionListContainer
+    overflow-x scroll
 </style>
 
 <template lang='html'>

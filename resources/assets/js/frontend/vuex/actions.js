@@ -14,7 +14,13 @@ export const selectShowToggle10 = ({ dispatch }, teeth, newStatus) => dispatch('
 export const aboutShowToggle = ({ dispatch }) => dispatch('ABOUT_SHOW')
 export const howToUseShowToggle = ({ dispatch }) => dispatch('HOW_TO_USE_SHOW')
 
-export const setGraphController = ({ dispatch }, newStatus, dashed) => dispatch('SET_GRAPH_CONTROLLER', newStatus, dashed)
+export const setGraphController = ({ dispatch }, newStatus, dashed) => {
+    if (newStatus === 'Reset all') {
+        dispatch('INIT')
+    } else {
+        dispatch('SET_GRAPH_CONTROLLER', newStatus, dashed)
+    }
+}
 export const setGraphSlider = ({ dispatch }, newStatus) => dispatch('SET_GRAPH_SLIDER', newStatus)
 export const graphConnectorToggle = ({ dispatch }, activeGraphController, connector) => {
     if (activeGraphController !== 'Connector') {
@@ -23,7 +29,6 @@ export const graphConnectorToggle = ({ dispatch }, activeGraphController, connec
     dispatch('CONNECTOR_TOGGLE', connector)
 }
 export const graphTeethToggle = ({ dispatch }, activeGraphController, toothID) => {
-    // console.log(activeGraphController, toothID)
     switch(activeGraphController) {
         case 'Complete Dentures':
             dispatch('TEETH_TOGGLE', 1, toothID)

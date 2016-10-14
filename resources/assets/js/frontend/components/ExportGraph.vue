@@ -4,12 +4,14 @@ div.container.questionListContainer
         div.row-top.row
             div.bar-container
                 img(src='/imgs/bar/up.png', v-if='bar.up')
-            div.connector-container
+            div.connector-container(:class='{ "connector-container--hoverable": activeGraphController === "Connector" }')
                 img(v-for='connectorID in upperConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
+                    @click='graphConnectorToggle(activeGraphController, connectorID)',
+                    :class='{ "not-selectable": !selectable[connectorID] }',
                     :src='preload')
             div.row--rtl
-                div.overlay-container(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]',
+                div.overlay-container.overlay-container--hover(v-for='toothID in ["11", "12", "13", "14", "15", "16", "17", "18"]',
                                         @click='graphTeethToggle(activeGraphController, toothID)',
                                         :class='{ "not-selectable": !selectable[toothID] }')
                     img(:src='preload', v-img='teethImg[toothID]')
@@ -23,9 +25,11 @@ div.container.questionListContainer
         div.row-down.row
             div.bar-container
                 img(src='/imgs/bar/down.png', v-if='bar.down')
-            div.connector-container
+            div.connector-container(:class='{ "connector-container--hoverable": activeGraphController === "Connector" }')
                 img(v-for='connectorID in lowerConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
+                    @click='graphConnectorToggle(activeGraphController, connectorID)',
+                    :class='{ "not-selectable": !selectable[connectorID] }',
                     :src='preload')
             div.row--rtl
                 div.overlay-container(v-for='toothID in ["41", "42", "43", "44", "45", "46", "47", "48"]', @click='graphTeethToggle(activeGraphController, toothID)')
@@ -114,6 +118,9 @@ export default {
     },
     methods: {
         allTeeth,
+        log(msg) {
+            console.log(msg)
+        },
         barPathBuilder(id) {
             return `/imgs/hooks/${id}/80.png`
         },
@@ -347,6 +354,8 @@ div.overlay-container
         position relative
         z-index z-tooth
         width 100%
+    &.overlay-container--hover
+        /*border 1px solid #C4E1D4*/
 
 div.export-graph
     width 100%
@@ -381,9 +390,13 @@ div.row
         width 100%
         height 100%
         position absolute
+        &.connector-container--hoverable
+            z-index z-hook
         img
-            flex 1
+            flex 1 0 auto
             height 100%
+            &:hover
+                background rgba(#C4E1D4, 0.2)
     div.row--rtl
         display flex
         flex-direction row-reverse

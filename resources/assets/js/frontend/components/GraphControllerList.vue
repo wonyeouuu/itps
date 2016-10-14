@@ -12,6 +12,10 @@
 <template lang='jade'>
 div.big-container
     div.btn-group-container
+        graph-controller(name='Reset', :dashed='true')
+        graph-controller-slider(slider-trigger='Reset')
+            div(style='margin-left: 30px')
+                graph-controller(name='Reset all')
         graph-controller(:name='names[0]')
         graph-controller(:name='names[1]')
         graph-controller(:name='names[2]')

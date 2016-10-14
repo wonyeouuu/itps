@@ -6,12 +6,9 @@
     height 100vh
 
 .graph-control-container
-    /*margin-bottom 15px*/
     margin-bottom 10px
 
 .graph-control-btn
-    /*width 30px
-    height 20px*/
     width 25px
     height 15px
     border 2px solid black
@@ -23,8 +20,6 @@
     &.graph-control-btn--dashed
         border 2px dashed black
     .graph-control-btn-inside
-        /*width 20px
-        height 8px*/
         width 15px
         height 7px
         &.graph-control-btn-active
