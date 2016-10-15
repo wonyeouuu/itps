@@ -4,7 +4,7 @@ div.container.questionListContainer
         div.row-top.row
             div.bar-container
                 img(src='/imgs/bar/up.png', v-if='bar.up')
-            div.connector-container(:class='{ "connector-container--hoverable": activeGraphController === "Connector" }')
+            div.connector-container(:class='{ "connector-container--hoverable": ["Connector", "A Bar", "I Bar", "Wrought wire"].indexOf(activeGraphController) !== -1 }')
                 img(v-for='connectorID in upperConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
                     @click='graphConnectorToggle(activeGraphController, connectorID)',
@@ -25,7 +25,7 @@ div.container.questionListContainer
         div.row-down.row
             div.bar-container
                 img(src='/imgs/bar/down.png', v-if='bar.down')
-            div.connector-container(:class='{ "connector-container--hoverable": activeGraphController === "Connector" }')
+            div.connector-container(:class='{ "connector-container--hoverable": ["Connector", "A Bar", "I Bar", "Wrought wire"].indexOf(activeGraphController) !== -1 }')
                 img(v-for='connectorID in lowerConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
                     @click='graphConnectorToggle(activeGraphController, connectorID)',

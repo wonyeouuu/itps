@@ -23,10 +23,26 @@ export const setGraphController = ({ dispatch }, newStatus, dashed) => {
 }
 export const setGraphSlider = ({ dispatch }, newStatus) => dispatch('SET_GRAPH_SLIDER', newStatus)
 export const graphConnectorToggle = ({ dispatch }, activeGraphController, connector) => {
-    if (activeGraphController !== 'Connector') {
+    if (['Connector', 'A Bar', 'I Bar', 'Wrought wire'].indexOf(activeGraphController) === -1) {
         return false
     }
-    dispatch('CONNECTOR_TOGGLE', connector)
+    switch(activeGraphController) {
+        case 'Connector':
+            dispatch('CONNECTOR_TOGGLE', connector)
+            break
+        case 'A Bar':
+            dispatch('CLASP_TOGGLE', connector, 'A')
+            break
+        case 'I Bar':
+            dispatch('CLASP_TOGGLE', connector, 'I')
+            break
+        case 'Wrought wire':
+            dispatch('CLASP_TOGGLE', connector, 'W')
+            break
+        default:
+            alert('Invalid graph controller')
+            break
+    }
 }
 export const graphTeethToggle = ({ dispatch }, activeGraphController, toothID) => {
     switch(activeGraphController) {
