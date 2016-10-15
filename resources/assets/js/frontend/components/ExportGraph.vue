@@ -128,8 +128,11 @@ export default {
             console.log(msg)
         },
         exportSave() {
+            console.log('click')
             html2canvas(document.getElementById('export-graph')).then(canvas => {
+                console.log('processing')
                 const dataURL = canvas.toDataURL('image/png')
+                console.log('toDataUrl')
                 const btn = document.getElementById('hidden-download-anchor')
                 btn.href = dataURL
                 btn.click()
