@@ -15,7 +15,7 @@ export const aboutShowToggle = ({ dispatch }) => dispatch('ABOUT_SHOW')
 export const howToUseShowToggle = ({ dispatch }) => dispatch('HOW_TO_USE_SHOW')
 
 export const setGraphController = ({ dispatch }, newStatus, dashed) => {
-    if (newStatus === 'Reset all') {
+    if (newStatus === 'Reset all settings') {
         dispatch('INIT')
     } else {
         dispatch('SET_GRAPH_CONTROLLER', newStatus, dashed)
