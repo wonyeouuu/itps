@@ -9,7 +9,7 @@ div.main-container.container-fluid
                 h1 Text-Based
                 h1 User
                 h1 Interface
-        div.col-xs-6.home-tooth
+        div.col-xs-6.home-tooth(@click='goto({ name: "graph" })')
             div
                 h1 Graphical
                 h1 User

@@ -41,7 +41,7 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-div.control-btn-down.control-btn-down--previous previous
+div.control-btn-down.control-btn-down--previous(@click='goBack') previous
 div.control-btn-down.control-btn-down--export export
 div.control-btn-up
     img.control-btn-up-logo(src='/imgs/itp_Logo.png')
@@ -118,6 +118,9 @@ export default {
     },
     methods: {
         allTeeth,
+        goBack() {
+            history.go(-1)
+        },
         log(msg) {
             console.log(msg)
         },
