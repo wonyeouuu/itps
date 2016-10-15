@@ -42,7 +42,8 @@ div.container.questionListContainer
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
 div.control-btn-down.control-btn-down--previous(@click='goBack') previous
-div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
+//- div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
+div.control-btn-down.control-btn-down--export(@click.prevent='setExport') export
 div.control-btn-up
     img.control-btn-up-logo(src='/imgs/itp_Logo.png')
     div.vitality.control-btn-up-block
@@ -55,7 +56,7 @@ div.control-btn-up
             p Perio-
             p chart
         img(src='/imgs/buttons_on.png')
-a#hidden-download-anchor(download='your_teeth.png', target='_blank')
+//- a#hidden-download-anchor(download='your_teeth.png', target='_blank')
 </template>
 
 <script type="text/babel">
@@ -127,12 +128,15 @@ export default {
         log(msg) {
             console.log(msg)
         },
-        exportSave() {
-            console.log('click')
+        setExport() {
             html2canvas(document.getElementById('export-graph')).then(canvas => {
-                console.log('processing')
+                this.setExportCanvas(canvas)
+                this.$router.go({ name: 'result' })
+            })
+        },
+        exportSave() {
+            html2canvas(document.getElementById('export-graph')).then(canvas => {
                 const dataURL = canvas.toDataURL('image/png')
-                console.log('toDataUrl')
                 const btn = document.getElementById('hidden-download-anchor')
                 btn.href = dataURL
                 btn.click()

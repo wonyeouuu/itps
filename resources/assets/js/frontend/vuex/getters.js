@@ -10,6 +10,8 @@ export const getGraphControllers = state => state.graphControllers
 export const getGraphSlider = state => state.activeGraphSlider
 export const getQuestionMarks = state => state.questionMarks
 
+export const getExportCanvas = state => state.exportCanvas
+
 export const getQuestionNames = state => state.questionNames
 export const getSelectable = state => {
     const selectableMapper = (carry, tooth) => {

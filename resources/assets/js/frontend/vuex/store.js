@@ -20,6 +20,7 @@ const state = {
     aboutShow: false,
     howToUseShow: false,
     activeGraphController: '',
+    exportCanvas: null,
     activeGraphSlider: '',
     questionNames: [
         'Complete Dentures',//全口假牙 要上或下全部沒有才可以
@@ -306,6 +307,9 @@ const mutations = {
                 state.activeGraphController = 'Vital'
                 break;
         }
+    },
+    SET_EXPORT_CANVAS(state, canvas) {
+        state.exportCanvas = canvas
     }
 };
 
