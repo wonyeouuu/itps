@@ -64,9 +64,6 @@ export const graphTeethToggle = ({ dispatch }, activeGraphController, toothID) =
         case 'Metal':
             dispatch('TEETH_TOGGLE4', toothID, 'M')
             break
-        // case 'Connector':
-        //     console.log('Connector')
-        //     break
         case 'Veneer':
             dispatch('TEETH_TOGGLE', 6, toothID)
             break
@@ -76,15 +73,6 @@ export const graphTeethToggle = ({ dispatch }, activeGraphController, toothID) =
         case 'Denture Bases':
             dispatch('TEETH_TOGGLE8', toothID)
             break
-        // case 'A Bar':
-        //     console.log('A Bar')
-        //     break
-        // case 'I Bar':
-        //     console.log('I Bar')
-        //     break
-        // case 'Wrought wire':
-        //     console.log('Wrought wire')
-        //     break
         case 'Decayed Teeth':
             dispatch('TEETH_TOGGLE', 9, toothID)
             break

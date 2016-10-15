@@ -1,6 +1,6 @@
 <template lang="jade">
 div.app
-    i-h-a(v-if='["graph"].indexOf($route.name) == -1')
+    i-h-a(v-if='["graph", "result"].indexOf($route.name) == -1')
     graph-controller-list(v-if='["graph"].indexOf($route.name) != -1')
     router-view(transition='expand')
     about-page

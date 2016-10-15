@@ -11,7 +11,6 @@ export const getGraphSlider = state => state.activeGraphSlider
 export const getQuestionMarks = state => state.questionMarks
 
 export const getQuestionNames = state => state.questionNames
-// export const getTeethWithQuestion = (state, question) => state.questions[0].teeth
 export const getSelectable = state => {
     const selectableMapper = (carry, tooth) => {
         carry[tooth.id] = tooth.selectable

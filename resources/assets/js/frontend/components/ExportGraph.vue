@@ -1,6 +1,6 @@
 <template lang="jade">
 div.container.questionListContainer
-    div.export-graph
+    div#export-graph.export-graph
         div.row-top.row
             div.bar-container
                 img(src='/imgs/bar/up.png', v-if='bar.up')
@@ -42,7 +42,7 @@ div.container.questionListContainer
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
 div.control-btn-down.control-btn-down--previous(@click='goBack') previous
-div.control-btn-down.control-btn-down--export export
+div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
 div.control-btn-up
     img.control-btn-up-logo(src='/imgs/itp_Logo.png')
     div.vitality.control-btn-up-block
@@ -55,13 +55,15 @@ div.control-btn-up
             p Perio-
             p chart
         img(src='/imgs/buttons_on.png')
+a#hidden-download-anchor(download='your_teeth.png', target='_blank')
 </template>
 
 <script type="text/babel">
 import _ from 'lodash'
+import html2canvas from 'html2canvas'
 import { allTeeth, connectorsSplit } from '../vuex/teethConstructor'
 import { getQuestions, getActiveGraphController, getSelectable } from '../vuex/getters'
-import { graphTeethToggle, graphConnectorToggle } from '../vuex/actions'
+import { graphTeethToggle, graphConnectorToggle, setExportCanvas } from '../vuex/actions'
 
 export default {
     vuex: {
@@ -72,7 +74,8 @@ export default {
         },
         actions: {
             graphTeethToggle,
-            graphConnectorToggle
+            graphConnectorToggle,
+            setExportCanvas
         }
     },
     data() {
@@ -124,6 +127,14 @@ export default {
         log(msg) {
             console.log(msg)
         },
+        exportSave() {
+            html2canvas(document.getElementById('export-graph')).then(canvas => {
+                const dataURL = canvas.toDataURL('image/png')
+                const btn = document.getElementById('hidden-download-anchor')
+                btn.href = dataURL
+                btn.click()
+            })
+        },
         barPathBuilder(id) {
             return `/imgs/hooks/${id}/80.png`
         },
@@ -155,7 +166,6 @@ export default {
                                         return connector
                                     })
                                     .reduce((carry, connector) => {
-                                        // carry[connector.id] = connector.img ? '91' : '90'
                                         carry[connector.id] = connector.img ?
                                             `/imgs/connectors/91/${connector.id}.png` :
                                             `/imgs/connectors/90/${connector.id}.png`
@@ -322,6 +332,8 @@ z-bar = 1
 z-connector = 2
 z-tooth = 3
 z-hook = 4
+.image-container
+    text-align center
 .not-selectable
     cursor not-allowed
 .control-btn-up-text
@@ -357,8 +369,6 @@ div.overlay-container
         position relative
         z-index z-tooth
         width 100%
-    &.overlay-container--hover
-        /*border 1px solid #C4E1D4*/
 
 div.export-graph
     width 100%
@@ -421,71 +431,6 @@ div.row
         text-shadow -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
         color white
 
-        /*&.t11
-            width percentage(75 / total-width-1)
-        &.t12
-            width percentage(61 / total-width-1)
-        &.t13
-            width percentage(65 / total-width-1)
-        &.t14
-            width percentage(66 / total-width-1)
-        &.t15
-            width percentage(64 / total-width-1)
-        &.t16
-            width percentage(100 / total-width-1)
-        &.t17
-            width percentage(87 / total-width-1)
-        &.t18
-            width percentage(82 / total-width-1)*/
-
-        /*&.t21
-            width percentage(75 / total-width-2)
-        &.t22
-            width percentage(61 / total-width-2)
-        &.t23
-            width percentage(64 / total-width-2)
-        &.t24
-            width percentage(67 / total-width-2)
-        &.t25
-            width percentage(63 / total-width-2)
-        &.t26
-            width percentage(100 / total-width-2)
-        &.t27
-            width percentage(87 / total-width-2)
-        &.t28
-            width percentage(83 / total-width-2)
-
-        &.t31
-            width percentage(46 / total-width-3)
-        &.t32
-            width percentage(49 / total-width-3)
-        &.t33
-            width percentage(55 / total-width-3)
-        &.t34
-            width percentage(64 / total-width-3)
-        &.t35
-            width percentage(66 / total-width-3)
-        &.t36
-            width percentage(95 / total-width-3)
-        &.t37
-            width percentage(96 / total-width-3)
-        &.t38
-            width percentage(129 / total-width-3)
-
-        &.t41
-            width percentage(46 / total-width-4)
-        &.t42
-            width percentage(49 / total-width-4)
-        &.t43
-            width percentage(55 / total-width-4)
-        &.t44
-            width percentage(64 / total-width-4)
-        &.t45
-            width percentage(66 / total-width-4)
-        &.t46
-            width percentage(94 / total-width-4)
-        &.t47
-            width percentage(97 / total-width-4)
-        &.t48
-            width percentage(129 / total-width-4)*/
+#hidden-download-anchor
+    display none
 </style>
