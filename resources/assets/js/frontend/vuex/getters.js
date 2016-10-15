@@ -54,6 +54,15 @@ export const getSelectable = state => {
         case 'Denture Bases':
             return state.questions[8 - 1].teeth.a.reduce(selectableMapper, {})
             break
+        case 'A Bar':
+            return state.questions[8 - 1].teeth.b.reduce(selectableMapper, {})
+            break
+        case 'I Bar':
+            return state.questions[8 - 1].teeth.b.reduce(selectableMapper, {})
+            break
+        case 'Wrought wire':
+            return state.questions[8 - 1].teeth.b.reduce(selectableMapper, {})
+            break
         case 'Decayed Teeth':
             return state.questions[9 - 1].teeth.reduce(selectableMapper, {})
             break
