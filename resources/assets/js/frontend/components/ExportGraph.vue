@@ -42,8 +42,8 @@ div.container.questionListContainer
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
 div.control-btn-down.control-btn-down--previous(@click='goBack') previous
-//- div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
-div.control-btn-down.control-btn-down--export(@click.prevent='setExport') export
+div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
+//- div.control-btn-down.control-btn-down--export(@click.prevent='setExport') export
 div.control-btn-up
     img.control-btn-up-logo(src='/imgs/itp_Logo.png')
     div.vitality.control-btn-up-block
@@ -57,6 +57,8 @@ div.control-btn-up
             p chart
         img(src='/imgs/buttons_on.png')
 //- a#hidden-download-anchor(download='your_teeth.png', target='_blank')
+canvas#result-canvas(width='1000')
+a#hidden-anchor(target='_blank')
 </template>
 
 <script type="text/babel">
@@ -135,11 +137,19 @@ export default {
             })
         },
         exportSave() {
-            html2canvas(document.getElementById('export-graph')).then(canvas => {
-                const dataURL = canvas.toDataURL('image/png')
-                const btn = document.getElementById('hidden-download-anchor')
-                btn.href = dataURL
-                btn.click()
+            html2canvas(document.getElementById('export-graph')).then(teethCanvas => {
+                const canvas = document.querySelector('#result-canvas')
+                const anchor = document.querySelector('#hidden-anchor')
+                const ctx = canvas.getContext('2d')
+                const backgroundImage = new Image()
+                backgroundImage.src='/imgs/about_us_photo1.png'
+                backgroundImage.onload = () => {
+                    ctx.drawImage(backgroundImage, 0, 0, 1000, 100)
+                    anchor.href = canvas.toDataURL('image/png')
+                    anchor.click()
+                }
+                canvas.height += teethCanvas.height
+                ctx.drawImage(teethCanvas, 0, 100, 1000, teethCanvas.height)
             })
         },
         barPathBuilder(id) {
@@ -439,5 +449,7 @@ div.row
         color white
 
 #hidden-download-anchor
+    display none
+#hidden-anchor
     display none
 </style>
