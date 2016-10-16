@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import _ from 'underscore'
+import cloneDeep from 'lodash/cloneDeep'
 import {
     teethArr,
     teethArr4,
@@ -21,6 +22,7 @@ const state = {
     howToUseShow: false,
     activeGraphController: '',
     exportCanvas: null,
+    saveList: [],
     activeGraphSlider: '',
     questionNames: [
         'Complete Dentures',//全口假牙 要上或下全部沒有才可以
@@ -310,6 +312,12 @@ const mutations = {
     },
     SET_EXPORT_CANVAS(state, canvas) {
         state.exportCanvas = canvas
+    },
+    SAVE(state) {
+        state.saveList.push(cloneDeep(state.questions))
+    },
+    LOAD(state, index) {
+        state.questions = state.saveList[index]
     }
 };
 

@@ -43,6 +43,7 @@ div.container.questionListContainer
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
 div.control-btn-down.control-btn-down--previous(@click='goBack') previous
 div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
+div.control-btn-down.control-btn-down--save(@click='save') save
 //- div.control-btn-down.control-btn-down--export(@click.prevent='setExport') export
 div.control-btn-up
     img.control-btn-up-logo(src='/imgs/itp_Logo.png')
@@ -56,6 +57,9 @@ div.control-btn-up
             p Perio-
             p chart
         img(src='/imgs/buttons_on.png')
+div.save-list
+    ul
+        li(v-for='n in saveList.length', @click='load(n)') Snapshot {{ n + 1 }}
 //- a#hidden-download-anchor(download='your_teeth.png', target='_blank')
 canvas#result-canvas(width='1000')
 a#hidden-anchor(target='_blank')
@@ -65,20 +69,23 @@ a#hidden-anchor(target='_blank')
 import _ from 'lodash'
 import html2canvas from 'html2canvas'
 import { allTeeth, connectorsSplit } from '../vuex/teethConstructor'
-import { getQuestions, getActiveGraphController, getSelectable } from '../vuex/getters'
-import { graphTeethToggle, graphConnectorToggle, setExportCanvas } from '../vuex/actions'
+import { getQuestions, getActiveGraphController, getSelectable, getSaveList } from '../vuex/getters'
+import { graphTeethToggle, graphConnectorToggle, setExportCanvas, save, load } from '../vuex/actions'
 
 export default {
     vuex: {
         getters: {
             questions: getQuestions,
             activeGraphController: getActiveGraphController,
-            selectable: getSelectable
+            selectable: getSelectable,
+            saveList: getSaveList
         },
         actions: {
             graphTeethToggle,
             graphConnectorToggle,
-            setExportCanvas
+            setExportCanvas,
+            save,
+            load
         }
     },
     data() {
@@ -444,6 +451,8 @@ div.row
         left 40px
     &.control-btn-down--export
         right 40px
+    &.control-btn-down--save
+        left calc(50% - 40px)
     &:hover
         text-shadow -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
         color white
@@ -452,4 +461,11 @@ div.row
     display none
 #hidden-anchor
     display none
+#result-canvas
+    display none
+
+.save-list
+    position fixed
+    right 0
+    top 20%
 </style>

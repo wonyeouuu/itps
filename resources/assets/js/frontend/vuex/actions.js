@@ -11,6 +11,8 @@ export const selectShowToggle8 = ({ dispatch }, teeth, newStatus) => dispatch('S
 export const selectShowToggle10 = ({ dispatch }, teeth, newStatus) => dispatch('SELECT_SHOW_TOGGLE10', teeth, newStatus)
 
 export const setExportCanvas = ({ dispatch }, canvas) => dispatch('SET_EXPORT_CANVAS', canvas)
+export const save = ({ dispatch }) => dispatch('SAVE')
+export const load = ({ dispatch }, index) => dispatch('LOAD', index)
 
 export const aboutShowToggle = ({ dispatch }) => dispatch('ABOUT_SHOW')
 export const howToUseShowToggle = ({ dispatch }) => dispatch('HOW_TO_USE_SHOW')
