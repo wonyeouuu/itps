@@ -27,6 +27,7 @@ export default {
             document.querySelectorAll('.export-graph').forEach(dom => {
                 console.log(dom)
                 html2canvas(dom).then(canvas => {
+                    console.log(canvas)
                     dom.parentNode.replaceChild(canvas, dom)
                 })
             })
