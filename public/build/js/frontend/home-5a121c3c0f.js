@@ -49766,6 +49766,15 @@ exports.default = {
             //     resultContainer.appendChild(canvas)
             // })
         });
+        console.log(document.querySelectorAll('.export-graph'));
+        setTimeout(function () {
+            console.log('start');
+            document.querySelectorAll('.export-graph').forEach(function (dom) {
+                (0, _html2canvas2.default)(dom).then(function (canvas) {
+                    dom.parentNode.replaceChild(canvas, dom);
+                });
+            });
+        }, 1000);
         // this.saveList.forEach(save => {
         //     resultContainer.appendChild(save.canvas)
         // })

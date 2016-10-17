@@ -21,6 +21,15 @@ export default {
             //     resultContainer.appendChild(canvas)
             // })
         })
+        console.log(document.querySelectorAll('.export-graph'))
+        setTimeout(() => {
+            console.log('start')
+            document.querySelectorAll('.export-graph').forEach(dom => {
+                html2canvas(dom).then(canvas => {
+                    dom.parentNode.replaceChild(canvas, dom)
+                })
+            })
+        }, 1000)
         // this.saveList.forEach(save => {
         //     resultContainer.appendChild(save.canvas)
         // })
