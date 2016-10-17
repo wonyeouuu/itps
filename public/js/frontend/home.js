@@ -49771,10 +49771,12 @@ exports.default = {
             console.log('start');
             document.querySelectorAll('.export-graph').forEach(function (dom) {
                 console.log(dom);
-                (0, _html2canvas2.default)(dom).then(function (canvas) {
-                    console.log(canvas);
-                    dom.parentNode.replaceChild(canvas, dom);
-                });
+                setTimeout(function () {
+                    (0, _html2canvas2.default)(dom).then(function (canvas) {
+                        console.log(canvas);
+                        dom.parentNode.replaceChild(canvas, dom);
+                    });
+                }, 0);
             });
         }, 1000);
         // this.saveList.forEach(save => {

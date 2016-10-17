@@ -26,10 +26,12 @@ export default {
             console.log('start')
             document.querySelectorAll('.export-graph').forEach(dom => {
                 console.log(dom)
-                html2canvas(dom).then(canvas => {
-                    console.log(canvas)
-                    dom.parentNode.replaceChild(canvas, dom)
-                })
+                setTimeout(() => {
+                    html2canvas(dom).then(canvas => {
+                        console.log(canvas)
+                        dom.parentNode.replaceChild(canvas, dom)
+                    })
+                }, 0)
             })
         }, 1000)
         // this.saveList.forEach(save => {
