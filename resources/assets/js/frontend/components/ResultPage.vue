@@ -16,22 +16,19 @@ export default {
     ready() {
         const resultContainer = document.querySelector('.result-container')
         this.saveList.forEach(save => {
-            resultContainer.appendChild(save.dom.cloneNode(true))
+            resultContainer.appendChild(save.dom)
             // html2canvas(save.dom).then(canvas => {
             //     resultContainer.appendChild(canvas)
             // })
         })
         console.log(document.querySelectorAll('.export-graph'))
         setTimeout(() => {
-            console.log('start')
             document.querySelectorAll('.export-graph').forEach(dom => {
-                console.log(dom)
-                setTimeout(() => {
-                    html2canvas(dom).then(canvas => {
-                        console.log(canvas)
-                        dom.parentNode.replaceChild(canvas, dom)
-                    })
-                }, 0)
+                html2canvas(dom).then(canvas => {
+                    const newImg = new Image()
+                    newImg.src = canvas.toDataURL('image/png')
+                    dom.parentNode.replaceChild(newImg, dom)
+                })
             })
         }, 1000)
         // this.saveList.forEach(save => {
@@ -57,4 +54,6 @@ export default {
 <style lang="stylus">
 .result-container
     text-align center
+    width 1000px
+    margin 0 auto
 </style>

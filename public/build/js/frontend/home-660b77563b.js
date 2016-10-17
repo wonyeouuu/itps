@@ -49737,7 +49737,7 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"vue":148,"vue-hot-reload-api":146,"vueify/lib/insert-css":149}],163:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".result-container {\n  text-align: center;\n}\n")
+var __vueify_style__ = __vueify_insert__.insert(".result-container {\n  text-align: center;\n  width: 1000px;\n  margin: 0 auto;\n}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49761,22 +49761,19 @@ exports.default = {
     ready: function ready() {
         var resultContainer = document.querySelector('.result-container');
         this.saveList.forEach(function (save) {
-            resultContainer.appendChild(save.dom.cloneNode(true));
+            resultContainer.appendChild(save.dom);
             // html2canvas(save.dom).then(canvas => {
             //     resultContainer.appendChild(canvas)
             // })
         });
         console.log(document.querySelectorAll('.export-graph'));
         setTimeout(function () {
-            console.log('start');
             document.querySelectorAll('.export-graph').forEach(function (dom) {
-                console.log(dom);
-                setTimeout(function () {
-                    (0, _html2canvas2.default)(dom).then(function (canvas) {
-                        console.log(canvas);
-                        dom.parentNode.replaceChild(canvas, dom);
-                    });
-                }, 0);
+                (0, _html2canvas2.default)(dom).then(function (canvas) {
+                    var newImg = new Image();
+                    newImg.src = canvas.toDataURL('image/png');
+                    dom.parentNode.replaceChild(newImg, dom);
+                });
             });
         }, 1000);
         // this.saveList.forEach(save => {
@@ -49804,7 +49801,7 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache[".result-container {\n  text-align: center;\n}\n"] = false
+    __vueify_insert__.cache[".result-container {\n  text-align: center;\n  width: 1000px;\n  margin: 0 auto;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
