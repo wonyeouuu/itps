@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import html2canvas from 'html2canvas'
 import _ from 'underscore'
 import cloneDeep from 'lodash/cloneDeep'
 import {
@@ -314,10 +315,19 @@ const mutations = {
         state.exportCanvas = canvas
     },
     SAVE(state) {
-        state.saveList.push(cloneDeep(state.questions))
+        if (state.saveList.length >= 5) {
+            alert('You can not save more then 5')
+            return
+        }
+        html2canvas(document.getElementById('export-graph')).then(canvas => {
+            state.saveList.push({
+                questions: cloneDeep(state.questions),
+                canvas
+            })
+        })
     },
     LOAD(state, index) {
-        state.questions = state.saveList[index]
+        state.questions = state.saveList[index].questions
     }
 };
 

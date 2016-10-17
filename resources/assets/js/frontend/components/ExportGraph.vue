@@ -41,28 +41,24 @@ div.container.questionListContainer
                     img(:src='preload', v-img='teethImg[toothID]')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
-div.control-btn-down.control-btn-down--previous(@click='goBack') previous
-div.control-btn-down.control-btn-down--export(@click.prevent='exportSave') export
-div.control-btn-down.control-btn-down--save(@click='save') save
-//- div.control-btn-down.control-btn-down--export(@click.prevent='setExport') export
-div.control-btn-up
-    img.control-btn-up-logo(src='/imgs/itp_Logo.png')
-    div.vitality.control-btn-up-block
-        div.control-btn-up-text
-            p Vita-
-            p lity
-        img(src='/imgs/buttons_on.png')
-    div.perio-chart.control-btn-up-block
-        div.control-btn-up-text
-            p Perio-
-            p chart
-        img(src='/imgs/buttons_on.png')
-div.save-list
-    ul
-        li(v-for='n in saveList.length', @click='load(n)') Snapshot {{ n + 1 }}
-//- a#hidden-download-anchor(download='your_teeth.png', target='_blank')
-canvas#result-canvas(width='1000')
-a#hidden-anchor(target='_blank')
+    div.control-btn-down.control-btn-down--previous(@click='goBack') previous
+    div.control-btn-down.control-btn-down--export(@click.prevent='$router.go({ name: "result" })') export
+    div.control-btn-down.control-btn-down--save(@click='save') save
+    div.control-btn-up
+        img.control-btn-up-logo(src='/imgs/itp_Logo.png')
+        div.vitality.control-btn-up-block
+            div.control-btn-up-text
+                p Vita-
+                p lity
+            img(src='/imgs/buttons_on.png')
+        div.perio-chart.control-btn-up-block
+            div.control-btn-up-text
+                p Perio-
+                p chart
+            img(src='/imgs/buttons_on.png')
+    div.save-list
+        ul
+            li(v-for='n in saveList.length', @click='load(n)') {{ n + 1 }}
 </template>
 
 <script type="text/babel">
@@ -137,28 +133,28 @@ export default {
         log(msg) {
             console.log(msg)
         },
-        setExport() {
-            html2canvas(document.getElementById('export-graph')).then(canvas => {
-                this.setExportCanvas(canvas)
-                this.$router.go({ name: 'result' })
-            })
-        },
-        exportSave() {
-            html2canvas(document.getElementById('export-graph')).then(teethCanvas => {
-                const canvas = document.querySelector('#result-canvas')
-                const anchor = document.querySelector('#hidden-anchor')
-                const ctx = canvas.getContext('2d')
-                const backgroundImage = new Image()
-                backgroundImage.src='/imgs/about_us_photo1.png'
-                backgroundImage.onload = () => {
-                    ctx.drawImage(backgroundImage, 0, 0, 1000, 100)
-                    anchor.href = canvas.toDataURL('image/png')
-                    anchor.click()
-                }
-                canvas.height += teethCanvas.height
-                ctx.drawImage(teethCanvas, 0, 100, 1000, teethCanvas.height)
-            })
-        },
+        // setExport() {
+        //     html2canvas(document.getElementById('export-graph')).then(canvas => {
+        //         this.setExportCanvas(canvas)
+        //         this.$router.go({ name: 'result' })
+        //     })
+        // },
+        // exportSave() {
+        //     html2canvas(document.getElementById('export-graph')).then(teethCanvas => {
+        //         const canvas = document.querySelector('#result-canvas')
+        //         const anchor = document.querySelector('#hidden-anchor')
+        //         const ctx = canvas.getContext('2d')
+        //         const backgroundImage = new Image()
+        //         backgroundImage.src='/imgs/about_us_photo1.png'
+        //         backgroundImage.onload = () => {
+        //             ctx.drawImage(backgroundImage, 0, 0, 1000, 100)
+        //             anchor.href = canvas.toDataURL('image/png')
+        //             anchor.click()
+        //         }
+        //         canvas.height += teethCanvas.height
+        //         ctx.drawImage(teethCanvas, 0, 100, 1000, teethCanvas.height)
+        //     })
+        // },
         barPathBuilder(id) {
             return `/imgs/hooks/${id}/80.png`
         },
@@ -466,6 +462,23 @@ div.row
 
 .save-list
     position fixed
-    right 0
-    top 20%
+    right 40px
+    bottom 80px
+    ul
+        list-style none
+        li
+            line-height 34px
+            font-size 22px
+            font-weight bold
+            text-align center
+            width 36px
+            height 36px
+            border-radius 18px
+            border 2px solid black
+            margin-bottom 5px
+            background-color black
+            color white
+            &:hover
+                background-color white
+                color black
 </style>
