@@ -49770,6 +49770,7 @@ exports.default = {
         setTimeout(function () {
             console.log('start');
             document.querySelectorAll('.export-graph').forEach(function (dom) {
+                console.log(dom);
                 (0, _html2canvas2.default)(dom).then(function (canvas) {
                     dom.parentNode.replaceChild(canvas, dom);
                 });

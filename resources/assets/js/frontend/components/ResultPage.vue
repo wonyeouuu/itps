@@ -25,6 +25,7 @@ export default {
         setTimeout(() => {
             console.log('start')
             document.querySelectorAll('.export-graph').forEach(dom => {
+                console.log(dom)
                 html2canvas(dom).then(canvas => {
                     dom.parentNode.replaceChild(canvas, dom)
                 })
