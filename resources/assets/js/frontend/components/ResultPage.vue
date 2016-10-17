@@ -16,7 +16,7 @@ export default {
     ready() {
         const resultContainer = document.querySelector('.result-container')
         this.saveList.forEach(save => {
-            resultContainer.appendChild(save.dom)
+            resultContainer.appendChild(save.dom.cloneNode(true))
             // html2canvas(save.dom).then(canvas => {
             //     resultContainer.appendChild(canvas)
             // })
