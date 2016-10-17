@@ -4,6 +4,7 @@ div.result-container
 </template>
 
 <script>
+import html2canvas from 'html2canvas'
 import { getSaveList } from '../vuex/getters'
 
 export default {
@@ -15,8 +16,14 @@ export default {
     ready() {
         const resultContainer = document.querySelector('.result-container')
         this.saveList.forEach(save => {
-            resultContainer.appendChild(save.canvas)
+            resultContainer.appendChild(save.dom)
+            // html2canvas(save.dom).then(canvas => {
+            //     resultContainer.appendChild(canvas)
+            // })
         })
+        // this.saveList.forEach(save => {
+        //     resultContainer.appendChild(save.canvas)
+        // })
         // const canvas = document.querySelector('#result-canvas')
         // const anchor = document.querySelector('#hidden-anchor')
         // const ctx = canvas.getContext('2d')

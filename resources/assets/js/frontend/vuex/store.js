@@ -319,12 +319,16 @@ const mutations = {
             alert('You can not save more then 5')
             return
         }
-        html2canvas(document.getElementById('export-graph')).then(canvas => {
-            state.saveList.push({
-                questions: cloneDeep(state.questions),
-                canvas
-            })
+        state.saveList.push({
+            questions: cloneDeep(state.questions),
+            dom: document.getElementById('export-graph').cloneNode(true)
         })
+        // html2canvas(document.getElementById('export-graph')).then(canvas => {
+        //     state.saveList.push({
+        //         questions: cloneDeep(state.questions),
+        //         canvas
+        //     })
+        // })
     },
     LOAD(state, index) {
         state.questions = state.saveList[index].questions
