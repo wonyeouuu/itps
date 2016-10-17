@@ -23,14 +23,30 @@ export default {
         })
         console.log(document.querySelectorAll('.export-graph'))
         setTimeout(() => {
-            document.querySelectorAll('.export-graph').forEach(dom => {
-                html2canvas(dom).then(canvas => {
+            const promises = [].map.call(document.querySelectorAll('.export-graph'), dom => html2canvas(dom))
+            Promise.all(promises).then(result => {
+                while(resultContainer.firstChild) {
+                    resultContainer.removeChild(resultContainer.firstChild)
+                }
+                result = result.map(canvas => canvas.toDataURL('image/png'))
+                result.forEach(img => {
                     const newImg = new Image()
-                    newImg.src = canvas.toDataURL('image/png')
-                    dom.parentNode.replaceChild(newImg, dom)
+                    newImg.src = img
+                    resultContainer.appendChild(newImg)
                 })
+
+                console.log(result)
             })
+            // document.querySelectorAll('.export-graph').forEach(dom => {
+                // html2canvas(dom).then(canvas => {
+                //     const newImg = new Image()
+                //     newImg.src = canvas.toDataURL('image/png')
+                //     console.log(newImg)
+                    // dom.parentNode.replaceChild(newImg, dom)
+                // })
+            // })
         }, 1000)
+
         // this.saveList.forEach(save => {
         //     resultContainer.appendChild(save.canvas)
         // })
