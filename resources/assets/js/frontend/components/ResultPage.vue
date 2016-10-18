@@ -2,7 +2,7 @@
 div.result-container
     div.result-header
         img(src='/imgs/result_header.png')
-        div.print-btn(@click='print') Print
+        div.print-btn(@click='print') Click Here To Print
     div.results
     div.result-footer
         img(src='/imgs/result_footer.png')
@@ -38,6 +38,7 @@ export default {
 
 <style lang="stylus">
 .result-container
+    overflow visible
     text-align center
     width 1000px
     margin 0 auto
@@ -53,9 +54,9 @@ export default {
 .print-btn
     padding 5px
     position absolute
-    top 100px
-    right 330px
-    font-size 30px
+    top 115px
+    right 170px
+    font-size 25px
     font-weight bold
     background-color black
     color white
