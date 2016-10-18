@@ -1,8 +1,8 @@
 <template lang="jade">
 div.result-container
-    div.print-btn(@click='print') Print
     div.result-header
         img(src='/imgs/result_header.png')
+        div.print-btn(@click='print') Print
     div.results
     div.result-footer
         img(src='/imgs/result_footer.png')
@@ -42,19 +42,19 @@ export default {
     width 1000px
     margin 0 auto
 .result-header
+    position relative
     img
         width 100%
-        height 250px
+        height 230px
 .result-footer
     img
         width 100%
-        height 200px
+        height 150px
 .print-btn
     padding 5px
-    position fixed
-    top 0
-    right 0
-    border 2px solid black
+    position absolute
+    top 100px
+    right 330px
     font-size 30px
     font-weight bold
     background-color black
@@ -63,6 +63,8 @@ export default {
         background-color white
         color black
 .number
+    position relative
+    top 270px
     width 40px
     height 40px
     border-radius 20px

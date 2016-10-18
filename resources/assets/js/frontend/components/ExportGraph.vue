@@ -58,7 +58,7 @@ div.container.questionListContainer
             img(src='/imgs/buttons_on.png')
     div.save-list
         ul
-            li(v-for='n in saveList.length', @click='load(n)') {{ n + 1 }}
+            li(v-for='n in 5', @click='load(n)', :class='{ active: saveList[n] }') {{ n + 1 }}
 </template>
 
 <script type="text/babel">
@@ -476,8 +476,11 @@ div.row
             border-radius 18px
             border 2px solid black
             margin-bottom 5px
-            background-color black
-            color white
+            background-color white
+            color black
+            &.active
+                background-color black
+                color white
             &:hover
                 background-color white
                 color black
