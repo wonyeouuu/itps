@@ -18,6 +18,7 @@ elixir(function(mix) {
     mix
         .sass('/frontend/bootstrap.scss', 'public/css/frontend/bootstrap.css')
         .sass('/frontend/home.scss', 'public/css/frontend/home.css')
+        .sass('/frontend/print.scss', 'public/css/frontend/print.css')
         .browserify('/frontend/home.js', 'public/js/frontend/home.js')
         // .stylus('teeth.styl', 'public/css/frontend/teeth.css')
         // .spritesmith('resources/assets/imgs/teeth/first', {
@@ -32,6 +33,7 @@ elixir(function(mix) {
         .version([
             'css/frontend/bootstrap.css',
             'css/frontend/home.css',
+            'css/frontend/print.css',
             'js/frontend/home.js',
             'js/frontend/textUI.js'
         ])

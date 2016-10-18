@@ -1,6 +1,11 @@
 <template lang="jade">
 div.result-container
-    //- canvas#result-canvas(width='1000')
+    div.print-btn(@click='print') Print
+    div.result-header
+        img(src='/imgs/result_header.png')
+    div.results
+    div.result-footer
+        img(src='/imgs/result_footer.png')
 </template>
 
 <script>
@@ -13,56 +18,20 @@ export default {
             saveList: getSaveList
         }
     },
+    methods: {
+        print() {
+            window.print()
+        }
+    },
     ready() {
-        const resultContainer = document.querySelector('.result-container')
-        this.saveList.forEach(save => {
+        const resultContainer = document.querySelector('.results')
+        this.saveList.forEach((save, ind) => {
+            const newDiv = document.createElement('div')
+            newDiv.className = 'number'
+            newDiv.innerHTML = ind + 1
+            resultContainer.appendChild(newDiv)
             resultContainer.appendChild(save.dom)
-            // html2canvas(save.dom).then(canvas => {
-            //     resultContainer.appendChild(canvas)
-            // })
         })
-        console.log(document.querySelectorAll('.export-graph'))
-        setTimeout(() => {
-            const promises = [].map.call(document.querySelectorAll('.export-graph'), dom => html2canvas(dom))
-            Promise.all(promises).then(result => {
-                while(resultContainer.firstChild) {
-                    resultContainer.removeChild(resultContainer.firstChild)
-                }
-                result = result.map(canvas => canvas.toDataURL('image/png'))
-                result.forEach(img => {
-                    const newImg = new Image()
-                    newImg.src = img
-                    resultContainer.appendChild(newImg)
-                })
-
-                console.log(result)
-            })
-            // document.querySelectorAll('.export-graph').forEach(dom => {
-                // html2canvas(dom).then(canvas => {
-                //     const newImg = new Image()
-                //     newImg.src = canvas.toDataURL('image/png')
-                //     console.log(newImg)
-                    // dom.parentNode.replaceChild(newImg, dom)
-                // })
-            // })
-        }, 1000)
-
-        // this.saveList.forEach(save => {
-        //     resultContainer.appendChild(save.canvas)
-        // })
-        // const canvas = document.querySelector('#result-canvas')
-        // const anchor = document.querySelector('#hidden-anchor')
-        // const ctx = canvas.getContext('2d')
-        // const backgroundImage = new Image()
-        // backgroundImage.src='/imgs/about_us_photo1.png'
-        // backgroundImage.onload = () => {
-        //     ctx.drawImage(backgroundImage, 0, 0, 1000, 100)
-        //     console.log(this.exportCanvas)
-        //     anchor.href = canvas.toDataURL('image/png')
-        //     anchor.click()
-        // }
-        // canvas.height += this.exportCanvas.height
-        // ctx.drawImage(this.exportCanvas, 0, 100, 1000, this.exportCanvas.height)
     }
 }
 </script>
@@ -72,4 +41,33 @@ export default {
     text-align center
     width 1000px
     margin 0 auto
+.result-header
+    img
+        width 100%
+        height 250px
+.result-footer
+    img
+        width 100%
+        height 200px
+.print-btn
+    padding 5px
+    position fixed
+    top 0
+    right 0
+    border 2px solid black
+    font-size 30px
+    font-weight bold
+    background-color black
+    color white
+    &:hover
+        background-color white
+        color black
+.number
+    width 40px
+    height 40px
+    border-radius 20px
+    border 2px solid black
+    line-height 36px
+    font-size 24px
+    font-weight bold
 </style>
