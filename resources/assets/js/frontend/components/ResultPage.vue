@@ -26,7 +26,11 @@ export default {
         // }
         print() {
             const resultContainer = document.querySelector('.result-container')
+            const printBtn = document.querySelector('.print-btn')
+            printBtn.style.display = 'none'
+            resultContainer.style.cursor = 'wait'
             html2canvas(resultContainer).then(canvas => {
+                resultContainer.style.cursor = 'auto'
                 // const newImg = new Image()
                 // newImg.src = canvas.toDataURL('image/png')
                 // resultContainer.parentNode.replaceChild(newImg, resultContainer)
