@@ -2,8 +2,8 @@
 div.container.questionListContainer
     div#export-graph.export-graph
         div.row-top.row
-            div.bar-container
-                img(src='/imgs/bar/up.png', v-if='bar.up')
+            //- div.bar-container
+            //-     img(src='/imgs/bar/up.png', v-if='bar.up')
             div.connector-container(:class='{ "connector-container--hoverable": ["Connector", "A Bar", "I Bar", "Wrought wire"].indexOf(activeGraphController) !== -1 }')
                 img(v-for='connectorID in upperConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
@@ -23,8 +23,8 @@ div.container.questionListContainer
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][0].img : null', v-if='hook[toothID] ? hook[toothID][0] : false')
                     img.hooks(:src='preload', v-img='hook[toothID] ? hook[toothID][1].img : null', v-if='hook[toothID] ? hook[toothID][1] : false')
         div.row-down.row
-            div.bar-container
-                img(src='/imgs/bar/down.png', v-if='bar.down')
+            //- div.bar-container
+            //-     img(src='/imgs/bar/down.png', v-if='bar.down')
             div.connector-container(:class='{ "connector-container--hoverable": ["Connector", "A Bar", "I Bar", "Wrought wire"].indexOf(activeGraphController) !== -1 }')
                 img(v-for='connectorID in lowerConnectors',
                     v-img='connector[connectorID] ? connector[connectorID] : `/imgs/connectors/92/${connectorID}.png`',
