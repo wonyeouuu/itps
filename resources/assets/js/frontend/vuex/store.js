@@ -331,7 +331,7 @@ const mutations = {
         // })
     },
     LOAD(state, index) {
-        state.questions = state.saveList[index].questions
+        state.questions = cloneDeep(state.saveList[index].questions)
     }
 };
 

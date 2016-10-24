@@ -462,11 +462,12 @@ div.row
 
 .save-list
     position fixed
-    right 40px
-    bottom 80px
+    left calc(50% - 125px)
+    bottom 60px
     ul
         list-style none
         li
+            display inline-block
             line-height 34px
             font-size 22px
             font-weight bold
@@ -475,7 +476,7 @@ div.row
             height 36px
             border-radius 18px
             border 2px solid black
-            margin-bottom 5px
+            margin-right 5px
             background-color white
             color black
             &.active
